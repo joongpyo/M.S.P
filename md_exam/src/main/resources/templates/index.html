@@ -13,51 +13,10 @@
 </head>
 
 <body>
-    <header>
-        <nav class="header-top">
-            <div class="login-wrap" th:if="${session.user != null}">
-                <p> <strong>[[${session.user.userName}]]</strong>님 환영합니다.</p>
 
-                <div class="login-bar">
-                    <a href="#">마이페이지</a>
-                    <a href="">/</a>
-                    <a th:href="@{/logout}">로그아웃</a>
-                </div>
-            </div>
+    <div th:replace="~{/fragments/header.html :: fragment-header}"></div>
 
-            <div class="login-wrap" th:unless="${session.user != null}">
-                <p></p>
-                <div class="login-bar">
-                    <a th:href="@{user/login}">로그인</a>
-                    <a href="">/</a>
-                    <a th:href="@{user/register}">회원가입</a>
-                </div>
-            </div>
-            
-            <div class="top-hr">
-                <hr>
-            </div>
-                              
-            <nav class="nav-wrap">
-                <div class="logo">
-                    <a th:href="@{/index}"><img src="./images/nocolorlogo.png" alt=""></a>
-                </div>
-                <ul>
-                    <a th:href="@{/board/boardReview}"><li>약 복용 후기</li></a>
-                    <a th:href="@{/board/boardNotice}"><li>공지사항</li></a>
-                    <a th:href="@{/board/boardQnA}"><li>QnA</li></a>
-                    <a th:href="@{/board/boardList}"><li>약 목록</li></a>
-                    <form action="">
-                        <li class="search">
-                            <input type="text" placeholder="약명으로 검색하기">
-                            <span></span>
-                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </li>
-                    </form>
-                </ul>
-            </nav>                        
-        </nav>
-       
+
     <div class="bg">
         <div class="bg-wrap">
             <div class="bg-content">
@@ -81,7 +40,7 @@
             </div>
         </div>
     </div>
-    </header>
+
 
     <div class="one-hr">
         <hr>
@@ -96,21 +55,21 @@
                     </div>
                     <div class="adv-content">
                         <div class="adv-box">
-                            <div class="adv-pic"><img src="./images/sangdam2.jpg" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/images/sangdam2.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>상황에 맞는 약 추천</h2>
                                 <p>연령대, 성별, 통증별로 구분하여 <br>쉽고 빠르게 약을 추천받을 수 있습니다.</p>
                             </div>
                         </div>
                         <div class="adv-box">
-                            <div class="adv-pic"><img src="./images/onemedicine.jpg" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/images/onemedicine.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>내가 찾아본 약 열람</h2>
                                 <p>본인이 추천받은 약의 정보를 <br>마이페이지에서 다시 확인할 수 있습니다.</p>
                             </div>
                         </div>
                         <div class="adv-box">
-                            <div class="adv-pic"><img src="./images/phonedoc.jpg" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/images/phonedoc.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>일반의약품을 추천</h2>
                                 <p>편의점, 약국에서 구매에 용이하도록<br>처방전이 필요없는 일반의약품을 추천하고 있습니다.</p>
@@ -133,61 +92,61 @@
                    <div class="disease-content">
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/cold.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
                             </div>           
                             <span>감기</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/stoma.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
                             </div>
                             <span>소화불량</span>  
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/period.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
                             </div>  
                             <span>생리통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/allergy.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
                             </div> 
                             <span>알레르기(비염)</span> 
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/headache.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
                             </div>  
                             <span>편두통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/sulsa.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
                             </div>           
                             <span>설사</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/inhu.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
                             </div>
                             <span>인후통</span>  
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/mulmi.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
                             </div>  
                             <span>멀미</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/muscle.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
                             </div> 
                             <span>근육통</span> 
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="./images/momsal.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
                             </div>  
                             <span>몸살</span>
                         </div>
@@ -206,7 +165,6 @@
                             <div class="two-title">
 
                                     <h2>공지사항</h2>
-
                             </div>
 
 
@@ -285,27 +243,13 @@
                     </div>
                 </div>                                                                               
             </section>
-        
     </main>
 
-    <footer>
-        <div class="footer_container">
-            <div class="copyright">
-                <p>
-                    <span>개인정보처리방침</span><br>
-                    [고객센터] 이용문의 TEL 010-1234-5678 <br>
-                    [개인정보보호위원회] (03171) 서울특별시 종로구 세종대로209(정부서울청사 4층) <br>
-                    [한국인터넷진흥원] (58324) 전라남도 나주시 진흥길 9 한국인터넷진흥원<br>
-                    Copyright © Personal Information Protection Commission. All right reserved
-                </p>
-            </div>
-           
-            <div class="foot-logo">
-                <a  th:href="@{/index}"> <img src="./images/nocolorlogo.png" alt=""></a>
-            </div>
-            
-        </div>
-    </footer>
+
+    <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+
+
 </body>
 
 </html>

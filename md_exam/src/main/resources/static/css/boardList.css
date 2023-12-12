@@ -4,27 +4,38 @@
 
 
 .header-top {
+
     width: 100%;
     z-index: 1;
 
 }
 
+
 .login-wrap {
     width: 1280px;
     margin: 0 auto;
-    text-align: end;
+/*    text-align: end; */
     /* background-color: gray; */
     padding: 6px;
-}
 
-.login-wrap a {
+    display:flex;
+    justify-content:space-between;
+
+}
+.login-wrap p {
+    font-size: 14px;
+}
+.login-wrap a{
     margin-right: 8px;
     color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
+
 }
 
+
 /* ----------- nav ---------------  */
-.header-top {
+
+.header-top{
     width: 100%;
     position: fixed;
     top: 0;
@@ -32,6 +43,7 @@
     right: 0;
     background-color: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
 
 }
 
@@ -45,6 +57,7 @@
     height: 100px;
     background-color: #fff;
     /* background-color: #a70638; */
+
 }
 
 .logo {
@@ -52,9 +65,10 @@
     height: 150px;
 }
 
-.nav-wrap ul {
+.nav-wrap ul{
     display: flex;
     justify-content: space-between;
+
 }
 
 .nav-wrap ul li {
@@ -66,47 +80,56 @@
 
 .nav-wrap ul a:hover {
     color: #3CB4FF;
-    /* border-bottom: 1px solid #3CB4FF; */
-    /* transition: .2s;    */
+    /* border-top: 2px solid #3CB4FF; */
+    /* line-height: 1; */
 }
 
-.search input {
-    font-size: 15px;
-    color: #222222;
-    width: 300px;
-    border: none;
-    border-bottom: solid #aaaaaa 1px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    position: relative;
-    background: none;
-    z-index: 1;
+
+.search input{
+    /* border: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+     */
+
+        font-size: 15px;
+        color: #222222;
+        width: 300px;
+        border: none;
+        border-bottom: solid #aaaaaa 1px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        position: relative;
+        background: none;
+
+
 }
 
-.search input::placeholder {
+.search input::placeholder{
     color: #aaaaaa;
-}
 
+}
 .search input:focus {
     outline: none;
     border-bottom: 1.7px solid #000;
+
 }
 
-.search button {
+.search button{
     border: 0;
     background-color: #fff;
+
 }
 
-.search i {
+.search i{
     font-size: 16px;
     cursor: pointer;
 }
 
-.search i:hover {
+.search i:hover{
     color: #3CB4FF;
     transition: .3s;
 }
-
 
 /*---------------------------main-----------------------*/
 .main-container {
