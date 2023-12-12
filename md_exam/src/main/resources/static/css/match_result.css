@@ -1,0 +1,486 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&family=Roboto&display=swap');
+
+
+
+
+
+
+/* -------------- header---------------- */
+
+.header-top {
+    
+    width: 100%;
+    z-index: 1;
+    
+    
+    
+}
+
+.login-wrap {
+    width: 1280px;
+    margin: 0 auto;
+    text-align: end;
+    /* background-color: gray; */
+    padding: 6px;
+    
+    
+    
+    
+}
+
+.login-wrap a{
+    margin-right: 8px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    
+}
+
+
+/* ----------- nav ---------------  */
+
+.header-top{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    
+    
+}
+
+.nav-wrap {
+    display: flex;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;    
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: #fff;
+    /* background-color: #a70638; */
+    
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.nav-wrap ul{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.nav-wrap ul li {
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 25px;
+}
+
+.nav-wrap ul a:hover {
+    color: #3CB4FF;
+    /* border-bottom: 1px solid #3CB4FF; */
+    /* transition: .2s;    */
+}
+
+
+.search input{
+    /* border: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+     */
+     
+        font-size: 15px;
+        color: #222222;
+        width: 300px;
+        border: none;
+        border-bottom: solid #aaaaaa 1px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        position: relative;
+        background: none;
+        z-index: 5;
+   
+}
+
+.search input::placeholder{
+    color: #aaaaaa; 
+
+}
+.search input:focus { 
+    outline: none; 
+    border-bottom: 1.7px solid #000;
+    
+}
+
+.search button{
+    border: 0;
+    background-color: #fff;
+    
+}
+
+.search i{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search i:hover{
+    color: #3CB4FF;
+    transition: .3s;
+}
+
+
+
+
+
+
+/* -------------------main one----------------------*/
+
+main {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.one-hr{
+    margin-top: 70px;
+    width: 100%
+}
+
+.one-hr hr{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.result{
+    /* height: 750px; */
+    width: 100%;
+    padding-top: 100px;
+    
+}
+
+.result-container{
+    max-width: 1280px;
+    width: 100%;
+    align-items: center;
+    /* background-color: #3CB4FF; */
+    margin: 0 auto;   
+   
+
+}
+
+.result-title{
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    
+
+}
+
+.result-content{
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* padding: 10px;     */
+    background-color: #f8f8f8;
+    
+        background-image: url(../images/disease3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 750px;
+    
+    
+    
+}
+
+.result-subtitle{
+    margin: 60px 60px 5px 60px;
+    
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+    /* text-decoration: underline; */
+}
+
+.result-wrap{    
+    margin: 40px;    
+}
+
+
+
+.result-wrap strong:hover{
+    /* text-decoration: underline; */
+    border: 0;
+    border-bottom: 1px solid #4f75e1;
+}
+
+
+table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+th {
+    text-align: left;
+  }
+    
+thead {
+    font-weight: bold;
+    color: #fff;
+    background: #5882fa;
+  }
+    
+th, td{
+    padding: 1em .5em;
+    vertical-align: middle;
+    padding: 15px;
+  }
+    
+td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+
+
+  
+strong a {
+    color: #4f75e1;
+  }
+
+.res-btn{
+    font-size: 12px;
+    padding: 5px;
+    background-color: #e4605e;
+    border: 0;
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    
+  }
+
+.res-btn:active{
+    background-color: #b64c4b;
+  }
+
+
+
+
+
+
+/* ---------------------btn---------------- */
+
+
+
+
+
+.disease-title{
+    /* background-color: aqua; */
+    width: 500px;
+    height: 100px;
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 80px;
+    
+    
+}
+
+.disease-title h2{
+    font-size: 25px;       
+    margin: 15px 0 8px 0;
+}
+
+.disease-title p{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7)
+    
+    
+}
+
+.disease-content {
+    max-width: 1280px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);    
+    margin: 0 auto;
+    
+}
+
+.disease-box {    
+    margin: 0 20px 40px 35px;     
+    text-align: left;
+    font-size: 14px;
+    /* background-color: #222222; */
+    
+}
+
+.disease-box span{
+    margin-left: 12px;
+}
+
+.disease-pic {
+    
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
+    width: 190px;
+    height: 170px; 
+    border-radius: 10%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
+    outline: 0;
+    border: 0;
+}
+
+.pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pic:hover{
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+/* -------------------main two----------------------*/
+
+.two-hr{
+    margin: 50px 0;
+    width: 100%
+}
+
+.two-hr hr{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.two{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.two-container{
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+   
+    margin: 0 auto;
+
+
+}
+
+
+
+.two-title{
+    /* background-color: aqua; */
+    width: 555px;
+    padding: 12px 0;
+    text-align: center;    
+    /* margin-left: 20px;  */
+    margin-bottom: 20px;    
+    background-color: #1e50a4;
+    color: #fff;
+    border: 0;    
+    border-radius: 3px;
+    
+}
+
+.two-title h2{
+    font-weight: lighter;
+    font-size: 22px;
+    text-align: center;
+}
+
+.two-title i{
+    text-align: end;
+}
+
+.table-box {
+    width: 100%;       
+    height: 150px;
+    /* margin-left: 20px; */
+}
+
+.table-box td{
+    text-align: left;
+    padding-left: 10px;  
+    color: rgba(0, 0, 0, 0.7);
+    
+}
+
+.table-box span{
+    color: tomato;
+    font-weight: bold;
+}
+
+.two-notice{
+    margin-left: 35px;
+}
+
+.two-QnA{
+    margin-right: 35px;    
+}
+
+.two-QnA .two-title{
+    background-color: #DF013A;
+    
+}
+
+/*------------------------- footer css --------------------------*/
+
+footer {    
+    color:  #000;
+    padding: 25px 0;
+    border-top:  1px solid rgba(0, 0, 0, 0.1);
+    
+}
+
+.footer_container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.copyright p{
+    opacity: .7;
+    font-weight: lighter;
+    letter-spacing: -1;
+}
+
+.copyright p span{
+    font-weight: bold;
+}
+
+
+.foot-logo{
+    width: 130px;
+    margin: 20px 0 0 20px;
+}
+

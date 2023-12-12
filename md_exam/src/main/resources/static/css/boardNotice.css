@@ -1,0 +1,402 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+
+/* -------------- header---------------- */
+.header-top {
+    width: 100%;
+    z-index: 1;
+
+}
+
+.login-wrap {
+    width: 1280px;
+    margin: 0 auto;
+    text-align: end;
+    /* background-color: gray; */
+    padding: 6px;
+}
+
+.login-wrap a {
+    margin-right: 8px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+}
+
+/* ----------- nav ---------------  */
+.header-top {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.nav-wrap {
+    display: flex;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: #fff;
+    /* background-color: #a70638; */
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.nav-wrap ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-wrap ul li {
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 25px;
+}
+
+.nav-wrap ul a:hover {
+    color: #3CB4FF;
+    /* border-bottom: 1px solid #3CB4FF; */
+    /* transition: .2s;    */
+}
+
+.search input {
+    font-size: 15px;
+    color: #222222;
+    width: 300px;
+    border: none;
+    border-bottom: solid #aaaaaa 1px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+    background: none;
+    z-index: 1;
+}
+
+.search input::placeholder {
+    color: #aaaaaa;
+}
+
+.search input:focus {
+    outline: none;
+    border-bottom: 1.7px solid #000;
+}
+
+.search button {
+    border: 0;
+    background-color: #fff;
+}
+
+.search i {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search i:hover {
+    color: #3CB4FF;
+    transition: .3s;
+}
+
+
+
+/*---------------------------main-----------------------*/
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    padding-top: 100px;
+}
+
+.bg-title {
+    height: 300px;
+    background-image: url(../images/capsule2.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
+
+.bg-title h1 {
+    color: #fff;
+    margin: auto;
+}
+
+/* ---------------------section---------------------------- */
+.section-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding-right: 50px;
+
+}
+
+.content-wrap {
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 40px;
+    padding: 0 10px;
+}
+
+/* -------------------------aside--------------------------- */
+aside {
+    width: 30%;
+    margin-left: 30px;
+    height: 500px;
+}
+
+aside ul li {
+    width: 85%;
+    text-align: center;
+    padding: 14px 0;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+}
+
+.side-bg-wrap {
+
+}
+
+li.active {
+    background-color: #eee;
+}
+
+li.active a {
+    color:#3CB4FF;
+}
+
+aside ul li:first-child {
+    background-color: skyblue;
+    height: 200px;
+    line-height: 150px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+aside ul li:first-child a {
+    color: #fff;
+}
+
+aside ul li a:hover {
+    color: #3CB4FF;
+}
+
+.side-bg-wrap{
+    /* font-size: 2px; */
+    color: #fff;
+}
+
+
+
+/* ---------------------- content ------------------------ */
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-right {
+    display: flex;
+    justify-self: center;
+}
+
+select {
+    height: 30px;
+    border: 1px solid #504d4d;
+    border-right: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.search-box {
+    border: 1px solid #504d4d;
+    border-left: 1px solid #cbcaca;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 30px;
+    display: flex;
+    overflow: hidden;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.sel-box select{
+    border: 0;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.search2 {
+    border: 0;
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
+}
+
+.search2:focus {
+    outline: none;
+}
+
+.search-box button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
+}
+
+/* -----------------------table------------------------ */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    /* max-width: 1400px; */
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+tr {
+    border: 1px solid #eaeaea;
+    border-left: 0;
+    border-right: 0;
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
+td,
+th {
+    padding: 15px;
+}
+
+td {
+    text-align: center;
+}
+
+td:first-child {
+    color: #aaa;
+}
+
+td:nth-child(2) {
+    text-align: left;
+    padding-left: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+td:nth-child(2):hover {
+    text-decoration: underline;
+
+    transition: .3s;
+}
+
+td:nth-child(3) {
+    font-weight: 500;
+}
+
+
+
+th:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(3) {
+    width: 10%;
+}
+
+th:nth-child(4) {
+    width: 6%;
+}
+
+th:nth-child(5) {
+    width: 10%;
+}
+
+/* ------------------------bottom------------------------- */
+
+.bottom {
+    max-width: 1480px;
+    width: 100%;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+.bottom-right {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    margin: 0 5px;
+}
+
+.bottom-right button {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: #6aafe6;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.bottom-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom-center a.active {
+    background-color: #eee;
+}
+
+.bottom-center a {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 1px 1px 0 #eee;
+    border-radius: 20px;
+}
+
+/*------------------------- footer css --------------------------*/
+
+footer {
+    color: #000;
+    padding: 25px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright p {
+    opacity: .7;
+    font-weight: lighter;
+    letter-spacing: -1;
+}
+
+.copyright p span {
+    font-weight: bold;
+}
+
+.foot-logo {
+    width: 130px;
+    margin: 20px 0 0 20px;
+}
