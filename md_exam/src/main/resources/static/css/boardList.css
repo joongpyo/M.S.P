@@ -137,6 +137,7 @@
     margin: 0 auto;
     margin-bottom: 100px;
     padding-top: 100px;
+
 }
 
 .bg-title {
@@ -159,6 +160,7 @@
     width: 100%;
     margin: 0 auto;
     padding-right: 50px;
+
 
 }
 
@@ -214,6 +216,7 @@ aside ul li a:hover {
     margin: 0px auto;
     margin-top: 40px;
     padding: 0 10px;
+
 }
 
 .content-wrap .list-box ul{
@@ -234,7 +237,7 @@ aside ul li a:hover {
     color: #3CB4FF;
 }
 
-form {
+.search-form {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
