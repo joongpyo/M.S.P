@@ -112,16 +112,16 @@
                         <th>조회수</th>
                         <th>작성날짜</th>
                     </tr>
+
                     <tr>
                         <td>3</td>
                         <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                            <a th:href="@{/board/boardView}">공지사항 게시판입니다.</a>
                         </td>
                         <td>koreait</td>
                         <td>23</td>
                         <td>23-12-01</td>
                     </tr>
-
                 </table>
 
                 <div class="bottom">
@@ -137,10 +137,10 @@
                         </a>
                     </div>
                     <div class="bottom-right">
-                        <a href="">
+                        <a th:href="@{/board/boardQnA}">
                             <button type="button" class="btn">목록</button>
                         </a>
-                        <a href="./boardWrite.html">
+                        <a th:href="@{/board/boardWrite}">
                             <button type="button" class="btn">글쓰기</button>
                         </a>
                     </div>
@@ -163,11 +163,22 @@
         </div>
 
         <div class="foot-logo">
-            <a href="./index.html"> <img src="./images/nocolorlogo.png" alt=""></a>
+            <a href="/index"> <img th:src="@{/images/nocolorlogo.png}" alt=""></a>
         </div>
 
     </div>
 </footer>
+
+<script>
+    $(function() {
+
+    });
+
+
+</script>
+
+
 </body>
+
 
 </html>

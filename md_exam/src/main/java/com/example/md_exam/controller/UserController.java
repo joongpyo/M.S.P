@@ -20,16 +20,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("user/login")
+    @GetMapping("/user/login")
     public String getLogin(){
         return "user/login";
     }
 
-    @GetMapping("user/register")
+    @GetMapping("/user/register")
     public String getRegister(){
         return "user/register";
     }
-    @PostMapping("user/register")
+    @PostMapping("/user/register")
     public String setRegister(@ModelAttribute UserDto userDto, RedirectAttributes ra){
         userService.setRegister(userDto);
 
@@ -55,7 +55,7 @@ public class UserController {
 
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");
-            return "redirect:/login";
+            return "redirect:/user/login";
         }
     }
     @GetMapping("/logout")
