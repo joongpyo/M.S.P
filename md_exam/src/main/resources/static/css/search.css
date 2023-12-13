@@ -294,12 +294,12 @@ select {
     color: #333;
 }
 .select1 input[type=radio]:checked+label{
-    background-color: #ff007a;
+    background-color:  #1263CE;
     color: #fff;
 }
 
 .select1 input[type=radio]:checked+label:nth-child(2){
-    background-color: #1263CE;
+    background-color: #ff007a;;
     color: #fff;
 }
 
