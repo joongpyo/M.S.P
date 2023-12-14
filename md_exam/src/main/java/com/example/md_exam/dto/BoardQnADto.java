@@ -2,7 +2,7 @@ package com.example.md_exam.dto;
 
 import java.time.LocalDate;
 
-public class BoradQnADto {
+public class BoardQnADto {
     private int qId;
     private String qSubject;
     private String qContent;

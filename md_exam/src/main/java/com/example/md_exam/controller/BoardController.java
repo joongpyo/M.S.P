@@ -1,6 +1,6 @@
 package com.example.md_exam.controller;
 
-import com.example.md_exam.dto.BoradQnADto;
+import com.example.md_exam.dto.BoardQnADto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,13 +40,14 @@ public class BoardController {
         return "board/boardWrite";
     }
 
-    @PostMapping("boardWrite")
+    @PostMapping("/boardWrite")
     @ResponseBody
-    public String setBoardWrite(@RequestParam List<MultipartFile> files,
-                                @ModelAttribute BoradQnADto boradQnADto,
+    public String setBoardWrite(@RequestParam("files")List<MultipartFile> files,
+                                @ModelAttribute BoardQnADto boardQnADto,
                                 Model model) {
-        System.out.println(boradQnADto);
-        return null;
+        System.out.println(files);
+        System.out.println(boardQnADto);
+        return "success";
     }
 
 }
