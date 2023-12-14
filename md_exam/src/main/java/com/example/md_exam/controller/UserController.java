@@ -55,7 +55,7 @@ public class UserController {
 
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");
-            return "redirect:/login";
+            return "redirect:/user/login";
         }
     }
     @GetMapping("/logout")
