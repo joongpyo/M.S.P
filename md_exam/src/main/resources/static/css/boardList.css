@@ -6,7 +6,6 @@
 .header-top {
     width: 100%;
     z-index: 1;
-
 }
 
 .login-wrap {
@@ -305,7 +304,7 @@ select {
 /* ------------------------bottom------------------------- */
 
 .bottom {
-    max-width: 1480px;
+    max-width: 1280px;
     width: 100%;
     margin-top: 20px;
     margin: 0 auto;

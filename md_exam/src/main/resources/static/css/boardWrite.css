@@ -217,12 +217,12 @@ tr {
 
 td, th {
     padding: 10px;
-    
 }
 
 th {
     background-color: #3d3d3d;
     color: #fff;
+    width: 185px;
 }
 
 input {
@@ -241,7 +241,7 @@ input {
 
 /* ------------------------------------------------------ */
 .bottom {
-    max-width: 1480px;
+    max-width: 1280px;
     width: 100%;
     margin-top: 20px;
     margin: 0 auto;
@@ -365,9 +365,10 @@ textarea{
 }
 
 /* ---------------------- ck editor -------------------------- */
-.ck-editor__editable { 
-    height: 200px; 
+.ck-editor__editable {
+    height: 400px;
+    weight 100%;
 }
-.ck-content { 
-    font-size: 12px; 
+.ck-content {
+    font-size: 12px;
 }

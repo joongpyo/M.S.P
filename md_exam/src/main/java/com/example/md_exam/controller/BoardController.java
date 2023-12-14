@@ -1,8 +1,12 @@
 package com.example.md_exam.controller;
 
+import com.example.md_exam.dto.BoradQnADto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -27,7 +31,7 @@ public class BoardController {
         return "board/boardReview";
     }
     @GetMapping("/boardView")
-    public String getBoardView(){
+    public String getBoardView() {
         return "board/boardView";
     }
 
@@ -35,4 +39,14 @@ public class BoardController {
     public String getBoardWrite(){
         return "board/boardWrite";
     }
+
+    @PostMapping("boardWrite")
+    @ResponseBody
+    public String setBoardWrite(@RequestParam List<MultipartFile> files,
+                                @ModelAttribute BoradQnADto boradQnADto,
+                                Model model) {
+        System.out.println(boradQnADto);
+        return null;
+    }
+
 }
