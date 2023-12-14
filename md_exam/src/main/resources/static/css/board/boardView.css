@@ -1,0 +1,212 @@
+
+
+/*---------------------------boardView content -----------------------*/
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    padding-top: 100px;
+}
+
+.bg-title {
+    height: 300px;
+    background-image: url("/images/capsule2.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
+
+.bg-title h1 {
+    color: #fff;
+    margin: auto;
+}
+
+/* ---------------------section---------------------------- */
+.section-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding-right: 50px;
+}
+
+/* -------------------------aside--------------------------- */
+aside {
+    width: 30%;
+    margin-left: 30px;
+    height: 500px;
+}
+
+aside ul li {
+    width: 85%;
+    text-align: center;
+    padding: 14px 0;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+}
+
+aside ul li.active {
+    background-color: #eee;
+}
+
+aside ul li.active a {
+    color:#3CB4FF;
+}
+
+aside ul li:first-child {
+    background-color: skyblue;
+    height: 200px;
+    line-height: 150px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+aside ul li:first-child a {
+    color: #fff;
+}
+
+aside ul li a:hover {
+    color: #3CB4FF;
+}
+
+.side-bg-wrap{
+    /* font-size: 2px; */
+    color: #fff;
+}
+
+/* ---------------------- content ------------------------ */
+
+.content-wrap {
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 40px;
+    padding: 0 10px;
+}
+
+.board-info {
+    padding-top: 10px;
+}
+
+.board-info p {
+    font-size: 12px;
+}
+
+.board-info span {
+    padding-right: 5px;
+}
+
+p .writer {
+    font-weight: bold;
+}
+
+.subject hr {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.content {
+    padding: 10px;
+    min-height: 400px;
+}
+
+.text-box p {
+    line-height: 400%;
+    font-size: 12px;
+}
+
+.content-wrap hr {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+
+
+/* ------------------------bottom------------------------- */
+.bottom {
+    max-width: 1280px;
+    width: 100%;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+.bottom-right {
+    display: flex;
+    justify-content: end;
+    height: 60px;
+    margin: 0 5px;
+}
+
+.bottom-right a {
+    margin-left: 5px;
+}
+
+.bottom-right button {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: #6aafe6;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.bottom-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom-center a.active {
+    background-color: #eee;
+}
+
+.bottom-center a {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 1px 1px 0 #eee;
+    border-radius: 20px;
+}
+
+.comment {
+    border-top: 1px dashed #ccc;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.comment ul {
+    margin-top: 30px;
+}
+
+.comment ul li {
+    margin: 10px 0;
+    width: 100%;
+    height: 100px;
+    font-size: 12px;
+}
+
+.comment ul li .comment-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment ul li .writer {
+    font-weight: bold;
+}
+
+.comment ul li .reg-time {
+    font-style: italic;
+}
+
+.comment ul li p {
+    border: 0;
+    border-radius: 3px;
+    background-color: #f8fafb;
+    padding: 15px;
+    margin: 10px 0;
+}
