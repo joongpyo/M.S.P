@@ -9,7 +9,7 @@ function frmCheck(){
     const expNameText= /^[가-힣]+$/;
     const expPwText = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     const expEmailText = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+    /*
     if(userid.value==""){
         alert("아이디를 입력하세요")
         userid.focus();
@@ -54,7 +54,7 @@ function frmCheck(){
             alert("이메일 형식을 맞춰주세요")
             useremail.focus();
             return false;
-        }
+        }*/
     else{
         alert("회원 가입 완료!");
     }
