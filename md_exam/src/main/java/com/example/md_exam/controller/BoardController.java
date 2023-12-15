@@ -1,6 +1,6 @@
 package com.example.md_exam.controller;
 
-import com.example.md_exam.dto.QnADto;
+import com.example.md_exam.dto.QnaDto;
 import com.example.md_exam.service.BoardQnaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/board")
 public class BoardController {
     @Autowired
-    BoardQnaService boardQnAService;
+    BoardQnaService boardQnaService;
 
     @GetMapping("/boardNotice")
     public String getBoardNotice(){
@@ -27,12 +27,7 @@ public class BoardController {
         return "board/boardQnA";
     }
 
-    @GetMapping("/board/qnaList")
-    public String getQnaList(){
-        boardQnAService.getQnaList();
 
-        return null;
-    }
 
     @GetMapping("/boardList")
     public String getBoardList(){
@@ -56,7 +51,7 @@ public class BoardController {
     @PostMapping("/boardWrite")
     @ResponseBody
     public Map<String, Object> setBoardWrite(@RequestParam(name="files",required = false)List<MultipartFile> files,
-                                             @ModelAttribute QnADto qnADto) {
+                                             @ModelAttribute QnaDto qnaDto) {
 
         //파일 저장
         String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
@@ -64,8 +59,8 @@ public class BoardController {
         if (files != null){
             for(MultipartFile mf : files){
                 System.out.println(mf.getOriginalFilename());
-                qnADto.setIsFiles("Y");
-                boardQnAService.setBoard(qnADto);
+                qnaDto.setIsFiles("Y");
+                boardQnaService.setBoard(qnaDto);
 
                /* int fileID = qnADto.getId();
                 String savedPathName = fileDir + folderName;
@@ -87,12 +82,20 @@ public class BoardController {
                 boardService.setFiles(fileDto);*/
             }
         }else {
-            qnADto.setIsFiles("N");
-            boardQnAService.setBoard(qnADto);
+            qnaDto.setIsFiles("N");
+            boardQnaService.setBoard(qnaDto);
         }
 
-        System.out.println(qnADto);
+        System.out.println(qnaDto);
         return Map.of("msg","success");
+    }
+
+    @GetMapping("/board/qnaList")
+    public void getQnaList(){
+
+        List<QnaDto> list = boardQnaService.getQnaList();
+
+
     }
 
 }
