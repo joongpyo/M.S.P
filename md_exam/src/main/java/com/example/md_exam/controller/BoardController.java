@@ -1,25 +1,21 @@
 package com.example.md_exam.controller;
 
-import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.QnADto;
-import com.example.md_exam.service.BoardQnAService;
+import com.example.md_exam.service.BoardQnaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
     @Autowired
-    BoardQnAService boardQnAService;
+    BoardQnaService boardQnAService;
 
     @GetMapping("/boardNotice")
     public String getBoardNotice(){
@@ -29,6 +25,13 @@ public class BoardController {
     @GetMapping("/boardQnA")
     public String getBoardQnA(){
         return "board/boardQnA";
+    }
+
+    @GetMapping("/board/qnaList")
+    public String getQnaList(){
+        boardQnAService.getQnaList();
+
+        return null;
     }
 
     @GetMapping("/boardList")

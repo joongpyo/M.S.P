@@ -123,6 +123,8 @@
                         <td>23</td>
                         <td>23-12-01</td>
                     </tr>
+
+
                 </table>
 
                 <div class="bottom">
@@ -171,7 +173,35 @@
 </footer>
 
 <script>
+    $(function(){
+        $.ajax({
+            type: "get",
+            url: "/board/qnaList",
+            dataType: "json",
+            success: function(res) {
+                //console.log(res.cList);
+                let output = "";
 
+                /////////////////////////////////////////////////////////////////////
+                //res안에 cList c이름으로 쪼갤게
+                res.cList.forEach( (c)=> {
+
+                    //` 백키 사용
+                    output += `<div class="comment-box">
+                                    <h3>${c.cSubject} [${c.cWriter}] - <span>${c.cRegdate}</span></h3>
+                                    <p>
+                                        ${c.cComment}
+                                        <p class="msg-btn">
+                                            <a href="">수정</a> | <a href="">삭제</a>
+                                        </p>
+                                    </p>
+                                </div>`;
+                } );
+
+                document.querySelector(".comment-flex").innerHTML = output;
+            }
+        });
+    })
 
 
 </script>

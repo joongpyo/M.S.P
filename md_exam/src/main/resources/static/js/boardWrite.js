@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         processData: false,
                         success: function (result) {
                             if (result.msg=="success"){
-                               location.href = "/board/boardQnA";
+                                alert("등록되었습니다.");
+                                location.href = "/board/boardQnA";
                             }
                         }
                     });
