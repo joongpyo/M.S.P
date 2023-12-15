@@ -125,36 +125,3 @@ foreign key(u_id_fk) references user(u_id)
 
 
 
-
-
-
---insert into medicine values(
---null,
---'타이레놀',
---'감기',
---'몸살에 효과',
---'알약',
---'Y',
---'한국 얀센',
---'2',
---'N',
---now(),
---'Y'
---);
---
---
---
---
---
---약찾기 쿼리문
---select med_name, med_dis, med_eff, med_type, med_com, med_store from medicine
---where med_pregnant = #{pregnant} and med_age = #{age} and med_dis = #{disease} and med_type = #{type};
---
---select med_name, med_dis, med_eff, med_type, med_com, med_store from medicine
---where med_pregnant = 'N' and med_age = 2 and med_dis = '감기' and med_type = '알약';
---
---
---저장할때는 약 정보 저장 누르면 id로 모든 정보가 넘어감
-
-
-

@@ -1,18 +1,18 @@
 package com.example.md_exam.dto;
 
 public class UserDto {
-    private int medicineId;
+    private int mId;
     private String userId;
     private String userPasswd;
     private String userName;
     private String userEmail;
 
-    public int getMedicineId() {
-        return medicineId;
+    public int getmId() {
+        return mId;
     }
 
-    public void setMedicineId(int medicineId) {
-        this.medicineId = medicineId;
+    public void setmId(int mId) {
+        this.mId = mId;
     }
 
     public String getUserId() {
@@ -50,7 +50,7 @@ public class UserDto {
     @Override
     public String toString() {
         return "UserDto{" +
-                "medicineId=" + medicineId +
+                "medicineId=" + mId +
                 ", userId='" + userId + '\'' +
                 ", userPasswd='" + userPasswd + '\'' +
                 ", userName='" + userName + '\'' +

@@ -1,67 +1,20 @@
 package com.example.md_exam.dto;
 
+import java.time.LocalDateTime;
+
 public class MedicineDto {
 
-    private int uId;
-    private String userId;
-    private String userPasswd;
-    private String userName;
-    private String userEmail;
+    private int medId;
+    private String medName;
+    private String medDis;
+    private String medEff;
+    private String medType;
+    private String medStore;
+    private String medCom;
+    private String medAge;
+    private String medPregnant;
+    private LocalDateTime medReg;
+    private String medIsFiles;
 
 
-
-
-
-    public int getuId() {
-        return uId;
-    }
-
-    public void setuId(int uId) {
-        this.uId = uId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserPasswd() {
-        return userPasswd;
-    }
-
-    public void setUserPasswd(String userPasswd) {
-        this.userPasswd = userPasswd;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "MedicineDto{" +
-                "uId=" + uId +
-                ", userId='" + userId + '\'' +
-                ", userPasswd='" + userPasswd + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                '}';
-    }
 }

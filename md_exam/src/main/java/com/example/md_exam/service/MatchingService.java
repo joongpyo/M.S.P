@@ -10,7 +10,6 @@ public class MatchingService {
     @Autowired
     MatchingMapper matchingMapper;
 
-
     public void setMatching(MedicineDto medicineDto){
         matchingMapper.setMatching(medicineDto);
     }
