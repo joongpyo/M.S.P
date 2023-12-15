@@ -10,13 +10,15 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
+    public void setRegister(UserDto userDto){
+        userMapper.setRegister(userDto);
+
+    }
+
     public UserDto setLogin(UserDto userDto){
         return userMapper.setLogin(userDto);
 
     }
 
-    public void setRegister(UserDto userDto){
-        userMapper.setRegister(userDto);
 
-    }
 }

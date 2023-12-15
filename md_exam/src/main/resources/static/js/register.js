@@ -56,7 +56,7 @@ function frmCheck(){
             return false;
         }
     else{
-        alert("회원 가입 완료!");
+        alert("회원가입이 완료되었습니다.");
     }
     
 
