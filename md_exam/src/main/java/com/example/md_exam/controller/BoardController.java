@@ -67,38 +67,41 @@ public class BoardController {
         //파일 저장
         String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
 
+        File makeFolder = new File(fileDir + folderName);
+        if(!makeFolder.exists()){
+            makeFolder.mkdir();
+        }
 
         if (files != null){
+            qnaDto.setIsFiles("Y");
+
+            boardQnaService.setBoard(qnaDto);
+            System.out.println(qnaDto);
+
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
+            int fileID = qnaDto.getQnaId();
+
             for(MultipartFile mf : files){
+                FileDto fileDto= new FileDto();
 
-                qnaDto.setIsFiles("Y");
+                String savedPathName = fileDir + folderName;
+                String orgName = mf.getOriginalFilename();
+                String ext = orgName.substring(orgName.lastIndexOf("."));
+                String uuid = UUID.randomUUID().toString();
+                String savedFileName = uuid + ext;
+                Long savedFileSize = mf.getSize();
 
-                //service에서 grp등을 구현?
-                boardQnaService.setBoard(qnaDto);
-                System.out.println(mf.getOriginalFilename());
-//                int fileID = qnaDto.getQnaId();
-//
-//                String savedPathName = fileDir + folderName;
-//                String orgName = mf.getOriginalFilename();
-//                String ext = orgName.substring(orgName.lastIndexOf("."));
-//                String uuid = UUID.randomUUID().toString();
-//                String savedFileName = uuid + ext;
-//                Long savedFileSize = mf.getSize();
-//
-//                mf.transferTo(new File(savedPathName + "/" + savedFileName));
-//                FileDto fileDto= new FileDto();
-//
-//                fileDto.setId(fileID);
-//                fileDto.setOrgName(orgName);
-//                fileDto.setSavedFileName(savedFileName);
-//                fileDto.setSavedPathName(savedPathName);
-//                fileDto.setFolderName(folderName);
-//                fileDto.setExt(ext);
-//                fileDto.setSavedFileSize(savedFileSize);
-//
-//                System.out.println(fileDto);
+                mf.transferTo(new File(savedPathName + "/" + savedFileName));
 
-//                boardService.setFiles(fileDto);
+                fileDto.setId(fileID);
+                fileDto.setOrgName(orgName);
+                fileDto.setSavedFileName(savedFileName);
+                fileDto.setSavedPathName(savedPathName);
+                fileDto.setFolderName(folderName);
+                fileDto.setExt(ext);
+                fileDto.setSavedFileSize(savedFileSize);
+
+                boardQnaService.setFiles(fileDto);
             }
         }else {
             qnaDto.setIsFiles("N");
