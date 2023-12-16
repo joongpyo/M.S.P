@@ -10,6 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/boardView.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
+
+
 </head>
 
 <body>
@@ -28,7 +30,7 @@
                               
             <nav class="nav-wrap">
                 <div class="logo">
-                    <a th:href="@{/index}"><img src="./images/nocolorlogo.png" alt=""></a>
+                    <a th:href="@{/index}"><img th:src="@{/images/nocolorlogo.png}" alt=""></a>
                 </div>
                 <ul>
                     <a th:href="@{/board/boardReview}"><li>약 복용 후기</li></a>
@@ -86,38 +88,27 @@
                 <div class="content-wrap">
                     <div class="subject">
                         <div class="subject-title">
-                            <h2>게시글 제목입니다.</h2>
+                            <h2>[[${board.qnaSubject}]]</h2>
                         </div>
 
                         <div class="board-info">
                             <p>
-                                <span class="writer">작성자</span>
-                                <span class="comment-cnt">댓글수 : 1</span>
-                                <span class="visit">조회수 : 00</span>
-                                <span class="reg-date">작성일 : 23.12.06</span>
+                                작성자 : <span class="writer">[[${board.qnaWriter}]]</span>
+                                댓글수 : <span class="comment-cnt">1</span>
+                                조회수 : <span class="visit">[[${board.qnaVisit}]]</span>
+                                작성일 : <span class="reg-date">
+                                            <th:block>[[${#temporals.format(board.qnaReg,'yy.MM.dd')}]]</th:block>
+                                        </span>
                             </p>
                         </div>
                         <hr>
                     </div>
 
                     <div class="content">
-                        <div class="text-box">
-                            <p class="ko">기본게시판은 게시판용도로 다양하게 활용하실 수 있습니다. <br>
-                                사이트 내 공지사항, 기타 상담 게시판, 안내 게시판 등 기본적인 게시판 형태로 접근하기 쉬운 형태의 게시판입니다. <br>
-                                풀 반응형으로 제작되어있어 본 테마와 함께 이용하시면 PC, 모바일에서 각각 최적화된 화면으로 보실 수 있습니다 <br>
-                            </p>
-                            <p>기본게시판은 게시판용도로 다양하게 활용하실 수 있습니다. <br>
-                                사이트 내 공지사항, 기타 상담 게시판, 안내 게시판 등 기본적인 게시판 형태로 접근하기 쉬운 형태의 게시판입니다. <br>
-                                풀 반응형으로 제작되어있어 본 테마와 함께 이용하시면 PC, 모바일에서 각각 최적화된 화면으로 보실 수 있습니다 <br>
-                            </p>
-                            <p>기본게시판은 게시판용도로 다양하게 활용하실 수 있습니다. <br>
-                                사이트 내 공지사항, 기타 상담 게시판, 안내 게시판 등 기본적인 게시판 형태로 접근하기 쉬운 형태의 게시판입니다. <br>
-                                풀 반응형으로 제작되어있어 본 테마와 함께 이용하시면 PC, 모바일에서 각각 최적화된 화면으로 보실 수 있습니다 <br>
-                            </p>
-                            <p>기본게시판은 게시판용도로 다양하게 활용하실 수 있습니다. <br>
-                                사이트 내 공지사항, 기타 상담 게시판, 안내 게시판 등 기본적인 게시판 형태로 접근하기 쉬운 형태의 게시판입니다. <br>
-                                풀 반응형으로 제작되어있어 본 테마와 함께 이용하시면 PC, 모바일에서 각각 최적화된 화면으로 보실 수 있습니다 <br>
-                            </p>
+                        <div id="text-box" class="text-box">
+                            <input type="hidden" class="hidden-content" th:value="${board.qnaContent}">
+
+
                         </div>
                     </div>
 
@@ -162,11 +153,22 @@
             </div>
 
             <div class="foot-logo">
-                <a href="./index.html"> <img src="./images/nocolorlogo.png" alt=""></a>
+                <a href="/index"> <img th:src="@{/images/nocolorlogo.png}" alt=""></a>
             </div>
 
         </div>
     </footer>
+    <script>
+        //태그 포함된 content를 HTML
+        //let qnaContent = /*[[${#strings.escapeJavaScript(board.qnaContent)}]]*/ '';
+
+        let qnaContent = document.querySelector(".hidden-content").value;
+        console.log("Q : "+qnaContent);
+        document.querySelector(".text-box").innerHTML = qnaContent;
+
+
+    </script>
+
 </body>
 
 </html>

@@ -54,10 +54,10 @@ function frmCheck(){
             alert("이메일 형식을 맞춰주세요")
             useremail.focus();
             return false;
-        }*/
+        }
     else{
         alert("회원 가입 완료!");
-    }
+    }*/
     
 
      

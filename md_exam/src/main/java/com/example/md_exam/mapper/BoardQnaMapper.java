@@ -1,5 +1,6 @@
 package com.example.md_exam.mapper;
 
+import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.QnaDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,4 +15,9 @@ public interface BoardQnaMapper {
 
     @Select("SELECT * FROM qna ORDER BY qna_id DESC")
     List<QnaDto> getQnaList();
+
+    @Select("SELECT * FROM qna WHERE qna_id = #{qnaId}")
+    QnaDto getQnaView(int qnaId);
+    @Insert("INSERT INTO qnafiles VALUES(#{id},#{orgName},#{savedFileName},#{savedPathName},#{savedFileSize},#{folderName},#{ext})")
+    void setFiles(FileDto fileDto);
 }

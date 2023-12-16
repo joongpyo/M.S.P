@@ -4,7 +4,7 @@ public class FileDto {
     private int id;
     private String orgName;
     private String savedFileName;
-    private String savedPathFileName;
+    private String savedPathName;
     private Long savedFileSize;
     private String folderName;
     private String ext;
@@ -33,12 +33,12 @@ public class FileDto {
         this.savedFileName = savedFileName;
     }
 
-    public String getSavedPathFileName() {
-        return savedPathFileName;
+    public String getSavedPathName() {
+        return savedPathName;
     }
 
-    public void setSavedPathFileName(String savedPathFileName) {
-        this.savedPathFileName = savedPathFileName;
+    public void setSavedPathName(String savedPathName) {
+        this.savedPathName = savedPathName;
     }
 
     public Long getSavedFileSize() {
@@ -71,7 +71,7 @@ public class FileDto {
                 "id=" + id +
                 ", orgName='" + orgName + '\'' +
                 ", savedFileName='" + savedFileName + '\'' +
-                ", savedPathFileName='" + savedPathFileName + '\'' +
+                ", savedPathName='" + savedPathName + '\'' +
                 ", savedFileSize=" + savedFileSize +
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +

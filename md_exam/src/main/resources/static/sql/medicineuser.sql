@@ -23,15 +23,14 @@ foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(qna_id)
 );
 
-create table  qnafiles(
-id int not null auto_increment,
+create table qnafiles(
+id int not null,
 orgName varchar(255),
 savedFileName varchar(255),
-savedPathFileName varchar(255),
+savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
-ext varchar(20),
-primary key(id)
+ext varchar(20)
 );
 
 create table adminfiles(

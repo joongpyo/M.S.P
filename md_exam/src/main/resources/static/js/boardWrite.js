@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     let formData = new FormData();
-                    let uploadData = document.querySelector("#upload-form input[name='files']").filezs;
+                    let uploadData = document.querySelector("#upload-form input[name='files']").files;
 
-                    if(uploadData != null){
+                    if(uploadData != null && uploadData.length > 0){
                         for (let i = 0; i < uploadData.length; i++) {
                             formData.append("files", uploadData[i]);
                             console.log('i =', i + 1);

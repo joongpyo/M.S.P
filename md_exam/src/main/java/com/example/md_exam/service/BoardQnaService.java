@@ -1,5 +1,6 @@
 package com.example.md_exam.service;
 
+import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.QnaDto;
 import com.example.md_exam.mapper.BoardQnaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,18 @@ public class BoardQnaService {
     @Autowired
     BoardQnaMapper boardQnaMapper;
 
-    public void setBoard(QnaDto qnADto){
+    public void setBoard(QnaDto qnADto) {
         boardQnaMapper.setBoard(qnADto);
     }
-
-    public List<QnaDto> getQnaList(){
+    public List<QnaDto> getQnaList() {
         return boardQnaMapper.getQnaList();
     }
+    public QnaDto getQnaView(int qnaId) {
+        return boardQnaMapper.getQnaView(qnaId);
+    }
+    public void setFiles(FileDto fileDto) {
+        boardQnaMapper.setFiles(fileDto);
+    }
+
+
 }
