@@ -231,6 +231,15 @@ p .writer {
     width: 100%;
     margin-top: 20px;
     margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+}
+
+.bottom-left {
+    display: flex;
+    justify-content: left;
+    height: 60px;
+    margin: 0 5px;
 }
 
 .bottom-right {
@@ -240,11 +249,15 @@ p .writer {
     margin: 0 5px;
 }
 
-.bottom-right a {
+.bottom a {
     margin-left: 5px;
 }
 
-.bottom-right button {
+.bottom .btn:hover {
+    text-decoration: underline;
+}
+
+.bottom button {
     width: 80px;
     height: 30px;
     margin-top: 10px;

@@ -31,9 +31,9 @@ public class BoardController {
         return "board/boardNotice";
     }
 
-    @GetMapping("/boardQnA")
+    @GetMapping("/boardQna")
     public String getBoardQnA(){
-        return "board/boardQnA";
+        return "board/boardQna";
     }
 
 
@@ -115,6 +115,20 @@ public class BoardController {
     public Map<String,Object> getQnaList(){
         List<QnaDto> list = boardQnaService.getQnaList();
         return Map.of("qnaList",list);
+    }
+
+    @GetMapping("/qnaDelete")
+    public String setDelete(@RequestParam int qnaId) {
+        System.out.println(qnaId);
+        boardQnaService.setDelete(qnaId);
+        return "redirect:/board/boardQna";
+    }
+
+    @GetMapping("/qnaUpdate")
+    public String setUpdate(@RequestParam int qnaId, Model model) {
+        QnaDto qd = boardQnaService.getQnaView(qnaId);
+        model.addAttribute("modify",qd);
+        return "board/qnaUpdate";
     }
 
 }

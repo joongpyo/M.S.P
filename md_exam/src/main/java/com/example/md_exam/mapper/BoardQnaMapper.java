@@ -2,10 +2,7 @@ package com.example.md_exam.mapper;
 
 import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.QnaDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,6 +17,16 @@ public interface BoardQnaMapper {
 
     @Select("SELECT * FROM qna WHERE qna_id = #{qnaId}")
     QnaDto getQnaView(int qnaId);
+
     @Insert("INSERT INTO qnafiles VALUES(#{id},#{orgName},#{savedFileName},#{savedPathName},#{savedFileSize},#{folderName},#{ext})")
     void setFiles(FileDto fileDto);
+
+    @Delete("DELETE FROM qna WHERE qna_id = #{qnaId}")
+    void setDelete(int qnaId);
+
+    @Select("SELECT * FROM qnafiles WHERE id = #{qnaId}")
+    List<FileDto> getFile(int qnaId);
+
+    @Delete("DELETE FROM qnafiles WHERE id = #{qnaid}")
+    void setFilesDelete(int qnaId);
 }
