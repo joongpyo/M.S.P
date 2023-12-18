@@ -5,13 +5,16 @@ import com.example.md_exam.mapper.MatchingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MatchingService {
     @Autowired
     MatchingMapper matchingMapper;
 
-    public void setMatching(MedicineDto medicineDto){
-        matchingMapper.setMatching(medicineDto);
+    public MedicineDto setMatching(MedicineDto medicineDto){
+       MedicineDto md = matchingMapper.setMatching(medicineDto);
+        return md;
     }
 
 }

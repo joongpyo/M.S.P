@@ -4,9 +4,12 @@ import com.example.md_exam.dto.MedicineDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface MatchingMapper {
 
-    @Select("select med_name, med_dis, med_eff, med_type, med_com, med_store from medicine where med_pregnant = 'N' and med_age = 2 and med_dis = '감기' and med_type = '알약';")
-    public void setMatching(MedicineDto medicineDto);
+    @Select("select med_name, med_dis, med_eff, med_type, med_com, med_store from medicine where med_pregnant = #{medPregnant} and med_age = #{medAge} and med_dis = #{medDis} and med_type = #{medType};")
+    public MedicineDto setMatching(MedicineDto medicineDto);
+
 }

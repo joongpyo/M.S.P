@@ -10,6 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/matching/matching.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 </head>
 
 <body style="overflow-x: hidden">
@@ -21,14 +23,14 @@
     </div>
 
     <main>
-        
+
         <div class="matching">            
             <div class="match-container">
                 <div class="match-title">
                     <h1>나에게 맞는 약 찾기</h1>
                 </div>
                     <div class="match-content">
-                        <form  method="post" action="/matching/search" onsubmit="return frmCheck()">
+                        <form  method="post" action="/matching/matching"  onsubmit="return frmCheck()">
                             <ul class=match-wrap>
                                 <li class="m-wrap">
                                     <h2>임신 여부를 선택하세요.</h2>
@@ -39,13 +41,11 @@
                                 </li>
                                 <li class="m-wrap">
                                     <h2>연령대를 선택하세요.</h2>
-                                    <select name="" id="">
+                                    <select name="age" id="age">
                                         <span><option value="">-- 연령대를 선택 --</option></span>
-                                        <option value="1">유아</option>
-                                        <option value="2">청소년</option>
-                                        <option value="3">20대 ~ 40대</option>
-                                        <option value="4">40대 ~ 60대</option>
-                                        <option value="5">60대 이상 </option>
+                                        <option value="1">7세 이하</option>
+                                        <option value="2">7세 이상 ~ 65세 이하</option>
+                                        <option value="3">65세 이상</option>
                                     </select>
                                 </li>
                                 <li class="m-wrap">
@@ -67,13 +67,13 @@
                                 <li class="m-wrap">
                                     <h2>약의 제형을 선택하세요.</h2>
                                     <div class="select2">
-                                        <input type="radio" id="type1" name="drugtype" value="pill"><label for="type1">알약</label>
-                                        <input type="radio" id="type2" name="drugtype" value="potion"><label for="type2">캡슐</label>
-                                        <input type="radio" id="type3" name="drugtype" value="capsule"><label for="type3">물약</label>
+                                        <input type="radio" id="drugtype1" name="drugtype" value="알약"><label for="drugtype1">알약</label>
+                                        <input type="radio" id="drugtype2" name="drugtype" value="캡슐"><label for="drugtype2">캡슐</label>
+                                        <input type="radio" id="drugtype3" name="drugtype" value="물약"><label for="drugtype3">물약</label>
                                     </div>
                                 </li>
                                 <div class="result-wrap">
-                                    <input type="submit" class="result" value="결과 보기">
+                                    <input type="button" class="btn" value="결과 보기">
                                 </div>
                             </ul>
                         </form>
@@ -161,9 +161,63 @@
 </body>
 
 <script>
-    function frmCheck(){
+    let btn = document.querySelector(".btn").addEventListener('click',(e)=>{
+        e.preventDefault();
+       var pregnant = document.getElementsByName("pregnant");
+       var pregnantValue;
+       var drugtype = document.getElementsByName("drugtype");
+       var drugtypeValue;
 
+
+
+
+       //라디오 버튼 값
+       for(var i=0; i < pregnant.length; i++) {
+        if(pregnant[i].checked == true) {
+            pregnantValue = pregnant[i].value
+      }
+    }
+       for(var i=0; i < drugtype.length; i++) {
+        if(drugtype[i].checked == true) {
+            drugtypeValue = drugtype[i].value
+      }
     }
 
+    //셀렉트박스 값
+       var disease = document.getElementById("disease").value;
+       var age = document.getElementById("age").value;
+
+       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);
+
+         let obj = {
+                    medPregnant: pregnantValue,
+                    medAge: age,
+                    medDis: disease,
+                    medType: drugtypeValue
+                }
+
+
+        $.ajax({
+                type: "post",
+                url: "/matching/matching",
+                dataType: "json",
+                data: obj,
+                success: function(res) {
+                    if(res.medicine.equals){
+                     location.href = "/matching/match_result";
+                    }
+
+
+                }
+         });
+
+
+
+
+});
+</script>
+
+</body>
+</html>
 </script>
 </html>

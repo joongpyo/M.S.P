@@ -221,7 +221,7 @@ select {
     left: 700px;
 }
 
-.result{
+.btn{
     margin-bottom: 20px;
     border: none;    
     padding: 15px 30px;
@@ -239,7 +239,7 @@ select {
     
 }
 
-.result:hover{
+.btn:hover{
     
     /* transform: scale(1.2); */
     cursor: pointer;
