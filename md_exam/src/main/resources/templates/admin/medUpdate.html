@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Main</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/medUpdate.js}"></script>
+
+
+</head>
+<body>
+    <div class="main-content" th:fragment="medUpdate_frag">
+        <div class="main_content">
+            <form action="" method="post" enctype="multipart/form-data" id="form" onclick="return frmCheck()">
+                <div class="table_container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>관리자 메뉴</th>
+                                <td colspan="3"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>회원 관리</th>
+                                <td colspan="3" rowspan="4">      
+                                    <div class="med_contanier">
+                                        <div class="med_main_contanier">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            약품등록
+                                                        </th>
+                                                        <td>등록하기</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>제품 명</td>
+                                                        <td>
+                                                            <input type="text" name="medName" class="medName" placeholder="제품명">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>유효 병</td>
+                                                        <td>
+                                                           <input type="checkbox" name="medDis" value="감기" onclick="cnt_check(this);">감기
+                                                           <input type="checkbox" name="medDis" value="소화불량" onclick="cnt_check(this);">소화불량
+                                                           <input type="checkbox" name="medDis" value="생리통" onclick="cnt_check(this);">생리통
+                                                           <input type="checkbox" name="medDis" value="알레르기" onclick="cnt_check(this);">알레르기
+                                                           <input type="checkbox" name="medDis" value="편두통" onclick="cnt_check(this);">편두통
+                                                           <input type="checkbox" name="medDis" value="설사" onclick="cnt_check(this);">설사
+                                                           <input type="checkbox" name="medDis" value="인후통" onclick="cnt_check(this);">인후통
+                                                           <input type="checkbox" name="medDis" value="멀미" onclick="cnt_check(this);">멀미
+                                                           <input type="checkbox" name="medDis" value="근육통" onclick="cnt_check(this);">근육통
+                                                           <input type="checkbox" name="medDis" value="몸살" onclick="cnt_check(this);">몸살
+                                                           <input type="checkbox" name="medDis" value="고열" onclick="cnt_check(this);">고열
+                                                           <input type="checkbox" name="medDis" value="치통" onclick="cnt_check(this);">치통
+                                                       </td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td>제형</td>
+                                                           <td>
+                                                               <input type="text" name="medType" class="medType" placeholder=" 제형 : ex) 알약">
+                                                           </td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td>제조사</td>
+                                                           <td>
+                                                               <input type="text" name="medCom" class="medCom" placeholder="제조회사명">
+                                                           </td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td>복용 가능 연령</td>
+                                                           <td>
+                                                               <input type="text" name="medAge" class="medAge" placeholder="ex) : 7">
+                                                           </td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td>임산부 복용 여부</td>
+                                                           <td>
+                                                               <div class="radio_flex">
+                                                                   <input type="radio" value="Y" name="medPregnant" class="medPregnant">Yes
+                                                                   <input type="radio" value="N" name="medPregnant" class="medPregnant" checked>No
+                                                               </div>
+                                                           </td>
+                                                       </tr>
+                                                       <tr>
+                                                           <td>
+                                                               편의점 유무
+                                                           </td>
+                                                           <td>
+                                                               <div class="radio_flex">
+                                                                   <input type="radio" value="Y" name="medStore" class="medStore" checked><label>Yes</label>
+                                                                   <input type="radio" value="N" name="medStore" class="medStore"><label>No</label>
+                                                               </div>
+                                                           </td>
+                                                       </tr>
+                                                        <tr>
+                                                            <td>약품 이미지</td>
+                                                            <td>
+                                                                <input type="file" name="file" >
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button type="submit" class="btn">약품등록</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>                                <tr>
+                                <th style="background-color: #eee;">약품 등록</th>
+                            </tr>
+                            <tr>
+                                <th>질병 등록</th>
+                            </tr>
+                            <tr>
+                                <th>페이지 관리</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>        
+</body>
+<script>
+    
+</script>
+</html>
