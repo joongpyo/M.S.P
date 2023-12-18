@@ -30,7 +30,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String getAdmin(@RequestParam(value="current", defaultValue="1") String current, Model model) {
         model.addAttribute("current", current);
-        return "/admin";
+        return "admin";
     }
     @GetMapping("/admin/medUpdate")
     public String getMedUpdate(){

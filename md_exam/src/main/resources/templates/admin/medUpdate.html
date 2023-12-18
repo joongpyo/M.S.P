@@ -7,11 +7,10 @@
     <title>Admin Main</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/main.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/medUpdate.js}"></script>
-
-
 </head>
 <body>
     <div class="main-content" th:fragment="medUpdate_frag">
@@ -28,7 +27,7 @@
                         <tbody>
                             <tr>
                                 <th>회원 관리</th>
-                                <td colspan="3" rowspan="4">      
+                                <td colspan="3" rowspan="4"></td>                  
                                     <div class="med_contanier">
                                         <div class="med_main_contanier">
                                             <table>
@@ -63,67 +62,73 @@
                                                            <input type="checkbox" name="medDis" value="고열">고열
                                                            <input type="checkbox" name="medDis" value="치통">치통
                                                        </td>
-                                                       </tr>
-                                                       <tr>
+                                                    </tr>
+                                                    <tr>
                                                         <td>
                                                             효과
                                                         </td>
                                                         <td>
                                                             <input type="text" name="medEff" class="medEff"  placeholder="진통/해열">
                                                         </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td>제형</td>
-                                                           <td>
-                                                               <input type="text" name="medType" class="medType" placeholder=" 제형 : ex) 알약">
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td>제조사</td>
-                                                           <td>
-                                                               <input type="text" name="medCom" class="medCom" placeholder="제조회사명">
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td>복용 가능 연령</td>
-                                                           <td>
-                                                               <input type="text" name="medAge" class="medAge" placeholder="ex) : 7">
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td>임산부 복용 여부</td>
-                                                           <td>
-                                                               <div class="radio_flex">
-                                                                   <input type="radio" value="Y" name="medPregnant" class="medPregnant">Yes
-                                                                   <input type="radio" value="N" name="medPregnant" class="medPregnant">No
-                                                               </div>
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td>
-                                                               편의점 유무
-                                                           </td>
-                                                           <td>
-                                                               <div class="radio_flex">
-                                                                   <input type="radio" value="Y" name="medStore" class="medStore"><label>Yes</label>
-                                                                   <input type="radio" value="N" name="medStore" class="medStore"><label>No</label>
-                                                               </div>
-                                                           </td>
-                                                       </tr>
-                                                        <tr>
-                                                            <td>약품 이미지</td>
-                                                            <td>
-                                                                <input type="file" name="file" id="uploadFile" >
-                                                            </td>
-                                                        </tr>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>제형</td>
+                                                       <td>
+                                                           <input type="text" name="medType" class="medType" placeholder=" 제형 : ex) 알약">
+                                                       </td>
+                                                    </tr>
+                                                    <tr>
+                                                       <td>제조사</td>
+                                                        <td>
+                                                           <input type="text" name="medCom" class="medCom" placeholder="제조회사명">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>복용 가능 연령</td>
+                                                       <td>
+                                                           <select name="medAge" class="medAge">
+                                                                <option value="1"> 전 연령</option>
+                                                                <option value="2"> 7세 미만</option>
+                                                                <option value="3"> 7세 ~ 65세</option>
+                                                                <option value="4"> 65세 이상</option>
+                                                           </select>
+                                                       </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>임산부 복용 여부</td>
+                                                        <td>
+                                                           <div class="radio_flex">
+                                                               <input type="radio" value="Y" name="medPregnant" class="medPregnant">Yes
+                                                               <input type="radio" value="N" name="medPregnant" class="medPregnant" checked>No
+                                                           </div>
+                                                       </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           편의점 유무
+                                                       </td>
+                                                       <td>
+                                                           <div class="radio_flex">
+                                                               <input type="radio" value="Y" name="medStore" class="medStore" checked><label>Yes</label>
+                                                               <input type="radio" value="N" name="medStore" class="medStore"><label>No</label>
+                                                           </div>
+                                                       </td>
+                                                   </tr>
+                                                    <tr>
+                                                        <td>약품 이미지</td>
+                                                        <td>
+                                                            <input type="file" name="file" id="uploadFile" >
+                                                        </td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
+                                        </div>    
                                             <button type="submit" class="btn">약품등록</button>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>                                <tr>
+                                </form>
+                            </tr>    
                                 <th style="background-color: #eee;">약품 등록</th>
                             </tr>
                             <tr>
@@ -139,86 +144,4 @@
         </div>
     </div>        
 </body>
-<script>
-    let btn = document.querySelector(".btn");
-    btn.addEventListener('click',(e)=>{
-        e.preventDefault();
-        let chkData= [];
-        let chkBox = document.querySelectorAll("input[name=medDis]");
-        for(let i = 0; i < chkBox.length; i++){
-            if(chkBox[i].checked){
-                chkData.push(chkBox[i].value);
-            }
-        }
-        if(chkData.length == 0){
-            alert("유요한 질병을 체크해주세요");
-            chkBox.focus();
-            return false;
-        }
-        if(chkData.length > 3 ){
-            alert("유요한 질병을 3개 이하로 체크해주세요");
-            chkBox.focus();
-            return false;
-        } 
-        console.log(chkData);
-        
-        let chkMedPrd = document.querySelectorAll("input[type=radio][name=medPregnant]");
-        let radMedPrd = "";
-        for(let i = 0; i<chkMedPrd.length; i++){
-            if(chkMedPrd[i].checked){
-                radMedPrd=chkMedPrd[i].value;
-            }
-        }
-        if(radMedPrd.value == 0){
-            alert("임산부 복용가능 여부를 확인해주세요");
-            chkMedPrd.focus();
-            return false;   
-        }
-        console.log(radMedPrd);
-        
-
-        let chkMedStore = document.querySelectorAll("input[type=radio][name=medStore]");
-        let radMedStore = "";
-        for (let i = 0; i < chkMedStore.length; i++) {
-            if (chkMedStore[i].checked) {
-                radMedStore=chkMedStore[i].value;
-            }
-        }
-        if(radMedStore.value ==0){
-            alert("편의점 판매 여부를 확인해주세요");
-            chkMedStore.focus();
-            return false;
-        }
-        console.log(radMedStore);
-
-        let frmData = new FormData();
-        frmData.append("medName", document.querySelector("input[name=medName]").value);
-        frmData.append("medDis",chkData);
-        frmData.append("medEff",document.querySelector("input[name=medEff]").value);
-        frmData.append("medType",document.querySelector("input[name=medType]").value);
-        frmData.append("medCom",document.querySelector("input[name=medCom]").value);
-        frmData.append("medAge",document.querySelector("input[name=medAge]").value);
-        frmData.append("medPregnant",radMedPrd);
-        frmData.append("medStore",radMedStore);
-        frmData.append("file", document.querySelectorAll("#uploadFile")[0].files[0]);
-
-        console.log(frmData[1]);
-
-        $.ajax({
-            type: "post",
-            url: "/admin/medUpdate",
-            dataType: "json",
-            data: frmData,
-            processData : false,
-            contentType : false,
-            success: function(res) {
-                if(res.msg == "success"){
-                    alert("약품 등록이 완료되었습니다.");
-                }else{
-                    alert("등록 실패 \n 관리자에게 문의하세요");
-                };
-            }
-        });
-    })
-</script>
 </html>
