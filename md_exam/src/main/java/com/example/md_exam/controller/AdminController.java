@@ -52,7 +52,7 @@ public class AdminController {
                 makeFolder.mkdir();
             }
             // 데이터 베이스 저장전에 잠시 저장
-            MedicineFileDto fileDto = new MedicineFileDto();
+            MedicineFileDto medicineFileDto = new MedicineFileDto();
 
                 // 경로명  + UUID
                 String savedPathFileName = fileDir+folderName;
@@ -63,17 +63,17 @@ public class AdminController {
 
                 file.transferTo(new File(savedPathFileName+"/"+savedFileName));
 
-                fileDto.setId(fileId);
-                fileDto.setOrgName(orgName);
-                fileDto.setSavedFileName(savedFileName);
-                fileDto.setSavedPathFileName(savedPathFileName);
-                fileDto.setFolderName(folderName);
-                fileDto.setExt(ext);
+                medicineFileDto.setId(fileId);
+                medicineFileDto.setOrgName(orgName);
+                medicineFileDto.setSavedFileName(savedFileName);
+                medicineFileDto.setSavedPathFileName(savedPathFileName);
+                medicineFileDto.setFolderName(folderName);
+                medicineFileDto.setExt(ext);
 
-                medicineService.setFile(fileDto);
-
-            medicineService.setMedUpdate(medicineDto);
+                medicineService.setFile(medicineFileDto);
+            System.out.println(medicineFileDto);
         }
+        System.out.println(medicineDto);
 
 
         return Map.of("msg","success");

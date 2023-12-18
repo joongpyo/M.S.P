@@ -8,7 +8,7 @@ public class MedicineDto {
     private String medType;
     private String medStore;
     private String medCom;
-    private String medAge;
+    private int medAge;
     private String medPregnant;
     private String medReg;
     private String medIsFiles;
@@ -69,11 +69,11 @@ public class MedicineDto {
         this.medCom = medCom;
     }
 
-    public String getMedAge() {
+    public int getMedAge() {
         return medAge;
     }
 
-    public void setMedAge(String medAge) {
+    public void setMedAge(int medAge) {
         this.medAge = medAge;
     }
 

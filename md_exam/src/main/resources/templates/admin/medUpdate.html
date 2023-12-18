@@ -212,7 +212,11 @@
             processData : false,
             contentType : false,
             success: function(res) {
-                alert(res.msg);
+                if(res.msg == "success"){
+                    alert("약품 등록이 완료되었습니다.");
+                }else{
+                    alert("등록 실패 \n 관리자에게 문의하세요");
+                };
             }
         });
     })

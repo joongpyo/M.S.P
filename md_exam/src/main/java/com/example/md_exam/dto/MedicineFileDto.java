@@ -5,7 +5,7 @@ public class MedicineFileDto {
     private String orgName;
     private String savedFileName;
     private String savedPathFileName;
-    private String savedFileSize;
+    private Long savedFileSize;
     private String folderName;
     private String ext;
 
@@ -42,11 +42,11 @@ public class MedicineFileDto {
         this.savedPathFileName = savedPathFileName;
     }
 
-    public String getSavedFileSize() {
+    public Long getSavedFileSize() {
         return savedFileSize;
     }
 
-    public void setSavedFileSize(String savedFileSize) {
+    public void setSavedFileSize(Long savedFileSize) {
         this.savedFileSize = savedFileSize;
     }
 

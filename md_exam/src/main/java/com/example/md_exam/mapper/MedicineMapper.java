@@ -12,6 +12,6 @@ public interface MedicineMapper {
     @Options(useGeneratedKeys = true, keyProperty = "medId")
     public void setMedUpdate(MedicineDto medicineDto);
 
-    @Insert("INSET INTO admin_files VALUES(NULL, #{orgName}, #{savedFileName}, #{savedPathFileName}), #{savedFileSize}, #{folderName}, #{ext}")
+    @Insert("INSERT INTO admin_files VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathFileName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(MedicineFileDto medicineFileDto);
 }
