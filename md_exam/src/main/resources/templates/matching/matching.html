@@ -203,11 +203,8 @@
                 dataType: "json",
                 data: obj,
                 success: function(res) {
-                    if(res.medicine.equals){
-                     location.href = "/matching/match_result";
-                    }
-
-
+                    console.log(res.medicine);
+                     location.href = "/matching/match_result?medName="+res.medicine.medName;
                 }
          });
 

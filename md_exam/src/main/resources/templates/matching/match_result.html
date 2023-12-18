@@ -20,8 +20,8 @@
     </div>
 
     <main>
-<!--        [[${med}]]-->
-        <div class="result">            
+
+        <div class="result">
             <div class="result-container">
                 <div class="result-title">
                     <h1>나에게 맞는 약 찾기</h1>
@@ -49,16 +49,16 @@
                                 <tr>
                                     <td >
                                         <strong>
-                                            <a href="">타이레놀</a>
+                                            <a href="">[[${medicine.medName}]]</a>
                                         </strong>
                                     </td>
-                                    <td>고열</td>
-                                    <td style="text-align:left; margin-left:15px;">진통제, 고열에 효과</td>
-                                    <td>알약</td>
-                                    <td>한국 얀센</td>
-                                    <td>Y</td>
+                                    <td>[[${medicine.medDis}]]</td>
+                                    <td style="text-align:left; margin-left:15px;">[[${medicine.medEff}]]</td>
+                                    <td>[[${medicine.medType}]]</td>
+                                    <td>[[${medicine.medCom}]]</td>
+                                    <td>[[${medicine.medStore}]]</td>
                                     <td>
-                                        <button type="button" class="res-btn">약 정보 저장</button>  
+                                         <button type="button" class="res-btn">약 정보 저장</button>
                                     </td>
                                 </tr>
 
@@ -74,74 +74,74 @@
             <hr>
         </div>
 
-            <section class="one">                
+            <section class="one">
                 <div class="one-container">
                     <div class="disease-title">
                         <h2>빠른 찾기</h2>
                         <p>하단의 아이콘을 클릭하여 병명으로 쉽고 빠르게 약을 검색할 수 있습니다.</p>
                     </div>
-                   <div class="disease-content">
-                        <div class="disease-box">                            
+                    <div class="disease-content">
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/cold.jpg" alt=""></a>
-                            </div>           
+                                <a href=""><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
+                            </div>
                             <span>감기</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/stoma.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
                             </div>
-                            <span>소화불량</span>  
+                            <span>소화불량</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/period.jpg" alt=""></a>
-                            </div>  
+                                <a href=""><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
+                            </div>
                             <span>생리통</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/allergy.jpg" alt=""></a>
-                            </div> 
-                            <span>알레르기(비염)</span> 
+                                <a href=""><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                            </div>
+                            <span>알레르기(비염)</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/headache.jpg" alt=""></a>
-                            </div>  
+                                <a href=""><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
+                            </div>
                             <span>편두통</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/sulsa.jpg" alt=""></a>
-                            </div>           
+                                <a href=""><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
+                            </div>
                             <span>설사</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/inhu.jpg" alt=""></a>
+                                <a href=""><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
                             </div>
-                            <span>인후통</span>  
+                            <span>인후통</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/mulmi.jpg" alt=""></a>
-                            </div>  
+                                <a href=""><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
+                            </div>
                             <span>멀미</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/muscle.jpg" alt=""></a>
-                            </div> 
-                            <span>근육통</span> 
+                                <a href=""><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
+                            </div>
+                            <span>근육통</span>
                         </div>
-                        <div class="disease-box">                            
+                        <div class="disease-box">
                             <div class="disease-pic">
-                                <a href=""><img class="pic" src="../images/momsal.jpg" alt=""></a>
-                            </div>  
+                                <a href=""><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
+                            </div>
                             <span>몸살</span>
                         </div>
-                   </div>                                
+                    </div>
                 </div>
             </section>            
         
