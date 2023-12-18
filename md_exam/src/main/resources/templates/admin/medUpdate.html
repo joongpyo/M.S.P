@@ -16,7 +16,7 @@
 <body>
     <div class="main-content" th:fragment="medUpdate_frag">
         <div class="main_content">
-            <form action="" method="post" enctype="multipart/form-data" id="form" onclick="return frmCheck()">
+            <form action="" method="post" enctype="multipart/form-data" id="form">
                 <div class="table_container">
                     <table>
                         <thead>
@@ -50,19 +50,27 @@
                                                     <tr>
                                                         <td>유효 병</td>
                                                         <td>
-                                                           <input type="checkbox" name="medDis" value="감기" onclick="cnt_check(this);">감기
-                                                           <input type="checkbox" name="medDis" value="소화불량" onclick="cnt_check(this);">소화불량
-                                                           <input type="checkbox" name="medDis" value="생리통" onclick="cnt_check(this);">생리통
-                                                           <input type="checkbox" name="medDis" value="알레르기" onclick="cnt_check(this);">알레르기
-                                                           <input type="checkbox" name="medDis" value="편두통" onclick="cnt_check(this);">편두통
-                                                           <input type="checkbox" name="medDis" value="설사" onclick="cnt_check(this);">설사
-                                                           <input type="checkbox" name="medDis" value="인후통" onclick="cnt_check(this);">인후통
-                                                           <input type="checkbox" name="medDis" value="멀미" onclick="cnt_check(this);">멀미
-                                                           <input type="checkbox" name="medDis" value="근육통" onclick="cnt_check(this);">근육통
-                                                           <input type="checkbox" name="medDis" value="몸살" onclick="cnt_check(this);">몸살
-                                                           <input type="checkbox" name="medDis" value="고열" onclick="cnt_check(this);">고열
-                                                           <input type="checkbox" name="medDis" value="치통" onclick="cnt_check(this);">치통
+                                                           <input type="checkbox" name="medDis" value="감기" >감기
+                                                           <input type="checkbox" name="medDis" value="소화불량" >소화불량
+                                                           <input type="checkbox" name="medDis" value="생리통" >생리통
+                                                           <input type="checkbox" name="medDis" value="알레르기" >알레르기
+                                                           <input type="checkbox" name="medDis" value="편두통" >편두통
+                                                           <input type="checkbox" name="medDis" value="설사" >설사
+                                                           <input type="checkbox" name="medDis" value="인후통" >인후통
+                                                           <input type="checkbox" name="medDis" value="멀미" >멀미
+                                                           <input type="checkbox" name="medDis" value="근육통" >근육통
+                                                           <input type="checkbox" name="medDis" value="몸살">몸살
+                                                           <input type="checkbox" name="medDis" value="고열">고열
+                                                           <input type="checkbox" name="medDis" value="치통">치통
                                                        </td>
+                                                       </tr>
+                                                       <tr>
+                                                        <td>
+                                                            효과
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="medEff" class="medEff"  placeholder="진통/해열">
+                                                        </td>
                                                        </tr>
                                                        <tr>
                                                            <td>제형</td>
@@ -87,7 +95,7 @@
                                                            <td>
                                                                <div class="radio_flex">
                                                                    <input type="radio" value="Y" name="medPregnant" class="medPregnant">Yes
-                                                                   <input type="radio" value="N" name="medPregnant" class="medPregnant" checked>No
+                                                                   <input type="radio" value="N" name="medPregnant" class="medPregnant">No
                                                                </div>
                                                            </td>
                                                        </tr>
@@ -97,7 +105,7 @@
                                                            </td>
                                                            <td>
                                                                <div class="radio_flex">
-                                                                   <input type="radio" value="Y" name="medStore" class="medStore" checked><label>Yes</label>
+                                                                   <input type="radio" value="Y" name="medStore" class="medStore"><label>Yes</label>
                                                                    <input type="radio" value="N" name="medStore" class="medStore"><label>No</label>
                                                                </div>
                                                            </td>
@@ -105,7 +113,7 @@
                                                         <tr>
                                                             <td>약품 이미지</td>
                                                             <td>
-                                                                <input type="file" name="file" >
+                                                                <input type="file" name="file" id="uploadFile" >
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -132,6 +140,81 @@
     </div>        
 </body>
 <script>
-    
+    let btn = document.querySelector(".btn");
+    btn.addEventListener('click',(e)=>{
+        e.preventDefault();
+        let chkData= [];
+        let chkBox = document.querySelectorAll("input[name=medDis]");
+        for(let i = 0; i < chkBox.length; i++){
+            if(chkBox[i].checked){
+                chkData.push(chkBox[i].value);
+            }
+        }
+        if(chkData.length == 0){
+            alert("유요한 질병을 체크해주세요");
+            chkBox.focus();
+            return false;
+        }
+        if(chkData.length > 3 ){
+            alert("유요한 질병을 3개 이하로 체크해주세요");
+            chkBox.focus();
+            return false;
+        } 
+        console.log(chkData);
+        
+        let chkMedPrd = document.querySelectorAll("input[type=radio][name=medPregnant]");
+        let radMedPrd = "";
+        for(let i = 0; i<chkMedPrd.length; i++){
+            if(chkMedPrd[i].checked){
+                radMedPrd=chkMedPrd[i].value;
+            }
+        }
+        if(radMedPrd.value == 0){
+            alert("임산부 복용가능 여부를 확인해주세요");
+            chkMedPrd.focus();
+            return false;   
+        }
+        console.log(radMedPrd);
+        
+
+        let chkMedStore = document.querySelectorAll("input[type=radio][name=medStore]");
+        let radMedStore = "";
+        for (let i = 0; i < chkMedStore.length; i++) {
+            if (chkMedStore[i].checked) {
+                radMedStore=chkMedStore[i].value;
+            }
+        }
+        if(radMedStore.value ==0){
+            alert("편의점 판매 여부를 확인해주세요");
+            chkMedStore.focus();
+            return false;
+        }
+        console.log(radMedStore);
+
+        let frmData = new FormData();
+        frmData.append("medName", document.querySelector("input[name=medName]").value);
+        frmData.append("medDis",chkData);
+        frmData.append("medEff",document.querySelector("input[name=medEff]").value);
+        frmData.append("medType",document.querySelector("input[name=medType]").value);
+        frmData.append("medCom",document.querySelector("input[name=medCom]").value);
+        frmData.append("medAge",document.querySelector("input[name=medAge]").value);
+        frmData.append("medPregnant",radMedPrd);
+        frmData.append("medStore",radMedStore);
+        frmData.append("file", document.querySelectorAll("#uploadFile")[0].files[0]);
+
+        console.log(frmData[1]);
+
+        $.ajax({
+            type: "post",
+            url: "/admin/medUpdate",
+            dataType: "json",
+            data: frmData,
+            processData : false,
+            contentType : false,
+            success: function(res) {
+                alert(res.msg);
+            }
+        });
+    })
 </script>
 </html>
