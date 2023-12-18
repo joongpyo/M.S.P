@@ -51,7 +51,12 @@ public class UserController {
             hs.setAttribute("user",d);
             hs.setMaxInactiveInterval(15*60);   //10분
             ra.addFlashAttribute("userName",d.getUserName());
-            return "redirect:/index";
+
+            if(d.getUserId().equals("admin")){
+                return "redirect:/admin";
+            }else{
+                return "redirect:/index";
+            }
 
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");

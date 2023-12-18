@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardQnaMapper {
     @Insert("INSERT INTO qna VALUES(null, #{qnaSubject}, #{qnaWriter}, #{qnaContent}, 0, now(), 1, 1, 1, #{isFiles}, #{uIdFk})")
     @Options(useGeneratedKeys = true, keyProperty = "qnaId")
-    void setBoard(QnaDto qnADto);
+    void setBoard(QnaDto qnaDto);
 
     @Select("SELECT * FROM qna ORDER BY qna_id DESC")
     List<QnaDto> getQnaList();
@@ -27,6 +27,9 @@ public interface BoardQnaMapper {
     @Select("SELECT * FROM qnafiles WHERE id = #{qnaId}")
     List<FileDto> getFile(int qnaId);
 
-    @Delete("DELETE FROM qnafiles WHERE id = #{qnaid}")
+    @Delete("DELETE FROM qnafiles WHERE id = #{qnaId}")
     void setFilesDelete(int qnaId);
+
+    @Update("UPDATE qna SET qna_subject=#{qnaSubject}, qna_content=#{qnaContent}, isFiles=#{isFiles} WHERE qna_id=qnaId")
+    void setUpdate(QnaDto qnaDto);
 }

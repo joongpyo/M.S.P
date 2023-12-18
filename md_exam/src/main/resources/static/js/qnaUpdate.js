@@ -21,41 +21,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 let qnaContent = document.querySelector(".qnaContent").value;
                 editor.setData(qnaContent);
 
-//                btn.addEventListener('click', (e) => {
-//                    e.preventDefault();
-//                    let formData = new FormData();
-//                    let uploadData = document.querySelector("#upload-form input[name='files']").files;
-//
-//                    if(uploadData != null && uploadData.length > 0){
-//                        for (let i = 0; i < uploadData.length; i++) {
-//                            formData.append("files", uploadData[i]);
-//                            console.log('i =', i + 1);
-//                        }
-//                    }else{
-//                        formData.append("files", "");
-//                        console.log("첨부파일 X")
-//                    }
-//
-//                    formData.append('qnaSubject', subject.value);
-//                    formData.append('qnaContent', editor.getData());
-//                    formData.append('qnaWriter', qnaWriter.value);
-//                    formData.append('uIdFk', uIdFk.value);
-//
-//
-//                    $.ajax({
-//                        type: "POST",
-//                        url: "/board/boardWrite",
-//                        data: formData,
-//                        contentType: false,
-//                        processData: false,
-//                        success: function (result) {
-//                            if (result.msg=="success"){
-//                                alert("등록되었습니다.");
-//                                location.href = "/board/boardQnA";
-//                            }
-//                        }
-//                    });
-//                });
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let formData = new FormData();
+                    let uploadData = document.querySelector("#upload-form input[name='files']").files;
+
+                    if(uploadData != null && uploadData.length > 0){
+                        for (let i = 0; i < uploadData.length; i++) {
+                            formData.append("files", uploadData[i]);
+                            console.log('i =', i + 1);
+                        }
+                    }else{
+                        formData.append("files", "");
+                        console.log("첨부파일 X")
+                    }
+
+                    formData.append('qnaSubject', subject.value);
+                    formData.append('qnaContent', editor.getData());
+                    formData.append('qnaWriter', qnaWriter.value);
+                    formData.append('uIdFk', uIdFk.value);
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/board/qnaUpdate",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            if (result.msg=="success"){
+                                alert("");
+                                location.href = "/board/boardQnA";
+                            }
+                        }
+                    });
+                });
             })
             .catch(error => {
                 console.error('에디터가 초기화실패', error);

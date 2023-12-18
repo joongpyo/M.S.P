@@ -1,7 +1,7 @@
 package com.example.md_exam.controller;
 
-import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.QnaDto;
+import com.example.md_exam.mapper.BoardQnaMapper;
 import com.example.md_exam.service.BoardQnaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,12 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/board")
@@ -25,15 +22,17 @@ public class BoardController {
 
     @Autowired
     BoardQnaService boardQnaService;
+    @Autowired
+    BoardQnaMapper boardQnaMapper;
 
     @GetMapping("/boardNotice")
     public String getBoardNotice(){
         return "board/boardNotice";
     }
 
-    @GetMapping("/boardQna")
+    @GetMapping("/boardQnA")
     public String getBoardQnA(){
-        return "board/boardQna";
+        return "board/boardQnA";
     }
 
 
@@ -51,6 +50,7 @@ public class BoardController {
     @GetMapping("/boardView")
     public String getBoardView(@RequestParam int qnaId, Model model) {
         model.addAttribute("board",boardQnaService.getQnaView(qnaId));
+        model.addAttribute("files",boardQnaMapper.getFile(qnaId));
         return "board/boardView";
     }
 
@@ -63,46 +63,13 @@ public class BoardController {
     @ResponseBody
     public Map<String, Object> setBoardWrite(@RequestParam(name="files",required = false)List<MultipartFile> files,
                                              @ModelAttribute QnaDto qnaDto) throws IOException {
-
         //파일 저장
-        String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
-
-        File makeFolder = new File(fileDir + folderName);
-        if(!makeFolder.exists()){
-            makeFolder.mkdir();
-        }
-
         if (files != null){
             qnaDto.setIsFiles("Y");
-
             boardQnaService.setBoard(qnaDto);
-            System.out.println(qnaDto);
-
-            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
             int fileID = qnaDto.getQnaId();
-
-            for(MultipartFile mf : files){
-                FileDto fileDto= new FileDto();
-
-                String savedPathName = fileDir + folderName;
-                String orgName = mf.getOriginalFilename();
-                String ext = orgName.substring(orgName.lastIndexOf("."));
-                String uuid = UUID.randomUUID().toString();
-                String savedFileName = uuid + ext;
-                Long savedFileSize = mf.getSize();
-
-                mf.transferTo(new File(savedPathName + "/" + savedFileName));
-
-                fileDto.setId(fileID);
-                fileDto.setOrgName(orgName);
-                fileDto.setSavedFileName(savedFileName);
-                fileDto.setSavedPathName(savedPathName);
-                fileDto.setFolderName(folderName);
-                fileDto.setExt(ext);
-                fileDto.setSavedFileSize(savedFileSize);
-
-                boardQnaService.setFiles(fileDto);
-            }
+            boardQnaService.setFiles(files,fileID);
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
         }else {
             qnaDto.setIsFiles("N");
             boardQnaService.setBoard(qnaDto);
@@ -125,10 +92,32 @@ public class BoardController {
     }
 
     @GetMapping("/qnaUpdate")
-    public String setUpdate(@RequestParam int qnaId, Model model) {
+    public String getUpdate(@RequestParam int qnaId, Model model) {
         QnaDto qd = boardQnaService.getQnaView(qnaId);
         model.addAttribute("modify",qd);
         return "board/qnaUpdate";
+    }
+
+    @PostMapping("/qnaUpdate")
+    @ResponseBody
+    public Map<String, Object> setUpdate(@RequestParam(name="files",required = false)List<MultipartFile> files,
+                                         @ModelAttribute QnaDto qnaDto) throws IOException {
+
+        //파일수정
+        //파일 있으면 파일 추가
+        if (files != null){
+            qnaDto.setIsFiles("Y");
+            boardQnaService.setUpdate(qnaDto);
+
+            int fileID = qnaDto.getQnaId();
+            boardQnaService.setFiles(files,fileID);
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
+        }else {
+            qnaDto.setIsFiles("N");
+            boardQnaService.setUpdate(qnaDto);
+        }
+
+        return null;
     }
 
 }

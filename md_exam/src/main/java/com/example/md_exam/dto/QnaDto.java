@@ -1,7 +1,6 @@
 package com.example.md_exam.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class QnaDto {
     private int qnaId;
