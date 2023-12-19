@@ -1,4 +1,9 @@
 let btn = document.querySelector(".btn");
+function changeFn(){
+    let medAge = document.querySelector("#medAge");
+    var value = (medAge.options[medAge.selectedIndex].value)
+        console.log(value);
+    }
     btn.addEventListener('click',(e)=>{
         e.preventDefault();
         let chkData= [];
@@ -47,6 +52,10 @@ let btn = document.querySelector(".btn");
             chkMedStore.focus();
             return false;
         }
+        let medAge = document.querySelector("#medAge");
+        var value = (medAge.options[medAge.selectedIndex].value)
+            console.log(value);   
+ 
 
         let frmData = new FormData();
         frmData.append("medName", document.querySelector("input[name=medName]").value);
@@ -54,7 +63,7 @@ let btn = document.querySelector(".btn");
         frmData.append("medEff",document.querySelector("input[name=medEff]").value);
         frmData.append("medType",document.querySelector("input[name=medType]").value);
         frmData.append("medCom",document.querySelector("input[name=medCom]").value);
-        frmData.append("medAge",document.querySelector("input[name=medAge]").value);
+        frmData.append("medAge",value);
         frmData.append("medPregnant",radMedPrd);
         frmData.append("medStore",radMedStore);
         frmData.append("file", document.querySelectorAll("#uploadFile")[0].files[0]);
@@ -69,10 +78,13 @@ let btn = document.querySelector(".btn");
             contentType : false,
             success: function(res) {
                 if(res.msg == "success"){
-                    alert("약품 등록이 완료되었습니다.");
+                    alert("등록 성공");
+                    location.href="/admin";
                 }else{
-                    alert("등록 실패 \n 관리자에게 문의하세요");
+                    alert("등록 실패");
+                    location.href="/admin/medUpdate";
                 };
+                
             }
         });
     })
