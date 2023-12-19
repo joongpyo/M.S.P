@@ -27,12 +27,7 @@ public class MatchingController {
         return "matching/matching";
     }
 
-    @GetMapping("/match_result") //Requestparam은 단일"변수" Modelatt.는 객체, Model 서버에서 클라이언트
-    public String getMatchResult(@ModelAttribute MedicineDto medicineDto, Model model) {
-        System.out.println(medicineDto);
-        model.addAttribute("medicine", medicineDto);
-        return "matching/match_result";
-    }
+
 
     @PostMapping("/matching")
     @ResponseBody
@@ -40,6 +35,13 @@ public class MatchingController {
         MedicineDto md =  matchingService.setMatching(medicineDto);
 
         return Map.of("medicine", md);
+    }
+
+    @GetMapping("/match_result") //Requestparam은 단일"변수" Modelatt.는 객체, Model 서버에서 클라이언트
+    public String getMatchResult(@ModelAttribute MedicineDto medicineDto, Model model) {
+//        System.out.println(medicineDto);
+        model.addAttribute("medicine", medicineDto);
+        return "matching/match_result";
     }
 
 

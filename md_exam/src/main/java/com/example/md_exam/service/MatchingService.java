@@ -17,4 +17,11 @@ public class MatchingService {
         return md;
     }
 
+    public MedicineDto getMatchResult(MedicineDto medicineDto){
+        MedicineDto md = matchingMapper.getMatchResult(medicineDto);
+        System.out.println(md);
+        return md;
+    }
+
+
 }
