@@ -12,15 +12,15 @@ public class MatchingService {
     @Autowired
     MatchingMapper matchingMapper;
 
-    public MedicineDto setMatching(MedicineDto medicineDto){
-       MedicineDto md = matchingMapper.setMatching(medicineDto);
-        return md;
+    public List<MedicineDto> setMatching(MedicineDto medicineDto){
+        matchingMapper.setMatching(medicineDto);
+        return matchingMapper.setMatching(medicineDto);
     }
 
-    public MedicineDto getMatchResult(MedicineDto medicineDto){
-        MedicineDto md = matchingMapper.getMatchResult(medicineDto);
-        System.out.println(md);
-        return md;
+
+    public List<MedicineDto> getMatchResult(MedicineDto medicineDto){
+        matchingMapper.getMatchResult(medicineDto);
+        return matchingMapper.getMatchResult(medicineDto);
     }
 
 

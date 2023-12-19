@@ -31,19 +31,23 @@ public class MatchingController {
 
     @PostMapping("/matching")
     @ResponseBody
-    public Map<String, Object> setMatching(@ModelAttribute MedicineDto medicineDto) {
-        MedicineDto md =  matchingService.setMatching(medicineDto);
+    public Map<String, Object> setMatching(@ModelAttribute MedicineDto medicineDto, HttpSession session) {
+        List<MedicineDto> searchResults =  matchingService.setMatching(medicineDto);
+        session.setAttribute("searchResults", searchResults);
+        System.out.println("검색 : " + searchResults);
 
-        return Map.of("medicine", md);
+        return Map.of("msg", "success");
     }
 
-    @GetMapping("/match_result") //Requestparam은 단일"변수" Modelatt.는 객체, Model 서버에서 클라이언트
-    public String getMatchResult(@ModelAttribute MedicineDto medicineDto, Model model) {
-//        System.out.println(medicineDto);
-        model.addAttribute("medicine", medicineDto);
+    @GetMapping("/match_result")
+    public String getMatchResult(HttpSession session, Model model) {
+        List<MedicineDto> searchResults = (List<MedicineDto>) session.getAttribute("searchResults");
+
+        model.addAttribute("searchResults",searchResults);
+        System.out.println("결과 : " +searchResults);
+
         return "matching/match_result";
     }
-
 
 
 

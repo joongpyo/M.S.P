@@ -46,23 +46,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <th:block th:each="med, k : ${searchResults}">
                                 <tr>
-                                    <td >
+                                    <td>
                                         <strong>
-                                            <a href="">타이레놀</a>
+                                            <a href="">[[${med.medName}]]</a>
                                         </strong>
                                     </td>
-                                    <td>[[${medicine.medDis}]]</td>
-                                    <td style="text-align:left; margin-left:15px;">[[${medicine.medEff}]]</td>
-                                    <td>[[${medicine.medType}]]</td>
-                                    <td>[[${medicine.medCom}]]</td>
-                                    <td>[[${medicine.medStore}]]</td>
+                                    <td>[[${med.medDis}]]</td>
+                                    <td style="text-align:left; margin-left:15px;">[[${med.medEff}]]</td>
+                                    <td>[[${med.medType}]]</td>
+                                    <td>[[${med.medCom}]]</td>
+                                    <td>[[${med.medStore}]]</td>
                                     <td>
                                          <button type="button" class="res-btn">약 정보 저장</button>
                                     </td>
                                 </tr>
                                 <input type="hidden" name="medId" th:value="${medId}">
-                               
+                               </th:block>
                             </tbody>
                         </table> 
                     </div>                    
