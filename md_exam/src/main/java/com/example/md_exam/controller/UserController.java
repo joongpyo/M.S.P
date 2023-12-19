@@ -21,7 +21,9 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/user/login")
-    public String getLogin(){
+    public String getLogin(HttpServletRequest hsr){
+        String referer = hsr.getHeader("Referer");
+        hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
 
@@ -47,6 +49,8 @@ public class UserController {
             //getSession() -> 데이터 -> 시간
 
             HttpSession hs = hsr.getSession(); //세션 준비
+
+
 
             hs.setAttribute("user",d);
             hs.setMaxInactiveInterval(15*60);   //10분

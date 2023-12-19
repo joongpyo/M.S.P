@@ -4,6 +4,8 @@
 
 <header th:fragment="fragment-header">
     <nav class="header-top">
+
+
         <div class="login-wrap" th:if="${session.user != null}">
             <p> <strong>[[${session.user.userName}]]</strong>님 환영합니다.</p>
 
