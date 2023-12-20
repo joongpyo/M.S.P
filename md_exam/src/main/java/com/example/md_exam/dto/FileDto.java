@@ -1,6 +1,7 @@
 package com.example.md_exam.dto;
 
-public class MedicineFileDto {
+public class FileDto {
+    private String board;
     private int id;
     private String orgName;
     private String savedFileName;
@@ -9,6 +10,13 @@ public class MedicineFileDto {
     private String folderName;
     private String ext;
 
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
 
     public int getId() {
         return id;
@@ -68,12 +76,13 @@ public class MedicineFileDto {
 
     @Override
     public String toString() {
-        return "MedicineFileDto{" +
-                "id=" + id +
+        return "FileDto{" +
+                "board='" + board + '\'' +
+                ", id=" + id +
                 ", orgName='" + orgName + '\'' +
                 ", savedFileName='" + savedFileName + '\'' +
                 ", savedPathFileName='" + savedPathFileName + '\'' +
-                ", savedFileSize='" + savedFileSize + '\'' +
+                ", savedFileSize=" + savedFileSize +
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +
                 '}';

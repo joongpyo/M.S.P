@@ -11,7 +11,7 @@ public class MedicineDto {
     private int medAge;
     private String medPregnant;
     private String medReg;
-    private String medIsFiles;
+    private String isFiles;
 
     public int getMedId() {
         return medId;
@@ -93,12 +93,12 @@ public class MedicineDto {
         this.medReg = medReg;
     }
 
-    public String getMedIsFiles() {
-        return medIsFiles;
+    public String getIsFiles() {
+        return isFiles;
     }
 
-    public void setMedIsFiles(String medIsFiles) {
-        this.medIsFiles = medIsFiles;
+    public void setIsFiles(String isFiles) {
+        this.isFiles = isFiles;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class MedicineDto {
                 ", medAge='" + medAge + '\'' +
                 ", medPregnant='" + medPregnant + '\'' +
                 ", medReg='" + medReg + '\'' +
-                ", medIsFiles='" + medIsFiles + '\'' +
+                ", medIsFiles='" + isFiles + '\'' +
                 '}';
     }
 }
