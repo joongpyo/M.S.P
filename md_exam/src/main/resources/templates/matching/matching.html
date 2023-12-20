@@ -24,11 +24,18 @@
 
     <main>
 
-        <div class="matching">            
+        <div class="matching">
             <div class="match-container">
-                <div class="match-title">
-                    <h1>나에게 맞는 약 찾기</h1>
-                </div>
+    <!--                <div class="match-title">-->
+    <!--                    <h1>나에게 맞는 약 찾기</h1>-->
+    <!--                </div>-->
+                    
+                        
+                            <div class="bg-title">
+                                <h1>약 목록</h1>
+                            </div>
+                        
+
                     <div class="match-content">
                         <form  method="post" action="/matching/matching"  onsubmit="return frmCheck()">
                             <ul class=match-wrap>
@@ -80,7 +87,7 @@
                     </div>
             </div>
         </div>
-        
+
         <div class="one-hr">
             <hr>
         </div>
@@ -155,10 +162,10 @@
                 </div>
             </div>
         </section>
-        
+
     </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-</body>
+
 
 <script>
     let btn = document.querySelector(".btn").addEventListener('click',(e)=>{
@@ -187,7 +194,7 @@
        var disease = document.getElementById("disease").value;
        var age = document.getElementById("age").value;
 
-       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);
+<!--       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);-->
 
          let obj = {
                     medPregnant: pregnantValue,
@@ -217,6 +224,6 @@
 </script>
 
 </body>
-</html>
-</script>
+
+
 </html>

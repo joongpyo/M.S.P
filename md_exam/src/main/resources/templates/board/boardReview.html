@@ -14,50 +14,29 @@
 
 <body>
 
-<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+<header th:replace="~{/fragments/header.html :: fragment-header}"></header>
+
+<div class="board-bg">
+    <div class="board-bg-wrap">
+        <div class="board-bg-content">
+            <div class="bg-letter">
+                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> 약 복용 후기 </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <main>
     <div class="main-container">
-        <div class="main-title">
-            <div class="bg-title">
+        <div class="section-container">
+            <div class="sub-title">
                 <h1>약 복용 후기</h1>
             </div>
-        </div>
-
-        <div class="section-container">
-            <aside>
-                <ul>
-                    <li class="side-bg-wrap">
-                        <h2 class="side-bg">Review</h2>
-                    </li>
-                    <li class="active">
-                        <a th:href="@{/board/boardReview}">
-                            약 복용후기
-                        </a>
-                    </li>
-                    <li>
-                        <a th:href="@{/board/boardNotice}">
-                            공지사항
-                        </a>
-                    </li>
-
-                    <li>
-                        <a th:href="@{/board/boardQnA}">
-                            Q n A
-                        </a>
-                    </li>
-                    <li>
-                        <a th:href="@{/board/boardList}">
-                            약 목록
-                        </a>
-                    </li>
-                </ul>
-            </aside>
 
             <div class="content-wrap">
                 <div class="form-container">
                     <form action="" class="search-form">
-                        <span>total 1/10</span>
+                        <span>총 100개의 게시물</span>
                         <div class="search-right">
                             <div class="sel-box">
                                 <select name="" id="">
@@ -90,6 +69,47 @@
                         <td>23</td>
                         <td>23-12-01</td>
                     </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                        </td>
+                        <td>koreait</td>
+                        <td>23</td>
+                        <td>23-12-01</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                        </td>
+                        <td>koreait</td>
+                        <td>23</td>
+                        <td>23-12-01</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                        </td>
+                        <td>koreait</td>
+                        <td>23</td>
+                        <td>23-12-01</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                        </td>
+                        <td>koreait</td>
+                        <td>23</td>
+                        <td>23-12-01</td>
+                    </tr>
+
+
 
                 </table>
 
@@ -118,8 +138,8 @@
         </div>
     </div>
 </main>
-
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
 </body>
 
 </html>

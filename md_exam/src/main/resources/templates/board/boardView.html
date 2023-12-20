@@ -15,42 +15,24 @@
 <body>
 
 <div th:replace="~{/fragments/header.html :: fragment-header}"></div>
-    <main>
-        <div class="main-container">
-            <div class="main-title">
-                <div class="bg-title">
-                    <h1>게시물 보기</h1>
-                </div>
-            </div>
-            <div class="section-container">
-                <aside>
-                    <ul>
-                        <li class="side-bg-wrap">
-                            <h2 class="side-bg">Review</h2>
-                        </li>
-                        <li>
-                            <a th:href="@{/board/boardReview}">
-                                약 복용후기
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a th:href="@{/board/boardNotice}">
-                                공지사항
-                            </a>
-                        </li>
 
-                        <li>
-                            <a th:href="@{/board/boardQnA}">
-                                Q n A
-                            </a>
-                        </li>
-                        <li>
-                            <a th:href="@{/board/boardList}">
-                                약 목록
-                            </a>
-                        </li>
-                    </ul>
-                </aside>
+<div class="board-bg">
+    <div class="board-bg-wrap">
+        <div class="board-bg-content">
+            <div class="bg-letter">
+                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> 공지사항  <span><i class="fa-solid fa-angle-right"></i></span> 게시글 상세보기</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+        <div class="main-container">
+            <div class="section-container">
+                <div class="sub-title">
+                    <h1>공지사항</h1>
+                </div>
+
 
                 <div class="content-wrap">
                     <div class="subject">

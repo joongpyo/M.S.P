@@ -18,7 +18,19 @@ main {
     margin: 0 auto;
 }
 
+.bg-title {
+    height: 300px;
+    background-image: url("/images/blue.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
 
+.bg-title h1 {
+    color: #fff;
+    margin: auto;
+}
 
 
 
@@ -58,7 +70,7 @@ main {
     /* padding: 10px;     */
     background-color: #f8f8f8;
     
-    background-image: url("/images/capsule.jpg");
+    /*background-image: url("/images/tyle.jpg");*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
