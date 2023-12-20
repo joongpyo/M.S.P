@@ -1,7 +1,9 @@
 package com.example.md_exam.controller;
 
+import com.example.md_exam.dto.DiseaseDto;
 import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.dto.MedicineFileDto;
+import com.example.md_exam.service.DiseaseService;
 import com.example.md_exam.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +25,8 @@ public class AdminController {
     @Autowired
     MedicineService medicineService;
 
+    @Autowired
+    DiseaseService diseaseService;
 
     @Value("${fileDir}")
     String fileDir;
@@ -36,6 +40,24 @@ public class AdminController {
     public String getDisUpdate(){
         return "/admin/disUpdate";
     }
+    @GetMapping("/admin/checkDisName")
+    @ResponseBody
+    public Map<String, Object> getCheckDisName(@RequestParam String disName){
+        int checkDisName = diseaseService.getCheckDisName(disName);
+        return Map.of("checkName",disName);
+    }
+
+    @PostMapping("/admin/disUpdate")
+    @ResponseBody
+    public Map<String, Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
+        if(diseaseService.getCheckDisName(disName) < 1 ){
+            diseaseService.setDisease(diseaseDto);
+            return Map.of("msg","success");
+        }else{
+            return Map.of("msg","failure");
+        }
+    }
+
     @GetMapping("admin/noticeUpdate")
     public String getNoticeUpdate(){
         return "admin/noticeUpdate";
