@@ -35,8 +35,6 @@ public class BoardController {
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
-
-
         model.addAttribute("total",10);
         model.addAttribute("qna",boardQnaService.getBoardQnA(searchType,search));
         return "board/boardQnA";
@@ -61,6 +59,7 @@ public class BoardController {
     public String getBoardView(@RequestParam int id, Model model) {
         model.addAttribute("board",boardQnaService.getQnaView(id));
         model.addAttribute("files",boardQnaMapper.getFile(id));
+        //조회수증가
         boardQnaMapper.updateVisit(id);
         return "board/boardView";
     }

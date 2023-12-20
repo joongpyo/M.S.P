@@ -69,7 +69,6 @@ public class BoardQnaService {
 
     public List<QnaDto> getBoardQnA(String searchType, String search) {
         String searchQuery = getSearch(searchType,search);
-        System.out.println(searchQuery);
         return boardQnaMapper.getBoardQnA(searchQuery);
     }
     public QnaDto getQnaView(int id) {
