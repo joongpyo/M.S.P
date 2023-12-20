@@ -32,23 +32,18 @@ public class BoardController {
 
     @GetMapping("/boardQnA")
     public String getBoardQnA(Model model,
+                              @RequestParam(value="page", defaultValue = "1")int page,
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
-
-
-        model.addAttribute("total",10);
-        model.addAttribute("qna",boardQnaService.getBoardQnA(searchType,search));
+        model.addAttribute("qna",boardQnaService.getBoardQnA(page,searchType,search));
+        model.addAttribute("page",boardQnaService.PageInfo(page, searchType, search));
+        model.addAttribute("total",boardQnaService.getBoardCount(searchType,search));
         return "board/boardQnA";
     }
 
-
-
     @GetMapping("/boardList")
     public String getBoardList(){
-
-
-
         return "board/boardList";
     }
 
@@ -61,6 +56,7 @@ public class BoardController {
     public String getBoardView(@RequestParam int id, Model model) {
         model.addAttribute("board",boardQnaService.getQnaView(id));
         model.addAttribute("files",boardQnaMapper.getFile(id));
+        //조회수증가
         boardQnaMapper.updateVisit(id);
         return "board/boardView";
     }
@@ -88,15 +84,11 @@ public class BoardController {
         return Map.of("msg","success");
     }
 
-
-
-
-
     @GetMapping("/qnaDelete")
     public String setDelete(@RequestParam int id) {
         System.out.println(id);
         boardQnaService.setDelete(id);
-        return "redirect:/board/boardQna";
+        return "redirect:/board/boardQnA";
     }
 
     //수정하러가기

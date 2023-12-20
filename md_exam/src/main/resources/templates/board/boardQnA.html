@@ -57,9 +57,8 @@
 
             <div class="content-wrap">
                 <div class="form-container">
-                    <!--                    작업중                         --><!--                    작업중                         -->
                     <form action="/board/boardQnA" method="get" class="search-form">
-                        <span>total [[${total}]]</span>
+                        <span>총 게시물 : [[${total}]]건</span>
                         <div class="search-right">
                             <div class="sel-box">
                                 <select name="searchType">
@@ -74,9 +73,6 @@
                             </div>
                         </div>
                     </form>
-                    <!--                    작업중                         --><!--                    작업중                         -->
-
-
                 </div>
 
                 <table>
@@ -91,7 +87,9 @@
                     </thead>
                     <tbody class="qnaList">
                         <tr th:each="qna, k: ${qna}">
-                            <td>[[${qna.id}]]</td>
+                            <td>
+                                [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
+                            </td>
                             <td>
                                 <a th:href="@{/board/boardView?(id=${qna.id})}">[[${qna.subject}]]</a>
                             </td>
@@ -105,22 +103,41 @@
 
                 <div class="bottom">
                     <div class="bottom-center">
-                        <a href="">
+                        <a href="#" th:if="${page.page <= 1}">
                             <i class="fa-solid fa-caret-left"></i>
                         </a>
-                        <a href="" class="active">1</a>
-                        <a href="">2</a>
-                        <a href="">3</a>
-                        <a href="">
+                        <a th:href="@{/board/boardQnA?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
+                            <i class="fa-solid fa-caret-left"></i>
+                        </a>
+
+                        <th:block th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
+                            <th:block th:if="${page.page eq i}">
+                                <a  class="active" th:href="@{/board/boardQnA?(configCode=${configCode}, page=${i})}">
+                                    [[${i}]]
+                                </a>
+                            </th:block>
+                            <th:block th:unless="${page.page eq i}">
+                                <a th:href="@{/board/boardQnA?(configCode=${configCode}, page=${i})}">
+                                    [[${i}]]
+                                </a>
+                            </th:block>
+                        </th:block>
+
+                        <a href="#" th:if="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-caret-right"></i>
                         </a>
+                        <a th:href="@{/board/boardQnA?(page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </a>
+
+
                     </div>
                     <div class="bottom-right">
                         <a th:href="@{/board/boardQnA}">
                             <button type="button" class="btn">목록</button>
                         </a>
                         <a th:href="@{/board/boardWrite}">
-                            <button type="button" class="btn">글쓰기</button>
+                            <button type="button" class="btn" onclick="return loginCheck()">글쓰기</button>
                         </a>
                     </div>
                 </div>

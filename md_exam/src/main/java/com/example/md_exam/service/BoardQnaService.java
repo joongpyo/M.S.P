@@ -12,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -23,9 +25,7 @@ public class BoardQnaService {
     @Autowired
     BoardQnaMapper boardQnaMapper;
 
-    public void setBoard(QnaDto qnADto) {
-        boardQnaMapper.setBoard(qnADto);
-    }
+
 
     //게시물 검색
     public String getSearch(String searchType, String search){
@@ -42,6 +42,7 @@ public class BoardQnaService {
 
         return searchQuery;
     }
+
 
     public PageDto PageInfo(int page, String searchType, String search) {
         PageDto pageDto = new PageDto();
@@ -66,12 +67,22 @@ public class BoardQnaService {
         return pageDto;
     }
 
-
-    public List<QnaDto> getBoardQnA(String searchType, String search) {
+    public List<QnaDto> getBoardQnA(int page, String searchType, String search) {
+        PageDto pd = PageInfo(page, searchType, search);
         String searchQuery = getSearch(searchType,search);
-        System.out.println(searchQuery);
-        return boardQnaMapper.getBoardQnA(searchQuery);
+
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("startNum", pd.getStartNum());
+        map.put("offset", pd.getPageCount());
+        map.put("searchQuery",searchQuery);
+
+        return boardQnaMapper.getBoardQnA(map);
     }
+    public void setBoard(QnaDto qnADto) {
+        boardQnaMapper.setBoard(qnADto);
+    }
+
     public QnaDto getQnaView(int id) {
         return boardQnaMapper.getQnaView(id);
     }
@@ -143,5 +154,9 @@ public class BoardQnaService {
         boardQnaMapper.setUpdate(qnaDto);
     }
 
+    public int getBoardCount(String searchType,String search){
+        String searchQuery = getSearch(searchType,search);
+        return boardQnaMapper.getBoardCount(searchQuery);
+    }
 
 }
