@@ -18,19 +18,6 @@ main {
     margin: 0 auto;
 }
 
-.bg-title {
-    height: 300px;
-    background-image: url("/images/blue.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-}
-
-.bg-title h1 {
-    color: #fff;
-    margin: auto;
-}
 
 
 
@@ -67,10 +54,10 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    /* padding: 10px;     */
+    /*padding: 10px;*/
     background-color: #f8f8f8;
     
-    /*background-image: url("/images/tyle.jpg");*/
+    background-image: url("/images/capsule.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
