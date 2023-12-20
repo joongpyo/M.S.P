@@ -5,6 +5,7 @@ import com.example.md_exam.dto.QnaDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BoardQnaMapper {
@@ -12,8 +13,8 @@ public interface BoardQnaMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(QnaDto qnaDto);
 
-    @Select("SELECT * FROM qna ${searchQuery} ORDER BY id DESC ")
-    List<QnaDto> getBoardQnA(String searchQuery);
+    @Select("SELECT * FROM qna ${searchQuery} ORDER BY id DESC, seq ASC LIMIT #{startNum}, #{offset} ")
+    List<QnaDto> getBoardQnA(Map<String,Object> map);
 
     @Select("SELECT COUNT(*) FROM qna ${searchQuery}")
     int getBoardCount(String searchQuery);

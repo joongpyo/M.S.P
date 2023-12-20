@@ -125,6 +125,7 @@ p .writer {
 
 .filebox-wrap{
     display:flex;
+    padding: 10px 0;
 }
 
 .filebox-wrap .filebox {
