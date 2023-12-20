@@ -1,6 +1,7 @@
 package com.example.md_exam.service;
 
 import com.example.md_exam.dto.FileDto;
+import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.dto.QnaDto;
 import com.example.md_exam.mapper.BoardQnaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,58 @@ public class BoardQnaService {
     public void setBoard(QnaDto qnADto) {
         boardQnaMapper.setBoard(qnADto);
     }
-    public List<QnaDto> getQnaList() {
-        return boardQnaMapper.getQnaList();
+
+    //게시물 검색
+    public String getSearch(String searchType, String search){
+        String searchQuery = "";
+        if(searchType.equals("writer")){
+            searchQuery = " WHERE writer = '"+search+"'";
+        }else if (searchType.equals("content")){
+            searchQuery = " WHERE content LIKE '%"+search+"%'";
+        }else if (searchType.equals("subject")){
+            searchQuery = " WHERE subject LIKE '%"+search+"%'";
+        }else{
+            searchQuery = "";
+        }
+
+        return searchQuery;
     }
-    public QnaDto getQnaView(int qnaId) {
-        return boardQnaMapper.getQnaView(qnaId);
+
+    public PageDto PageInfo(int page, String searchType, String search) {
+        PageDto pageDto = new PageDto();
+
+        String searchQuery = getSearch(searchType,search);
+        int totalCount = boardQnaMapper.getBoardCount(searchQuery);
+
+        int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage =  ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setStartNum( (page - 1) * pageDto.getPageCount()  );
+        pageDto.setTotalPage(totalPage);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setPage(page);
+
+        return pageDto;
+    }
+
+
+    public List<QnaDto> getBoardQnA(String searchType, String search) {
+        String searchQuery = getSearch(searchType,search);
+        System.out.println(searchQuery);
+        return boardQnaMapper.getBoardQnA(searchQuery);
+    }
+    public QnaDto getQnaView(int id) {
+        return boardQnaMapper.getQnaView(id);
+    }
+
+    int getBoardCount(String searchQuery){
+        return boardQnaMapper.getBoardCount(searchQuery);
     }
 
     public void setFiles(List<MultipartFile> files, int fileID) throws IOException {
@@ -66,23 +114,23 @@ public class BoardQnaService {
         }
     }
 
-    public void setDelete(int qnaId) {
-        QnaDto qd = boardQnaMapper.getQnaView(qnaId);
+    public void setDelete(int id) {
+        QnaDto qd = boardQnaMapper.getQnaView(id);
 
         //게시판 db삭제
-        boardQnaMapper.setDelete(qnaId);
-        System.out.println(qnaId +"번 게시물을 삭제했습니다");
+        boardQnaMapper.setDelete(id);
+        System.out.println(id +"번 게시물을 삭제했습니다");
 
         //파일 db삭제
         if(qd.getIsFiles().equals("Y")){
-            List<FileDto> files = boardQnaMapper.getFile(qnaId);
+            List<FileDto> files = boardQnaMapper.getFile(id);
 
             for (FileDto fd : files){
                 File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
                 file.delete();
             }
-            boardQnaMapper.setFilesDelete(qnaId);
-            System.out.println(qnaId +"번 게시물 파일을 삭제했습니다..");
+            boardQnaMapper.setFilesDelete(id);
+            System.out.println(id +"번 게시물 파일을 삭제했습니다..");
         }
 
         //comment db삭제
@@ -91,6 +139,9 @@ public class BoardQnaService {
     }
 
     public void setUpdate(QnaDto qnaDto){
+        System.out.println(qnaDto);
         boardQnaMapper.setUpdate(qnaDto);
     }
+
+
 }

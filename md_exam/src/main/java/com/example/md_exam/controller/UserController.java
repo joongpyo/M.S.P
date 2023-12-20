@@ -40,25 +40,24 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra, HttpServletRequest hsr){
+    public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra,HttpSession session, HttpServletRequest hsr){
 
         UserDto d = userService.setLogin(userDto);
-
+        String prevPage = (String) session.getAttribute("prevPage");
         if(d != null){
             //세션 생성 - 로그아웃하기전까지 계속 로그인유지
             //getSession() -> 데이터 -> 시간
 
             HttpSession hs = hsr.getSession(); //세션 준비
-
-
-
             hs.setAttribute("user",d);
             hs.setMaxInactiveInterval(15*60);   //10분
             ra.addFlashAttribute("userName",d.getUserName());
 
             if(d.getUserId().equals("admin")){
                 return "redirect:/admin";
-            }else{
+            }else if(prevPage != null){
+                return "redirect:"+prevPage;
+            }else {
                 return "redirect:/index";
             }
 

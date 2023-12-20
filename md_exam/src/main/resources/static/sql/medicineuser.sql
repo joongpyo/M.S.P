@@ -8,19 +8,19 @@ primary key(u_id)
 );
 
 create table qna(
-qna_id int not null auto_increment,
-qna_subject varchar(30) not null,
-qna_writer varchar(10) not null,
-qna_content text not null,
-qna_visit int not null,
-qna_reg date not null,
+id int not null auto_increment,
+subject varchar(30) not null,
+writer varchar(10) not null,
+content text not null,
+visit int not null,
+reg date not null,
 grp int,
 seq int,
 depth int,
 isFiles char(1) not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
-primary key(qna_id)
+primary key(id)
 );
 
 create table qnafiles(

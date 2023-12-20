@@ -66,14 +66,14 @@
 						<tr>
 							<th>제목</th>
 							<td>
-								<input type="text" name="subject" autocomplete="off" th:value="${modify.qnaSubject}">
+								<input type="text" name="subject" autocomplete="off" th:value="${modify.subject}">
 							</td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td>
 								<textarea name="editor" id="editor"></textarea>
-								<input type="hidden" class="qnaContent" th:value="${modify.qnaContent}">
+								<input type="hidden" id="content" th:value="${modify.content}">
 							</td>
 						</tr>
 						<tr>
@@ -93,7 +93,7 @@
 						</div>
 						<div class="bottom-right">
 							<a href="">
-								<button class="submit">취소</button>
+								<button class="button">취소</button>
 							</a>
 
 							<a href="">
@@ -102,7 +102,8 @@
 						</div>
 					</div>
 
-					<input type="hidden" name="qnaWriter" th:value="${session.user.userName}">
+					<input type="hidden" name="id" th:value="${modify.id}">
+					<input type="hidden" name="writer" th:value="${session.user.userName}">
 					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
 
 				</form>

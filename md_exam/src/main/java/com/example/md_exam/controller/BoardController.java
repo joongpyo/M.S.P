@@ -31,7 +31,14 @@ public class BoardController {
     }
 
     @GetMapping("/boardQnA")
-    public String getBoardQnA(){
+    public String getBoardQnA(Model model,
+                              @RequestParam(value="searchType", defaultValue = "") String searchType,
+                              @RequestParam(value="search", defaultValue = "") String search){
+
+
+
+        model.addAttribute("total",10);
+        model.addAttribute("qna",boardQnaService.getBoardQnA(searchType,search));
         return "board/boardQnA";
     }
 
@@ -39,6 +46,9 @@ public class BoardController {
 
     @GetMapping("/boardList")
     public String getBoardList(){
+
+
+
         return "board/boardList";
     }
 
@@ -48,9 +58,10 @@ public class BoardController {
     }
 
     @GetMapping("/boardView")
-    public String getBoardView(@RequestParam int qnaId, Model model) {
-        model.addAttribute("board",boardQnaService.getQnaView(qnaId));
-        model.addAttribute("files",boardQnaMapper.getFile(qnaId));
+    public String getBoardView(@RequestParam int id, Model model) {
+        model.addAttribute("board",boardQnaService.getQnaView(id));
+        model.addAttribute("files",boardQnaMapper.getFile(id));
+        boardQnaMapper.updateVisit(id);
         return "board/boardView";
     }
 
@@ -67,9 +78,9 @@ public class BoardController {
         if (files != null){
             qnaDto.setIsFiles("Y");
             boardQnaService.setBoard(qnaDto);
-            int fileID = qnaDto.getQnaId();
+            int fileID = qnaDto.getId();
             boardQnaService.setFiles(files,fileID);
-            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
         }else {
             qnaDto.setIsFiles("N");
             boardQnaService.setBoard(qnaDto);
@@ -77,47 +88,47 @@ public class BoardController {
         return Map.of("msg","success");
     }
 
-    @GetMapping("/qnaList")
-    @ResponseBody
-    public Map<String,Object> getQnaList(){
-        List<QnaDto> list = boardQnaService.getQnaList();
-        return Map.of("qnaList",list);
-    }
+
+
+
 
     @GetMapping("/qnaDelete")
-    public String setDelete(@RequestParam int qnaId) {
-        System.out.println(qnaId);
-        boardQnaService.setDelete(qnaId);
+    public String setDelete(@RequestParam int id) {
+        System.out.println(id);
+        boardQnaService.setDelete(id);
         return "redirect:/board/boardQna";
     }
 
+    //수정하러가기
     @GetMapping("/qnaUpdate")
-    public String getUpdate(@RequestParam int qnaId, Model model) {
-        QnaDto qd = boardQnaService.getQnaView(qnaId);
+    public String getUpdate(@RequestParam int id, Model model) {
+        QnaDto qd = boardQnaService.getQnaView(id);
         model.addAttribute("modify",qd);
         return "board/qnaUpdate";
     }
 
+    //수정등록하기
     @PostMapping("/qnaUpdate")
     @ResponseBody
     public Map<String, Object> setUpdate(@RequestParam(name="files",required = false)List<MultipartFile> files,
                                          @ModelAttribute QnaDto qnaDto) throws IOException {
-
         //파일수정
         //파일 있으면 파일 추가
         if (files != null){
             qnaDto.setIsFiles("Y");
             boardQnaService.setUpdate(qnaDto);
 
-            int fileID = qnaDto.getQnaId();
+            int fileID = qnaDto.getId();
             boardQnaService.setFiles(files,fileID);
-            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "qnaId") 사용
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
         }else {
             qnaDto.setIsFiles("N");
             boardQnaService.setUpdate(qnaDto);
         }
 
-        return null;
+        return Map.of("msg","success");
     }
+
+
 
 }

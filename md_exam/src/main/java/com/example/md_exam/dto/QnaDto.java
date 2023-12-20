@@ -3,64 +3,64 @@ package com.example.md_exam.dto;
 import java.time.LocalDate;
 
 public class QnaDto {
-    private int qnaId;
-    private String qnaSubject;
-    private String qnaWriter;
-    private String qnaContent;
-    private int qnaVisit;
-    private LocalDate qnaReg;
+    private int id;
+    private String subject;
+    private String writer;
+    private String content;
+    private int visit;
+    private LocalDate reg;
     private int grp;
     private int seq;
     private int depth;
     private int uIdFk;
     private String isFiles;
 
-    public int getQnaId() {
-        return qnaId;
+    public int getId() {
+        return id;
     }
 
-    public void setQnaId(int qnaId) {
-        this.qnaId = qnaId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getQnaSubject() {
-        return qnaSubject;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setQnaSubject(String qnaSubject) {
-        this.qnaSubject = qnaSubject;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getQnaWriter() {
-        return qnaWriter;
+    public String getWriter() {
+        return writer;
     }
 
-    public void setQnaWriter(String qnaWriter) {
-        this.qnaWriter = qnaWriter;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
-    public String getQnaContent() {
-        return qnaContent;
+    public String getContent() {
+        return content;
     }
 
-    public void setQnaContent(String qnaContent) {
-        this.qnaContent = qnaContent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getQnaVisit() {
-        return qnaVisit;
+    public int getVisit() {
+        return visit;
     }
 
-    public void setQnaVisit(int qnaVisit) {
-        this.qnaVisit = qnaVisit;
+    public void setVisit(int visit) {
+        this.visit = visit;
     }
 
-    public LocalDate getQnaReg() {
-        return qnaReg;
+    public LocalDate getReg() {
+        return reg;
     }
 
-    public void setQnaReg(LocalDate qnaReg) {
-        this.qnaReg = qnaReg;
+    public void setReg(LocalDate reg) {
+        this.reg = reg;
     }
 
     public int getGrp() {
@@ -106,12 +106,12 @@ public class QnaDto {
     @Override
     public String toString() {
         return "QnaDto{" +
-                "qnaId=" + qnaId +
-                ", qnaSubject='" + qnaSubject + '\'' +
-                ", qnaWriter='" + qnaWriter + '\'' +
-                ", qnaContent='" + qnaContent + '\'' +
-                ", qnaVisit=" + qnaVisit +
-                ", qnaReg=" + qnaReg +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", writer='" + writer + '\'' +
+                ", content='" + content + '\'' +
+                ", visit=" + visit +
+                ", reg=" + reg +
                 ", grp=" + grp +
                 ", seq=" + seq +
                 ", depth=" + depth +

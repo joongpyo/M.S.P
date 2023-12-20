@@ -10,9 +10,8 @@
 	      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
 	      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 	<link rel="stylesheet" th:href="@{/css/common.css}">
-	<link rel="stylesheet" th:href="@{/css/board/boardWrite1.css}">
-	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/translations/ko.js"></script>
+	<link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
+	<script src="/static/ckeditor/build/ckeditor.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
@@ -86,7 +85,7 @@
 
 					<div class="bottom">
 						<div class="bottom-right">
-							<a href="boardNotice.html">
+							<a th:href="@{/board/boardQnA}">
 								<button type="button" class="btn">목록</button>
 							</a>
 
@@ -96,7 +95,7 @@
 						</div>
 					</div>
 
-					<input type="hidden" name="qnaWriter" th:value="${session.user.userName}">
+					<input type="hidden" name="writer" th:value="${session.user.userName}">
 					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
 
 				</form>

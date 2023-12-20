@@ -14,12 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('에디터가 초기화', editor);
 
                 let btn = document.querySelector(".submit");
+                let id = document.querySelector("input[name=id]");
                 let subject = document.querySelector("input[name=subject]");
-                let qnaWriter = document.querySelector("input[name=qnaWriter]");
+                let writer = document.querySelector("input[name=writer]");
                 let uIdFk = document.querySelector("input[name=uIdFk]");
 
-                let qnaContent = document.querySelector(".qnaContent").value;
-                editor.setData(qnaContent);
+                let content = document.querySelector("#content").value;
+                editor.setData(content);
 
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -35,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         formData.append("files", "");
                         console.log("첨부파일 X")
                     }
-
-                    formData.append('qnaSubject', subject.value);
-                    formData.append('qnaContent', editor.getData());
-                    formData.append('qnaWriter', qnaWriter.value);
+                    formData.append('id', id.value);
+                    formData.append('subject', subject.value);
+                    formData.append('content', editor.getData());
+                    formData.append('writer', writer.value);
                     formData.append('uIdFk', uIdFk.value);
 
 
@@ -50,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         processData: false,
                         success: function (result) {
                             if (result.msg=="success"){
-                                alert("");
                                 location.href = "/board/boardQnA";
                             }
                         }

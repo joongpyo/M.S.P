@@ -59,16 +59,16 @@
                 <div class="content-wrap">
                     <div class="subject">
                         <div class="subject-title">
-                            <h2>[[${board.qnaSubject}]]</h2>
+                            <h2>[[${board.subject}]]</h2>
                         </div>
 
                         <div class="board-info">
                             <p>
-                                작성자 : <span class="writer">[[${board.qnaWriter}]]</span>
+                                작성자 : <span class="writer">[[${board.writer}]]</span>
                                 댓글수 : <span class="comment-cnt">1</span>
-                                조회수 : <span class="visit">[[${board.qnaVisit}]]</span>
+                                조회수 : <span class="visit">[[${board.visit}]]</span>
                                 작성일 : <span class="reg-date">
-                                            <th:block>[[${#temporals.format(board.qnaReg,'yy.MM.dd')}]]</th:block>
+                                            <th:block>[[${#temporals.format(board.reg,'yy.MM.dd')}]]</th:block>
                                         </span>
                             </p>
                         </div>
@@ -77,7 +77,7 @@
 
                     <div class="content">
                         <div id="text-box" class="text-box">
-                            <input type="hidden" class="qnaContent" th:value="${board.qnaContent}">
+                            <input type="hidden" id="content" th:value="${board.content}">
 
 
                         </div>
@@ -128,10 +128,10 @@
                         </div>
 
                         <div class="bottom-right">
-                            <a th:href=@{/board/qnaUpdate(qnaId=${board.qnaId})}>
+                            <a th:href=@{/board/qnaUpdate(id=${board.id})}>
                                 <button type="button" class="btn">수정</button>
                             </a>
-                            <a th:href="@{/board/qnaDelete?(qnaId=${board.qnaId})}">
+                            <a th:href="@{/board/qnaDelete?(id=${board.id})}">
                                 <button type="button" class="btn" onclick="return delCheck()">삭제</button>
                             </a>
                         </div>
@@ -159,10 +159,10 @@
 
     <script>
         //태그 포함된 content를 HTML
-        //let qnaContent = /*[[${#strings.escapeJavaScript(board.qnaContent)}]]*/ '';
+        //let content = /*[[${#strings.escapeJavaScript(board.content)}]]*/ '';
 
-        let qnaContent = document.querySelector(".qnaContent").value;
-        document.querySelector(".text-box").innerHTML = qnaContent;
+        let content = document.querySelector("#content").value;
+        document.querySelector(".text-box").innerHTML = content;
 
         function delCheck() {
             if(confirm("게시물을 삭제하시겠습니까?\n복구 할 수 없습니다. ")){
