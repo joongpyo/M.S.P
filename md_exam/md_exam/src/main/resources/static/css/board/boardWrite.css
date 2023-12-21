@@ -1,0 +1,231 @@
+
+
+.board-bg {
+    background-image: url("/images/texture1.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 350px;
+        margin: 0 auto;
+        padding-top: 210px;
+
+
+
+}
+
+.board-bg-wrap{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center
+
+}
+
+.board-bg-content {
+    color: #fff;
+    width: 100%;
+    max-width: 1280px;
+
+}
+
+.bg-letter{
+    margin-top: 100px;
+    margin-left: 10px;
+}
+
+.bg-letter p {
+    color: #fff;
+    margin: auto;
+
+    word-spacing: 3px;
+    font-size: 16px;
+}
+
+.bg-letter span{
+    color: rgba(255,255,255,0.6);
+}
+
+.bg-letter i{
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* ----------------------- boardWrite Content ----------------------------- */
+
+
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+
+}
+
+
+/* ------------------------ section ---------------------------- */
+
+.section-container {
+
+    max-width: 100%;
+    margin: 0 auto;
+    padding-right: 50px;
+    max-width: 1280px;
+}
+
+.sub-title{
+    width:100%;
+    max-width:1280px;
+    text-align: center;
+    margin: 60px 0;
+}
+
+
+
+
+.content-wrap {
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 40px;
+    padding: 0 10px;
+}
+
+.subject-title{
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #ccc;
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.content-wrap h2 {
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid #eee;
+}
+
+td, th {
+    padding: 10px;
+}
+
+th {
+    background-color: #3d3d3d;
+    color: #fff;
+}
+
+.w-input {
+    border:0;
+    border:1px solid #ccc;
+    font-size: 14px;
+    width:100%;
+    padding: 8px;
+    outline: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    background-color: #f8f8f8;
+}
+
+
+
+/* ------------------------------------------------------ */
+.bottom {
+    max-width: 1480px;
+    width: 100%;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+.bottom-right {
+    display: flex;
+    justify-content: end;
+    height: 60px;
+    margin: 0 5px;
+}
+
+.bottom a {
+    margin-left: 5px;
+}
+
+.bottom .btn:hover {
+    text-decoration: underline;
+}
+
+.bottom button {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: #6aafe6;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.bottom-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom-center a.active {
+    background-color: #eee;
+}
+
+.bottom-center a {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 1px 1px 0 #eee;
+    border-radius: 20px;
+}
+
+.comment {
+    border-top: 1px dashed #ccc;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.comment ul {
+    margin-top: 30px;
+}
+
+.comment ul li {
+    margin: 10px 0;
+    width: 100%;
+    height: 100px;
+    font-size: 12px;
+}
+
+.comment ul li .comment-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+textarea{
+    height: 200px;
+}
+
+.foot-logo {
+    width: 130px;
+    margin: 20px 0 0 20px;
+}
+
+/* ---------------------- ck editor -------------------------- */
+.ck-editor__editable {
+    height: 400px;
+    weight 100%;
+    padding-left: 30px;
+}
+.ck-content {
+    font-size: 16px;
+
+}

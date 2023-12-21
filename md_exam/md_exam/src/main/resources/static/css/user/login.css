@@ -1,0 +1,124 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+/*main*/
+
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: #eee;
+}
+
+.login_box {
+    width: 450px;
+    background-color: #fff; 
+    position:  absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.login_box h1 {
+    margin-bottom: 20px;
+}
+
+.login_box img {
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+}
+
+.form_box p {
+    font-size: 14px;
+    color: tomato;
+}
+
+
+.form_box h2 {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.form_box ul li {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.form_box ul li:nth-child(1) {
+    margin: 0;
+}
+
+.form_box ul li input {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.form_box ul li input:focus {
+    border-bottom: 2px solid rgba(107, 174, 230, 0.7);
+}
+
+.form_box ul li input::placeholder {
+    opacity: .9;
+}
+
+.form_box .btn1 {
+    margin-top: 45px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    background-color: #6aafe6;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+
+
+.form_box ul li a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+.find_wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.find_wrap ul {
+    display: flex;
+}
+.find_wrap ul span {
+    color: #6aafe6;
+    font-size: 16px;
+    margin: 0 3px;
+}
+
+.find_wrap ul li a {
+    color: #6aafe6;
+    font-size: 12px;
+}
+
+.login_text {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.login_text a {
+    color: #6aafe6;
+}

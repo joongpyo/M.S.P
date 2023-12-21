@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.S.P | 마이페이지 </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/matching/matching.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+<div class="one-hr">
+    <hr>
+</div>
+
+<main>
+
+    <div class="matching">
+        <div class="match-container">
+            <div class="match-title">
+                <h1>나에게 맞는 약 찾기</h1>
+            </div>
+            <div class="match-content">
+                <form  method="post" action="/matching/matching"  onsubmit="return frmCheck()">
+                    <ul class=match-wrap>
+                        <li class="m-wrap">
+                            <h2>임신 여부를 선택하세요.</h2>
+                            <div class="select1">
+                                <input type="radio" id="select" name="pregnant" value="Y"><label for="select">네</label>
+                                <input type="radio" id="select2" name="pregnant" value="N"><label for="select2">아니오</label>
+                            </div>
+                        </li>
+                        <li class="m-wrap">
+                            <h2>연령대를 선택하세요.</h2>
+                            <select name="age" id="age">
+                                <span><option value="">-- 연령대를 선택 --</option></span>
+                                <option value="1">7세 이하</option>
+                                <option value="2">7세 이상 ~ 65세 이하</option>
+                                <option value="3">65세 이상</option>
+                            </select>
+                        </li>
+                        <li class="m-wrap">
+                            <h2>병명을 선택하세요.</h2>
+                            <select name="disease" id="disease">
+                                <span><option value="">-- 병명 선택 --</option></span>
+                                <option value="감기">감기</option>
+                                <option value="소화불량">소화불량</option>
+                                <option value="생리통">생리통</option>
+                                <option value="알레르기(비염)">알레르기(비염)</option>
+                                <option value="편두통">편두통</option>
+                                <option value="설사">설사</option>
+                                <option value="인후통">인후통</option>
+                                <option value="멀미">멀미</option>
+                                <option value="근육통">근육통</option>
+                                <option value="몸살">몸살</option>
+                            </select>
+                        </li>
+                        <li class="m-wrap">
+                            <h2>약의 제형을 선택하세요.</h2>
+                            <div class="select2">
+                                <input type="radio" id="drugtype1" name="drugtype" value="알약"><label for="drugtype1">알약</label>
+                                <input type="radio" id="drugtype2" name="drugtype" value="캡슐"><label for="drugtype2">캡슐</label>
+                                <input type="radio" id="drugtype3" name="drugtype" value="물약"><label for="drugtype3">물약</label>
+                            </div>
+                        </li>
+                        <div class="result-wrap">
+                            <input type="button" class="btn" value="결과 보기">
+                        </div>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="one-hr">
+        <hr>
+    </div>
+
+    <section class="one">
+        <div class="one-container">
+            <div class="disease-title">
+                <h2>빠른 찾기</h2>
+                <p>하단의 아이콘을 클릭하여 병명으로 쉽고 빠르게 약을 검색할 수 있습니다.</p>
+            </div>
+            <div class="disease-content">
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
+                    </div>
+                    <span>감기</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
+                    </div>
+                    <span>소화불량</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
+                    </div>
+                    <span>생리통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                    </div>
+                    <span>알레르기(비염)</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
+                    </div>
+                    <span>편두통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
+                    </div>
+                    <span>설사</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
+                    </div>
+                    <span>인후통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
+                    </div>
+                    <span>멀미</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
+                    </div>
+                    <span>근육통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
+                    </div>
+                    <span>몸살</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+
+<script>
+
+</script>
+
+</body>
+
+
+</html>

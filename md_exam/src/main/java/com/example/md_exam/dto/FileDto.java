@@ -8,6 +8,7 @@ public class FileDto {
     private Long savedFileSize;
     private String folderName;
     private String ext;
+    private String board;
 
     public int getId() {
         return id;
@@ -65,6 +66,14 @@ public class FileDto {
         this.ext = ext;
     }
 
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
+
     @Override
     public String toString() {
         return "FileDto{" +
@@ -75,6 +84,7 @@ public class FileDto {
                 ", savedFileSize=" + savedFileSize +
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +
+                ", board='" + board + '\'' +
                 '}';
     }
 }

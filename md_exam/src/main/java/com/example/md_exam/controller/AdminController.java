@@ -133,19 +133,19 @@ public class AdminController {
             FileDto fileDto = new FileDto();
 
             // 경로명  + UUID
-            String savedPathFileName = fileDir + folderName;
+            String savedPathName = fileDir + folderName;
             String orgName = file.getOriginalFilename(); //원본 이름 저장
             String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
             String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
             String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
 
-            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
+            file.transferTo(new File(savedPathName + "/" + savedFileName));
 
             fileDto.setBoard(board);
             fileDto.setId(fileId);
             fileDto.setOrgName(orgName);
             fileDto.setSavedFileName(savedFileName);
-            fileDto.setSavedPathFileName(savedPathFileName);
+            fileDto.setSavedPathName(savedPathName);
             fileDto.setFolderName(folderName);
             fileDto.setExt(ext);
             adminBoardService.setFile(fileDto);
@@ -190,18 +190,18 @@ public class AdminController {
             FileDto fileDto = new FileDto();
 
             // 경로명  + UUID
-            String savedPathFileName = fileDir + folderName;
+            String savedPathName = fileDir + folderName;
             String orgName = file.getOriginalFilename(); //원본 이름 저장
             String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
             String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
             String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
 
-            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
+            file.transferTo(new File(savedPathName + "/" + savedFileName));
 
             fileDto.setId(fileId);
             fileDto.setOrgName(orgName);
             fileDto.setSavedFileName(savedFileName);
-            fileDto.setSavedPathFileName(savedPathFileName);
+            fileDto.setSavedPathName(savedPathName);
             fileDto.setFolderName(folderName);
             fileDto.setExt(ext);
 

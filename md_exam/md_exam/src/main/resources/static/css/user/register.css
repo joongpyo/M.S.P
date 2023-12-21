@@ -1,0 +1,153 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+/*main*/
+
+/* ------------------------------- */
+body {
+    background-color: #eee;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: #eee; 
+}
+
+
+.logo-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-wrap img{
+    /* margin: 20px;
+    padding-left: 50px; */
+    
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+    /* position: relative;
+    top: 0;
+    left: 30px; */
+}
+
+
+
+.reg-container {
+    width: 450px;
+    background-color: #fff; 
+    position:  absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #aaa;
+    
+}
+
+.log_info {
+    padding: 20px 0;
+}
+
+.log_info input {
+    width: 100%;
+    height: 45px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    font-size: 15px;
+    padding-left: 8px;
+}
+
+.log_info input::placeholder {
+    font-size: 14px;
+    opacity: .8;
+}
+
+.log_info input:focus {
+    outline: 0;
+    border-bottom: 2px solid rgba(107, 174, 230, 0.7);
+}
+
+.privacy_info {
+    margin-top: 10px;
+}
+
+
+.privacy_info input {
+    width: 100%;
+    height: 45px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    font-size: 16px;
+    padding-left: 8px;
+}
+
+.privacy_info input::placeholder {
+    font-size: 14px;
+    opacity: .8;
+}
+
+.privacy_info input:focus {
+    outline: 0;
+    border-bottom: 2px solid rgba(107, 174, 230, 0.7);
+}
+
+
+.radio_container {
+    display: flex;
+    margin: 0 auto;
+}
+
+.radio_box input {
+    height: 0px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio_box {
+    width: 50%;
+    margin: 15px 10px;
+}
+
+.radio_box label {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.gender:checked+label {
+    color: #6aafe6;
+    border: 2px solid rgba(107, 174, 230, 0.7);
+    border-radius: 10px;
+    font-weight: bold;    
+    cursor: pointer;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    margin: 30px 0 30px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #6aafe6;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 0;
+}
+
+.find_wrap a {
+    color: #6aafe6;
+    font-size: 12px;
+}

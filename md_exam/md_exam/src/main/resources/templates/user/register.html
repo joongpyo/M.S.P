@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>M.S.P | 회원가입</title>
+	<link rel="stylesheet" th:href="@{/css/user/register.css}">
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<script type="text/javascript" th:src="@{/js/register.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="reg-container">
+		<div class="logo_box">
+			<div class="logo-wrap">
+				<a th:href="@{/index}"><img th:src="@{/images/nocolorlogo.png}" alt=""></a>
+			</div>
+		</div>
+		<div class="content">
+			<form action="/user/register" method="post" class="form" onsubmit="return frmCheck()" autocomplete="off">
+				<div class="log_info">
+					<ul>
+						<li>
+							<input type="text" name="userId" class="userId" placeholder="* 아이디">
+						</li>
+						<li>
+							<input type="password" name="userPasswd" class="userPasswd" placeholder="* 비밀번호">
+						</li>
+						<li>
+							<input type="password" name="re_passwd" class="re_passwd" placeholder="* 비밀번호 확인">
+						</li>
+					</ul>
+				</div>
+				<div class="privacy_info">
+					<ul>
+						<li>
+							<input type="text" name="userName" class="userName" placeholder="* 이름"
+								   autocomplete="off">
+						</li>
+						<li>
+							<input type="text" name="userEmail" class="userEmail" placeholder="* 이메일">
+						</li>
+					</ul>
+				</div>
+				<ul>
+					<li><input type="submit" class="btn ko" value="회원가입"></li>
+					<li><input type="reset" class="btn ko" value="다시작성"></li>
+				</ul>
+			</form>
+		</div>
+		<div class="find_wrap">
+			<a th:href="@{/user/login}" class="ko">로그인 페이지로 이동</a>
+		</div>
+	</div>
+</div>
+
+<script>
+
+</script>
+</body>
+
+
+</html>
