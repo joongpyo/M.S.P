@@ -1,8 +1,10 @@
 package com.example.md_exam.service;
 
+import com.example.md_exam.dto.DiseaseDto;
+import com.example.md_exam.dto.FileDto;
+import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.dto.PageDto;
-import com.example.md_exam.dto.UserDto;
-import com.example.md_exam.mapper.UserMapper;
+import com.example.md_exam.mapper.MedicineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +13,19 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserService {
+public class MedicineService {
     @Autowired
-    UserMapper userMapper;
-
-    public UserDto setLogin(UserDto userDto){
-        return userMapper.setLogin(userDto);
-
+    MedicineMapper medicineMapper;
+    public void setMedUpdate(MedicineDto medicineDto){
+        medicineMapper.setMedUpdate(medicineDto);
     }
-    public void setRegister(UserDto userDto){
-        userMapper.setRegister(userDto);
+    public void setFile(FileDto fileDto){
+        medicineMapper.setFile(fileDto);
     }
-
     public PageDto PageInfo(int page) {
         PageDto pageDto = new PageDto();
         //전체 사용자 수
-        int totalCount = userMapper.getUserCount();
+        int totalCount = medicineMapper.getMedCount();
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
@@ -41,14 +40,14 @@ public class UserService {
 
         return pageDto;
     }
-    public List<UserDto> getUserList(int page){
+    public List<MedicineDto> getMedList(int page){
         PageDto pd = PageInfo(page);
-
         Map<String, Object> map = new HashMap<>();
 
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
 
-        return userMapper.getUserList(map);
+        return medicineMapper.getMedList(map);
     }
+
 }

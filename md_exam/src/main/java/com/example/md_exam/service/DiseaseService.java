@@ -1,8 +1,9 @@
 package com.example.md_exam.service;
 
+import com.example.md_exam.dto.DiseaseDto;
 import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.dto.UserDto;
-import com.example.md_exam.mapper.UserMapper;
+import com.example.md_exam.mapper.DiseaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,23 +11,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Service
-public class UserService {
+public class DiseaseService {
     @Autowired
-    UserMapper userMapper;
+    DiseaseMapper diseaseMapper;
 
-    public UserDto setLogin(UserDto userDto){
-        return userMapper.setLogin(userDto);
-
+    public int getCheckDisName(String disName){
+        return diseaseMapper.getCheckDisName(disName);
     }
-    public void setRegister(UserDto userDto){
-        userMapper.setRegister(userDto);
+    public void setDisease(DiseaseDto diseaseDto){
+        diseaseMapper.setDisease(diseaseDto);
     }
 
     public PageDto PageInfo(int page) {
         PageDto pageDto = new PageDto();
         //전체 사용자 수
-        int totalCount = userMapper.getUserCount();
+        int totalCount = diseaseMapper.getDisCount();
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
@@ -41,14 +42,14 @@ public class UserService {
 
         return pageDto;
     }
-    public List<UserDto> getUserList(int page){
+    public List<DiseaseDto> getDisList(int page){
         PageDto pd = PageInfo(page);
-
         Map<String, Object> map = new HashMap<>();
 
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
 
-        return userMapper.getUserList(map);
+        return diseaseMapper.getDisList(map);
     }
+
 }
