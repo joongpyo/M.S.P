@@ -20,6 +20,6 @@ public interface MedicineMapper {
     public void setFile(FileDto fileDto);
     @Select("SELECT * FROM medicine ORDER BY med_id DESC LIMIT #{startNum}, #{offset}")
     public List<MedicineDto> getMedList(Map<String, Object> map);
-    @Select("SELECT COUNT(*) FROM disease")
+    @Select("SELECT COUNT(*) FROM medicine")
     public int getMedCount();
 }

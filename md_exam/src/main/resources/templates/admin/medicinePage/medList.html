@@ -40,9 +40,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="med:${med}">
+                        <tr th:each="med,k:${med}">
                             <td><input type="checkbox"></td>
-                            <td>[[${med.medId}]]</td>
+                            <td>[[${total - (((page.page - 1) * page.pageCount) + k.index)}]]</td>
                             <td>[[${med.medName}]]</td>
                             <td>[[${med.medDis}]]</td>
                             <td>[[${med.medEff}]]</td>

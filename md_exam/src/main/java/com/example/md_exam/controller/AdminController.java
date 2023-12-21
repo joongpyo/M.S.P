@@ -1,6 +1,8 @@
 package com.example.md_exam.controller;
 
 import com.example.md_exam.dto.*;
+import com.example.md_exam.mapper.AdminBoardMapper;
+import com.example.md_exam.mapper.MedicineMapper;
 import com.example.md_exam.mapper.UserMapper;
 import com.example.md_exam.service.AdminBoardService;
 import com.example.md_exam.service.DiseaseService;
@@ -31,8 +33,10 @@ public class AdminController {
     AdminBoardService adminBoardService;
     @Autowired
     UserService userService;
-
-
+    @Autowired
+    MedicineMapper medicineMapper;
+    @Autowired
+    AdminBoardMapper adminBoardMapper;
 
 
     @Value("${fileDir}")
@@ -84,6 +88,27 @@ public class AdminController {
     @GetMapping("admin/noticeMain")
     public String getNoticeList(){
         return "admin/noticePage/noticeMain";
+    }
+    @GetMapping("admin/noticeBoard")
+    public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
+        //model.addAttribute("notice",adminBoardService.getBoardList(page));
+        //model.addAttribute("page",adminBoardService.PageInfo(page));
+       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        return "admin/noticePage/noticeBoard";
+    }
+    @GetMapping("admin/qnaBoard")
+    public String getQnaBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam(name = "board", required = false) String board){
+        model.addAttribute("qna",adminBoardService.getBoardList(page,board));
+        model.addAttribute("page",adminBoardService.PageInfo(page,board));
+        model.addAttribute("total",adminBoardMapper.getBoardCount(board));
+        return "admin/noticePage/qnaBoard";
+    }
+    @GetMapping("admin/reviewBoard")
+    public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
+        //model.addAttribute("review",adminBoardService.getBoardList(page));
+        //model.addAttribute("page",adminBoardService.PageInfo(page));
+       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        return "admin/noticePage/reviewBoard";
     }
     @GetMapping("admin/noticeInsert")
     public String getNoticeUpdate(){
@@ -139,6 +164,8 @@ public class AdminController {
     public String getMedList(Model model, @RequestParam(value = "page", defaultValue = "1")int page){
         model.addAttribute("med",medicineService.getMedList(page));
         model.addAttribute("page",medicineService.PageInfo(page));
+        model.addAttribute("total",medicineMapper.getMedCount());
+        System.out.println(medicineMapper.getMedCount());
         return "/admin/medicinePage/medList";
     }
     @GetMapping("/admin/medInsert")

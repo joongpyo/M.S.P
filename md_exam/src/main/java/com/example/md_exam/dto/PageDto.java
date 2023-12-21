@@ -8,6 +8,7 @@ public class PageDto {
     private int totalPage;
     private int startPage;
     private int endPage;
+    private String board;
 
     public int getStartNum() {
         return startNum;
@@ -65,6 +66,14 @@ public class PageDto {
         this.endPage = endPage;
     }
 
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
+
     @Override
     public String toString() {
         return "PageDto{" +
@@ -75,6 +84,7 @@ public class PageDto {
                 ", totalPage=" + totalPage +
                 ", startPage=" + startPage +
                 ", endPage=" + endPage +
+                ", board='" + board + '\'' +
                 '}';
     }
 }

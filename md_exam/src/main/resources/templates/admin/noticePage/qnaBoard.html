@@ -28,14 +28,37 @@
                     </div>
                     <div class="content_left_choice">
                         <button><a th:href="@{/admin/noticeBoard}">공지사항</a></button>
-                        <button><a th:href="@{/admin/qnaBoard}" th:onclick="">QNA</a></button>
-                        <button><a th:href="@{/admin/reviewBoard}">후기</a></button>    
+                        <button><a th:href="@{/admin/qnaBoard}">QNA</a></button>
+                        <button><a th:href="@{/admin/reviewBoard}">후기</a></button>
                     </div>
                 </div>
                 <div class="content_right">
                     <div class="content_right_top"></div>
                     <div class="content_rigth_bottom">
-
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>조회수</th>
+                                <th>작성날짜</th>
+                            </tr>
+                            </thead>
+                            <tbody class="qnaList">
+                                <tr th:each="qna, k: ${qna}">
+                                    <td>
+                                        [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
+                                    </td>
+                                    <td>
+                                        <a href="#">[[${qna.subject}]]</a>
+                                    </td>
+                                    <td>[[${qna.writer}]]</td>
+                                    <td>[[${qna.visit}]]</td>
+                                    <td>[[${qna.reg}]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
