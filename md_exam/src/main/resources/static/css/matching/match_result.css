@@ -1,77 +1,58 @@
+/*---------------index content-----------------*/
 
-/* -------------------match_result content----------------------*/
-
-main {
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.one-hr{
-    margin-top: 70px;
-    width: 100%
-}
-
-.one-hr hr{
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-
-.result{
-    /* height: 750px; */
-    width: 100%;
+.bg {
+    background-image: url("/images/disease3.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     padding-top: 100px;
-    
+    width: 100%;
+    height: 860px;
+
+}
+
+.bg-wrap{
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+
+    align-items: center;
+    margin: 0 auto;
+
+
 }
 
 .result-container{
-    max-width: 1280px;
+
     width: 100%;
     align-items: center;
     /* background-color: #3CB4FF; */
-    margin: 0 auto;   
-   
+    margin: 0 auto;
+
+
 
 }
 
 .result-title{
-    margin-left: 30px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    
+   margin-left: 65px;
+   margin-top: 70px;
+   margin-bottom: 30px;
+   border-bottom: 1px solid #fff;
+   color: #fff;
+   text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7);
+   width: 350px;
 
 }
 
 .result-content{
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    /* padding: 10px;     */
-    background-color: #f8f8f8;
-    
-    background-image: url("/images/disease3.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 750px;
-    
-    
-    
+
 }
 
-.result-subtitle{
-    margin: 60px 60px 5px 60px;
-    
-    color: #fff;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-    /* text-decoration: underline; */
-}
 
-.result-wrap{    
-    margin: 40px;    
+
+.result-wrap{
+    margin: 40px;
 }
 
 
@@ -92,30 +73,30 @@ table {
     border-radius: 5px;
     overflow: hidden;
   }
-  
+
 th {
     text-align: left;
   }
-    
+
 thead {
     font-weight: bold;
     color: #fff;
     background: #5882fa;
   }
-    
+
 th, td{
     padding: 1em .5em;
     vertical-align: middle;
     padding: 15px;
   }
-    
+
 td {
     border-bottom: 1px solid rgba(0,0,0,.1);
     background: #fff;
   }
 
 
-  
+
 strong a {
     color: #4f75e1;
   }
@@ -132,7 +113,7 @@ strong a {
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    
+
   }
 
 .res-btn:active{
@@ -141,14 +122,111 @@ strong a {
 
 
 
+/* -------------------main one----------------------*/
+
+main {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.one-hr{
+    margin-top: 70px;
+    width: 100%
+}
+
+.one-hr hr{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.adv {
+    width: 100%;
+}
+
+.adv-container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+    align-items: center;
+    height: 450px;
+}
+
+.adv-title {
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+.adv-title h1{
+    margin-bottom: 15px;
+    font-size: 30px;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+}
+
+.adv-title p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.adv-title p span{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.adv-content{
+    display: flex;
+    justify-content: center;
+
+}
+
+.adv-box{
+    margin: 30px;
+    /* background-color: #222222; */
+}
+
+.adv-content h2{
+    font-size: 14px;
+    margin-bottom: 5px;
+    /* font-weight: lighter; */
+}
+
+.adv-content p {
+    font-size: 12px;
+}
+
+.adv-pic {
+    width: 250px;
+    margin-bottom: 16px;
+}
+
+.adv-subtitle {
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.one{
+    width: 100%;
+
+}
+
+.one-container{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    /* background-color: aqua; */
+    /* box-shadow: 0 0 2px 1px #ccc; */
+    display: grid;
+    margin-top: 20px;
+    margin: 0 auto;
+    flex: 1;
+    height: 700px;
 
 
-
-/* ---------------------btn---------------- */
-
-
-
-
+}
 
 .disease-title{
     /* background-color: aqua; */
@@ -157,37 +235,39 @@ strong a {
     text-align: left;
     margin-left: 40px;
     margin-top: 80px;
-    
-    
+
+
 }
 
 .disease-title h2{
-    font-size: 25px;       
+    font-size: 25px;
     margin: 15px 0 8px 0;
 }
 
 .disease-title p{
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7)
-    
-    
+
+
 }
 
 .disease-content {
     max-width: 1280px;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);    
+    grid-template-columns: repeat(5, 1fr);
     margin: 0 auto;
-    
+
+
 }
 
-.disease-box {    
-    margin: 0 20px 40px 35px;     
+.disease-box {
+    margin: 0 20px 40px 35px;
     text-align: left;
     font-size: 14px;
     /* background-color: #222222; */
-    
+
+
 }
 
 .disease-box span{
@@ -195,112 +275,29 @@ strong a {
 }
 
 .disease-pic {
-    
+
     /* border: 1px solid rgba(0, 0, 0, 0.1); */
     width: 190px;
-    height: 170px; 
+    height: 170px;
     border-radius: 10%;
     overflow: hidden;
     margin-bottom: 10px;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
     outline: 0;
     border: 0;
+
 }
 
 .pic {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
 }
 
 .pic:hover{
     transform: scale(1.2);
     transition: 0.5s;
-}
-
-/* -------------------main two----------------------*/
-
-.two-hr{
-    margin: 50px 0;
-    width: 100%
-}
-
-.two-hr hr{
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.two{
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-.two-container{
-    max-width: 1280px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    height: 250px;
-   
-    margin: 0 auto;
-
 
 }
 
-
-
-.two-title{
-    /* background-color: aqua; */
-    width: 555px;
-    padding: 12px 0;
-    text-align: center;    
-    /* margin-left: 20px;  */
-    margin-bottom: 20px;    
-    background-color: #1e50a4;
-    color: #fff;
-    border: 0;    
-    border-radius: 3px;
-    
-}
-
-.two-title h2{
-    font-weight: lighter;
-    font-size: 22px;
-    text-align: center;
-}
-
-.two-title i{
-    text-align: end;
-}
-
-.table-box {
-    width: 100%;       
-    height: 150px;
-    /* margin-left: 20px; */
-}
-
-.table-box td{
-    text-align: left;
-    padding-left: 10px;  
-    color: rgba(0, 0, 0, 0.7);
-    
-}
-
-.table-box span{
-    color: tomato;
-    font-weight: bold;
-}
-
-.two-notice{
-    margin-left: 35px;
-}
-
-.two-QnA{
-    margin-right: 35px;    
-}
-
-.two-QnA .two-title{
-    background-color: #DF013A;
-    
-}

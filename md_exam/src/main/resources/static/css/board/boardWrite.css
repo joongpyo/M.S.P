@@ -1,7 +1,7 @@
 
 
 .board-bg {
-    background-image: url("/images/disease3.jpg");
+    background-image: url("/images/texture1.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -121,7 +121,7 @@ th {
     color: #fff;
 }
 
-input {
+.w-input {
     border:0;
     border:1px solid #ccc;
     font-size: 14px;

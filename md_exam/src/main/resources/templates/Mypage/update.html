@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.S.P | 나에게 맞는 약 찾기</title>
+    <title>M.S.P | 마이페이지 </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,7 +14,7 @@
 
 </head>
 
-<body style="overflow-x: hidden">
+<body>
 
 <div th:replace="~{/fragments/header.html :: fragment-header}"></div>
 
@@ -161,59 +161,7 @@
 
 
 <script>
-    let btn = document.querySelector(".btn").addEventListener('click',(e)=>{
-        e.preventDefault();
-       var pregnant = document.getElementsByName("pregnant");
-       var pregnantValue;
-       var drugtype = document.getElementsByName("drugtype");
-       var drugtypeValue;
 
-
-
-
-       //라디오 버튼 값
-       for(var i=0; i < pregnant.length; i++) {
-        if(pregnant[i].checked == true) {
-            pregnantValue = pregnant[i].value
-      }
-    }
-       for(var i=0; i < drugtype.length; i++) {
-        if(drugtype[i].checked == true) {
-            drugtypeValue = drugtype[i].value
-      }
-    }
-
-    //셀렉트박스 값
-       var disease = document.getElementById("disease").value;
-       var age = document.getElementById("age").value;
-
-<!--       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);-->
-
-         let obj = {
-                    medPregnant: pregnantValue,
-                    medAge: age,
-                    medDis: disease,
-                    medType: drugtypeValue
-                }
-
-
-        $.ajax({
-                type: "post",
-                url: "/matching/matching",
-                dataType: "json",
-                data: obj,
-                success: function(res) {
-                    if(res.msg == "success"){
-                        location.href = "/matching/match_result?";
-                    }
-
-                }
-         });
-
-
-
-
-});
 </script>
 
 </body>
