@@ -43,9 +43,27 @@ public class AdminController {
         model.addAttribute("current", current);
         return "admin";
     }
+    @GetMapping("/admin/userList")
+    public String getUserList(Model model, @RequestParam(value="page", defaultValue = "1") int page){
+        model.addAttribute("user",userService.getUserList(page));
+        model.addAttribute("page",userService.PageInfo(page));
+
+        return "admin/userPage/userList";
+    }
+
+    @GetMapping("/admin/userDelete")
+    public String getUserDelete(@ModelAttribute UserDto userDto){
+        return null;
+    }
+    @GetMapping("/admin/disList") // 질병 리스트  -> 리스트 안에서 삭제 버튼 만들어서 사용 메인페이지 안에 작성페이지로 이동하는 버튼 만들기
+    public String getDisList(Model model, @RequestParam(value = "page", defaultValue = "1")int page){
+        model.addAttribute("dis",diseaseService.getDisList(page));
+        model.addAttribute("page",diseaseService.PageInfo(page));
+        return "admin/diseasePage/disList";
+    }
     @GetMapping("/admin/disInsert") // admin Disease insert window load
     public String getDisUpdate(){
-        return "/admin/disInsert";
+        return "/admin/diseasePage/disInsert";
     }
     @GetMapping("/admin/checkDisName") // admin Disease insert check disease Name <> DB
     @ResponseBody
@@ -53,7 +71,6 @@ public class AdminController {
         int checkDisName = diseaseService.getCheckDisName(disName);
         return Map.of("checkName",disName);
     }
-
     @PostMapping("/admin/disInsert")  // admin Disease insert
     @ResponseBody
     public Map<String, Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
@@ -64,10 +81,13 @@ public class AdminController {
             return Map.of("msg","failure");
         }
     }
-
+    @GetMapping("admin/noticeMain")
+    public String getNoticeList(){
+        return "admin/noticePage/noticeMain";
+    }
     @GetMapping("admin/noticeInsert")
     public String getNoticeUpdate(){
-        return "admin/noticeInsert";
+        return "admin/noticePage/noticeInsert";
     }
     @PostMapping("/admin/noticeInsert")
     @ResponseBody
@@ -115,21 +135,15 @@ public class AdminController {
 
     }
 
-    @GetMapping("/admin/userList")
-    public String getUserList(Model model, @RequestParam(value="page", defaultValue = "1") int page){
-        model.addAttribute("user",userService.getUserList(page));
-        model.addAttribute("page",userService.PageInfo(page));
-
-        return "admin/userList";
-    }
-
-    @GetMapping("/admin/userDelete")
-    public String getUserDelete(@ModelAttribute UserDto userDto){
-        return null;
+    @GetMapping("/admin/medList")
+    public String getMedList(Model model, @RequestParam(value = "page", defaultValue = "1")int page){
+        model.addAttribute("med",medicineService.getMedList(page));
+        model.addAttribute("page",medicineService.PageInfo(page));
+        return "/admin/medicinePage/medList";
     }
     @GetMapping("/admin/medInsert")
     public String getMedUpdate(){
-        return "/admin/medInsert";
+        return "/admin/medicinePage/medInsert";
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
