@@ -1,12 +1,11 @@
 package com.example.md_exam.controller;
 
-import com.example.md_exam.dto.AdminBoardDto;
-import com.example.md_exam.dto.DiseaseDto;
-import com.example.md_exam.dto.FileDto;
-import com.example.md_exam.dto.MedicineDto;
+import com.example.md_exam.dto.*;
+import com.example.md_exam.mapper.UserMapper;
 import com.example.md_exam.service.AdminBoardService;
 import com.example.md_exam.service.DiseaseService;
 import com.example.md_exam.service.MedicineService;
+import com.example.md_exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -26,12 +25,15 @@ import java.util.UUID;
 public class AdminController {
     @Autowired
     MedicineService medicineService;
-
     @Autowired
     DiseaseService diseaseService;
-
     @Autowired
     AdminBoardService adminBoardService;
+    @Autowired
+    UserService userService;
+
+
+
 
     @Value("${fileDir}")
     String fileDir;
@@ -76,8 +78,6 @@ public class AdminController {
             adminBoardService.setAdminBoard(adminBoardDto);
             int fileId = adminBoardDto.getId();
             String board = adminBoardDto.getBoard();
-            System.out.println("jjj"+fileId);
-
             //20231218
             String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
             File makeFolder = new File(fileDir + folderName);
@@ -103,34 +103,33 @@ public class AdminController {
             fileDto.setSavedPathFileName(savedPathFileName);
             fileDto.setFolderName(folderName);
             fileDto.setExt(ext);
-
-            System.out.println(fileDto);
             adminBoardService.setFile(fileDto);
-            System.out.println(board);
-
-            System.out.println(fileDto);
-            System.out.println(adminBoardDto);
-            return null;
-//            return Map.of("msg", "success");
-        } else if (file.isEmpty()) {
+            return Map.of("msg","success");
+        }else if(file.isEmpty()) {
             adminBoardDto.setIsFiles("N");
             adminBoardService.setAdminBoard(adminBoardDto);
-            return Map.of("msg", "success");
+            return Map.of("msg","success");
         }else {
             return Map.of("msg","failure");
-
         }
 
     }
 
-    @GetMapping("admin/userInsert")
-    public String getUserUpdate(){
-        return "admin/userInsert";
+    @GetMapping("/admin/userList")
+    public String getUserList(Model model, @RequestParam(value="page", defaultValue = "1") int page){
+        model.addAttribute("user",userService.getUserList(page));
+        model.addAttribute("page",userService.PageInfo(page));
+
+        return "admin/userList";
+    }
+
+    @GetMapping("/admin/userDelete")
+    public String getUserDelete(@ModelAttribute UserDto userDto){
+        return null;
     }
     @GetMapping("/admin/medInsert")
     public String getMedUpdate(){
         return "/admin/medInsert";
-
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
