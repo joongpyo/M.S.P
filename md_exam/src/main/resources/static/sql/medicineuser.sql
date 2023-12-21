@@ -1,4 +1,3 @@
---회원 DB
 create table user(
 u_id int not null auto_increment,
 user_id varchar(20) not null unique,
@@ -8,77 +7,47 @@ user_email varchar(50) not null unique,
 primary key(u_id)
 );
 
-
---약 DB
-create table medicine(
-med_id int not null auto_increment,
-med_name varchar(30) not null,
-med_dis varchar(10) not null,
-med_eff text not null,
-med_type varchar(10) not null,
-med_store char(1) default 'Y' not null,
-med_com varchar(20) not null,
-med_age char(1) not null,
-med_pregnant char(1) default 'N',
-med_reg date not null,
-med_isFiles char(1) not null,
-primary key(med_id)
-);
-
---병명 DB
-create table disease(
-dis_id int not null auto_increment,
-dis_name varchar(20) not null,
-dis_sym varchar(255) not null,
-primary key(dis_id)
-);
-
---마이페이지 >> 약저장
-create table med_${userid}(
-med_u_id int not null auto_increment,
-med_name varchar(30) not null,
-med_dis_one varchar(10) not null,
-med_dis_two varchar(10) not null,
-med_dis_three varchar(10) not null,
-med_type varchar(10) not null,
-med_store char(1) default 'Y' not null,
-med_com varchar(20) not null,
-med_age char(1) not null,
-med_pregnant char(1) default 'N',
-med_reg date not null,
-primary key(med_u_id)
-);
-
---공지사항 DB
-create table notice(
-notice_id int not null auto_increment,
-notice_subject varchar(30) not null,
-notice_writer varchar(10) not null,
-notice_content text not null,
-notice_visit int not null,
-notice_reg date not null,
-primary key(notice_id)
-);
-
---QnA DB
 create table qna(
-qna_id int not null auto_increment,
-qna_subject varchar(30) not null,
-qna_writer varchar(10) not null,
-qna_content text not null,
-qna_visit int not null,
-qna_reg date not null,
+id int not null auto_increment,
+subject varchar(30) not null,
+writer varchar(10) not null,
+content text not null,
+visit int not null,
+reg date not null,
 grp int,
 seq int,
 depth int,
 isFiles char(1) not null,
+comment_count int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
-primary key(qna_id)
+primary key(id)
 );
 
---관리자 파일 등록
-create table admin_files(
+
+
+create table qnafiles(
+id int not null,
+orgName varchar(255),
+savedFileName varchar(255),
+savedPathName varchar(255),
+savedFileSize bigint,
+folderName varchar(10),
+ext varchar(20)
+);
+
+create table qna_comment(
+c_id int not null auto_increment,
+b_id int not null,
+c_writer varchar(20),
+c_comment varchar(100),
+c_regdate date,
+foreign key(b_id) references qna(id),
+primary key(c_id)
+);
+
+
+create table adminfiles(
 id int not null auto_increment,
 orgName varchar(255),
 savedFileName varchar(255),
@@ -88,40 +57,3 @@ folderName varchar(10),
 ext varchar(20),
 primary key(id)
 );
-
---QnA 파일 등록
-create table qna_files(
-id int not null auto_increment,
-orgName varchar(255),
-savedFileName varchar(255),
-savedPathFileName varchar(255),
-savedFileSize bigint,
-folderName varchar(10),
-ext varchar(20),
-primary key(id)
-);
-
-
-
-// table 조인해야함
-
---약 복용후기 DB
-create table review(
-rev_id int not null auto_increment,
-rev_subject varchar(30) not null,
-rev_writer varchar(10) not null,
-rev_content text not null,
-rev_visit int not null,
-rev_reg date not null,
-grp int,
-seq int,
-depth int,
-u_id_fk int not null,
-primary key(rev_id),
-foreign key(u_id_fk) references user(u_id)
-);
-
-
-
-
-

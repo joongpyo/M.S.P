@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>M.S.P | 게시판 > 게시물 답변쓰기</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+	      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+	      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link rel="stylesheet" th:href="@{/css/board/boardReply.css}">
+	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/translations/ko.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+
+<main>
+	<div class="main-container">
+		<div class="main-title">
+			<div class="bg-title">
+				<h1>답글쓰기</h1>
+			</div>
+		</div>
+		<div class="section-container">
+			<aside>
+				<ul>
+					<li class="side-bg-wrap">
+						<h2 class="side-bg">Review</h2>
+					</li>
+					<li>
+						<a th:href="@{/board/boardReview}">
+							약 복용후기
+						</a>
+					</li>
+					<li class="active">
+						<a th:href="@{/board/boardNotice}">
+							공지사항
+						</a>
+					</li>
+
+					<li>
+						<a th:href="@{/board/boardQnA}">
+							Q n A
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/board/boardList}">
+							약 목록
+						</a>
+					</li>
+				</ul>
+			</aside>
+
+			<div class="content-wrap">
+				<h2>답변글</h2>
+				<form id="upload-form">
+					<table>
+						<tbody>
+						<tr>
+							<th>제목</th>
+							<td>
+								<input type="text" name="subject" autocomplete="off" th:value="${reply.subject}">
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+								<textarea name="editor" id="editor"></textarea>
+								<input type="hidden" id="content" th:value="${reply.content}">
+							</td>
+						</tr>
+						<tr>
+							<th>첨부파일</th>
+							<td>
+								<input type="file" name="files" multiple>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+
+					<div class="bottom">
+						<div class="bottom-left">
+							<a href="@{/board/boardQnA}">
+								<button type="button" class="btn">목록</button>
+							</a>
+						</div>
+						<div class="bottom-right">
+							<a href="">
+								<button class="button">취소</button>
+							</a>
+
+							<a href="">
+								<button class="submit">글저장</button>
+							</a>
+						</div>
+					</div>
+
+					<input type="hidden" name="id" th:value="${reply.id}">
+					<input type="hidden" name="writer" th:value="admin">
+					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
+
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+
+<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+
+<script type="text/javascript" th:src="@{/js/boardReply.js}"></script>
+
+
+</body>
+
+</html>

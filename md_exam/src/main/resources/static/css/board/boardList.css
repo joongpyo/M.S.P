@@ -1,5 +1,6 @@
 
 
+<<<<<<<< HEAD:md_exam/src/main/resources/static/css/board/boardList.css
 .board-bg {
     background-image: url("/images/texture1.jpg");
     background-size: 100%;
@@ -57,11 +58,26 @@
 
 /*---------------------------boardReview content -----------------------*/
 
+========
+
+/*---------------------------main-----------------------*/
+>>>>>>>> origin/jang:md_exam/src/main/resources/static/css/board/boardReview.css
 .main-container {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 100px;
 
+<<<<<<<< HEAD:md_exam/src/main/resources/static/css/board/boardList.css
+========
+.bg-title {
+    height: 300px;
+    background-image: url(/images/capsule2.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
+>>>>>>>> origin/jang:md_exam/src/main/resources/static/css/board/boardReview.css
 
 
 /* ---------------------section---------------------------- */
@@ -104,8 +120,32 @@
     color: #3CB4FF;
 
 }
+<<<<<<<< HEAD:md_exam/src/main/resources/static/css/board/boardList.css
 
 .content-wrap .list-box ul li a.active {
+========
+aside ul li.active {
+    background-color: #eee;
+}
+
+aside ul li.active a {
+    color:#3CB4FF;
+}
+
+aside ul li:first-child {
+    background-color: skyblue;
+    height: 200px;
+    line-height: 150px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+aside ul li:first-child a {
+    color: #fff;
+}
+
+aside ul li a:hover {
+>>>>>>>> origin/jang:md_exam/src/main/resources/static/css/board/boardReview.css
     color: #3CB4FF;
 }
 
@@ -215,7 +255,7 @@ td:nth-child(2) {
 
 td:nth-child(2):hover {
     text-decoration: underline;
-
+    
     transition: .3s;
 }
 
@@ -244,7 +284,7 @@ th:nth-child(5) {
 /* ------------------------bottom------------------------- */
 
 .bottom {
-    max-width: 1480px;
+    max-width: 1280px;
     width: 100%;
     margin-top: 20px;
     margin: 0 auto;

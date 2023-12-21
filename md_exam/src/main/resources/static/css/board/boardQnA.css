@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .board-bg {
     background-image: url("/images/texture1.jpg");
@@ -8,9 +9,6 @@
     height: 350px;
         margin: 0 auto;
         padding-top: 210px;
-
-
-
 }
 
 .board-bg-wrap{
@@ -50,23 +48,14 @@
     color: rgba(255,255,255,0.8);
 }
 
-
-
-
-
-/*---------------------------boardReview content -----------------------*/
-
+/*---------------------------main-----------------------*/
 .main-container {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 100px;
-
 }
 
-
 /* ---------------------section---------------------------- */
-
-
 
 .section-container {
 
@@ -74,6 +63,7 @@
     margin: 0 auto;
     padding-right: 50px;
     max-width: 1280px;
+
 }
 
 .content-wrap {
@@ -89,6 +79,7 @@
     text-align: center;
     margin: 60px 0;
 }
+
 
 /* ---------------------- content ------------------------ */
 
@@ -112,10 +103,10 @@ select {
 }
 
 .search-box {
+<<<<<<< HEAD
     border: 0;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    /*border-left: 1px solid #cbcaca;*/
     padding-left: 12px;
     padding-right: 12px;
     height: 30px;
@@ -199,8 +190,6 @@ td:nth-child(2):hover {
 td:nth-child(3) {
     font-weight: 500;
 }
-
-
 
 th:nth-child(1) {
     width: 5%;

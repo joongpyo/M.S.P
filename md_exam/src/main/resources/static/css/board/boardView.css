@@ -130,7 +130,20 @@ p .writer {
     border-top: 1px solid #ccc;
 }
 
+.filebox-wrap{
+    display:flex;
+    padding: 10px 0;
+}
 
+.filebox-wrap .filebox {
+    margin-right:10px;
+}
+
+.filebox-wrap .filebox .img-box {
+    width:150px;
+    height:150px;
+    align-items:bottom;
+}
 
 /* ------------------------bottom------------------------- */
 .bottom {
@@ -138,6 +151,15 @@ p .writer {
     width: 100%;
     margin-top: 20px;
     margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+}
+
+.bottom-left {
+    display: flex;
+    justify-content: left;
+    height: 60px;
+    margin: 0 5px;
 }
 
 .bottom-right {
@@ -147,11 +169,15 @@ p .writer {
     margin: 0 5px;
 }
 
-.bottom-right a {
+.bottom a {
     margin-left: 5px;
 }
 
-.bottom-right button {
+.bottom .btn:hover {
+    text-decoration: underline;
+}
+
+.bottom button {
     width: 80px;
     height: 30px;
     margin-top: 10px;
@@ -188,6 +214,36 @@ p .writer {
     font-size: 14px;
 }
 
+.comment-write {
+    display:flex;
+}
+
+.comment-msg {
+    width:750px;
+}
+
+.comment-msg .cComment {
+    resize: none;
+    width:100%;
+    height:80px;
+}
+.comment-btn {
+    width:150px;
+    height:80px;
+    margin-left: 10px;
+    background-color:#000;
+}
+
+.comment-btn .cBtn {
+    width: 80px;
+    height: 30px;
+    background-color: #6aafe6;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
 .comment ul {
     margin-top: 30px;
 }
@@ -204,7 +260,7 @@ p .writer {
     justify-content: space-between;
 }
 
-.comment ul li .writer {
+.comment ul li .reg-writer {
     font-weight: bold;
 }
 
@@ -212,7 +268,7 @@ p .writer {
     font-style: italic;
 }
 
-.comment ul li p {
+.comment ul li .reg-comment {
     border: 0;
     border-radius: 3px;
     background-color: #f8fafb;

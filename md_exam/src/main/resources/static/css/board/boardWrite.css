@@ -113,7 +113,6 @@ tr {
 
 td, th {
     padding: 10px;
-    
 }
 
 th {
@@ -150,12 +149,15 @@ th {
     margin: 0 5px;
 }
 
-.bottom-right a {
+.bottom a {
     margin-left: 5px;
 }
 
+.bottom .btn:hover {
+    text-decoration: underline;
+}
 
-.bottom-right button {
+.bottom button {
     width: 80px;
     height: 30px;
     margin-top: 10px;
@@ -208,26 +210,22 @@ th {
     justify-content: space-between;
 }
 
-.comment ul li .writer {
-    font-weight: bold;
+textarea{
+    height: 200px;
 }
 
-.comment ul li .reg-time {
-    font-style: italic;
-}
-
-.comment ul li p {
-    border: 0;
-    border-radius: 3px;
-    background-color: #f8fafb;
-    padding: 15px;
-    margin: 10px 0;
+.foot-logo {
+    width: 130px;
+    margin: 20px 0 0 20px;
 }
 
 /* ---------------------- ck editor -------------------------- */
-.ck-editor__editable { 
-    height: 200px; 
+.ck-editor__editable {
+    height: 400px;
+    weight 100%;
+    padding-left: 30px;
 }
-.ck-content { 
-    font-size: 12px; 
+.ck-content {
+    font-size: 16px;
+
 }
