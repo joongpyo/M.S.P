@@ -1,15 +1,9 @@
 @charset 'utf-8';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-/*---------------------------main-----------------------*/
-.main-container {
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 100px;
-    padding-top: 100px;
-}
 
+/* ----------------------- main ----------------------------- */
 .bg-title {
     height: 300px;
     background-image: url(/images/capsule2.jpg);
@@ -19,20 +13,33 @@
     display: flex;
 }
 
-.bg-title h1 {
+.main-title h1 {
     color: #fff;
     margin: auto;
 }
 
-/* ---------------------section---------------------------- */
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    padding-top: 100px;
+}
+
+.main-title {
+    width: 100%;
+}
+
+/* ------------------------ section ---------------------------- */
+
 .section-container {
     display: flex;
-    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     padding-right: 50px;
 }
 
-/* -------------------------aside--------------------------- */
+/* -------------------- aside ------------------------ */
+
 aside {
     width: 30%;
     margin-left: 30px;
@@ -55,6 +62,7 @@ aside ul li.active a {
     color:#3CB4FF;
 }
 
+
 aside ul li:first-child {
     background-color: skyblue;
     height: 200px;
@@ -76,7 +84,7 @@ aside ul li a:hover {
     color: #fff;
 }
 
-/* ---------------------- content ------------------------ */
+/* -------------------------------------------------------- */
 
 .content-wrap {
     width: 100%;
@@ -85,65 +93,49 @@ aside ul li a:hover {
     padding: 0 10px;
 }
 
-.board-info {
-    padding-top: 10px;
+.content-wrap h2 {
+    margin-bottom: 30px;
 }
 
-.board-info p {
-    font-size: 12px;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.board-info span {
-    padding-right: 5px;
+tr {
+    border: 1px solid #eee;
 }
 
-p .writer {
-    font-weight: bold;
-}
-
-.subject hr {
-    margin: 30px 0;
-    border: 0;
-    border-top: 1px solid #ccc;
-}
-
-.content {
+td, th {
     padding: 10px;
-    min-height: 400px;
 }
 
-.text-box p {
-    line-height: 400%;
-    font-size: 12px;
+th {
+    background-color: #3d3d3d;
+    color: #fff;
+    width: 185px;
 }
 
-.content-wrap hr {
-    margin: 30px 0;
-    border: 0;
-    border-top: 1px solid #ccc;
+input {
+    border:0;
+    border:1px solid #ccc;
+    font-size: 14px;
+    width:100%;
+    padding: 8px;
+    outline: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    background-color: #f8f8f8;
 }
 
-.filebox-wrap{
-    display:flex;
-    padding: 10px 0;
-}
 
-.filebox-wrap .filebox {
-    margin-right:10px;
-}
 
-.filebox-wrap .filebox .img-box {
-    width:150px;
-    height:150px;
-    align-items:bottom;
-}
-
-/* ------------------------bottom------------------------- */
+/* ------------------------------------------------------ */
 .bottom {
     max-width: 1280px;
     width: 100%;
-    margin-top: 20px;
     margin: 0 auto;
+    margin-top: 50px;
     display: flex;
     justify-content:space-between;
 }
@@ -207,36 +199,6 @@ p .writer {
     font-size: 14px;
 }
 
-.comment-write {
-    display:flex;
-}
-
-.comment-msg {
-    width:750px;
-}
-
-.comment-msg .cComment {
-    resize: none;
-    width:100%;
-    height:80px;
-}
-.comment-btn {
-    width:150px;
-    height:80px;
-    margin-left: 10px;
-    background-color:#000;
-}
-
-.comment-btn .cBtn {
-    width: 80px;
-    height: 30px;
-    background-color: #6aafe6;
-    color: #fff;
-    border: 0;
-    cursor: pointer;
-    border-radius: 2px;
-}
-
 .comment ul {
     margin-top: 30px;
 }
@@ -253,7 +215,7 @@ p .writer {
     justify-content: space-between;
 }
 
-.comment ul li .reg-writer {
+.comment ul li .writer {
     font-weight: bold;
 }
 
@@ -261,10 +223,19 @@ p .writer {
     font-style: italic;
 }
 
-.comment ul li .reg-comment {
+.comment ul li p {
     border: 0;
     border-radius: 3px;
     background-color: #f8fafb;
     padding: 15px;
     margin: 10px 0;
+}
+
+/* ---------------------- ck editor -------------------------- */
+.ck-editor__editable {
+    height: 400px;
+    weight 100%;
+}
+.ck-content {
+    font-size: 12px;
 }

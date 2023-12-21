@@ -18,10 +18,13 @@ grp int,
 seq int,
 depth int,
 isFiles char(1) not null,
+comment_count int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
 );
+
+
 
 create table qnafiles(
 id int not null,
@@ -32,6 +35,17 @@ savedFileSize bigint,
 folderName varchar(10),
 ext varchar(20)
 );
+
+create table qna_comment(
+c_id int not null auto_increment,
+b_id int not null,
+c_writer varchar(20),
+c_comment varchar(100),
+c_regdate date,
+foreign key(b_id) references qna(id),
+primary key(c_id)
+);
+
 
 create table adminfiles(
 id int not null auto_increment,

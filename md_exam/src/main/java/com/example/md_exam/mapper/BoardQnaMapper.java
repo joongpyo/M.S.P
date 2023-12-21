@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Mapper
 public interface BoardQnaMapper {
-    @Insert("INSERT INTO qna VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), 1, 1, 1, #{isFiles}, #{uIdFk})")
+    @Insert("INSERT INTO qna VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), 1, 1, 1, #{isFiles}, 0, #{uIdFk})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(QnaDto qnaDto);
 
@@ -39,4 +39,7 @@ public interface BoardQnaMapper {
 
     @Update("UPDATE qna SET visit = visit + 1 WHERE id = #{id}")
     void updateVisit(int id);
+
+    @Update("UPDATE qna SET comment_count= comment_count+1 WHERE id = #{id}")
+    void updateCommentCnt(int id);
 }

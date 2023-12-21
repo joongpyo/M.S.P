@@ -22,7 +22,15 @@ public class UserController {
 
     @GetMapping("/user/login")
     public String getLogin(HttpServletRequest hsr){
-        String referer = hsr.getHeader("Referer");
+        String referer = "";
+
+        if (hsr.getHeader("Referer").equals("http://localhost:7777/user/login") ||
+                hsr.getHeader("Referer").equals("http://localhost:7777/user/register")){
+            referer = "http://localhost:7777/index";
+        }else {
+            referer = hsr.getHeader("Referer");
+        }
+
         hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
@@ -43,7 +51,12 @@ public class UserController {
     public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra,HttpSession session, HttpServletRequest hsr){
 
         UserDto d = userService.setLogin(userDto);
+
+
+
         String prevPage = (String) session.getAttribute("prevPage");
+
+
         if(d != null){
             //세션 생성 - 로그아웃하기전까지 계속 로그인유지
             //getSession() -> 데이터 -> 시간

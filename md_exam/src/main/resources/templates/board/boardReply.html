@@ -4,13 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>M.S.P | 게시판 > 게시물 수정</title>
+	<title>M.S.P | 게시판 > 게시물 답변쓰기</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 	      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
 	      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 	<link rel="stylesheet" th:href="@{/css/common.css}">
-	<link rel="stylesheet" th:href="@{/css/board/qnaUpdate.css}">
+	<link rel="stylesheet" th:href="@{/css/board/boardReply.css}">
 	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
 	<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/translations/ko.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -25,7 +25,7 @@
 	<div class="main-container">
 		<div class="main-title">
 			<div class="bg-title">
-				<h1>글쓰기</h1>
+				<h1>답글쓰기</h1>
 			</div>
 		</div>
 		<div class="section-container">
@@ -59,21 +59,21 @@
 			</aside>
 
 			<div class="content-wrap">
-				<h2>게시물 수정</h2>
+				<h2>답변글</h2>
 				<form id="upload-form">
 					<table>
 						<tbody>
 						<tr>
 							<th>제목</th>
 							<td>
-								<input type="text" name="subject" autocomplete="off" th:value="${modify.subject}">
+								<input type="text" name="subject" autocomplete="off" th:value="${reply.subject}">
 							</td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td>
 								<textarea name="editor" id="editor"></textarea>
-								<input type="hidden" id="content" th:value="${modify.content}">
+								<input type="hidden" id="content" th:value="${reply.content}">
 							</td>
 						</tr>
 						<tr>
@@ -97,13 +97,13 @@
 							</a>
 
 							<a href="">
-								<button class="submit">수정하기</button>
+								<button class="submit">글저장</button>
 							</a>
 						</div>
 					</div>
 
-					<input type="hidden" name="id" th:value="${modify.id}">
-					<input type="hidden" name="writer" th:value="${session.user.userName}">
+					<input type="hidden" name="id" th:value="${reply.id}">
+					<input type="hidden" name="writer" th:value="admin">
 					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
 
 				</form>
@@ -115,7 +115,7 @@
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
 
 
-<script type="text/javascript" th:src="@{/js/qnaUpdate.js}"></script>
+<script type="text/javascript" th:src="@{/js/boardReply.js}"></script>
 
 
 </body>

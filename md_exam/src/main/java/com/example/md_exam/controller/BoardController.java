@@ -121,6 +121,14 @@ public class BoardController {
         return Map.of("msg","success");
     }
 
+    @GetMapping("/boardReply")
+    public String getReply(@RequestParam int id, Model model){
+        QnaDto qnaDto = boardQnaService.getQnaView(id);
+        model.addAttribute("reply", qnaDto);
+        return "board/boardReply";
+    }
+
+
 
 
 }

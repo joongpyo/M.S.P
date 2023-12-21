@@ -14,6 +14,15 @@ public class QnaDto {
     private int depth;
     private int uIdFk;
     private String isFiles;
+    private int commentCount;
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public int getId() {
         return id;
