@@ -38,25 +38,25 @@
                         <h2>게시글 작성</h2>
                     </div>
 
-                    <form action="">
+                    <form id="upload-form">
                         <table>
                             <tbody>
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input class="w-input" type="text" name="subject">
+                                        <input class="w-input" type="text" name="subject" autocomplete="off">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="w-input" name="editor" id="editor"></textarea>
+                                        <textarea name="editor" id="editor"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>첨부파일</th>
                                     <td>
-                                        <input class="w-input" type="file" name="files" multiple>
+                                        <input type="file" name="files" multiple>
                                     </td>
                                 </tr>
                             </tbody>
@@ -69,7 +69,7 @@
 							</a>
 
 							<a href="">
-								<button class="submit" onclick="frmCheck()">글작성</button>
+								<button class="submit">글작성</button>
 							</a>
 						</div>
 					</div>
@@ -87,9 +87,6 @@
 
 <script type="text/javascript" th:src="@{/js/boardWrite.js}">
 
-	function frmCheck() {
-
-	}
 
 </script>
 </body>

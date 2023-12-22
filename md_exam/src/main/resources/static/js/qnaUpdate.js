@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
      if (editorElement) {
             ClassicEditor.create(editorElement, {
-                    removePlugins: ['Heading', 'SimpleUploadAdapter'],
-                    language: "ko"
+
                 })
                 .then(editor => {
                 // CKEditor 인스턴스가 생성되었을 때의 콜백 함수

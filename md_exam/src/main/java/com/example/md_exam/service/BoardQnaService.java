@@ -145,8 +145,10 @@ public class BoardQnaService {
         }
 
         //comment db삭제
+        boardQnaMapper.setCommentDelete(id);
 
         //reply db삭제    grp가 게시물과 매칭
+
     }
 
     public void setUpdate(QnaDto qnaDto){
@@ -157,6 +159,10 @@ public class BoardQnaService {
     public int getBoardCount(String searchType,String search){
         String searchQuery = getSearch(searchType,search);
         return boardQnaMapper.getBoardCount(searchQuery);
+    }
+
+    public int getGrpMaxCnt(){
+        return boardQnaMapper.getGrpMaxCnt();
     }
 
 }

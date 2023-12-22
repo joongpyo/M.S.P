@@ -6,20 +6,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
      if (editorElement) {
             ClassicEditor.create(editorElement, {
-                    removePlugins: ['Heading', 'SimpleUploadAdapter'],
-                    language: "ko"
+
                 })
                 .then(editor => {
                 // CKEditor 인스턴스가 생성되었을 때의 콜백 함수
                 console.log('에디터가 초기화', editor);
 
                 let btn = document.querySelector(".submit");
-                let id = document.querySelector("input[name=id]");
                 let subject = document.querySelector("input[name=subject]");
-                let writer = document.querySelector("input[name=writer]");
-                let uIdFk = document.querySelector("input[name=uIdFk]");
 
-                let content = document.querySelector("#content").value;
+                //(수정)무조건 관리자
+                let writer = document.querySelector("input[name=writer]");
+                let id = document.querySelector("input[name=id]");
+
+                let content = "------------ [ 원본 글 ] ------------ </br>"+ document.querySelector("#content").value+"<br/>------------ [ 답변 글 ] ------------</br></br>" ;
+
+
+                console.log(content);
+
+
                 editor.setData(content);
 
                 btn.addEventListener('click', (e) => {
@@ -36,12 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         formData.append("files", "");
                         console.log("첨부파일 X")
                     }
-                    formData.append('id', id.value);
+
                     formData.append('subject', subject.value);
                     formData.append('content', editor.getData());
                     formData.append('writer', writer.value);
-                    formData.append('uIdFk', uIdFk.value);
-
+                    formData.append('boardId', id.value);
+                    //(수정-관리자 u_id)
+                    formData.append('uIdFk', 500);
 
                     $.ajax({
                         type: "POST",

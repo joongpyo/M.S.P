@@ -26,7 +26,7 @@ primary key(id)
 
 
 
-create table qnafiles(
+create table qna_files(
 id int not null,
 orgName varchar(255),
 savedFileName varchar(255),

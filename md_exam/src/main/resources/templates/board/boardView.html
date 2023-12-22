@@ -141,10 +141,7 @@
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
 
     <script>
-        //태그 포함된 content를 HTML
-        //let content = /*[[${#strings.escapeJavaScript(board.content)}]]*/ '';
         let content = document.querySelector("#content").value;
-
         document.querySelector(".text-box").innerHTML = content;
 
         let bId = document.querySelector("input[name=bId]");
@@ -212,13 +209,15 @@
 
 
         function authCheck() {
-            if(cWriter.value != "admin"){
-                alert(cWriter.value + "권한이 없습니다. 관리자에게 문의하세요");
-                return false;
-            }else{
-                alert(cWriter.value);
-                location.href="/board/boardReply?id="+bId;
-            }
+<!--            if(cWriter.value != "admin"){-->
+<!--                alert(cWriter.value + "권한이 없습니다. 관리자에게 문의하세요");-->
+<!--                return false;-->
+<!--            }else{-->
+<!--                alert(cWriter.value);-->
+<!--                location.href="/board/boardReply?id="+bId.value;-->
+<!--            }-->
+
+            location.href="/board/boardReply?id="+bId.value;
         }
 
         function delCheck() {

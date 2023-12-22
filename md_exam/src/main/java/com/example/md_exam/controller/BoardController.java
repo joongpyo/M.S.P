@@ -70,6 +70,10 @@ public class BoardController {
     @ResponseBody
     public Map<String, Object> setBoardWrite(@RequestParam(name="files",required = false)List<MultipartFile> files,
                                              @ModelAttribute QnaDto qnaDto) throws IOException {
+
+        int grp = boardQnaService.getGrpMaxCnt();
+        qnaDto.setGrp(grp);
+
         //파일 저장
         if (files != null){
             qnaDto.setIsFiles("Y");
@@ -123,11 +127,45 @@ public class BoardController {
 
     @GetMapping("/boardReply")
     public String getReply(@RequestParam int id, Model model){
+        System.out.println(id);
         QnaDto qnaDto = boardQnaService.getQnaView(id);
         model.addAttribute("reply", qnaDto);
         return "board/boardReply";
     }
 
+    @PostMapping("/boardReply")
+    public Map<String, Object> setReply(@RequestParam(name="files",required = false)List<MultipartFile> files,
+                                        @RequestParam int boardId,
+                                        @ModelAttribute QnaDto qnaDto) throws IOException {
+
+        //qd = 원본글(grp,seq,depth) , qnaDto = 답글
+        QnaDto qd = boardQnaService.getQnaView(boardId);
+//        System.out.println("원본 seq : " + qd.getSeq());
+//        System.out.println("seq : " + boardQnaMapper.getSeqMaxCnt(qd.getGrp()));
+        //원본 1,1,1
+
+
+        //작업중 작업중 작업중 작업중
+        qnaDto.setGrp(qd.getGrp());         //grp 1
+        qnaDto.setSeq(boardQnaMapper.getSeqMaxCnt(qd.getGrp()));
+        qnaDto.setDepth(qd.getDepth()+1);   //depth 2
+
+        System.out.println(qnaDto);
+
+        if (files != null){
+            qnaDto.setIsFiles("Y");
+            boardQnaService.setBoard(qnaDto);
+            int fileID = qnaDto.getId();
+            boardQnaService.setFiles(files,fileID);
+            //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
+        }else {
+            qnaDto.setIsFiles("N");
+            boardQnaService.setBoard(qnaDto);
+        }
+
+        return Map.of("msg","success");
+
+    }
 
 
 
