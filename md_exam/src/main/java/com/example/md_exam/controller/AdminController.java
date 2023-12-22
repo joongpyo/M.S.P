@@ -85,29 +85,29 @@ public class AdminController {
             return Map.of("msg","failure");
         }
     }
-    @GetMapping("admin/noticeMain")
+    @GetMapping("/admin/noticeMain")
     public String getNoticeList(){
         return "admin/noticePage/noticeMain";
     }
-    @GetMapping("admin/noticeBoard")
+    @GetMapping("/admin/noticeBoard")
     public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
-        //model.addAttribute("notice",adminBoardService.getBoardList(page));
-        //model.addAttribute("page",adminBoardService.PageInfo(page));
-       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        model.addAttribute("notice",adminBoardService.getNoticeList(page));
+        model.addAttribute("page",adminBoardService.PageNoticeInfo(page));
+        model.addAttribute("total",adminBoardMapper.getNoticeCount());
         return "admin/noticePage/noticeBoard";
     }
-    @GetMapping("admin/qnaBoard")
-    public String getQnaBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam(name = "board", required = false) String board){
-        model.addAttribute("qna",adminBoardService.getBoardList(page,board));
-        model.addAttribute("page",adminBoardService.PageInfo(page,board));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(board));
+    @GetMapping("/admin/qnaBoard")
+    public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page){
+        model.addAttribute("qna",adminBoardService.getQnaList(page));
+        model.addAttribute("page",adminBoardService.PageQnaInfo(page));
+        model.addAttribute("total",adminBoardMapper.getQnaCount());
         return "admin/noticePage/qnaBoard";
     }
-    @GetMapping("admin/reviewBoard")
+    @GetMapping("/admin/reviewBoard")
     public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
-        //model.addAttribute("review",adminBoardService.getBoardList(page));
-        //model.addAttribute("page",adminBoardService.PageInfo(page));
-       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        model.addAttribute("review",adminBoardService.getReviewList(page));
+        model.addAttribute("page",adminBoardService.PageReviewInfo(page));
+        model.addAttribute("total",adminBoardMapper.getReviewCount());
         return "admin/noticePage/reviewBoard";
     }
     @GetMapping("admin/noticeInsert")

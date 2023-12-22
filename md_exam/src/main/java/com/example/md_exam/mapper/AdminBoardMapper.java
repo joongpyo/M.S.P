@@ -19,10 +19,21 @@ public interface AdminBoardMapper {
     @Insert("INSERT INTO ${board}_files VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathFileName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(FileDto fileDto);
 
-    //게시판 List view
-    @Select("SELECT * FROM ${board} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
-    public List<AdminBoardDto> getBoardList(Map<String, Object> map);
-    @Select("SELECT COUNT(*) FROM ${board}")
-    public int getBoardCount(String board);
+    //게시판 List view QNA
+    @Select("SELECT * FROM qna ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    public List<AdminBoardDto> getQnaList(Map<String, Object> map);
+    @Select("SELECT COUNT(*) FROM qna")
+    public int getQnaCount();
+    //Notice view
+    @Select("SELECT * FROM notice ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    public List<AdminBoardDto> getNoticeList(Map<String, Object> map);
+    @Select("SELECT COUNT(*) FROM notice")
+    public int getNoticeCount();
+
+    // review
+    @Select("SELECT * FROM review ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    public List<AdminBoardDto> getReviewList(Map<String, Object> map);
+    @Select("SELECT COUNT(*) FROM review")
+    public int getReviewCount();
 }
 

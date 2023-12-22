@@ -35,7 +35,30 @@
                 <div class="content_right">
                     <div class="content_right_top"></div>
                     <div class="content_rigth_bottom">
-                        
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>조회수</th>
+                                <th>작성날짜</th>
+                            </tr>
+                            </thead>
+                            <tbody class="reviewList">
+                                <tr th:each="review, k: ${review}">
+                                    <td>
+                                        [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
+                                    </td>
+                                    <td>
+                                        <a href="#">[[${review.subject}]]</a>
+                                    </td>
+                                    <td>[[${review.writer}]]</td>
+                                    <td>[[${review.visit}]]</td>
+                                    <td>[[${review.reg}]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
