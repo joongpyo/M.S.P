@@ -74,7 +74,8 @@ public class BoardController {
         int grp = boardQnaService.getGrpMaxCnt();
         qnaDto.setGrp(grp);
         qnaDto.setSeq(qnaDto.getSeq() + 1);
-
+        qnaDto.setDepth(qnaDto.getDepth() + 1);
+        System.out.println(qnaDto.getSeq() +"/"+ qnaDto.getDepth());
         //파일 저장
         if (files != null){
             qnaDto.setIsFiles("Y");
@@ -92,6 +93,7 @@ public class BoardController {
     @GetMapping("/qnaDelete")
     public String setDelete(@RequestParam int id) {
         QnaDto qnaDto = boardQnaService.getQnaView(id);
+
         boardQnaService.setDelete(qnaDto);
         return "redirect:/board/boardQnA";
     }
@@ -134,16 +136,22 @@ public class BoardController {
         return "board/boardReply";
     }
 
+    //ResponseBody때문이네
     @PostMapping("/boardReply")
+    @ResponseBody
     public Map<String, Object> setReply(@RequestParam(name="files",required = false)List<MultipartFile> files,
                                         @RequestParam int boardId,
                                         @ModelAttribute QnaDto qnaDto) throws IOException {
 
         QnaDto parentQd = boardQnaService.getQnaView(boardId);
+
+        System.out.println("답글(qnaDto) : "+qnaDto);
+        System.out.println("원본 글(parentQd) : "+parentQd);
         boardQnaMapper.setReplyUpdate(parentQd);
         qnaDto.setGrp(parentQd.getGrp());
         qnaDto.setSeq(parentQd.getSeq()+1);
         qnaDto.setDepth(parentQd.getDepth()+1);
+
 
         if (files != null){
             qnaDto.setIsFiles("Y");
@@ -155,11 +163,10 @@ public class BoardController {
             qnaDto.setIsFiles("N");
             boardQnaService.setBoard(qnaDto);
         }
+        System.out.println("답글 : " +qnaDto);
 
         return Map.of("msg","success");
 
     }
-
-
 
 }

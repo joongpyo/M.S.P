@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="comment">
-                        <input type="hidden" name="bId" th:value="${board.id}">
+                        <input type="hidden" name="bIdFk" th:value="${board.id}">
                         <input type="hidden" name="cWriter" th:value="${session.user.userId}">
                         <p class=""><strong>댓글</strong></p>
 
@@ -144,14 +144,14 @@
         let content = document.querySelector("#content").value;
         document.querySelector(".text-box").innerHTML = content;
 
-        let bId = document.querySelector("input[name=bId]");
+        let bIdFk = document.querySelector("input[name=bIdFk]");
         let cWriter = document.querySelector("input[name=cWriter]");
         let cComment = document.querySelector("textarea[name=cComment]");
         let cBtn = document.querySelector(".cBtn");
 
         $(function(){
              let obj = {
-                bId: bId.value
+                bIdFk: bIdFk.value
              }
             console.log(obj);
 
@@ -185,7 +185,7 @@
 
         cBtn.addEventListener('click', function(){
              let obj = {
-                bId: bId.value,
+                bIdFk: bIdFk.value,
                 cComment: cComment.value,
                 cWriter: cWriter.value
             }
@@ -214,10 +214,10 @@
 <!--                return false;-->
 <!--            }else{-->
 <!--                alert(cWriter.value);-->
-<!--                location.href="/board/boardReply?id="+bId.value;-->
+<!--                location.href="/board/boardReply?id="+bIdFk.value;-->
 <!--            }-->
 
-            location.href="/board/boardReply?id="+bId.value;
+            location.href="/board/boardReply?id="+bIdFk.value;
         }
 
         function delCheck() {

@@ -67,7 +67,4 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('에디터 매칭 실패');
     }
-
-
-
 });

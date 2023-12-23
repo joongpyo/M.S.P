@@ -53,6 +53,7 @@
                         </div>
                     </form>
                 </div>
+
                 <table>
                     <thead>
                     <tr>
@@ -71,11 +72,11 @@
                                 [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
                             </td>
                             <td>
-                                <th:block th:if="${qna.depth > 1}">
-                                    <th:block th:each="seq: ${ #number.sequence(2, qna.depth) }">
+                                <th:block th:if="${qna.depth != null and qna.depth.intValue() > 1}">
+                                    <th:block th:each="seq: ${#numbers.sequence(2, qna.depth.intValue())}">
                                         <span>&nbsp;&nbsp;</span>
                                     </th:block>
-                                    <span>[답글완료]</span>
+                                    <span>[답글완료][[${qna.depth}]]</span>
                                 </th:block>
                                 <a th:href="@{/board/boardView?(id=${qna.id})}">[[${qna.subject}]]</a>
                             </td>
@@ -83,9 +84,9 @@
                             <td>[[${qna.visit}]]</td>
                             <td>[[${qna.reg}]]</td>
                             <!-- 12-22 jang -->
-                            <th:block th:if="${qna.isFiles eq 'Y'}">
+                            <td th:if="${qna.isFiles eq 'Y'}">
                                 <span>YES</span>
-                            </th:block>
+                            </td>
 
                         </tr>
                     </tbody>

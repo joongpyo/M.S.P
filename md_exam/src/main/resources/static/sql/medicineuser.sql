@@ -9,7 +9,7 @@ primary key(u_id)
 
 create table qna(
 id int not null auto_increment,
-subject varchar(30) not null,
+subject varchar(100) not null,
 writer varchar(10) not null,
 content text not null,
 visit int not null,
@@ -24,8 +24,6 @@ foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
 );
 
-
-
 create table qna_files(
 id int not null,
 orgName varchar(255),
@@ -36,16 +34,16 @@ folderName varchar(10),
 ext varchar(20)
 );
 
+--b_id_fk이름변경/
 create table qna_comment(
 c_id int not null auto_increment,
-b_id int not null,
 c_writer varchar(20),
 c_comment varchar(100),
 c_regdate date,
-foreign key(b_id) references qna(id),
+b_id_fk int not null,
+foreign key(b_id_fk) references qna(id),
 primary key(c_id)
 );
-
 
 create table adminfiles(
 id int not null auto_increment,

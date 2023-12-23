@@ -12,7 +12,9 @@ public class CommentDto {
     private String cComment;
 
     private LocalDateTime cRegdate;
-    private int bId;
+
+    //231223 jang
+    private int bIdFk;
 
     public int getcId() {
         return cId;
@@ -54,12 +56,12 @@ public class CommentDto {
         this.cRegdate = cRegdate;
     }
 
-    public int getbId() {
-        return bId;
+    public int getbIdFk() {
+        return bIdFk;
     }
 
-    public void setbId(int bId) {
-        this.bId = bId;
+    public void setbIdFk(int bIdFk) {
+        this.bIdFk = bIdFk;
     }
 
     @Override
@@ -70,7 +72,8 @@ public class CommentDto {
                 ", cWriter='" + cWriter + '\'' +
                 ", cComment='" + cComment + '\'' +
                 ", cRegdate=" + cRegdate +
-                ", bId=" + bId +
+                ", bIdFk=" + bIdFk +
                 '}';
     }
 }
+

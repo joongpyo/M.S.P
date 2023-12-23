@@ -4,11 +4,13 @@ import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.dto.QnaDto;
 import com.example.md_exam.mapper.BoardQnaMapper;
+import com.example.md_exam.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.stream.events.Comment;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -24,6 +26,8 @@ public class BoardQnaService {
 
     @Autowired
     BoardQnaMapper boardQnaMapper;
+    @Autowired
+    CommentMapper commentMapper;
 
 
 
@@ -126,14 +130,34 @@ public class BoardQnaService {
     }
 
     public void setDelete(QnaDto qnaDto) {
-        QnaDto qd = boardQnaMapper.getQnaView(qnaDto.getId());
 
-        //게시판 db삭제
-        boardQnaMapper.setDelete(qnaDto.getId());
+        //하위게시물(답글 게시판 얻기)
+        List<QnaDto> qList = boardQnaMapper.getDeleteList(qnaDto);
+        if(qList != null){
+           for( QnaDto list : qList){
+               //하위게시물 파일삭제
+               if(list.getIsFiles().equals("Y")){
+                   List<FileDto> files = boardQnaMapper.getFile(qnaDto.getId());
 
+                   for (FileDto fd : files){
+                       File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+                       file.delete();
+                   }
+                   boardQnaMapper.setFilesDelete(list.getId());
+               }
+               //하위게시물 댓글삭제
+               if(list.getCommentCount()>0){
+                   commentMapper.setCommentDelete(list.getId());
+               }
+               //하위게시물 삭제
+               boardQnaMapper.setDelete(list.getId());
+           }
+        }
 
+        //선택게시판
+        commentMapper.setCommentDelete(qnaDto.getId());
         //파일 db삭제
-        if(qd.getIsFiles().equals("Y")){
+        if(qnaDto.getIsFiles().equals("Y")){
             List<FileDto> files = boardQnaMapper.getFile(qnaDto.getId());
 
             for (FileDto fd : files){
@@ -142,12 +166,8 @@ public class BoardQnaService {
             }
             boardQnaMapper.setFilesDelete(qnaDto.getId());
         }
-
-        //comment db삭제
-        boardQnaMapper.setCommentDelete(qnaDto.getId());
-
-        //reply db삭제    grp가 게시물과 매칭
-        boardQnaMapper.setReplyDelete(qnaDto.getGrp());
+        boardQnaMapper.setReplyDelete(qnaDto);
+        boardQnaMapper.setDelete(qnaDto.getId());
     }
 
     public void setUpdate(QnaDto qnaDto){

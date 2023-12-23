@@ -25,7 +25,7 @@ public class CommentController {
     @ResponseBody
     public Map<String, Object> setCommentWrite(@ModelAttribute CommentDto commentDto){
         System.out.println(commentDto);
-        boardQnaMapper.updateCommentCnt(commentDto.getbId());
+        commentMapper.updateCommentCnt(commentDto.getbIdFk());
         commentMapper.setComment(commentDto);
         return Map.of("msg","success");
 
@@ -36,9 +36,9 @@ public class CommentController {
     public Map<String, Object> getCommentList(@ModelAttribute CommentDto commentDto){
         System.out.println(commentDto);
         List<CommentDto> clist = commentMapper.getCommentList(commentDto);
-
-
         return Map.of("cList",clist);
     }
+
+
 
 }
