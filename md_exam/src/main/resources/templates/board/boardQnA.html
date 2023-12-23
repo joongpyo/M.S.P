@@ -61,6 +61,8 @@
                         <th>작성자</th>
                         <th>조회수</th>
                         <th>작성날짜</th>
+                        <!-- 12-22 jang-->
+                        <th>첨부</br>파일</th>
                     </tr>
                     </thead>
                     <tbody class="qnaList">
@@ -69,11 +71,22 @@
                                 [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
                             </td>
                             <td>
+                                <th:block th:if="${qna.depth > 1}">
+                                    <th:block th:each="seq: ${ #number.sequence(2, qna.depth) }">
+                                        <span>&nbsp;&nbsp;</span>
+                                    </th:block>
+                                    <span>[답글완료]</span>
+                                </th:block>
                                 <a th:href="@{/board/boardView?(id=${qna.id})}">[[${qna.subject}]]</a>
                             </td>
                             <td>[[${qna.writer}]]</td>
                             <td>[[${qna.visit}]]</td>
                             <td>[[${qna.reg}]]</td>
+                            <!-- 12-22 jang -->
+                            <th:block th:if="${qna.isFiles eq 'Y'}">
+                                <span>YES</span>
+                            </th:block>
+
                         </tr>
                     </tbody>
 

@@ -14,16 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 let btn = document.querySelector(".submit");
                 let subject = document.querySelector("input[name=subject]");
-
-                //(수정)무조건 관리자
                 let writer = document.querySelector("input[name=writer]");
                 let id = document.querySelector("input[name=id]");
+                //(수정)무조건 관리자
+
 
                 let content = "------------ [ 원본 글 ] ------------ </br>"+ document.querySelector("#content").value+"<br/>------------ [ 답변 글 ] ------------</br></br>" ;
-
-
-                console.log(content);
-
 
                 editor.setData(content);
 
@@ -31,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     e.preventDefault();
                     let formData = new FormData();
                     let uploadData = document.querySelector("#upload-form input[name='files']").files;
+
 
                     if(uploadData != null && uploadData.length > 0){
                         for (let i = 0; i < uploadData.length; i++) {
@@ -47,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     formData.append('writer', writer.value);
                     formData.append('boardId', id.value);
                     //(수정-관리자 u_id)
-                    formData.append('uIdFk', 500);
+                    formData.append('uIdFk',1);
 
                     $.ajax({
                         type: "POST",

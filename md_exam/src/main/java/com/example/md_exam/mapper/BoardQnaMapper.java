@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Mapper
 public interface BoardQnaMapper {
-    @Insert("INSERT INTO qna VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, 1, 1, #{isFiles}, 0, #{uIdFk})")
+    @Insert("INSERT INTO qna VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, 1, #{isFiles}, 0, #{uIdFk})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(QnaDto qnaDto);
 
@@ -49,9 +49,9 @@ public interface BoardQnaMapper {
     @Select("SELECT IFNULL( MAX(grp) + 1,  1) FROM qna")
     int getGrpMaxCnt();
 
-    @Select("SELECT IFNULL( MAX(seq) + 1,  1) FROM qna WHERE grp = #{grp}")
-    int getSeqMaxCnt(int grp);
-
     @Update("UPDATE qna SET seq=seq+1 WHERE grp = #{grp} AND seq > #{seq}")
-    void setReplyUpdate(QnaDto qd);
+    void setReplyUpdate(QnaDto qnaDto);
+
+    @Delete("DELETE FROM qna WHERE grp = #{grp}")
+    void setReplyDelete(int grp);
 }

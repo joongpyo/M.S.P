@@ -125,30 +125,29 @@ public class BoardQnaService {
         }
     }
 
-    public void setDelete(int id) {
-        QnaDto qd = boardQnaMapper.getQnaView(id);
+    public void setDelete(QnaDto qnaDto) {
+        QnaDto qd = boardQnaMapper.getQnaView(qnaDto.getId());
 
         //게시판 db삭제
-        boardQnaMapper.setDelete(id);
-        System.out.println(id +"번 게시물을 삭제했습니다");
+        boardQnaMapper.setDelete(qnaDto.getId());
+
 
         //파일 db삭제
         if(qd.getIsFiles().equals("Y")){
-            List<FileDto> files = boardQnaMapper.getFile(id);
+            List<FileDto> files = boardQnaMapper.getFile(qnaDto.getId());
 
             for (FileDto fd : files){
                 File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
                 file.delete();
             }
-            boardQnaMapper.setFilesDelete(id);
-            System.out.println(id +"번 게시물 파일을 삭제했습니다..");
+            boardQnaMapper.setFilesDelete(qnaDto.getId());
         }
 
         //comment db삭제
-        boardQnaMapper.setCommentDelete(id);
+        boardQnaMapper.setCommentDelete(qnaDto.getId());
 
         //reply db삭제    grp가 게시물과 매칭
-
+        boardQnaMapper.setReplyDelete(qnaDto.getGrp());
     }
 
     public void setUpdate(QnaDto qnaDto){

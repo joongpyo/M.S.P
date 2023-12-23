@@ -73,6 +73,7 @@ public class BoardController {
 
         int grp = boardQnaService.getGrpMaxCnt();
         qnaDto.setGrp(grp);
+        qnaDto.setSeq(qnaDto.getSeq() + 1);
 
         //파일 저장
         if (files != null){
@@ -90,8 +91,8 @@ public class BoardController {
 
     @GetMapping("/qnaDelete")
     public String setDelete(@RequestParam int id) {
-        System.out.println(id);
-        boardQnaService.setDelete(id);
+        QnaDto qnaDto = boardQnaService.getQnaView(id);
+        boardQnaService.setDelete(qnaDto);
         return "redirect:/board/boardQnA";
     }
 
@@ -127,8 +128,8 @@ public class BoardController {
 
     @GetMapping("/boardReply")
     public String getReply(@RequestParam int id, Model model){
-        System.out.println(id);
         QnaDto qnaDto = boardQnaService.getQnaView(id);
+        System.out.println(qnaDto);
         model.addAttribute("reply", qnaDto);
         return "board/boardReply";
     }
@@ -138,19 +139,11 @@ public class BoardController {
                                         @RequestParam int boardId,
                                         @ModelAttribute QnaDto qnaDto) throws IOException {
 
-        //qd = 원본글(grp,seq,depth) , qnaDto = 답글
-        QnaDto qd = boardQnaService.getQnaView(boardId);
-//        System.out.println("원본 seq : " + qd.getSeq());
-//        System.out.println("seq : " + boardQnaMapper.getSeqMaxCnt(qd.getGrp()));
-        //원본 1,1,1
-
-
-        //작업중 작업중 작업중 작업중
-        qnaDto.setGrp(qd.getGrp());         //grp 1
-        qnaDto.setSeq(boardQnaMapper.getSeqMaxCnt(qd.getGrp()));
-        qnaDto.setDepth(qd.getDepth()+1);   //depth 2
-
-        System.out.println(qnaDto);
+        QnaDto parentQd = boardQnaService.getQnaView(boardId);
+        boardQnaMapper.setReplyUpdate(parentQd);
+        qnaDto.setGrp(parentQd.getGrp());
+        qnaDto.setSeq(parentQd.getSeq()+1);
+        qnaDto.setDepth(parentQd.getDepth()+1);
 
         if (files != null){
             qnaDto.setIsFiles("Y");
