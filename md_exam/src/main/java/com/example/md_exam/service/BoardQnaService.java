@@ -29,8 +29,6 @@ public class BoardQnaService {
     @Autowired
     CommentMapper commentMapper;
 
-
-
     //게시물 검색
     public String getSearch(String searchType, String search){
         String searchQuery = "";
@@ -43,16 +41,19 @@ public class BoardQnaService {
         }else{
             searchQuery = "";
         }
-
         return searchQuery;
     }
 
-
-    public PageDto PageInfo(int page, String searchType, String search) {
+    public PageDto PageInfo(String boardCode,int page, String searchType, String search) {
         PageDto pageDto = new PageDto();
 
         String searchQuery = getSearch(searchType,search);
-        int totalCount = boardQnaMapper.getBoardCount(searchQuery);
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("boardCode",boardCode);
+        map.put("searchQuery",searchQuery);
+
+        int totalCount = boardQnaMapper.getBoardCount(map);
 
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage =  ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
@@ -71,12 +72,13 @@ public class BoardQnaService {
         return pageDto;
     }
 
-    public List<QnaDto> getBoardQnA(int page, String searchType, String search) {
-        PageDto pd = PageInfo(page, searchType, search);
+    public List<QnaDto> getBoardQnA(String boardCode,int page, String searchType, String search) {
+        PageDto pd = PageInfo(boardCode,page, searchType, search);
         String searchQuery = getSearch(searchType,search);
 
         Map<String,Object> map = new HashMap<>();
 
+        map.put("boardCode",boardCode);
         map.put("startNum", pd.getStartNum());
         map.put("offset", pd.getPageCount());
         map.put("searchQuery",searchQuery);
@@ -87,12 +89,16 @@ public class BoardQnaService {
         boardQnaMapper.setBoard(qnADto);
     }
 
-    public QnaDto getQnaView(int id) {
-        return boardQnaMapper.getQnaView(id);
+    public QnaDto getQnaView(String boardCode, int id) {
+        return boardQnaMapper.getQnaView(boardCode,id);
     }
 
-    int getBoardCount(String searchQuery){
-        return boardQnaMapper.getBoardCount(searchQuery);
+    int getBoardCount(String boardCode,String searchQuery){
+        Map<String,Object> map= new HashMap<>();
+        map.put("boardCode",boardCode);
+        map.put("searchQuery",searchQuery);
+
+        return boardQnaMapper.getBoardCount(map);
     }
 
     public void setFiles(List<MultipartFile> files, int fileID) throws IOException {
@@ -129,9 +135,12 @@ public class BoardQnaService {
         }
     }
 
-    public void setDelete(QnaDto qnaDto) {
+    public void setDelete(Map<String,Object> map) {
 
         //하위게시물(답글 게시판 얻기)
+        Map<String,Object> delmap = new HashMap<>();
+
+
         List<QnaDto> qList = boardQnaMapper.getDeleteList(qnaDto);
         if(qList != null){
            for( QnaDto list : qList){
@@ -175,9 +184,13 @@ public class BoardQnaService {
         boardQnaMapper.setUpdate(qnaDto);
     }
 
-    public int getBoardCount(String searchType,String search){
+    public int getBoardCount(String boardCode,String searchType,String search){
+        Map<String,Object> map = new HashMap<>();
         String searchQuery = getSearch(searchType,search);
-        return boardQnaMapper.getBoardCount(searchQuery);
+
+        map.put("boardCode",boardCode);
+        map.put("searchQuery",searchQuery);
+        return boardQnaMapper.getBoardCount(map);
     }
 
     public int getGrpMaxCnt(){

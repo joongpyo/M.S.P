@@ -13,14 +13,14 @@ public interface BoardQnaMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(QnaDto qnaDto);
 
-    @Select("SELECT * FROM qna ${searchQuery} ORDER BY grp DESC, seq ASC LIMIT #{startNum}, #{offset} ")
+    @Select("SELECT * FROM ${boardCode} ${searchQuery} ORDER BY grp DESC, seq ASC LIMIT #{startNum}, #{offset} ")
     List<QnaDto> getBoardQnA(Map<String,Object> map);
 
-    @Select("SELECT COUNT(*) FROM qna ${searchQuery}")
-    int getBoardCount(String searchQuery);
+    @Select("SELECT COUNT(*) FROM ${boardCode} ${searchQuery}")
+    int getBoardCount(Map<String,Object> map);
 
-    @Select("SELECT * FROM qna WHERE id = #{id}")
-    QnaDto getQnaView(int id);
+    @Select("SELECT * FROM ${boardCode} WHERE id = #{id}")
+    QnaDto getQnaView(String boardCode,int id);
 
     @Insert("INSERT INTO qna_files VALUES(#{id},#{orgName},#{savedFileName},#{savedPathName},#{savedFileSize},#{folderName},#{ext})")
     void setFiles(FileDto fileDto);
@@ -31,8 +31,8 @@ public interface BoardQnaMapper {
     @Delete("DELETE FROM qna WHERE id = #{id}")
     void setDelete(int id);
 
-    @Select("SELECT * FROM qna_files WHERE id = #{id}")
-    List<FileDto> getFile(int id);
+    @Select("SELECT * FROM ${boardCode}_files WHERE id = #{id}")
+    List<FileDto> getFile(String boardCode,int id);
 
     @Delete("DELETE FROM qna_files WHERE id = #{id}")
     void setFilesDelete(int id);

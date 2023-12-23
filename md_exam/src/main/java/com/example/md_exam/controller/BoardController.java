@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,6 @@ import java.util.Map;
 public class BoardController {
     @Value("${fileDir}")
     String fileDir;
-
     @Autowired
     BoardQnaService boardQnaService;
     @Autowired
@@ -30,15 +30,17 @@ public class BoardController {
         return "board/boardNotice";
     }
 
+    //231223 board코드 추가 jang
     @GetMapping("/boardQnA")
     public String getBoardQnA(Model model,
+                              @RequestParam String boardCode,
                               @RequestParam(value="page", defaultValue = "1")int page,
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
-        model.addAttribute("qna",boardQnaService.getBoardQnA(page,searchType,search));
-        model.addAttribute("page",boardQnaService.PageInfo(page, searchType, search));
-        model.addAttribute("total",boardQnaService.getBoardCount(searchType,search));
+        model.addAttribute("qna",boardQnaService.getBoardQnA(boardCode,page,searchType,search));
+        model.addAttribute("page",boardQnaService.PageInfo(boardCode,page, searchType, search));
+        model.addAttribute("total",boardQnaService.getBoardCount(boardCode,searchType,search));
         return "board/boardQnA";
     }
 
@@ -53,9 +55,10 @@ public class BoardController {
     }
 
     @GetMapping("/boardView")
-    public String getBoardView(@RequestParam int id, Model model) {
-        model.addAttribute("board",boardQnaService.getQnaView(id));
-        model.addAttribute("files",boardQnaMapper.getFile(id));
+    public String getBoardView(@RequestParam String boardCode,
+                               @RequestParam int id, Model model) {
+        model.addAttribute("board",boardQnaService.getQnaView(boardCode,id));
+        model.addAttribute("files",boardQnaMapper.getFile(boardCode,id));
         //조회수증가
         boardQnaMapper.updateVisit(id);
         return "board/boardView";
@@ -91,17 +94,24 @@ public class BoardController {
     }
 
     @GetMapping("/qnaDelete")
-    public String setDelete(@RequestParam int id) {
-        QnaDto qnaDto = boardQnaService.getQnaView(id);
+    public String setDelete(@RequestParam String boardCode,
+                            @RequestParam int id) {
+        Map<String,Object> map = new HashMap<>();
+        QnaDto qnaDto = boardQnaService.getQnaView(boardCode,id);
 
-        boardQnaService.setDelete(qnaDto);
+        map.put("boardCode",boardCode);
+        map.put("qnaDto",qnaDto);
+
+        boardQnaService.setDelete(map);
         return "redirect:/board/boardQnA";
     }
 
     //수정하러가기
     @GetMapping("/qnaUpdate")
-    public String getUpdate(@RequestParam int id, Model model) {
-        QnaDto qd = boardQnaService.getQnaView(id);
+    public String getUpdate(@RequestParam String boardCode,
+                            @RequestParam int id, Model model) {
+
+        QnaDto qd = boardQnaService.getQnaView(boardCode,id);
         model.addAttribute("modify",qd);
         return "board/qnaUpdate";
     }
@@ -129,8 +139,9 @@ public class BoardController {
     }
 
     @GetMapping("/boardReply")
-    public String getReply(@RequestParam int id, Model model){
-        QnaDto qnaDto = boardQnaService.getQnaView(id);
+    public String getReply(@RequestParam String boardCode,
+                           @RequestParam int id, Model model){
+        QnaDto qnaDto = boardQnaService.getQnaView(boardCode,id);
         System.out.println(qnaDto);
         model.addAttribute("reply", qnaDto);
         return "board/boardReply";
@@ -139,11 +150,12 @@ public class BoardController {
     //ResponseBody때문이네
     @PostMapping("/boardReply")
     @ResponseBody
-    public Map<String, Object> setReply(@RequestParam(name="files",required = false)List<MultipartFile> files,
+    public Map<String, Object> setReply(@RequestParam String boardCode,
+                                        @RequestParam(name="files",required = false)List<MultipartFile> files,
                                         @RequestParam int boardId,
                                         @ModelAttribute QnaDto qnaDto) throws IOException {
 
-        QnaDto parentQd = boardQnaService.getQnaView(boardId);
+        QnaDto parentQd = boardQnaService.getQnaView(boardCode,boardId);
 
         System.out.println("답글(qnaDto) : "+qnaDto);
         System.out.println("원본 글(parentQd) : "+parentQd);

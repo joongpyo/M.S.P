@@ -53,7 +53,6 @@
                         </div>
                     </form>
                 </div>
-
                 <table>
                     <thead>
                     <tr>
@@ -87,10 +86,8 @@
                             <td th:if="${qna.isFiles eq 'Y'}">
                                 <span>YES</span>
                             </td>
-
                         </tr>
                     </tbody>
-
                 </table>
 
                 <div class="bottom">
@@ -101,7 +98,6 @@
                         <a th:href="@{/board/boardQnA?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
                             <i class="fa-solid fa-caret-left"></i>
                         </a>
-
                         <th:block th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
                             <th:block th:if="${page.page eq i}">
                                 <a  class="active" th:href="@{/board/boardQnA?(configCode=${configCode}, page=${i})}">
@@ -114,15 +110,12 @@
                                 </a>
                             </th:block>
                         </th:block>
-
                         <a href="#" th:if="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-caret-right"></i>
                         </a>
                         <a th:href="@{/board/boardQnA?(page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-angle-right"></i>
                         </a>
-
-
                     </div>
                     <div class="bottom-right">
                         <a th:href="@{/board/boardQnA}">
@@ -138,7 +131,5 @@
     </div>
 </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-
 </body>
-
 </html>

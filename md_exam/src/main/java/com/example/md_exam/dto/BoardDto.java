@@ -2,7 +2,7 @@ package com.example.md_exam.dto;
 
 import java.time.LocalDate;
 
-public class QnaDto {
+public class BoardDto {
     private int id;
     private String subject;
     private String writer;
@@ -15,15 +15,7 @@ public class QnaDto {
     private int uIdFk;
     private String isFiles;
     private int commentCount;
-
-
-    public int getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(int commentCount) {
-        this.commentCount = commentCount;
-    }
+    private String boardCode;
 
     public int getId() {
         return id;
@@ -113,9 +105,25 @@ public class QnaDto {
         this.isFiles = isFiles;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public String getBoardCode() {
+        return boardCode;
+    }
+
+    public void setBoardCode(String boardCode) {
+        this.boardCode = boardCode;
+    }
+
     @Override
     public String toString() {
-        return "QnaDto{" +
+        return "BoardDto{" +
                 "id=" + id +
                 ", subject='" + subject + '\'' +
                 ", writer='" + writer + '\'' +
@@ -127,6 +135,8 @@ public class QnaDto {
                 ", depth=" + depth +
                 ", uIdFk=" + uIdFk +
                 ", isFiles='" + isFiles + '\'' +
+                ", commentCount=" + commentCount +
+                ", boardCode='" + boardCode + '\'' +
                 '}';
     }
 }

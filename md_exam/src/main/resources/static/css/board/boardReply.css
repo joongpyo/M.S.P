@@ -1,96 +1,89 @@
-@charset 'utf-8';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
-/* ----------------------- main ----------------------------- */
-.bg-title {
-    height: 300px;
-    background-image: url(/images/capsule2.jpg);
+.board-bg {
+    background-image: url("/images/texture1.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
+    width: 100%;
+    height: 350px;
+    margin: 0 auto;
+    padding-top: 210px;
 }
 
-.main-title h1 {
+.board-bg-wrap{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center
+
+}
+
+.board-bg-content {
+    color: #fff;
+    width: 100%;
+    max-width: 1280px;
+
+}
+
+.bg-letter{
+    margin-top: 100px;
+    margin-left: 10px;
+}
+
+.bg-letter p {
     color: #fff;
     margin: auto;
+
+    word-spacing: 3px;
+    font-size: 16px;
 }
 
+.bg-letter span{
+    color: rgba(255,255,255,0.6);
+}
+
+.bg-letter i{
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* ----------------------- boardWrite Content ----------------------------- */
 .main-container {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 100px;
-    padding-top: 100px;
-}
-
-.main-title {
-    width: 100%;
 }
 
 /* ------------------------ section ---------------------------- */
-
 .section-container {
-    display: flex;
     max-width: 100%;
     margin: 0 auto;
     padding-right: 50px;
+    max-width: 1280px;
 }
 
-/* -------------------- aside ------------------------ */
-
-aside {
-    width: 30%;
-    margin-left: 30px;
-    height: 500px;
-}
-
-aside ul li {
-    width: 85%;
+.sub-title{
+    width:100%;
+    max-width:1280px;
     text-align: center;
-    padding: 14px 0;
-    font-weight: 600;
-    border-bottom: 1px solid #ccc;
+    margin: 60px 0;
 }
-
-aside ul li.active {
-    background-color: #eee;
-}
-
-aside ul li.active a {
-    color:#3CB4FF;
-}
-
-
-aside ul li:first-child {
-    background-color: skyblue;
-    height: 200px;
-    line-height: 150px;
-    text-align: center;
-    padding: 20px 0;
-}
-
-aside ul li:first-child a {
-    color: #fff;
-}
-
-aside ul li a:hover {
-    color: #3CB4FF;
-}
-
-.side-bg-wrap{
-    /* font-size: 2px; */
-    color: #fff;
-}
-
-/* -------------------------------------------------------- */
 
 .content-wrap {
     width: 100%;
     margin: 0px auto;
     margin-top: 40px;
     padding: 0 10px;
+}
+
+.subject-title{
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #ccc;
+    padding-top: 20px;
+    margin-bottom: 20px;
+
 }
 
 .content-wrap h2 {
@@ -113,10 +106,12 @@ td, th {
 th {
     background-color: #3d3d3d;
     color: #fff;
+
+    /*23-12-22 jang*/
     width: 185px;
 }
 
-input {
+.w-input {
     border:0;
     border:1px solid #ccc;
     font-size: 14px;
@@ -193,49 +188,21 @@ input {
     border-radius: 20px;
 }
 
-.comment {
-    border-top: 1px dashed #ccc;
-    padding-top: 20px;
-    font-size: 14px;
+textarea{
+    height: 200px;
 }
 
-.comment ul {
-    margin-top: 30px;
-}
-
-.comment ul li {
-    margin: 10px 0;
-    width: 100%;
-    height: 100px;
-    font-size: 12px;
-}
-
-.comment ul li .comment-info {
-    display: flex;
-    justify-content: space-between;
-}
-
-.comment ul li .writer {
-    font-weight: bold;
-}
-
-.comment ul li .reg-time {
-    font-style: italic;
-}
-
-.comment ul li p {
-    border: 0;
-    border-radius: 3px;
-    background-color: #f8fafb;
-    padding: 15px;
-    margin: 10px 0;
+.foot-logo {
+    width: 130px;
+    margin: 20px 0 0 20px;
 }
 
 /* ---------------------- ck editor -------------------------- */
 .ck-editor__editable {
     height: 400px;
     weight 100%;
+    padding-left: 30px;
 }
 .ck-content {
-    font-size: 12px;
+    font-size: 16px;
 }
