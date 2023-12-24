@@ -65,7 +65,7 @@
 
 					<div class="bottom">
 						<div class="bottom-left">
-							<a th:href="@{/board/boardQnA}">
+							<a th:href="@{/board/board?(configCode=${configCode})}">
 								<button type="button" class="btn">목록</button>
 							</a>
 						</div>
@@ -78,6 +78,7 @@
 							</a>
 						</div>
 					</div>
+					<input type="hidden" name="configCode" th:value="${configCode}">
 					<input type="hidden" name="writer" th:value="admin">
 					<input type="hidden" name="id" th:value="${reply.id}">
 				</form>

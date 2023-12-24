@@ -1,16 +1,15 @@
 package com.example.md_exam.service;
 
+import com.example.md_exam.dto.BoardDto;
 import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.PageDto;
-import com.example.md_exam.dto.QnaDto;
-import com.example.md_exam.mapper.BoardQnaMapper;
+import com.example.md_exam.mapper.BoardMapper;
 import com.example.md_exam.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.stream.events.Comment;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,40 +19,37 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class BoardQnaService {
+public class BoardService {
     @Value("${fileDir}")
     String fileDir;
-
     @Autowired
-    BoardQnaMapper boardQnaMapper;
+    BoardMapper boardMapper;
     @Autowired
     CommentMapper commentMapper;
 
-    //게시물 검색
-    public String getSearch(String searchType, String search){
-        String searchQuery = "";
-        if(searchType.equals("writer")){
-            searchQuery = " WHERE writer = '"+search+"'";
-        }else if (searchType.equals("content")){
-            searchQuery = " WHERE content LIKE '%"+search+"%'";
-        }else if (searchType.equals("subject")){
-            searchQuery = " WHERE subject LIKE '%"+search+"%'";
-        }else{
-            searchQuery = "";
-        }
-        return searchQuery;
-    }
+    public List<BoardDto> getBoard(String configCode, int page, String searchType, String search) {
+        PageDto pd = PageInfo(configCode,page, searchType, search);
+        String searchQuery = getSearch(searchType,search);
 
-    public PageDto PageInfo(String boardCode,int page, String searchType, String search) {
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("configCode",configCode);
+        map.put("startNum", pd.getStartNum());
+        map.put("offset", pd.getPageCount());
+        map.put("searchQuery",searchQuery);
+
+        return boardMapper.getBoard(map);
+    }
+    public int getBoardCount(String configCode,String searchType,String search){
+        String searchQuery = getSearch(searchType,search);
+        return boardMapper.getBoardCount(configCode,searchQuery);
+    }
+    //
+    public PageDto PageInfo(String configCode,int page, String searchType, String search) {
         PageDto pageDto = new PageDto();
 
         String searchQuery = getSearch(searchType,search);
-        Map<String,Object> map = new HashMap<>();
-
-        map.put("boardCode",boardCode);
-        map.put("searchQuery",searchQuery);
-
-        int totalCount = boardQnaMapper.getBoardCount(map);
+        int totalCount = boardMapper.getBoardCount(configCode,searchQuery);
 
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage =  ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
@@ -71,37 +67,17 @@ public class BoardQnaService {
 
         return pageDto;
     }
-
-    public List<QnaDto> getBoardQnA(String boardCode,int page, String searchType, String search) {
-        PageDto pd = PageInfo(boardCode,page, searchType, search);
-        String searchQuery = getSearch(searchType,search);
-
-        Map<String,Object> map = new HashMap<>();
-
-        map.put("boardCode",boardCode);
-        map.put("startNum", pd.getStartNum());
-        map.put("offset", pd.getPageCount());
-        map.put("searchQuery",searchQuery);
-
-        return boardQnaMapper.getBoardQnA(map);
+    public BoardDto getView(String configCode, int id) {
+        return boardMapper.getView(configCode,id);
     }
-    public void setBoard(QnaDto qnADto) {
-        boardQnaMapper.setBoard(qnADto);
+    public int getGrpMaxCnt(String configCode){
+        return boardMapper.getGrpMaxCnt(configCode);
     }
-
-    public QnaDto getQnaView(String boardCode, int id) {
-        return boardQnaMapper.getQnaView(boardCode,id);
+    public void setBoard(String configCode,BoardDto boardDto) {
+        boardDto.setConfigCode(configCode);
+        boardMapper.setBoard(boardDto);
     }
-
-    int getBoardCount(String boardCode,String searchQuery){
-        Map<String,Object> map= new HashMap<>();
-        map.put("boardCode",boardCode);
-        map.put("searchQuery",searchQuery);
-
-        return boardQnaMapper.getBoardCount(map);
-    }
-
-    public void setFiles(List<MultipartFile> files, int fileID) throws IOException {
+    public void setFiles(String configCode,List<MultipartFile> files, int fileID) throws IOException {
 
         if (files != null) {
             String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
@@ -130,71 +106,76 @@ public class BoardQnaService {
                 fileDto.setFolderName(folderName);
                 fileDto.setExt(ext);
                 fileDto.setSavedFileSize(savedFileSize);
-                boardQnaMapper.setFiles(fileDto);
+                fileDto.setConfigCode(configCode);
+                boardMapper.setFiles(fileDto);
             }
         }
     }
 
-    public void setDelete(Map<String,Object> map) {
+    public void setDelete(String configCode,BoardDto boardDto) {
 
         //하위게시물(답글 게시판 얻기)
         Map<String,Object> delmap = new HashMap<>();
+        boardDto.setConfigCode(configCode);
 
 
-        List<QnaDto> qList = boardQnaMapper.getDeleteList(qnaDto);
+        List<BoardDto> qList = boardMapper.getDeleteList(boardDto);
         if(qList != null){
-           for( QnaDto list : qList){
+           for( BoardDto list : qList){
                //하위게시물 파일삭제
                if(list.getIsFiles().equals("Y")){
-                   List<FileDto> files = boardQnaMapper.getFile(qnaDto.getId());
+                   List<FileDto> files = boardMapper.getFile(configCode, boardDto.getId());
 
                    for (FileDto fd : files){
                        File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
                        file.delete();
                    }
-                   boardQnaMapper.setFilesDelete(list.getId());
+                   boardMapper.setFilesDelete(configCode,list.getId());
                }
                //하위게시물 댓글삭제
                if(list.getCommentCount()>0){
-                   commentMapper.setCommentDelete(list.getId());
+                   commentMapper.setCommentDelete(configCode,list.getId());
                }
                //하위게시물 삭제
-               boardQnaMapper.setDelete(list.getId());
+               boardMapper.setDelete(configCode,list.getId());
            }
         }
 
         //선택게시판
-        commentMapper.setCommentDelete(qnaDto.getId());
+        commentMapper.setCommentDelete(configCode,boardDto.getId());
         //파일 db삭제
-        if(qnaDto.getIsFiles().equals("Y")){
-            List<FileDto> files = boardQnaMapper.getFile(qnaDto.getId());
+        if(boardDto.getIsFiles().equals("Y")){
+            List<FileDto> files = boardMapper.getFile(configCode,boardDto.getId());
 
             for (FileDto fd : files){
                 File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
                 file.delete();
             }
-            boardQnaMapper.setFilesDelete(qnaDto.getId());
+            boardMapper.setFilesDelete(configCode,boardDto.getId());
         }
-        boardQnaMapper.setReplyDelete(qnaDto);
-        boardQnaMapper.setDelete(qnaDto.getId());
+        boardMapper.setReplyDelete(boardDto);
+        boardMapper.setDelete(configCode,boardDto.getId());
     }
 
-    public void setUpdate(QnaDto qnaDto){
-        System.out.println(qnaDto);
-        boardQnaMapper.setUpdate(qnaDto);
+    //////////////////////////////////메서드
+
+    public String getSearch(String searchType, String search){
+        String searchQuery = "";
+        if(searchType.equals("writer")){
+            searchQuery = " WHERE writer = '"+search+"'";
+        }else if (searchType.equals("content")){
+            searchQuery = " WHERE content LIKE '%"+search+"%'";
+        }else if (searchType.equals("subject")){
+            searchQuery = " WHERE subject LIKE '%"+search+"%'";
+        }else{
+            searchQuery = "";
+        }
+        return searchQuery;
     }
 
-    public int getBoardCount(String boardCode,String searchType,String search){
-        Map<String,Object> map = new HashMap<>();
-        String searchQuery = getSearch(searchType,search);
-
-        map.put("boardCode",boardCode);
-        map.put("searchQuery",searchQuery);
-        return boardQnaMapper.getBoardCount(map);
-    }
-
-    public int getGrpMaxCnt(){
-        return boardQnaMapper.getGrpMaxCnt();
+    public void setUpdate(String configCode,BoardDto boardDto){
+        boardDto.setConfigCode(configCode);
+        boardMapper.setUpdate(boardDto);
     }
 
 }

@@ -15,6 +15,7 @@ public class CommentDto {
 
     //231223 jang
     private int bIdFk;
+    private String configCode;
 
     public int getcId() {
         return cId;
@@ -64,6 +65,14 @@ public class CommentDto {
         this.bIdFk = bIdFk;
     }
 
+    public String getConfigCode() {
+        return configCode;
+    }
+
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
+    }
+
     @Override
     public String toString() {
         return "CommentDto{" +
@@ -73,7 +82,9 @@ public class CommentDto {
                 ", cComment='" + cComment + '\'' +
                 ", cRegdate=" + cRegdate +
                 ", bIdFk=" + bIdFk +
+                ", configCode='" + configCode + '\'' +
                 '}';
     }
+
 }
 

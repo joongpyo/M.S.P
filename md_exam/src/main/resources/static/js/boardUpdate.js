@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let subject = document.querySelector("input[name=subject]");
                 let writer = document.querySelector("input[name=writer]");
                 let uIdFk = document.querySelector("input[name=uIdFk]");
+                let configCode = document.querySelector("input[name=configCode]");
 
                 let content = document.querySelector("#content").value;
                 editor.setData(content);
@@ -40,17 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     formData.append('content', editor.getData());
                     formData.append('writer', writer.value);
                     formData.append('uIdFk', uIdFk.value);
-
+                    formData.append('configCode',configCode.value);
 
                     $.ajax({
                         type: "POST",
-                        url: "/board/qnaUpdate",
+                        url: "/board/boardUpdate",
                         data: formData,
                         contentType: false,
                         processData: false,
                         success: function (result) {
                             if (result.msg=="success"){
-                                location.href = "/board/boardQnA";
+                                location.href = "/board/board?configCode="+result.configCode;;
                             }
                         }
                     });

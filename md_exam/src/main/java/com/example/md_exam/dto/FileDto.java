@@ -9,6 +9,7 @@ public class FileDto {
     private String folderName;
     private String ext;
     private String board;
+    private String ConfigCode;
 
     public int getId() {
         return id;
@@ -74,6 +75,14 @@ public class FileDto {
         this.board = board;
     }
 
+    public String getConfigCode() {
+        return ConfigCode;
+    }
+
+    public void setConfigCode(String configCode) {
+        ConfigCode = configCode;
+    }
+
     @Override
     public String toString() {
         return "FileDto{" +
@@ -85,6 +94,7 @@ public class FileDto {
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +
                 ", board='" + board + '\'' +
+                ", ConfigCode='" + ConfigCode + '\'' +
                 '}';
     }
 }

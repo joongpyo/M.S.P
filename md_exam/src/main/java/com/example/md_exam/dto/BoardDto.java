@@ -15,7 +15,7 @@ public class BoardDto {
     private int uIdFk;
     private String isFiles;
     private int commentCount;
-    private String boardCode;
+    private String configCode;
 
     public int getId() {
         return id;
@@ -113,12 +113,12 @@ public class BoardDto {
         this.commentCount = commentCount;
     }
 
-    public String getBoardCode() {
-        return boardCode;
+    public String getConfigCode() {
+        return configCode;
     }
 
-    public void setBoardCode(String boardCode) {
-        this.boardCode = boardCode;
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class BoardDto {
                 ", uIdFk=" + uIdFk +
                 ", isFiles='" + isFiles + '\'' +
                 ", commentCount=" + commentCount +
-                ", boardCode='" + boardCode + '\'' +
+                ", configCode='" + configCode + '\'' +
                 '}';
     }
 }

@@ -192,17 +192,9 @@ td:nth-child(2) {
     font-weight: 500;
 }
 
-td:nth-child(2):hover {
-    text-decoration: underline;
-
-    transition: .3s;
-}
-
 td:nth-child(3) {
     font-weight: 500;
 }
-
-
 
 th:nth-child(1) {
     width: 5%;
@@ -222,6 +214,10 @@ th:nth-child(5) {
  /*12-22 jang*/
 th:nth-child(6) {
     width: 5%;
+}
+
+tbody .b-subject:hover {
+    text-decoration:underline;
 }
 
 /* ------------------------bottom------------------------- */

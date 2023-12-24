@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let writer = document.querySelector("input[name=writer]");
                 let id = document.querySelector("input[name=id]");
                 //(수정)무조건 관리자
+                let configCode = document.querySelector("input[name=configCode]");
 
 
                 let content = "------------ [ 원본 글 ] ------------ </br>"+ document.querySelector("#content").value+"<br/>------------ [ 답변 글 ] ------------</br></br>" ;
@@ -25,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    alert("ok");
+                    console.log(configCode.value);
                     let formData = new FormData();
                     let uploadData = document.querySelector("#upload-form input[name='files']").files;
 
@@ -38,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         formData.append("files", "");
                         console.log("첨부파일 X")
                     }
-
+                    console.log(configCode.value);
+                    formData.append('configCode',configCode.value);
                     formData.append('subject', subject.value);
                     formData.append('content', editor.getData());
                     formData.append('writer', writer.value);
@@ -54,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         processData: false,
                         success: function (result) {
                             if (result.msg=="success"){
-                                location.href = "/board/boardQnA";
+                                location.href = "/board/board?configCode="+result.configCode;
                             }
                         }
                     });

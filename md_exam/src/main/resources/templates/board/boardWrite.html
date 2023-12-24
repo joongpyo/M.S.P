@@ -35,7 +35,7 @@
                 </div>
                 <div class="content-wrap">
                     <div class="subject-title">
-                        <h2>게시글 작성</h2>
+
                     </div>
                     <form id="upload-form">
                         <table>
@@ -63,11 +63,11 @@
 
 					<div class="bottom">
 						<div class="bottom-right">
-							<a th:href="@{/board/boardQnA}">
+							<a th:href="@{/board/board?(configCode=${configCode})}">
 								<button type="button" class="btn">목록</button>
 							</a>
 
-							<a href="">
+							<a href="#">
 								<button class="submit">글작성</button>
 							</a>
 						</div>
@@ -75,7 +75,7 @@
 
 					<input type="hidden" name="writer" th:value="${session.user.userName}">
 					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
-
+                    <input type="hidden" name="configCode" th:value="${configCode}">
 				</form>
 			</div>
 		</div>

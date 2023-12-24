@@ -32,10 +32,10 @@
                 <a th:href="@{/index}"><img th:src="@{/images/nocolorlogo.png}" alt=""></a>
             </div>
             <ul>
-                <a th:href="@{/board/boardNotice}"><li>공지사항</li></a>
-                <a th:href="@{/board/boardQnA}"><li>QnA</li></a>
-                <a th:href="@{/board/boardReview}"><li>약 복용 후기</li></a>
-                <a th:href="@{/board/boardList}"><li>약 목록</li></a>
+                <a th:href="@{/board/board?configCode=Notice}"><li>공지사항</li></a>
+                <a th:href="@{/board/board?configCode=QnA}"><li>QnA</li></a>
+                <a th:href="@{/board/board?configCode=Review}"><li>약 복용 후기</li></a>
+                <a th:href="@{/board/board?configCode=List}"><li>약 목록</li></a>
                 <form action="">
                     <li class="search">
                         <input type="text" placeholder="약명으로 검색하기">

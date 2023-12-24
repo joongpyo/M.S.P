@@ -8,19 +8,7 @@ public class PageDto {
     private int totalPage;
     private int startPage;
     private int endPage;
-
-    @Override
-    public String toString() {
-        return "PageDto{" +
-                "startNum=" + startNum +
-                ", pageCount=" + pageCount +
-                ", blockCount=" + blockCount +
-                ", page=" + page +
-                ", totalPage=" + totalPage +
-                ", startPage=" + startPage +
-                ", endPage=" + endPage +
-                '}';
-    }
+    private String configCode;
 
     public int getStartNum() {
         return startNum;
@@ -76,5 +64,27 @@ public class PageDto {
 
     public void setEndPage(int endPage) {
         this.endPage = endPage;
+    }
+
+    public String getConfigCode() {
+        return configCode;
+    }
+
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
+    }
+
+    @Override
+    public String toString() {
+        return "PageDto{" +
+                "startNum=" + startNum +
+                ", pageCount=" + pageCount +
+                ", blockCount=" + blockCount +
+                ", page=" + page +
+                ", totalPage=" + totalPage +
+                ", startPage=" + startPage +
+                ", endPage=" + endPage +
+                ", configCode='" + configCode + '\'' +
+                '}';
     }
 }

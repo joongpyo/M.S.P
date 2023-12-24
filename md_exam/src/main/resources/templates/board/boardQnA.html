@@ -36,7 +36,8 @@
 
             <div class="content-wrap">
                 <div class="form-container">
-                    <form action="/board/boardQnA" method="get" class="search-form">
+                    <form action="/board/board" method="get" class="search-form">
+                        <input type="hidden" name="configCode" th:value="${configCode}">
                         <span>총 게시물 : [[${total}]]건</span>
                         <div class="search-right">
                             <div class="sel-box">
@@ -66,24 +67,26 @@
                     </tr>
                     </thead>
                     <tbody class="qnaList">
-                        <tr th:each="qna, k: ${qna}">
+                        <tr th:each="board, k: ${board}">
                             <td>
                                 [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
                             </td>
                             <td>
-                                <th:block th:if="${qna.depth != null and qna.depth.intValue() > 1}">
-                                    <th:block th:each="seq: ${#numbers.sequence(2, qna.depth.intValue())}">
+                                <th:block th:if="${board.depth != null and board.depth.intValue() > 1}">
+                                    <th:block th:each="seq: ${#numbers.sequence(2, board.depth.intValue())}">
                                         <span>&nbsp;&nbsp;</span>
                                     </th:block>
-                                    <span>[답글완료][[${qna.depth}]]</span>
+                                    <span>[답글완료]</span>
                                 </th:block>
-                                <a th:href="@{/board/boardView?(id=${qna.id})}">[[${qna.subject}]]</a>
+                                <a th:href="@{/board/boardView(configCode=${configCode},id=${board.id})}" class="b-subject">
+                                    [[${board.subject}]] <span th:if="${board.commentCount > 0}">([[${board.commentCount}]])</span>
+                                </a>
                             </td>
-                            <td>[[${qna.writer}]]</td>
-                            <td>[[${qna.visit}]]</td>
-                            <td>[[${qna.reg}]]</td>
+                            <td>[[${board.writer}]]</td>
+                            <td>[[${board.visit}]]</td>
+                            <td>[[${board.reg}]]</td>
                             <!-- 12-22 jang -->
-                            <td th:if="${qna.isFiles eq 'Y'}">
+                            <td th:if="${board.isFiles eq 'Y'}">
                                 <span>YES</span>
                             </td>
                         </tr>
@@ -95,17 +98,17 @@
                         <a href="#" th:if="${page.page <= 1}">
                             <i class="fa-solid fa-caret-left"></i>
                         </a>
-                        <a th:href="@{/board/boardQnA?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
+                        <a th:href="@{/board/board?(configCode=${configCode},page=${page.page - 1})}" th:unless="${page.page <= 1}">
                             <i class="fa-solid fa-caret-left"></i>
                         </a>
                         <th:block th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
                             <th:block th:if="${page.page eq i}">
-                                <a  class="active" th:href="@{/board/boardQnA?(configCode=${configCode}, page=${i})}">
+                                <a  class="active" th:href="@{/board/board?(configCode=${configCode}, page=${i})}">
                                     [[${i}]]
                                 </a>
                             </th:block>
                             <th:block th:unless="${page.page eq i}">
-                                <a th:href="@{/board/boardQnA?(configCode=${configCode}, page=${i})}">
+                                <a th:href="@{/board/board?(configCode=${configCode}, page=${i})}">
                                     [[${i}]]
                                 </a>
                             </th:block>
@@ -113,15 +116,15 @@
                         <a href="#" th:if="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-caret-right"></i>
                         </a>
-                        <a th:href="@{/board/boardQnA?(page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
+                        <a th:href="@{/board/board?(configCode=${configCode},page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-angle-right"></i>
                         </a>
                     </div>
                     <div class="bottom-right">
-                        <a th:href="@{/board/boardQnA}">
+                        <a th:href="@{/board/board(configCode=${configCode})}">
                             <button type="button" class="btn">목록</button>
                         </a>
-                        <a th:href="@{/board/boardWrite}">
+                        <a th:href="@{/board/boardWrite(configCode=${configCode})}">
                             <button type="button" class="btn" onclick="return loginCheck()">글쓰기</button>
                         </a>
                     </div>

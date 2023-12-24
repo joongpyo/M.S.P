@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
             let subject = document.querySelector("input[name=subject]");
             let writer = document.querySelector("input[name=writer]");
             let uIdFk = document.querySelector("input[name=uIdFk]");
+            let configCode = document.querySelector("input[name=configCode]");
 
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+
                 if(subject.value == ""){
                     alert("게시물 제목을 입력하세요");
                     subject.focus();
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.append('content', editor.getData());
                 formData.append('writer', writer.value);
                 formData.append('uIdFk', uIdFk.value);
+                formData.append('configCode',configCode.value);
 
                 $.ajax({
                     type: "POST",
@@ -55,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     success: function (result) {
                         if (result.msg=="success"){
                             alert("등록되었습니다.");
-                            location.href = "/board/boardQnA";
+                            location.href = "/board/board?configCode="+result.configCode;
                         }
                     }
                 });
