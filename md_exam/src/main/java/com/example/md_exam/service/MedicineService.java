@@ -1,6 +1,5 @@
 package com.example.md_exam.service;
 
-import com.example.md_exam.dto.DiseaseDto;
 import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.dto.PageDto;

@@ -105,12 +105,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="comment">
-                        <input type="hidden" name="configCode" th:value="${configCode}">
-                        <input type="hidden" name="bIdFk" th:value="${board.id}">
-                        <input type="hidden" name="cWriter" th:value="${session.user.userId}">
+                    <div class="comment" th:if="${configCode eq 'QnA' or configCode eq 'Review'}">
                         <p class=""><strong>댓글</strong></p>
-
                         <div class="comment-write">
                             <div class="comment-msg">
                                 <textarea class="cComment" name="cComment" rows="4" cols="80"></textarea>
@@ -119,12 +115,12 @@
                                 <button type="button" class="cBtn">댓글작성</button>
                             </div>
                         </div>
-
-
                         <ul class="reg-comment-wrap">
-
                         </ul>
                     </div>
+                    <input type="hidden" name="configCode" th:value="${configCode}">
+                    <input type="hidden" name="bIdFk" th:value="${board.id}">
+                    <input type="hidden" name="cWriter" th:value="${session.user.userId}">
                 </div>
             </div>
         </div>
@@ -169,7 +165,6 @@
                                         <p class="reg-comment">${c.cComment}</p>
                                     </li>`;
                     } );
-
                     document.querySelector(".reg-comment-wrap").innerHTML = output;
                 }
             });
@@ -182,7 +177,6 @@
                 cWriter: cWriter.value,
                 configCode: configCode.value
             }
-
 
             $.ajax({
                 type: "get",
@@ -198,7 +192,6 @@
             });
         });
 
-
         function authCheck() {
 <!--            if(cWriter.value != "admin"){-->
 <!--                alert(cWriter.value + "권한이 없습니다. 관리자에게 문의하세요");-->
@@ -207,7 +200,6 @@
 <!--                alert(cWriter.value);-->
 <!--                location.href="/board/boardReply?id="+bIdFk.value;-->
 <!--            }-->
-
             location.href="/board/boardReply?configCode="+configCode.value+"&id="+bIdFk.value;
         }
 
@@ -217,9 +209,6 @@
             }
             return false;
         }
-
-
-
     </script>
 
 </body>

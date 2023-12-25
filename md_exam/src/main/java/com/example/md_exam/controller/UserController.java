@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -30,7 +30,6 @@ public class UserController {
         }else {
             referer = hsr.getHeader("Referer");
         }
-
         hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
@@ -49,18 +48,11 @@ public class UserController {
 
     @PostMapping("/login")
     public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra,HttpSession session, HttpServletRequest hsr){
-
         UserDto d = userService.setLogin(userDto);
-
-
-
         String prevPage = (String) session.getAttribute("prevPage");
-
-
         if(d != null){
             //세션 생성 - 로그아웃하기전까지 계속 로그인유지
             //getSession() -> 데이터 -> 시간
-
             HttpSession hs = hsr.getSession(); //세션 준비
             hs.setAttribute("user",d);
             hs.setMaxInactiveInterval(15*60);   //10분
@@ -73,7 +65,6 @@ public class UserController {
             }else {
                 return "redirect:/index";
             }
-
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");
             return "redirect:/user/login";
@@ -84,6 +75,15 @@ public class UserController {
         System.out.println("logout");
         hs.invalidate();
         return "redirect:/index";
+    }
+
+    @GetMapping("/checkLogin")
+    @ResponseBody
+    public Map<String,Object> checkLogin(HttpSession hs){
+
+        boolean isLogin = hs.getAttribute("user") != null;
+        System.out.println(isLogin);
+        return Map.of("isLogin",isLogin);
     }
 
 }

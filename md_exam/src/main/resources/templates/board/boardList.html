@@ -61,7 +61,8 @@
                 </div>
                 <div class="form-container">
                     <form action="" class="search-form">
-                        <span>총 100개의 게시물</span>
+                        <input type="hidden" name="configCode" th:value="${configCode}">
+                        <span>총 게시물 : [[${total}]]건</span>
                         <div class="search-right">
                             <div class="sel-box">
                                 <select name="" id="">
@@ -154,8 +155,8 @@
                         <a href="">
                             <button type="button" class="btn">목록</button>
                         </a>
-                        <a href="./boardWrite.html">
-                            <button type="button" class="btn">글쓰기</button>
+                        <a href="">
+                            <button type="button" class="btn" onclick="return loginCheck('write')">글쓰기</button>
                         </a>
                     </div>
                 </div>
@@ -164,7 +165,7 @@
     </div>
 </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-
+<script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
 </body>
 
 </html>

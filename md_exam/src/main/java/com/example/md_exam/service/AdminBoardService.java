@@ -2,7 +2,6 @@ package com.example.md_exam.service;
 
 import com.example.md_exam.dto.AdminBoardDto;
 import com.example.md_exam.dto.FileDto;
-import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.mapper.AdminBoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,6 @@ public class AdminBoardService {
         pageDto.setStartPage(startPage);
         pageDto.setEndPage(endPage);
         pageDto.setPage(page);
-
 
         return pageDto;
     }

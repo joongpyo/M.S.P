@@ -2,7 +2,6 @@ package com.example.md_exam.mapper;
 
 import com.example.md_exam.dto.AdminBoardDto;
 import com.example.md_exam.dto.FileDto;
-import com.example.md_exam.dto.MedicineDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;

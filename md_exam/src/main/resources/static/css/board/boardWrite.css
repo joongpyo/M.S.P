@@ -32,16 +32,16 @@
     margin-left: 10px;
 }
 
-.bg-letter p {
+.bg-letter p,
+.bg-letter p span {
     color: #fff;
     margin: auto;
-
     word-spacing: 3px;
     font-size: 16px;
 }
 
 .bg-letter span{
-    color: rgba(255,255,255,0.6);
+
 }
 
 .bg-letter i{

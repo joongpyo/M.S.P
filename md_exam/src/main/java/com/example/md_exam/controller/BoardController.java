@@ -121,7 +121,6 @@ public class BoardController {
             boardDto.setIsFiles("N");
             boardService.setBoard(configCode,boardDto);
         }
-
         map.put("msg","success");
         map.put("configCode",configCode);
 
@@ -156,8 +155,7 @@ public class BoardController {
     public Map<String, Object> setUpdate(@RequestParam String configCode,
                                          @RequestParam(name="files",required = false)List<MultipartFile> files,
                                          @ModelAttribute BoardDto boardDto) throws IOException {
-        //파일수정
-        //파일 있으면 파일 추가
+
         if (files != null){
             boardDto.setIsFiles("Y");
             boardService.setUpdate(configCode,boardDto);

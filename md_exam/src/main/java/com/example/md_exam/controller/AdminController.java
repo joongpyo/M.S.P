@@ -43,8 +43,8 @@ public class AdminController {
     String fileDir;
 
     @GetMapping("/admin") //
-    public String getAdmin(@RequestParam(value="current", defaultValue="1") String current, Model model) {
-        model.addAttribute("current", current);
+    public String getAdmin() {
+//        model.addAttribute("current", current);
         return "admin";
     }
     @GetMapping("/admin/userList")
@@ -93,7 +93,7 @@ public class AdminController {
     public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
         //model.addAttribute("notice",adminBoardService.getBoardList(page));
         //model.addAttribute("page",adminBoardService.PageInfo(page));
-       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        // model.addAttribute("total",adminBoardMapper.getBoardCount());
         return "admin/noticePage/noticeBoard";
     }
     @GetMapping("admin/qnaBoard")
@@ -107,7 +107,7 @@ public class AdminController {
     public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page){
         //model.addAttribute("review",adminBoardService.getBoardList(page));
         //model.addAttribute("page",adminBoardService.PageInfo(page));
-       // model.addAttribute("total",adminBoardMapper.getBoardCount());
+        // model.addAttribute("total",adminBoardMapper.getBoardCount());
         return "admin/noticePage/reviewBoard";
     }
     @GetMapping("admin/noticeInsert")
@@ -133,19 +133,19 @@ public class AdminController {
             FileDto fileDto = new FileDto();
 
             // 경로명  + UUID
-            String savedPathName = fileDir + folderName;
+            String savedPathFileName = fileDir + folderName;
             String orgName = file.getOriginalFilename(); //원본 이름 저장
             String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
             String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
             String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
 
-            file.transferTo(new File(savedPathName + "/" + savedFileName));
+            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
 
             fileDto.setBoard(board);
             fileDto.setId(fileId);
             fileDto.setOrgName(orgName);
             fileDto.setSavedFileName(savedFileName);
-            fileDto.setSavedPathName(savedPathName);
+            fileDto.setSavedPathName(savedPathFileName);
             fileDto.setFolderName(folderName);
             fileDto.setExt(ext);
             adminBoardService.setFile(fileDto);
@@ -190,18 +190,18 @@ public class AdminController {
             FileDto fileDto = new FileDto();
 
             // 경로명  + UUID
-            String savedPathName = fileDir + folderName;
+            String savedPathFileName = fileDir + folderName;
             String orgName = file.getOriginalFilename(); //원본 이름 저장
             String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
             String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
             String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
 
-            file.transferTo(new File(savedPathName + "/" + savedFileName));
+            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
 
             fileDto.setId(fileId);
             fileDto.setOrgName(orgName);
             fileDto.setSavedFileName(savedFileName);
-            fileDto.setSavedPathName(savedPathName);
+            fileDto.setSavedPathName(savedPathFileName);
             fileDto.setFolderName(folderName);
             fileDto.setExt(ext);
 

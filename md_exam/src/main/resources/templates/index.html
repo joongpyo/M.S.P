@@ -161,83 +161,53 @@
             <section class="two">                
                 <div class="two-container">
                     <div class="two-notice">
-
                             <div class="two-title">
-
                                     <h2>공지사항</h2>
                             </div>
-
-
-                        <div class="table-wrap">                    
+                        <div class="table-wrap">
                             <table class="table-box">                        
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="Notice, k: ${Notice}" th:limit="5">
                                         <td>·</td>
-                                        <td><span><i class="fa-solid fa-star"></i>편의점에서 처방전 없이 구매할 수 있는 상비약 일람<i class="fa-solid fa-star"></i></span> </td>
-                                        <td>2023.10.06</td>
+                                        <td><span><i class="fa-solid fa-star"></i>
+                                            [[${Notice.subject}]]
+                                            <i class="fa-solid fa-star"></i></span> </td>
+                                        <td>[[${Notice.reg}]]</td>
                                     </tr>
+
+                                </tbody>
+                                <tfoot>
                                     <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트4</b> </td>
-                                        <td>2023.10.06</td>
+                                        <td>
+                                            <a th:href="@{/board/board(configCode=${noticeCode})}">더보기..</a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트3</b> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>                                
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트2</b> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트1</b> </td>
-                                        <td>2023.10.06</td>                                
-                                    </tr>
-                                </tbody>                    
+                                </tfoot>
                             </table>
                         </div> 
                     </div>
-                                            
                     <div class="two-QnA">
                         <div class="two-title">
-
                                 <h2>Q n A</h2>
-
                         </div>
-
-
-                        <div class="table-wrap">                    
+                        <div class="table-wrap">
                             <table class="table-box">                        
                                 <tbody>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><span><i class="fa-solid fa-star"></i>편의점에서 처방전 없이 구매할 수 있는 상비약 일람<i class="fa-solid fa-star"></i></span> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트4</b> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트3</b> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>                                
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트2</b> </td>
-                                        <td>2023.10.06</td>
-                                    </tr>
-                                    <tr>
-                                        <td>·</td>
-                                        <td><b>편의점 상비약 업데이트1</b> </td>
-                                        <td>2023.10.06</td>                                
-                                    </tr>
-                                </tbody>                    
+                                <tr th:each="QnA, k: ${QnA}" th:limit="5">
+                                    <td>·</td>
+                                    <td><span><i class="fa-solid fa-star"></i>
+                                        [[${QnA.subject}]]
+                                        <i class="fa-solid fa-star"></i></span> </td>
+                                    <td>[[${QnA.reg}]]</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td>
+                                        <a th:href="@{/board/board(configCode=${qnaCode})}">더보기..</a>
+                                    </td>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div> 
                     </div>

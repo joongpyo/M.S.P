@@ -1,7 +1,6 @@
 package com.example.md_exam.mapper;
 
 import com.example.md_exam.dto.DiseaseDto;
-import com.example.md_exam.dto.UserDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
