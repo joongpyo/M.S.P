@@ -10,6 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/index.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -158,68 +159,61 @@
                 <hr>
             </div>
 
-            <section class="two">                
+            <section class="two">
                 <div class="two-container">
-                    <div class="two-notice">
+                    <div class="two-board">
+                        <div class="two-title-wrap">
                             <div class="two-title">
-                                    <h2>공지사항</h2>
+                                <h2><span><i class="fa-solid fa-map-pin"></i></span> 공지사항</h2>
+                                <h2> <a th:href="@{/board/board(configCode=${noticeCode})}">더보기..</a></h2>
                             </div>
-                        <div class="table-wrap">
-                            <table class="table-box">                        
-                                <tbody>
-                                    <tr th:each="Notice, k: ${Notice}" th:limit="5">
-                                        <td>·</td>
-                                        <td><span><i class="fa-solid fa-star"></i>
-                                            [[${Notice.subject}]]
-                                            <i class="fa-solid fa-star"></i></span> </td>
-                                        <td>[[${Notice.reg}]]</td>
-                                    </tr>
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td>
-                                            <a th:href="@{/board/board(configCode=${noticeCode})}">더보기..</a>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div> 
-                    </div>
-                    <div class="two-QnA">
-                        <div class="two-title">
-                                <h2>Q n A</h2>
                         </div>
                         <div class="table-wrap">
+                            <table class="table-box">
+                                <tbody>
+                                    <tr th:each="Notice, k: ${Notice}" th:limit="5">
+                                        <td>
+                                            <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${Notice.id}+',\'Notice\', event)'">
+                                                <strong>· [[${Notice.subject}]]</strong>
+                                            </a>
+                                        </td>
+                                        <td>[[${Notice.reg}]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="two-board">
+                        <div class="two-title-wrap">
+                            <div class="two-title QnA">
+                                <h2><span><i class="fa-solid fa-map-pin"></i></span> Q n A</h2>
+                                <h2><a th:href="@{/board/board(configCode=${qnaCode})}">더보기..</a></h2>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
                             <table class="table-box">                        
                                 <tbody>
-                                <tr th:each="QnA, k: ${QnA}" th:limit="5">
-                                    <td>·</td>
-                                    <td><span><i class="fa-solid fa-star"></i>
-                                        [[${QnA.subject}]]
-                                        <i class="fa-solid fa-star"></i></span> </td>
-                                    <td>[[${QnA.reg}]]</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
+                                <tr th:each="QnA, k: ${QnA}">
                                     <td>
-                                        <a th:href="@{/board/board(configCode=${qnaCode})}">더보기..</a>
+                                        <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${QnA.id}+', \'QnA\', event)'">
+                                            <strong>· [[${QnA.subject}]]</strong>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        [[${QnA.reg}]]
                                     </td>
                                 </tr>
-                                </tfoot>
+                                </tbody>
                             </table>
                         </div> 
                     </div>
                 </div>                                                                               
             </section>
     </main>
-
-
     <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-
-
-
+    <script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ public class BoardDto {
     private String isFiles;
     private int commentCount;
     private String configCode;
+    private int boardType;
 
     public int getId() {
         return id;
@@ -121,6 +122,14 @@ public class BoardDto {
         this.configCode = configCode;
     }
 
+    public int getBoardType() {
+        return boardType;
+    }
+
+    public void setBoardType(int boardType) {
+        this.boardType = boardType;
+    }
+
     @Override
     public String toString() {
         return "BoardDto{" +
@@ -137,6 +146,7 @@ public class BoardDto {
                 ", isFiles='" + isFiles + '\'' +
                 ", commentCount=" + commentCount +
                 ", configCode='" + configCode + '\'' +
+                ", boardType=" + boardType +
                 '}';
     }
 }

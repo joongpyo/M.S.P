@@ -80,65 +80,37 @@
                 </div>
                 <table>
                     <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>조회수</th>
-                        <th>작성날짜</th>
+                        <th>사진</th>
+                        <th>제품명</th>
+                        <th>질병</th>
+                        <th>효능</th>
+                        <th>회사명</th>
+                        <th>제형</th>
+                        <th>
+                            편의점<br>
+                            판매유무
+                        </th>
+                        <th>연령대</th>
+                        <th>
+                            임산부<br>
+                            복용여부
+                        </th>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
+                    <tr th:each="medicine,k: ${medicine}">
+                        <td th:each="files,k: ${files}">
+                            <th:block th:if="medicine[k].id == files[k].id"></th:block>
+                            <img th:src="">
                         </td>
-                        <td>koreait</td>
-                        <td>23</td>
-                        <td>23-12-01</td>
+                        <td>제품명</td>
+                        <td>질병</td>
+                        <td>효능</td>
+                        <td>회사명</td>
+                        <td>약의제형</td>
+                        <td>편의점</td>
+                        <td>연령대</td>
+                        <td>임산부</td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
-                        </td>
-                        <td>koreait</td>
-                        <td>23</td>
-                        <td>23-12-01</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
-                        </td>
-                        <td>koreait</td>
-                        <td>23</td>
-                        <td>23-12-01</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
-                        </td>
-                        <td>koreait</td>
-                        <td>23</td>
-                        <td>23-12-01</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="./boardView.html">공지사항 게시판입니다.</a>
-                        </td>
-                        <td>koreait</td>
-                        <td>23</td>
-                        <td>23-12-01</td>
-                    </tr>
-
-
-
                 </table>
-
                 <div class="bottom">
                     <div class="bottom-center">
                         <a href="">
@@ -154,9 +126,6 @@
                     <div class="bottom-right">
                         <a href="">
                             <button type="button" class="btn">목록</button>
-                        </a>
-                        <a href="">
-                            <button type="button" class="btn" onclick="return loginCheck('write')">글쓰기</button>
                         </a>
                     </div>
                 </div>

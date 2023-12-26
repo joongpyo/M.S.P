@@ -32,6 +32,7 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
+board_type int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
@@ -69,6 +70,7 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
+board_type int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
@@ -106,6 +108,7 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
+board_type int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
@@ -143,6 +146,7 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
+board_type int not null,
 u_id_fk int not null,
 foreign key(u_id_fk) REFERENCES user(u_id),
 primary key(id)
@@ -167,3 +171,27 @@ b_id_fk int not null,
 foreign key(b_id_fk) references board_List(id),
 primary key(c_id)
 );
+
+create table medicine(
+med_id int not null auto_increment,
+med_name varchar(30) not null,
+med_dis varchar(50) not null,
+med_eff text not null,
+med_type varchar(10) not null,
+med_store char(1) default 'Y' not null,
+med_com varchar(20) not null,
+med_age char(1) not null,
+med_pregnant char(1) default 'N',
+med_reg date not null,
+is_files char(1) not null,
+primary key(med_id)
+);
+
+create table disease(
+dis_id int not null auto_increment,
+dis_name varchar(20) not null,
+dis_sym varchar(255) not null,
+dis_reg date not null,
+primary key(dis_id)
+);
+

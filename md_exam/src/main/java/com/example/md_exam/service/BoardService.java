@@ -2,6 +2,7 @@ package com.example.md_exam.service;
 
 import com.example.md_exam.dto.BoardDto;
 import com.example.md_exam.dto.FileDto;
+import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.mapper.BoardMapper;
 import com.example.md_exam.mapper.CommentMapper;
@@ -74,6 +75,7 @@ public class BoardService {
         return boardMapper.getGrpMaxCnt(configCode);
     }
     public void setBoard(String configCode,BoardDto boardDto) {
+
         boardDto.setConfigCode(configCode);
         boardMapper.setBoard(boardDto);
     }
@@ -177,5 +179,13 @@ public class BoardService {
         boardDto.setConfigCode(configCode);
         boardMapper.setUpdate(boardDto);
     }
+
+    public List<MedicineDto> getMed(){
+        return boardMapper.getMed();
+    }
+    public List<FileDto> getMedFiles(){
+        return boardMapper.getMedFiles();
+    }
+
 
 }

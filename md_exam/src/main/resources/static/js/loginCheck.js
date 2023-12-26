@@ -1,6 +1,9 @@
- function loginCheck(action,boardId,e){
+ function loginCheck(action,boardId,configCode,e){
         e.preventDefault();
-        let configCode = document.querySelector("input[name=configCode]").value;
+
+        if(configCode == ""){
+            configCode = document.querySelector("input[name=configCode]").value;
+        }
 
         $.ajax({
             type:'GET',

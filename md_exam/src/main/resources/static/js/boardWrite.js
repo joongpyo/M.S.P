@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let uIdFk = document.querySelector("input[name=uIdFk]");
             let configCode = document.querySelector("input[name=configCode]");
 
+
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
 
@@ -30,17 +31,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     return false;
                 }
 
-
                 let formData = new FormData();
-                let uploadData = document.querySelector("#upload-form input[name='files']").files;
+                if (document.querySelector("#upload-form input[name='files']") != null){
+                    let uploadData = document.querySelector("#upload-form input[name='files']").files;
 
-                if(uploadData != null && uploadData.length > 0){
-                    for (let i = 0; i < uploadData.length; i++) {
-                        formData.append("files", uploadData[i]);
+                    if(uploadData != null && uploadData.length > 0){
+                        for (let i = 0; i < uploadData.length; i++) {
+                            formData.append("files", uploadData[i]);
+                        }
+                    }else{
+                        formData.append("files", "");
+                        console.log("첨부파일 X")
                     }
-                }else{
-                    formData.append("files", "");
-                    console.log("첨부파일 X")
                 }
 
                 formData.append('subject', subject.value);
@@ -48,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.append('writer', writer.value);
                 formData.append('uIdFk', uIdFk.value);
                 formData.append('configCode',configCode.value);
+
+
 
                 $.ajax({
                     type: "POST",

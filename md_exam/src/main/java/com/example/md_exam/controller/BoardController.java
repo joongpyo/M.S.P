@@ -1,8 +1,11 @@
 package com.example.md_exam.controller;
 
 import com.example.md_exam.dto.BoardDto;
+import com.example.md_exam.dto.FileDto;
+import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.mapper.BoardMapper;
 import com.example.md_exam.service.BoardService;
+import com.example.md_exam.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +29,8 @@ public class BoardController {
     BoardService boardService;
     @Autowired
     BoardMapper boardMapper;
+    @Autowired
+    MedicineService medicineService;
 
     //231223 board코드 추가 jang
     //게시판 목록가져올때
@@ -52,14 +58,12 @@ public class BoardController {
             case "Review":
                 board = "board/boardReview";
                 break;
-            case "List":
-                board = "board/boardList";
-                break;
             default:
                 board = "index";
                 break;
         }
         return board;
+
     }
 
     ////////////////////게시판 콜/////////////////////////////////
@@ -104,6 +108,7 @@ public class BoardController {
                                              @RequestParam String configCode,
                                              @ModelAttribute BoardDto boardDto) throws IOException {
 
+        boardDto.setBoardType(2);
         Map<String,Object> map = new HashMap<>();
         int grp = boardService.getGrpMaxCnt(configCode);
         boardDto.setGrp(grp);
@@ -114,6 +119,7 @@ public class BoardController {
         if (files != null){
             boardDto.setIsFiles("Y");
             boardService.setBoard(configCode,boardDto);
+
             int fileID = boardDto.getId();
             boardService.setFiles(configCode,files,fileID);
             //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
@@ -123,7 +129,6 @@ public class BoardController {
         }
         map.put("msg","success");
         map.put("configCode",configCode);
-
         return map;
     }
 
@@ -156,6 +161,7 @@ public class BoardController {
                                          @RequestParam(name="files",required = false)List<MultipartFile> files,
                                          @ModelAttribute BoardDto boardDto) throws IOException {
 
+        BoardDto bd = boardService.getView(configCode,boardDto.getId());
         if (files != null){
             boardDto.setIsFiles("Y");
             boardService.setUpdate(configCode,boardDto);
@@ -163,7 +169,7 @@ public class BoardController {
             int fileID = boardDto.getId();
             boardService.setFiles(configCode,files,fileID);
             //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
-        }else if (boardDto.getIsFiles().equals("N")){
+        }else if (bd.getIsFiles().equals("N")){
             boardDto.setIsFiles("N");
             boardService.setUpdate(configCode,boardDto);
         }else {
@@ -196,16 +202,14 @@ public class BoardController {
                                         @ModelAttribute BoardDto boardDto) throws IOException {
 
         BoardDto parentBd = boardService.getView(configCode,boardId);
-
-        System.out.println("답글(boardDto) : "+boardDto);
-        System.out.println("원본 글(parentQd) : "+parentBd);
         parentBd.setConfigCode(configCode);
 
         boardMapper.setReplyUpdate(parentBd);
         boardDto.setGrp(parentBd.getGrp());
         boardDto.setSeq(parentBd.getSeq()+1);
         boardDto.setDepth(parentBd.getDepth()+1);
-
+        boardDto.setBoardType(2);
+        System.out.println(boardDto);
 
         if (files != null){
             boardDto.setIsFiles("Y");
@@ -223,7 +227,17 @@ public class BoardController {
         map.put("configCode",configCode);
 
         return map;
-
     }
+
+    @GetMapping("/boardList")
+    public String getList(){
+        List<MedicineDto> medicine = boardService.getMed();
+        List<FileDto> files = boardService.getMedFiles();
+
+
+
+        return "board/boardList";
+    }
+
 
 }
