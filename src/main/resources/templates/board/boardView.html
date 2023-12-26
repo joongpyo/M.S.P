@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.S.P | 게시판 > 게시물 상세보기</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/board/boardView.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+<div class="board-bg">
+    <div class="board-bg-wrap">
+        <div class="board-bg-content">
+            <div class="bg-letter">
+                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> 공지사항  <span><i class="fa-solid fa-angle-right"></i></span> 게시글 상세보기</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+        <div class="main-container">
+            <div class="section-container">
+                <div class="sub-title">
+                    <h1>공지사항</h1>
+                </div>
+
+
+                <div class="content-wrap">
+                    <div class="subject">
+                        <div class="subject-title">
+                            <h2>[[${board.subject}]]</h2>
+                        </div>
+
+                        <div class="board-info">
+                            <p>
+                                작성자 : <span class="writer">[[${board.writer}]]</span>
+                                댓글수 : <span class="comment-cnt">1</span>
+                                조회수 : <span class="visit">[[${board.visit}]]</span>
+                                작성일 : <span class="reg-date">
+                                            <th:block>[[${#temporals.format(board.reg,'yy.MM.dd')}]]</th:block>
+                                        </span>
+                            </p>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="content">
+                        <div id="text-box" class="text-box">
+                            <input type="hidden" id="content" th:value="${board.content}">
+
+
+                        </div>
+                    </div>
+
+                    <hr>
+                    <h5>첨부파일</h5>
+                    <div class = "filebox-wrap" th:if="${ !files.isEmpty() }">
+
+                        <div class = "filebox" th:each="file : ${files}">
+
+                            <th:block th:if="${file.ext eq '.jpg' OR file.ext eq '.png'}">
+                                <div class="img-box">
+                                    <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                                    <p class="img-btn">
+                                        <a th:href="@{/board/download?(configCode=${configCode}, savedFileName=${file.savedFileName})}">
+                                            <p>[[${file.savedFileSize/1000}]]byte<button class="btn">다운로드</button></p>
+                                        </a>
+                                    </p>
+                                </div>
+                            </th:block>
+
+                            <th:block th:unless="${file.ext eq '.jpg' OR file.ext eq '.png'}">
+                                [[${file.orgName}]]
+                                <a th:href="@{/board/download?(configCode=${configCode}, savedFileName=${file.savedFileName})}">
+                                    <p>[[${file.savedFileSize/1000}]]byte<button class="btn">다운로드</button></p>
+                                </a>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="file-box" th:unless="${ !files.isEmpty() }">
+                        <p>첨부파일이 없습니다.</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="bottom">
+                        <div class="bottom-left">
+                            <a th:href="@{/board/boardQnA}">
+                                <button type="button" class="btn">목록</button>
+                            </a>
+                            <a href="#">
+                                <button type="button" class="btn" th:onclick="return authCheck()" >답글</button>
+                            </a>
+                        </div>
+
+                        <div class="bottom-right">
+                            <a th:href=@{/board/qnaUpdate(id=${board.id})}>
+                                <button type="button" class="btn">수정</button>
+                            </a>
+                            <a th:href="@{/board/qnaDelete?(id=${board.id})}">
+                                <button type="button" class="btn" onclick="return delCheck()">삭제</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <input type="hidden" name="bId" th:value="${board.id}">
+                        <input type="hidden" name="cWriter" th:value="${session.user.userId}">
+                        <p class=""><strong>댓글</strong></p>
+
+                        <div class="comment-write">
+                            <div class="comment-msg">
+                                <textarea class="cComment" name="cComment" rows="4" cols="80"></textarea>
+                            </div>
+                            <div class="comment-btn">
+                                <button type="button" class="cBtn">댓글작성</button>
+                            </div>
+                        </div>
+
+
+                        <ul class="reg-comment-wrap">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+    <script>
+        //태그 포함된 content를 HTML
+        //let content = /*[[${#strings.escapeJavaScript(board.content)}]]*/ '';
+        let content = document.querySelector("#content").value;
+
+        document.querySelector(".text-box").innerHTML = content;
+
+        let bId = document.querySelector("input[name=bId]");
+        let cWriter = document.querySelector("input[name=cWriter]");
+        let cComment = document.querySelector("textarea[name=cComment]");
+        let cBtn = document.querySelector(".cBtn");
+
+        $(function(){
+             let obj = {
+                bId: bId.value
+             }
+            console.log(obj);
+
+             $.ajax({
+                type: "get",
+                url: "/comment/commentList",
+                dataType: "json",
+                data: obj,
+                success: function(res) {
+                    let output = "";
+                    res.cList.forEach( (c)=> {
+                        let serverDate = new Date(c.cRegdate);
+
+                        // 날짜를 원하는 형식으로 변환
+                        let formattedDate = serverDate.toLocaleString('ko-KR', { year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false  });
+
+                        //` 백키 사용
+                        output += ` <li>
+                                        <div class="comment-info">
+                                            <div class="reg-writer">${c.cWriter}</div>
+                                            <div class="reg-time">${formattedDate}</div>
+                                        </div>
+                                        <p class="reg-comment">${c.cComment}</p>
+                                    </li>`;
+                    } );
+
+                    document.querySelector(".reg-comment-wrap").innerHTML = output;
+                }
+            });
+        })
+
+        cBtn.addEventListener('click', function(){
+             let obj = {
+                bId: bId.value,
+                cComment: cComment.value,
+                cWriter: cWriter.value
+            }
+
+            console.log(obj);
+
+
+            $.ajax({
+                type: "get",
+                url: "/comment/commentWrite",
+                dataType: "json",
+                data: obj,
+                success: function(res) {
+                    if(res.msg == "success") {
+                        alert("댓글이 등록되었습니다.");
+                        location.reload();
+                    }
+                }
+            });
+        });
+
+
+        function authCheck() {
+            if(cWriter.value != "admin"){
+                alert(cWriter.value + "권한이 없습니다. 관리자에게 문의하세요");
+                return false;
+            }else{
+                alert(cWriter.value);
+                location.href="/board/boardReply?id="+bId;
+            }
+        }
+
+        function delCheck() {
+            if(confirm("게시물을 삭제하시겠습니까?\n복구 할 수 없습니다. ")){
+                return true;
+            }
+            return false;
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

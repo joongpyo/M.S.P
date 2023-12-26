@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.S.P | 나에게 맞는 약 찾기 > 찾기 결과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/matching/match_result.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+
+<div class="bg">
+    <div class="bg-wrap">
+        <div class="result-container">
+            <div class="result-title">
+                <h1>당신에게 맞는 약은...</h1>
+            </div>
+            <div class="result-content">
+
+                <div class=result-wrap>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>약명</th>
+                            <th>병명</th>
+                            <th>효능</th>
+                            <th>약의 제형</th>
+                            <th>제약 회사</th>
+                            <th>편의점 유무</th>
+                            <th>비고</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <th:block th:if="${searchResults != null}">
+                            <th:block th:each="med, k : ${searchResults}" >
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            <a href="">[[${med.medName}]]</a>
+                                        </strong>
+                                    </td>
+                                    <td>[[${med.medDis}]]</td>
+                                    <td style="text-align:left; margin-left:15px;">[[${med.medEff}]]</td>
+                                    <td>[[${med.medType}]]</td>
+                                    <td>[[${med.medCom}]]</td>
+                                    <td>[[${med.medStore}]]</td>
+                                    <td>
+                                        <button type="button" class="res-btn">약 정보 저장</button>
+                                    </td>
+                                </tr>
+                                <input type="hidden" name="medId" th:value="${medId}">
+                            </th:block>
+
+                        </th:block>
+
+
+
+
+                        <th:block th:unless="${searchResults != null}">
+                            <th:block th:each="med, k : ${searchResults}" >
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            <a href="">X</a>
+                                        </strong>
+                                    </td>
+                                    <td>[[${med.medDis}]]</td>
+                                    <td style="text-align:left; margin-left:15px;">[[${med.medEff}]]</td>
+                                    <td>[[${med.medType}]]</td>
+                                    <td>[[${med.medCom}]]</td>
+                                    <td>[[${med.medStore}]]</td>
+                                    <td>
+                                        <button type="button" class="res-btn">약 정보 저장</button>
+                                    </td>
+                                </tr>
+                                <input type="hidden" name="medId" th:value="${medId}">
+                            </th:block>
+                        </th:block>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<main>
+
+    <div class="one-hr">
+        <hr>
+    </div>
+
+    <section class="one">
+        <div class="one-container">
+            <div class="disease-title">
+                <h2>빠른 찾기</h2>
+                <p>하단의 아이콘을 클릭하여 병명으로 쉽고 빠르게 약을 검색할 수 있습니다.</p>
+            </div>
+            <div class="disease-content">
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
+                    </div>
+                    <span>감기</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
+                    </div>
+                    <span>소화불량</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
+                    </div>
+                    <span>생리통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                    </div>
+                    <span>알레르기(비염)</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
+                    </div>
+                    <span>편두통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
+                    </div>
+                    <span>설사</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
+                    </div>
+                    <span>인후통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
+                    </div>
+                    <span>멀미</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
+                    </div>
+                    <span>근육통</span>
+                </div>
+                <div class="disease-box">
+                    <div class="disease-pic">
+                        <a href=""><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
+                    </div>
+                    <span>몸살</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+</main>
+
+
+<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+
+<script>
+    let btn = document.querySelector(".btn").addEventListener('click',(e)=>{
+        e.preventDefault();
+       var pregnant = document.getElementsByName("pregnant");
+       var pregnantValue;
+       var drugtype = document.getElementsByName("drugtype");
+       var drugtypeValue;
+
+
+
+
+       //라디오 버튼 값
+       for(var i=0; i < pregnant.length; i++) {
+        if(pregnant[i].checked == true) {
+            pregnantValue = pregnant[i].value
+      }
+    }
+       for(var i=0; i < drugtype.length; i++) {
+        if(drugtype[i].checked == true) {
+            drugtypeValue = drugtype[i].value
+      }
+    }
+
+    //셀렉트박스 값
+       var disease = document.getElementById("disease").value;
+       var age = document.getElementById("age").value;
+
+<!--       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);-->
+
+         let obj = {
+                    medPregnant: pregnantValue,
+                    medAge: age,
+                    medDis: disease,
+                    medType: drugtypeValue
+                }
+
+
+        $.ajax({
+                type: "post",
+                url: "/matching/matching",
+                dataType: "json",
+                data: obj,
+                success: function(res) {
+                    if(res.msg == "success"){
+                        location.href = "/matching/match_result?";
+                    }
+
+                }
+         });
+
+
+
+
+});
+</script>
+</body>
+
+</html>

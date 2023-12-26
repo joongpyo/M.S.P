@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.S.P - Medicine Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+
+<body>
+
+    <div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+
+    <div class="bg">
+        <div class="bg-wrap">
+            <div class="bg-content">
+                <h1 class="content-title">지금 나에게 필요한 약은<br>
+                    <hr>
+                    무엇일까요?
+                </h1>
+                <p class="content-p">
+                    갑작스레 찾아온 통증에 당황하셨나요?<br>
+                    여기 나에게 맞는 약 찾기를 시작하시면 임신 여부, 연령대, 병명, 약의 제형에 따라 상황에 알맞게 약을 추천해드립니다.
+                </p>
+
+                <p class="content-p">
+                    하단의 '나에게 맞는 약 찾기' 버튼을 따라 순서대로 질문에 답을 하다 보면,<br>
+                    나에게 적합한 약을 찾는데 도움이 되실 겁니다.
+                </p>
+
+                <div class="btn-wrap">
+                    <a th:href="@{/matching/matching}"><button class="btn">나에게 맞는 약 찾기</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="one-hr">
+        <hr>
+    </div>
+
+    <main>
+         <section class="adv">
+                <div class="adv-container">
+                    <div class="adv-title">
+                        <h1>사이트 소개</h1>
+                        <p>약, 빠르고 간편하게, <span>M.S.P</span></p>                        
+                    </div>
+                    <div class="adv-content">
+                        <div class="adv-box">
+                            <div class="adv-pic"><img th:src="@{/images/sangdam2.jpg}" alt=""></div>
+                            <div class="adv-subtitle">
+                                <h2>상황에 맞는 약 추천</h2>
+                                <p>연령대, 성별, 통증별로 구분하여 <br>쉽고 빠르게 약을 추천받을 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="adv-box">
+                            <div class="adv-pic"><img th:src="@{/images/onemedicine.jpg}" alt=""></div>
+                            <div class="adv-subtitle">
+                                <h2>내가 찾아본 약 열람</h2>
+                                <p>본인이 추천받은 약의 정보를 <br>마이페이지에서 다시 확인할 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="adv-box">
+                            <div class="adv-pic"><img th:src="@{/images/phonedoc.jpg}" alt=""></div>
+                            <div class="adv-subtitle">
+                                <h2>일반의약품을 추천</h2>
+                                <p>편의점, 약국에서 구매에 용이하도록<br>처방전이 필요없는 일반의약품을 추천하고 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="one-hr">
+                <hr>
+            </div>
+
+            <section class="one">                
+                <div class="one-container">
+                    <div class="disease-title">
+                        <h2>빠른 찾기</h2>
+                        <p>하단의 아이콘을 클릭하여 병명으로 쉽고 빠르게 약을 검색할 수 있습니다.</p>
+                    </div>
+                   <div class="disease-content">
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
+                            </div>           
+                            <span>감기</span>
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
+                            </div>
+                            <span>소화불량</span>  
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
+                            </div>  
+                            <span>생리통</span>
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                            </div> 
+                            <span>알레르기(비염)</span> 
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
+                            </div>  
+                            <span>편두통</span>
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
+                            </div>           
+                            <span>설사</span>
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
+                            </div>
+                            <span>인후통</span>  
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
+                            </div>  
+                            <span>멀미</span>
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
+                            </div> 
+                            <span>근육통</span> 
+                        </div>
+                        <div class="disease-box">                            
+                            <div class="disease-pic">
+                                <a href=""><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
+                            </div>  
+                            <span>몸살</span>
+                        </div>
+                   </div>                                
+                </div>
+            </section>
+
+            <div class="two-hr">
+                <hr>
+            </div>
+
+            <section class="two">                
+                <div class="two-container">
+                    <div class="two-notice">
+
+                            <div class="two-title">
+
+                                    <h2>공지사항</h2>
+                            </div>
+
+
+                        <div class="table-wrap">                    
+                            <table class="table-box">                        
+                                <tbody>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><span><i class="fa-solid fa-star"></i>편의점에서 처방전 없이 구매할 수 있는 상비약 일람<i class="fa-solid fa-star"></i></span> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트4</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트3</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>                                
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트2</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트1</b> </td>
+                                        <td>2023.10.06</td>                                
+                                    </tr>
+                                </tbody>                    
+                            </table>
+                        </div> 
+                    </div>
+                                            
+                    <div class="two-QnA">
+                        <div class="two-title">
+
+                                <h2>Q n A</h2>
+
+                        </div>
+
+
+                        <div class="table-wrap">                    
+                            <table class="table-box">                        
+                                <tbody>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><span><i class="fa-solid fa-star"></i>편의점에서 처방전 없이 구매할 수 있는 상비약 일람<i class="fa-solid fa-star"></i></span> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트4</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트3</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>                                
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트2</b> </td>
+                                        <td>2023.10.06</td>
+                                    </tr>
+                                    <tr>
+                                        <td>·</td>
+                                        <td><b>편의점 상비약 업데이트1</b> </td>
+                                        <td>2023.10.06</td>                                
+                                    </tr>
+                                </tbody>                    
+                            </table>
+                        </div> 
+                    </div>
+                </div>                                                                               
+            </section>
+    </main>
+
+
+    <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+
+
+</body>
+
+</html>
