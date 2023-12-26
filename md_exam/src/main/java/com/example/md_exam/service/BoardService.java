@@ -33,7 +33,6 @@ public class BoardService {
         String searchQuery = getSearch(searchType,search);
 
         Map<String,Object> map = new HashMap<>();
-
         map.put("configCode",configCode);
         map.put("startNum", pd.getStartNum());
         map.put("offset", pd.getPageCount());

@@ -1,5 +1,6 @@
 package com.example.md_exam.mapper;
 
+
 import com.example.md_exam.dto.AdminBoardDto;
 import com.example.md_exam.dto.FileDto;
 import org.apache.ibatis.annotations.Insert;
@@ -12,16 +13,17 @@ import java.util.Map;
 
 @Mapper
 public interface AdminBoardMapper {
-    @Insert("INSERT INTO ${board} VALUES(NULL, #{subject}, #{writer}, #{content}, 1, now(),1,1,1,#{isFiles},1)")
+    @Insert("INSERT INTO board_${configCode} VALUES(NULL, #{subject}, #{writer}, #{content}, 0, now(),1,1,1,#{isFiles},0,1,1)")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     public void setAdminBoard(AdminBoardDto adminBoardDto);
-    @Insert("INSERT INTO ${board}_files VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathFileName}, #{savedFileSize}, #{folderName}, #{ext})")
+    @Insert("INSERT INTO files_${configCode} VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(FileDto fileDto);
 
-    //게시판 List view
-    @Select("SELECT * FROM ${board} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    //Notice view
+    @Select("SELECT * FROM board_${configCode} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
     public List<AdminBoardDto> getBoardList(Map<String, Object> map);
-    @Select("SELECT COUNT(*) FROM ${board}")
-    public int getBoardCount(String board);
+    @Select("SELECT COUNT(*) FROM board_${configCode}")
+    public int getBoardCount(String configCode);
+
 }
 

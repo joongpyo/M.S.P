@@ -4,6 +4,7 @@ import com.example.md_exam.dto.BoardDto;
 import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.MedicineDto;
 import com.example.md_exam.mapper.BoardMapper;
+import com.example.md_exam.mapper.MedicineMapper;
 import com.example.md_exam.service.BoardService;
 import com.example.md_exam.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class BoardController {
     BoardMapper boardMapper;
     @Autowired
     MedicineService medicineService;
+    @Autowired
+    MedicineMapper medicineMapper;
 
     //231223 board코드 추가 jang
     //게시판 목록가져올때
@@ -41,10 +44,17 @@ public class BoardController {
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
-        model.addAttribute("board",boardService.getBoard(configCode,page,searchType,search));
-        model.addAttribute("page",boardService.PageInfo(configCode,page, searchType, search));
-        model.addAttribute("total",boardService.getBoardCount(configCode,searchType,search));
-        model.addAttribute("configCode",configCode);
+        if(configCode.equals("List")){
+            model.addAttribute("files",medicineService.getFilesAll());
+            model.addAttribute("medicines",medicineService.getMedList(page,searchType,search));
+            model.addAttribute("page",medicineService.PageInfo(page, searchType, search));
+            model.addAttribute("total",medicineMapper.getMedCount(medicineService.getMedSearch(searchType,search)));
+        }else{
+            model.addAttribute("board",boardService.getBoard(configCode,page,searchType,search));
+            model.addAttribute("page",boardService.PageInfo(configCode,page, searchType, search));
+            model.addAttribute("total",boardService.getBoardCount(configCode,searchType,search));
+            model.addAttribute("configCode",configCode);
+        }
 
         //반복문 or switch 문
         String board;
@@ -58,6 +68,9 @@ public class BoardController {
             case "Review":
                 board = "board/boardReview";
                 break;
+            case "List":
+                board = "board/boardList";
+                break;
             default:
                 board = "index";
                 break;
@@ -66,10 +79,6 @@ public class BoardController {
 
     }
 
-    ////////////////////게시판 콜/////////////////////////////////
-
-
-    ////////////////////상세보기 : boardView?configCode=
     @GetMapping("/boardView")
     public String getBoardView(@RequestParam String configCode,
                                @RequestParam int id, Model model) {
@@ -83,9 +92,7 @@ public class BoardController {
         boardMapper.updateVisit(configCode,id);
         return "board/boardView";
     }
-    /////////////////////////////////////////////////////////////
-    //////////////////////글쓰기//////////////////////////////////
-    //첨부파일용인지 구분하기 위해 변수하나 쓰자
+
     @GetMapping("/boardWrite")
     public String getBoardWrite(Model model,
                                 @RequestParam String configCode){
@@ -95,7 +102,7 @@ public class BoardController {
         }else{
             isAttachFile = false;
         }
-        System.out.println(configCode);
+
         model.addAttribute("isAttachFile",isAttachFile);
         model.addAttribute("configCode",configCode);
         return "board/boardWrite";
@@ -110,6 +117,7 @@ public class BoardController {
 
         boardDto.setBoardType(2);
         Map<String,Object> map = new HashMap<>();
+
         int grp = boardService.getGrpMaxCnt(configCode);
         boardDto.setGrp(grp);
         boardDto.setSeq(boardDto.getSeq() + 1);
@@ -132,7 +140,6 @@ public class BoardController {
         return map;
     }
 
-/////////////////////다음작업
     @GetMapping("/boardDelete")
     public String setDelete(@RequestParam String configCode,
                             @RequestParam int id) {
@@ -142,7 +149,6 @@ public class BoardController {
         return "redirect:/board/board?configCode="+configCode;
     }
 
-    //수정하러가기
     @GetMapping("/boardUpdate")
     public String getUpdate(@RequestParam String configCode,
                             @RequestParam int id, Model model) {
@@ -209,7 +215,6 @@ public class BoardController {
         boardDto.setSeq(parentBd.getSeq()+1);
         boardDto.setDepth(parentBd.getDepth()+1);
         boardDto.setBoardType(2);
-        System.out.println(boardDto);
 
         if (files != null){
             boardDto.setIsFiles("Y");
@@ -221,23 +226,10 @@ public class BoardController {
             boardDto.setIsFiles("N");
             boardService.setBoard(configCode,boardDto);
         }
-        System.out.println("답글 : " +boardDto);
         Map<String,Object> map = new HashMap<>();
         map.put("msg","success");
         map.put("configCode",configCode);
 
         return map;
     }
-
-    @GetMapping("/boardList")
-    public String getList(){
-        List<MedicineDto> medicine = boardService.getMed();
-        List<FileDto> files = boardService.getMedFiles();
-
-
-
-        return "board/boardList";
-    }
-
-
 }

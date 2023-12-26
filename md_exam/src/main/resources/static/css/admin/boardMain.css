@@ -1,0 +1,186 @@
+
+.content_contanier{
+    width: 85%;
+    margin: 0 auto;
+    height: 500px;
+}
+
+.content_btn{
+    width:100%;
+    margin-top: 30px;
+    text-align: right;
+}
+
+.content_left_choice{
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+}
+
+.insert-btn{
+    width: 110px;
+    height: 50px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: #FB4F9C;
+    cursor: pointer;
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 80%;
+    text-align: left;
+    border: 0;
+    height: 100%;
+    font-size: 16px;
+}
+
+input[type="text"]:focus {
+    outline: none; /* 테두리 색 및 두께 조절 가능 */
+}
+select {
+    border: 1px solid #ccc; /* 테두리 색 및 두께 조절 가능 */
+    padding: 2px;
+}
+
+select:focus {
+    outline: none; /* 포커스 효과 제거 */
+    border: 1px solid #007BFF; /* 포커스가 되었을 때 테두리 색 조절 가능 */
+}
+
+
+/* 테이블 */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #67B4EF;
+  color: #fff;
+  text-align: left;
+}
+
+td{
+    text-align: center;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 3px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 3px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eee;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 3px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+/*boardinsert*/
+
+.insert-container{
+    width: 65%;
+    margin: 0 auto;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.board{
+    display: flex;
+    align-items: center;
+    border-bottom: .5px solid #ccc;
+    border-right: .5px solid #ccc;
+
+}
+
+.choice{
+    border-top: .5px solid #ccc;
+}
+
+.board.text-editor{
+    height: 150px;
+}
+
+.textarea {
+    width: 100%; /* 부모 요소의 100% 너비로 설정 */
+    height: 100%;
+}
+
+
+.board h4 {
+    margin-right: 10px;
+    background-color:#67B4EF;
+    color: #fff;
+    font-weight: bold;
+
+    width: 250px;
+    padding: 10px 20px;
+}
+
+.board.text-editor h4{
+    height: 149px;
+}
+
+.button_box_left{
+    margin-bottom: 10px;
+}
+
+.button_box_right{
+    width:100%;
+    margin-top: 30px;
+    text-align: right;
+}
+
+.btn1{
+    width: 100px;
+    height: 40px;
+    border: 0;
+    border-radius: 7px;
+    background-color: #FB4F9C;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn1:active{
+    background-color: #BE0069;
+}
+
+.btn2{
+    width: 100px;
+    height: 40px;
+    border: 0;
+    border-radius: 7px;
+    background-color: #5FABE7;
+
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn2:active{
+    background-color: #0073AB;
+}

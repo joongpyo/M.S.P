@@ -17,10 +17,10 @@ public interface UserMapper {
     public UserDto setLogin(UserDto userDto);
 
 
-    @Select("SELECT * FROM user ORDER BY u_id DESC LIMIT #{startNum}, #{offset}")
+    @Select("SELECT * FROM user ${searchQuery} ORDER BY u_id DESC LIMIT #{startNum}, #{offset}")
     public List<UserDto> getUserList(Map<String, Object> map);
 
-    @Select("SELECT COUNT(*) FROM user")
-    public int getUserCount();
+    @Select("SELECT COUNT(*) FROM user ${searchQuery}")
+    public int getUserCount(String searchQuery);
 }
 

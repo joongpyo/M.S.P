@@ -23,10 +23,11 @@ public class UserService {
         userMapper.setRegister(userDto);
     }
 
-    public PageDto PageInfo(int page) {
+    public PageDto PageInfo(int page,String searchType, String words) {
         PageDto pageDto = new PageDto();
+        String searchQuery = getSearch(searchType, words);
         //전체 사용자 수
-        int totalCount = userMapper.getUserCount();
+        int totalCount = userMapper.getUserCount(searchQuery);
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
@@ -41,14 +42,27 @@ public class UserService {
 
         return pageDto;
     }
-    public List<UserDto> getUserList(int page){
-        PageDto pd = PageInfo(page);
-
+    public List<UserDto> getUserList(int page,String searchType,String words ){
+        PageDto pd = PageInfo(page,searchType,words);
         Map<String, Object> map = new HashMap<>();
-
+        String searchQuery = getSearch(searchType,words);
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
-
+        map.put("searchQuery",searchQuery);
         return userMapper.getUserList(map);
+    }
+
+    public String getSearch(String searchType, String words){
+        String searchQuery = "";
+        if(searchType.equals("userId") ){
+            searchQuery = " WHERE user_id = '"+words+"'";
+        }else if(searchType.equals("userName")){
+            searchQuery = " WHERE user_name = '"+words+"'";
+        }else if(searchType.equals("userEmail")){
+            searchQuery = " WHERE user_email LIKE '%"+words+"%'";
+        }else {
+            searchQuery = "";
+        }
+        return searchQuery;
     }
 }

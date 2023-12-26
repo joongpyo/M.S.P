@@ -14,7 +14,7 @@ public class MedicineDto {
     private String medAge;
     private String medPregnant;
     private LocalDate medReg;
-    private String IsFiles;
+    private String isFiles;
 
     public int getMedId() {
         return medId;
@@ -97,10 +97,27 @@ public class MedicineDto {
     }
 
     public String getIsFiles() {
-        return IsFiles;
+        return isFiles;
     }
 
     public void setIsFiles(String isFiles) {
-        IsFiles = isFiles;
+        this.isFiles = isFiles;
+    }
+
+    @Override
+    public String toString() {
+        return "MedicineDto{" +
+                "medId=" + medId +
+                ", medName='" + medName + '\'' +
+                ", medDis='" + medDis + '\'' +
+                ", medEff='" + medEff + '\'' +
+                ", medType='" + medType + '\'' +
+                ", medStore='" + medStore + '\'' +
+                ", medCom='" + medCom + '\'' +
+                ", medAge='" + medAge + '\'' +
+                ", medPregnant='" + medPregnant + '\'' +
+                ", medReg=" + medReg +
+                ", isFiles='" + isFiles + '\'' +
+                '}';
     }
 }

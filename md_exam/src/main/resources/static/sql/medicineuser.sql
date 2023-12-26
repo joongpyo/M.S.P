@@ -8,16 +8,9 @@ primary key(u_id)
 );
 
 
-create table adminfiles(
-id int not null auto_increment,
-orgName varchar(255),
-savedFileName varchar(255),
-savedPathFileName varchar(255),
-savedFileSize bigint,
-folderName varchar(10),
-ext varchar(20),
-primary key(id)
-);
+
+
+
 
 --수정
 create table board_QnA(
@@ -186,6 +179,18 @@ med_reg date not null,
 is_files char(1) not null,
 primary key(med_id)
 );
+
+create table admin_files(
+id int not null auto_increment,
+orgName varchar(255),
+savedFileName varchar(255),
+savedPathName varchar(255),
+savedFileSize bigint,
+folderName varchar(10),
+ext varchar(20),
+primary key(id)
+);
+
 
 create table disease(
 dis_id int not null auto_increment,

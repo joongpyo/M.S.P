@@ -1,5 +1,6 @@
 package com.example.md_exam.service;
 
+
 import com.example.md_exam.dto.AdminBoardDto;
 import com.example.md_exam.dto.FileDto;
 import com.example.md_exam.dto.PageDto;
@@ -21,10 +22,12 @@ public class AdminBoardService {
     public void setFile(FileDto fileDto){
         adminBoardMapper.setFile(fileDto);
     }
-    public PageDto PageInfo(int page, String board) {
+
+    // Notice List
+    public PageDto PageBoardInfo(int page, String configCode) {
         PageDto pageDto = new PageDto();
         //전체 게시글 수
-        int totalCount = adminBoardMapper.getBoardCount(board);
+        int totalCount = adminBoardMapper.getBoardCount(configCode);
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
@@ -36,16 +39,17 @@ public class AdminBoardService {
         pageDto.setStartPage(startPage);
         pageDto.setEndPage(endPage);
         pageDto.setPage(page);
-
         return pageDto;
     }
-    public List<AdminBoardDto> getBoardList(int page, String board){
-        PageDto pd = PageInfo(page,board);
+    public List<AdminBoardDto> getBoardList(int page, String configCode){
+        PageDto pd = PageBoardInfo(page,configCode);
         Map<String, Object> map = new HashMap<>();
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
-        map.put("board", board);
+        map.put("configCode",configCode);
         return adminBoardMapper.getBoardList(map);
     }
+
+    // Review List
 
 }

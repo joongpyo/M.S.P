@@ -13,9 +13,7 @@
 </head>
 
 <body>
-
 <header th:replace="~{/fragments/header.html :: fragment-header}"></header>
-
 <div class="board-bg">
     <div class="board-bg-wrap">
         <div class="board-bg-content">
@@ -96,19 +94,24 @@
                             복용여부
                         </th>
                     </tr>
-                    <tr th:each="medicine,k: ${medicine}">
-                        <td th:each="files,k: ${files}">
-                            <th:block th:if="medicine[k].id == files[k].id"></th:block>
-                            <img th:src="">
+                    <tr th:each="medicine,k: ${medicines}">
+                        <td >
+                            <th:block th:each="file,j: ${files}">
+                                <th:block th:with="matchedId=${medicine.medId}">
+                                    <th:block th:if="${matchedId == file.id}">
+                                        <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                                    </th:block>
+                                </th:block>
+                            </th:block>
                         </td>
-                        <td>제품명</td>
-                        <td>질병</td>
-                        <td>효능</td>
-                        <td>회사명</td>
-                        <td>약의제형</td>
-                        <td>편의점</td>
-                        <td>연령대</td>
-                        <td>임산부</td>
+                        <td>[[${medicine.medName}]]</td>
+                        <td>[[${medicine.medDis}]]</td>
+                        <td>[[${medicine.medEff}]]</td>
+                        <td>[[${medicine.medCom}]]</td>
+                        <td>[[${medicine.medType}]]</td>
+                        <td>[[${medicine.medStore}]]</td>
+                        <td>[[${medicine.medAge}]]</td>
+                        <td>[[${medicine.medPregnant}]]</td>
                     </tr>
                 </table>
                 <div class="bottom">

@@ -1,5 +1,6 @@
 package com.example.md_exam.service;
 
+
 import com.example.md_exam.dto.DiseaseDto;
 import com.example.md_exam.dto.PageDto;
 import com.example.md_exam.mapper.DiseaseMapper;
@@ -23,10 +24,11 @@ public class DiseaseService {
         diseaseMapper.setDisease(diseaseDto);
     }
 
-    public PageDto PageInfo(int page) {
+    public PageDto PageInfo(int page, String searchType, String words) {
         PageDto pageDto = new PageDto();
+        String searchQuery = getDisSearch(searchType,words);
         //전체 사용자 수
-        int totalCount = diseaseMapper.getDisCount();
+        int totalCount = diseaseMapper.getDisCount(searchQuery);
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
         int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
@@ -41,14 +43,28 @@ public class DiseaseService {
 
         return pageDto;
     }
-    public List<DiseaseDto> getDisList(int page){
-        PageDto pd = PageInfo(page);
+    public List<DiseaseDto> getDisList(int page,String searchType,String words){
+        PageDto pd = PageInfo(page,searchType,words);
         Map<String, Object> map = new HashMap<>();
-
+        String searchQuery = getDisSearch(searchType,words);
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
-
+        map.put("searchQuery",searchQuery);
         return diseaseMapper.getDisList(map);
     }
 
+    public String getDisSearch(String searchType, String words){
+        String searchQuery = "";
+        if(searchType.equals("disName") ){
+            searchQuery = " WHERE dis_name = '"+words+"'";
+        }else if(searchType.equals("disSym")){
+            searchQuery = " WHERE dis_sym LIKE '%"+words+"%'";
+        }else {
+            searchQuery = "";
+        }
+        return searchQuery;
+    }
+    public void deleteDis(DiseaseDto diseaseDto){
+        diseaseMapper.deleteDis(diseaseDto);
+    }
 }

@@ -3,7 +3,7 @@ package com.example.md_exam.dto;
 import java.time.LocalDate;
 
 public class AdminBoardDto {
-    private String board;
+    private String configCode;
     private int id;
     private String subject;
     private String writer;
@@ -14,14 +14,16 @@ public class AdminBoardDto {
     private int seq;
     private int depth;
     private String isFiles;
+    private int commentCount;
     private int uIdFk;
+    private int boardType;
 
-    public String getBoard() {
-        return board;
+    public String getConfigCode() {
+        return configCode;
     }
 
-    public void setBoard(String board) {
-        this.board = board;
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
     }
 
     public int getId() {
@@ -104,6 +106,14 @@ public class AdminBoardDto {
         this.isFiles = isFiles;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public int getuIdFk() {
         return uIdFk;
     }
@@ -112,10 +122,18 @@ public class AdminBoardDto {
         this.uIdFk = uIdFk;
     }
 
+    public int getBoardType() {
+        return boardType;
+    }
+
+    public void setBoardType(int boardType) {
+        this.boardType = boardType;
+    }
+
     @Override
     public String toString() {
         return "AdminBoardDto{" +
-                "board='" + board + '\'' +
+                "configCode='" + configCode + '\'' +
                 ", id=" + id +
                 ", subject='" + subject + '\'' +
                 ", writer='" + writer + '\'' +
@@ -126,7 +144,9 @@ public class AdminBoardDto {
                 ", seq=" + seq +
                 ", depth=" + depth +
                 ", isFiles='" + isFiles + '\'' +
+                ", commentCount=" + commentCount +
                 ", uIdFk=" + uIdFk +
+                ", boardType=" + boardType +
                 '}';
     }
 }

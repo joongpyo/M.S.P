@@ -1,0 +1,92 @@
+.insert-container{
+    width: 65%;
+    margin: 0 auto;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.med{
+    display: flex;
+    align-items: center;
+    border-bottom: .5px solid #ccc;
+    border-right: .5px solid #ccc;
+}
+
+.med p {
+    margin-right: 10px;
+    background-color:#67B4EF;
+    color: #fff;
+    font-weight: bold;
+
+    width: 190px;
+    padding: 10px 20px;
+}
+
+
+
+.name{
+    border-top: .5px solid #ccc;
+    border-top-left-radius: 3px;
+}
+
+.imgs{
+    border-bottom-left-radius: 3px;
+}
+
+.med input[type="checkbox"] {
+    margin: 0 auto;
+    margin-right: 3px;
+}
+
+.med input[type="text"] {
+    width: 80%;
+    text-align: left;
+    border: 0;
+    height: 100%;
+    font-size: 16px;
+}
+
+.med input[type="text"]:focus {
+    outline: none; /* 테두리 색 및 두께 조절 가능 */
+}
+
+.med select {
+    border: 1px solid #ccc; /* 테두리 색 및 두께 조절 가능 */
+}
+
+.med select:focus {
+    outline: none; /* 포커스 효과 제거 */
+    border: 1px solid #007BFF; /* 포커스가 되었을 때 테두리 색 조절 가능 */
+}
+
+.radio-group input[type="radio"] {
+    margin: 0 auto; /* 라디오 버튼 간격 조절을 위한 마진 설정 */
+    margin-right: 3px;
+}
+
+/*버튼*/
+.insert{
+    width:100%;
+    margin-top: 30px;
+    text-align: right;
+
+}
+
+.insert-btn{
+    width: 110px;
+    height: 50px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: #FB4F9C;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.insert-btn:active{
+    background-color: #BE0069;
+}

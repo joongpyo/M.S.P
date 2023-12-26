@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,9 @@
 </head>
 <body>
     <link rel="stylesheet" th:href="@{/css/common.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/main.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/boardMain.css}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </body>
@@ -21,29 +22,86 @@
     <div id="content">
         <th:block th:replace="~{admin/top_navbar::top_navbar_frag}"></th:block>
         <div class="main-content">
+            <div class="sub-title-box">
+                <p><i class="fa-solid fa-house"></i><a th:href="@{/admin}"> <span>홈</span> </a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <a th:href="@{/admin/noticeMain}">게시판 관리 홈</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <a th:href="@{/admin/noticeBoard/}"><strong>공지사항 게시판</strong></a>
+                </p>
+            </div>
+            <div class="content-title">
+                <h1>공지사항 게시판</h1>
+            </div>
+            <form action="/admin/noticeBoard" method="get" enctype="multipart/form-data" name="search-form">
+                <span>게시물 수 : <strong>[[${total}]]</strong></span>
+                <input type="hidden" name="configCode" th:value="${configCode}">
+                <div class="search-right">
+                    <div class="sel-box">
+                        <select name="searchType" id="">
+                            <option value="">선택</option>
+                            <option value="subject">제목</option>
+                            <option value="writer">작성자</option>
+                            <option value="content">내용</option>
+                        </select>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" name="words" class="search2">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+            </form>        
             <div class="content_contanier">
                 <div class="content_left">
-                    <div class="content_left_btn">
-                        <button><a th:href="@{/admin/noticeInsert}">글쓰기</a></button>
-                    </div>
-                    <div class="content_left_choice">
-                        <button><a th:href="@{/admin/noticeBoard}">공지사항</a></button>
-                        <button><a th:href="@{/admin/qnaBoard}">QNA</a></button>
-                        <button><a th:href="@{/admin/reviewBoard}">후기</a></button>
+
+                    <div class="content_left">
+                        <div class="content_left_choice">
+                            <a th:href="@{/admin/noticeBoard?(configCode=notice)}" class="board-active">공지사항</a>
+                            |
+                            <a th:href="@{/admin/qnaBoard?(configCode=qna)}">QnA</a>
+                            |
+                            <a th:href="@{/admin/reviewBoard?(configCode=review)}">약 복용 후기</a>
+                        </div>
                     </div>
                 </div>
                 <div class="content_right">
                     <div class="content_right_top">
-                        <h3><a th:href="@{/admin/noticeBoard}">공 지 사 항</a></h3>
+
                     </div>
                     <div class="content_rigth_bottom">
-                        
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>조회수</th>
+                                <th>작성날짜</th>
+                            </tr>
+                            </thead>
+                            <tbody class="noticeList">
+                                <tr th:each="notice, k: ${notice}">
+                                    <td>
+                                        [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
+                                    </td>
+                                    <td>
+                                        <a href="#">[[${notice.subject}]]</a>
+                                    </td>
+                                    <td>[[${notice.writer}]]</td>
+                                    <td>[[${notice.visit}]]</td>
+                                    <td>[[${notice.reg}]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="content_btn">
+                            <a th:href="@{/admin/noticeInsert}"><button class="insert-btn">글쓰기</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer">
-            <span>&copy; COPYRIGHT BY KOREAIT ACADEMY</span>
+            <span>&copy; COPYRIGHT BY M.S.P</span>
         </div>
     </div>
 </div>    
