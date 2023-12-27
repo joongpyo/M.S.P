@@ -257,7 +257,7 @@ public class AdminController {
         return "redirect:/admin/medList?medId="+ medicineDto.getMedId();
     }
     @GetMapping("/admin/medUpdate")
-    public String boardView(@ModelAttribute MedicineDto medicineDto ,@RequestParam int medId, Model model){
+    public String boardView(@RequestParam int medId, Model model){
 
         model.addAttribute("med",medicineService.getMedView(medId));
         model.addAttribute("file",medicineService.getFileView(medId));
