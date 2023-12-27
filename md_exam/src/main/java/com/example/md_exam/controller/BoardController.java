@@ -40,7 +40,7 @@ public class BoardController {
     @GetMapping("/board")
     public String getBoard(Model model,
                               @RequestParam String configCode,
-                              @RequestParam(value="page", defaultValue = "1")int page,
+                              @RequestParam(value="page", defaultValue = "1") int page,
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
@@ -49,6 +49,9 @@ public class BoardController {
             model.addAttribute("medicines",medicineService.getMedList(page,searchType,search));
             model.addAttribute("page",medicineService.PageInfo(page, searchType, search));
             model.addAttribute("total",medicineMapper.getMedCount(medicineService.getMedSearch(searchType,search)));
+            if(search.equals("전체"))
+                search="";
+            model.addAttribute("search",search);
         }else{
             model.addAttribute("board",boardService.getBoard(configCode,page,searchType,search));
             model.addAttribute("page",boardService.PageInfo(configCode,page, searchType, search));
@@ -56,7 +59,6 @@ public class BoardController {
             model.addAttribute("configCode",configCode);
         }
 
-        //반복문 or switch 문
         String board;
         switch (configCode) {
             case "QnA" :
@@ -76,7 +78,21 @@ public class BoardController {
                 break;
         }
         return board;
+    }
 
+    @PostMapping("/board")
+    @ResponseBody
+    public  Map<String,Object> getBoardList(@RequestParam String configCode,
+                               @RequestParam(value="page", defaultValue = "1") int page,
+                               @RequestParam(value="searchType", defaultValue = "") String searchType,
+                               @RequestParam(value="search", defaultValue = "") String search){
+        Map<String,Object> map = new HashMap<>();
+        map.put("configCode",configCode);
+        map.put("files",medicineService.getFilesAll());
+        map.put("medicines",medicineService.getMedList(page,searchType,search));
+        map.put("page",medicineService.PageInfo(page, searchType, search));
+        map.put("total",medicineMapper.getMedCount(medicineService.getMedSearch(searchType,search)));
+        return map;
     }
 
     @GetMapping("/boardView")
@@ -102,7 +118,6 @@ public class BoardController {
         }else{
             isAttachFile = false;
         }
-
         model.addAttribute("isAttachFile",isAttachFile);
         model.addAttribute("configCode",configCode);
         return "board/boardWrite";

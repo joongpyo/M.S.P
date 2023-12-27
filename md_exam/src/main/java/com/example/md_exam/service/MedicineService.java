@@ -48,7 +48,6 @@ public class MedicineService {
         map.put("startNum",pd.getStartNum());
         map.put("offset",pd.getPageCount());
         map.put("searchQuery",searchQuery);
-
         return medicineMapper.getMedList(map);
     }
     public String getMedSearch(String searchType, String words){

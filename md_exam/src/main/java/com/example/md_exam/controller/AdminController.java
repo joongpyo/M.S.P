@@ -256,11 +256,9 @@ public class AdminController {
     }
     @GetMapping("/admin/medUpdate")
     public String boardView(@ModelAttribute MedicineDto medicineDto ,@RequestParam int medId, Model model){
-
         model.addAttribute("med",medicineService.getMedView(medId));
         model.addAttribute("file",medicineService.getFileView(medId));
-
-        return "admin/medUpdate";
+        return "admin/medicinePage/medUpdate";
 
     }
 

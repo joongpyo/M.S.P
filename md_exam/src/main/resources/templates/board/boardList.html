@@ -10,6 +10,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -33,29 +34,32 @@
 
             <div class="content-wrap">
                 <div class="list-box">
-                    <ul>
-                        <li><a href="" class="active">전체</a></li>
+
+                    <ul class="menu">
+
+                        <li><a th:href="@{/board/board(configCode='List')}" th:if="${search}" th:class="${search == '감기' ? 'active' : ''}">전체</a></li>
                         <span>/</span>
-                        <li><a href="">감기</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='감기')}">감기</a></li>
                         <span>/</span>
-                        <li><a href="">소화불량</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='소화불량')}">소화불량</a></li>
                         <span>/</span>
-                        <li><a href="">생리통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='생리통')}">생리통</a></li>
                         <span>/</span>
-                        <li><a href="">알레르기</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}">알레르기</a></li>
                         <span>/</span>
-                        <li><a href="">편두통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='편두통')}">편두통</a></li>
                         <span>/</span>
-                        <li><a href="">설사</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='설사')}">설사</a></li>
                         <span>/</span>
-                        <li><a href="">인후통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='인후통')}">인후통</a></li>
                         <span>/</span>
-                        <li><a href="">멀미</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='멀미')}">멀미</a></li>
                         <span>/</span>
-                        <li><a href="">근육통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='근육통')}">근육통</a></li>
                         <span>/</span>
-                        <li><a href="">몸살</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='몸살')}">몸살</a></li>
                     </ul>
+
                 </div>
                 <div class="form-container">
                     <form action="" class="search-form">
@@ -94,6 +98,7 @@
                             복용여부
                         </th>
                     </tr>
+                    <tbody>
                     <tr th:each="medicine,k: ${medicines}">
                         <td >
                             <th:block th:each="file,j: ${files}">
@@ -113,6 +118,7 @@
                         <td>[[${medicine.medAge}]]</td>
                         <td>[[${medicine.medPregnant}]]</td>
                     </tr>
+                    </tbody>
                 </table>
                 <div class="bottom">
                     <div class="bottom-center">
@@ -138,6 +144,15 @@
 </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
 <script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
+<script>
+    function changeTab(tabName) {
+        $('.menu a').removeClass('active');
+        $('.menu a:contains("'+tabName+'")').addClass('active');
+
+    }
+</script>
+
+
 </body>
 
 </html>

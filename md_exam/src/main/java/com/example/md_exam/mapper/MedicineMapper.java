@@ -13,26 +13,26 @@ public interface MedicineMapper {
     @Insert("INSERT INTO medicine VALUES(NULL, #{medName}, #{medDis}, #{medEff}, #{medType}, #{medStore}, #{medCom}, #{medAge}, #{medPregnant}, now(), #{isFiles})")
     @Options(useGeneratedKeys = true, keyProperty = "medId")
     public void setMedUpdate(MedicineDto medicineDto);
-    @Insert("INSERT INTO admin_files VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")
+    @Insert("INSERT INTO files_admin VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(FileDto fileDto);
     @Select("SELECT * FROM medicine ${searchQuery} ORDER BY med_id DESC LIMIT #{startNum}, #{offset}")
     public List<MedicineDto> getMedList(Map<String, Object> map);
     @Select("SELECT COUNT(*) FROM medicine ${searchQuery}")
     public int getMedCount(String searchQuery);
-    @Select("SELECT * FROM admin_files WHERE id = #{id}")
+    @Select("SELECT * FROM files_admin WHERE id = #{id}")
     public List<FileDto> getFiles(int id);
     @Select("SELECT * FROM medicine WHERE med_id=#{medId}")
     public MedicineDto getMedView(int medId);
-    @Select("SELECT * FROM admin_files WHERE id = #{medId}")
+    @Select("SELECT * FROM files_admin WHERE id = #{medId}")
     public MedicineDto getFileView(int medId);
 
     //medicine delete
     @Delete("DELETE FROM medicine WHERE med_id = #{medId}")
     public void deleteMed(MedicineDto medicineDto);
-    @Delete("DELETE FROM admin_files WHERE id = #{id}")
+    @Delete("DELETE FROM files_admin WHERE id = #{id}")
     public void setFileDelete(int id);
 
     //1226 jang
-    @Select("SELECT * FROM admin_files")
+    @Select("SELECT * FROM files_admin")
     public List<FileDto> getFilesAll();
 }

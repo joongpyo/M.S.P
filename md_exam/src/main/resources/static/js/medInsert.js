@@ -3,6 +3,7 @@ let medName = document.querySelector("input[name=medName]");
 let medEff = document.querySelector("input[name=medEff]");
 let medType = document.querySelector("input[name=medType]");
 let medCom = document.querySelector("input[name=medCom]");
+
 function changeFn(){
     let medAge = document.querySelector("#medAge");
     var value = (medAge.options[medAge.selectedIndex].value)

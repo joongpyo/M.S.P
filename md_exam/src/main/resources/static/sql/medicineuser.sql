@@ -180,7 +180,7 @@ is_files char(1) not null,
 primary key(med_id)
 );
 
-create table admin_files(
+create table files_admin(
 id int not null auto_increment,
 orgName varchar(255),
 savedFileName varchar(255),

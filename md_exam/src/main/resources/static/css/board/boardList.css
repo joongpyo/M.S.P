@@ -108,11 +108,13 @@
 }
 
 .content-wrap .list-box ul li a.active {
+    color: #3CB4FF;
 }
 
 .list-box ul span{
      color: rgba(0,0,0,0.4);
 }
+
 /* ---------------------- content ------------------------ */
 
 .search-form {
