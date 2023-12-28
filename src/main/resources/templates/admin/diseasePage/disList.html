@@ -74,7 +74,7 @@
                             <td>[[${dis.disSym}]]</td>
                             <td>[[${dis.disReg}]]</td>
                             <td>
-                                <button type="button" class="btn" th:onclick="updateCheck(uId)">수정</button>
+                                <a th:href="@{/admin/disUpdate?(disId=${dis.disId})}"><button type="button" class="btn">수정</button></a>
                                 <button type="button" class="btn" th:onclick="deleteDis([[${dis.disId}]],[[${dis.disName}]])">삭제</button>
                             </td>
                         </tr>

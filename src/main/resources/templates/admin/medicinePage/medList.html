@@ -85,7 +85,7 @@
                                 <td>[[${med.medPregnant}]]</td>
                                 <td>[[${med.medReg}]]</td>
                                 <td>
-                                    <a th:href="@{admin/medUpdate?(medId=${med.medId})}"> <button class="btn">수정</button></a>
+                                    <a th:href="@{/admin/medUpdate?(medId=${med.medId})}"> <button class="btn">수정</button></a>
                                     <button class="btn" th:onclick="deleteMed([[${med.medId}]],[[${med.medName}]])">삭제</button>
                                 </td>
                             </tr>

@@ -97,6 +97,11 @@ public class AdminController {
             return Map.of("msg","failure");
         }
     }
+    @GetMapping("/admin/disUpdate")
+    public String getDisUpdate(@RequestParam int disId, Model model){
+        model.addAttribute("dis",diseaseService.viewDis(disId));
+        return "admin/diseasePage/disUpdate";
+    }
     @GetMapping("/admin/disDelete")
     public String disDelete(@ModelAttribute DiseaseDto diseaseDto){
         diseaseService.deleteDis(diseaseDto);
@@ -257,12 +262,11 @@ public class AdminController {
         return "redirect:/admin/medList?medId="+ medicineDto.getMedId();
     }
     @GetMapping("/admin/medUpdate")
-    public String boardView(@RequestParam int medId, Model model){
+    public String medicineView(@RequestParam int medId, Model model){
 
-        model.addAttribute("med",medicineService.getMedView(medId));
-        model.addAttribute("file",medicineService.getFileView(medId));
+       model.addAttribute("med",medicineService.getMedView(medId));
+       model.addAttribute("file",medicineService.getFileView(medId));
 
-        return "admin/medUpdate";
-
+       return "admin/medicinePage/medUpdate";
     }
 }

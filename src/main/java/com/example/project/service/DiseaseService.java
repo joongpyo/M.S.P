@@ -67,4 +67,8 @@ public class DiseaseService {
     public void deleteDis(DiseaseDto diseaseDto){
         diseaseMapper.deleteDis(diseaseDto);
     }
+
+    public DiseaseDto viewDis(int disId){
+       return diseaseMapper.viewDis(disId);
+    }
 }
