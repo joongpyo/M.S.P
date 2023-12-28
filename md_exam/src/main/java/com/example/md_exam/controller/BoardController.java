@@ -44,20 +44,24 @@ public class BoardController {
                               @RequestParam(value="searchType", defaultValue = "") String searchType,
                               @RequestParam(value="search", defaultValue = "") String search){
 
-        if(configCode.equals("List")){
-            model.addAttribute("files",medicineService.getFilesAll());
-            model.addAttribute("medicines",medicineService.getMedList(page,searchType,search));
-            model.addAttribute("page",medicineService.PageInfo(page, searchType, search));
-            model.addAttribute("total",medicineMapper.getMedCount(medicineService.getMedSearch(searchType,search)));
-            if(search.equals("전체"))
-                search="";
-            model.addAttribute("search",search);
-        }else{
+
+//        if(configCode.equals("List")){
+//            model.addAttribute("files",medicineService.getFilesAll());
+//            model.addAttribute("medicines",medicineService.getMedList(page,searchType,search));
+//            model.addAttribute("page",medicineService.PageInfo(page, searchType, search));
+//            model.addAttribute("total",medicineMapper.getMedCount(medicineService.getMedSearch(searchType,search)));
+//            model.addAttribute("configCode",configCode);
+//            if(search.equals("전체"))
+//                search="";
+//            model.addAttribute("search",search);
+//        }
+
+//        else{
             model.addAttribute("board",boardService.getBoard(configCode,page,searchType,search));
             model.addAttribute("page",boardService.PageInfo(configCode,page, searchType, search));
             model.addAttribute("total",boardService.getBoardCount(configCode,searchType,search));
             model.addAttribute("configCode",configCode);
-        }
+//        }
 
         String board;
         switch (configCode) {

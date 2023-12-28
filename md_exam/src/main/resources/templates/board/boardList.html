@@ -37,27 +37,27 @@
 
                     <ul class="menu">
 
-                        <li><a th:href="@{/board/board(configCode='List')}" th:if="${search}" th:class="${search == '감기' ? 'active' : ''}">전체</a></li>
+                        <li><a th:href="@{/board/board(configCode='List')}" th:if="${search}" th:class="${search == '' ? 'active' : ''}">전체</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='감기')}">감기</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='감기')}" th:class="${search == '감기' ? 'active' : ''}">감기</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='소화불량')}">소화불량</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='소화불량')}" th:class="${search == '소화불량' ? 'active' : ''}">소화불량</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='생리통')}">생리통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='생리통')}" th:class="${search == '생리통' ? 'active' : ''}">생리통</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}">알레르기</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}" th:class="${search == '알레르기' ? 'active' : ''}">알레르기</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='편두통')}">편두통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='편두통')}" th:class="${search == '편두통' ? 'active' : ''}">편두통</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='설사')}">설사</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='설사')}" th:class="${search == '설사' ? 'active' : ''}">설사</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='인후통')}">인후통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='인후통')}" th:class="${search == '인후통' ? 'active' : ''}">인후통</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='멀미')}">멀미</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='멀미')}" th:class="${search == '멀미' ? 'active' : ''}">멀미</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='근육통')}">근육통</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='근육통')}" th:class="${search == '근육통' ? 'active' : ''}">근육통</a></li>
                         <span>/</span>
-                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='몸살')}">몸살</a></li>
+                        <li><a th:href="@{/board/board(configCode='List', searchType='medDis', search='몸살')}" th:class="${search == '몸살' ? 'active' : ''}">몸살</a></li>
                     </ul>
 
                 </div>
@@ -68,9 +68,9 @@
                         <div class="search-right">
                             <div class="sel-box">
                                 <select name="" id="">
-                                    <option value="">제목</option>
-                                    <option value="">내용</option>
-                                    <option value="">작성자</option>
+                                    <option value="">약 이름</option>
+                                    <option value="">증상</option>
+                                    <option value="">회사명</option>
                                 </select>
                             </div>
                             <div class="search-box">
@@ -115,6 +115,8 @@
                         <td>[[${medicine.medCom}]]</td>
                         <td>[[${medicine.medType}]]</td>
                         <td>[[${medicine.medStore}]]</td>
+
+
                         <td>[[${medicine.medAge}]]</td>
                         <td>[[${medicine.medPregnant}]]</td>
                     </tr>
@@ -122,14 +124,29 @@
                 </table>
                 <div class="bottom">
                     <div class="bottom-center">
-                        <a href="">
+                        <a href="#" th:if="${page.page <= 1}">
                             <i class="fa-solid fa-caret-left"></i>
                         </a>
-                        <a href="" class="active">1</a>
-                        <a href="">2</a>
-                        <a href="">3</a>
-                        <a href="">
+                        <a th:href="@{/board/board?(configCode=${configCode},page=${page.page - 1})}" th:unless="${page.page <= 1}">
+                            <i class="fa-solid fa-caret-left"></i>
+                        </a>
+                        <th:block th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
+                            <th:block th:if="${page.page eq i}">
+                                <a  class="active" th:href="@{/board/board?(configCode=${configCode}, page=${i})}">
+                                    [[${i}]]
+                                </a>
+                            </th:block>
+                            <th:block th:unless="${page.page eq i}">
+                                <a th:href="@{/board/board?(configCode=${configCode}, page=${i})}">
+                                    [[${i}]]
+                                </a>
+                            </th:block>
+                        </th:block>
+                        <a href="#" th:if="${page.page >= page.totalPage}">
                             <i class="fa-solid fa-caret-right"></i>
+                        </a>
+                        <a th:href="@{/board/board?(configCode=${configCode},page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
+                            <i class="fa-solid fa-angle-right"></i>
                         </a>
                     </div>
                     <div class="bottom-right">
@@ -143,7 +160,7 @@
     </div>
 </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-<script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>-->
 <script>
     function changeTab(tabName) {
         $('.menu a').removeClass('active');

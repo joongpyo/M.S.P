@@ -191,7 +191,6 @@ ext varchar(20),
 primary key(id)
 );
 
-
 create table disease(
 dis_id int not null auto_increment,
 dis_name varchar(20) not null,

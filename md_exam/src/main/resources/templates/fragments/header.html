@@ -36,13 +36,17 @@
                 <a th:href="@{/board/board?configCode=QnA}"><li>QnA</li></a>
                 <a th:href="@{/board/board?configCode=Review}"><li>약 복용 후기</li></a>
                 <a th:href="@{/board/board?configCode=List}"><li>약 목록</li></a>
-                <form action="">
+
+                <form action="/board/board" method="get">
+                    <input type="hidden" name="configCode" value="List">
+                    <input type="hidden" name="searchType" value="medName">
                     <li class="search">
-                        <input type="text" placeholder="약명으로 검색하기">
+                        <input type="text" name="search" placeholder="약명으로 검색하기">
                         <span></span>
-                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </li>
                 </form>
+
             </ul>
         </nav>
     </nav>

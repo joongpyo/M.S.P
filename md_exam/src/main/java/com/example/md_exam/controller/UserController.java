@@ -80,7 +80,6 @@ public class UserController {
     @GetMapping("/checkLogin")
     @ResponseBody
     public Map<String,Object> checkLogin(HttpSession hs){
-
         boolean isLogin = hs.getAttribute("user") != null;
         System.out.println(isLogin);
         return Map.of("isLogin",isLogin);
