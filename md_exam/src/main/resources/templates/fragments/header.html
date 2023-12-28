@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<body>
 
 <header th:fragment="fragment-header">
     <nav class="header-top">
@@ -37,9 +35,9 @@
                 <a th:href="@{/board/board?configCode=Review}"><li>약 복용 후기</li></a>
                 <a th:href="@{/board/board?configCode=List}"><li>약 목록</li></a>
 
-                <form action="/board/board" method="get">
-                    <input type="hidden" name="configCode" value="List">
+                <form action="/board/boardSearchMed" method="get" id="searchForm" onsubmit="return frmCheck()">
                     <input type="hidden" name="searchType" value="medName">
+
                     <li class="search">
                         <input type="text" name="search" placeholder="약명으로 검색하기">
                         <span></span>
@@ -50,7 +48,16 @@
             </ul>
         </nav>
     </nav>
+    <script>
+        function frmCheck(){
+            let search = document.querySelector("input[name=search]");
+            if(search.value == ""){
+                alert("검색어를 입력하세요");
+                search.focus();
+                return false;
+            }
+		}
+    </script>
 </header>
 
-</body>
-</html>
+

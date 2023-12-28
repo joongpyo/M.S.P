@@ -37,7 +37,7 @@
             <div class="content-wrap">
                 <div class="form-container">
                     <form action="/board/board" method="get" class="search-form">
-                        <input type="hidden" name="configCode" th:value="${configCode}">
+                        <input type="hidden" name="configCode" th:value="${configCode}"/>
                         <span>총 게시물 : [[${total}]]건</span>
                         <div class="search-right">
                             <div class="sel-box">
@@ -134,37 +134,9 @@
     </div>
 </main>
 <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-<!--<script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
 <script>
 
-let config = document.querySelector("input[name=configCode]").value;
-alert(config);
-
-<!--function loginCheck(action,boardId,configCode,e){-->
-<!--        e.preventDefault();-->
-
-<!--        if(configCode == ""){-->
-<!--            configCode = document.querySelector("input[name=configCode]").value;-->
-<!--        }-->
-<!--        -->
-
-<!--        $.ajax({-->
-<!--            type:'GET',-->
-<!--            url :'/checkLogin',-->
-<!--            success: function(result){-->
-<!--                if(!result.isLogin) {-->
-<!--                    alert("로그인이 필요합니다");-->
-<!--                }else{-->
-<!--                    if (action == 'view') {-->
-<!--                        location.href = "/board/boardView?configCode=" + configCode + "&id=" + boardId;-->
-<!--                    } else if (action == 'write') {-->
-<!--                        location.href = "/board/boardWrite?configCode=" + configCode;-->
-<!--                    }-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--        return false;-->
-<!--}-->
 </script>
 </body>
 </html>
