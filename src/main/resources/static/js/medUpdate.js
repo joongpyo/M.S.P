@@ -1,4 +1,5 @@
 let btn = document.querySelector(".insert-btn");
+let medId = document.querySelector("input[name=medId]");
 let medName = document.querySelector("input[name=medName]");
 let medEff = document.querySelector("input[name=medEff]");
 let medType = document.querySelector("input[name=medType]");
@@ -82,6 +83,7 @@ function changeFn(){
  
 
         let frmData = new FormData();
+        frmData.append("medId",medId.value);
         frmData.append("medName", document.querySelector("input[name=medName]").value);
         frmData.append("medDis",chkData);
         frmData.append("medEff",document.querySelector("input[name=medEff]").value);
@@ -95,7 +97,7 @@ function changeFn(){
 
         $.ajax({
             type: "post",
-            url: "/admin/medInsert",
+            url: "/admin/medUpdate",
             dataType: "json",
             data: frmData,
             processData : false,

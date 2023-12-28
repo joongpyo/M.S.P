@@ -17,8 +17,8 @@ import java.util.Map;
 public class MedicineService {
     @Autowired
     MedicineMapper medicineMapper;
-    public void setMedUpdate(MedicineDto medicineDto){
-        medicineMapper.setMedUpdate(medicineDto);
+    public void setMedInsert(MedicineDto medicineDto){
+        medicineMapper.setMedInsert(medicineDto);
     }
     public void setFile(FileDto fileDto){
         medicineMapper.setFile(fileDto);
@@ -83,14 +83,18 @@ public class MedicineService {
         System.out.println(id);
         medicineMapper.setFileDelete(id);
     }
+
+
+    //Update
     public MedicineDto getMedView(int medId){
         return medicineMapper.getMedView(medId);
     }
-
-    //Update
     public FileDto getFileView(int medId){
         return medicineMapper.getFileView(medId);
     }
 
+    public void medUpdate(MedicineDto medicineDto){
+        medicineMapper.medUpdate(medicineDto);
+    }
 
 }

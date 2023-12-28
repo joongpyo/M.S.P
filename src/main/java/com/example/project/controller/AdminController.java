@@ -9,6 +9,7 @@ import com.example.project.service.AdminBoardService;
 import com.example.project.service.DiseaseService;
 import com.example.project.service.MedicineService;
 import com.example.project.service.UserService;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -221,11 +222,11 @@ public class AdminController {
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
-    public Map<String, Object> setMedUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+    public Map<String, Object> setMedInsert(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
         System.out.println(medicineDto);
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
-            medicineService.setMedUpdate(medicineDto);
+            medicineService.setMedInsert(medicineDto);
             int fileId = medicineDto.getMedId();
             //20231218
             String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
@@ -277,10 +278,65 @@ public class AdminController {
     }
     @GetMapping("/admin/medUpdate")
     public String medicineView(@RequestParam int medId, Model model){
-
        model.addAttribute("med",medicineService.getMedView(medId));
        model.addAttribute("file",medicineService.getFileView(medId));
 
        return "admin/medicinePage/medUpdate";
+    }
+
+    @PostMapping("/admin/medUpdate")
+    @ResponseBody
+    public Map<String, Object> medUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(medicineDto);
+        System.out.println(file);
+
+        if (!file.isEmpty()) {
+            medicineDto.setIsFiles("Y");
+            medicineService.medUpdate(medicineDto);
+            if( medicineDto.getMedId() > 0 && !medicineDto.getMedName().isEmpty() ){
+                List<FileDto> files = medicineService.getFiles(medicineDto.getMedId());
+                for(FileDto fd : files) {
+                    File fe = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+                    fe.delete();
+                }
+            }
+            // 파일 DB 삭제
+            int id = medicineDto.getMedId();
+            medicineService.setFileDelete(id);
+
+            int fileId = medicineDto.getMedId();
+            //20231218
+            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+            File makeFolder = new File(fileDir + folderName);
+            if (!makeFolder.exists()) {
+                makeFolder.mkdir();
+            }
+            // 데이터 베이스 저장전에 잠시 저장
+            FileDto fileDto = new FileDto();
+
+            // 경로명  + UUID
+            String savedPathFileName = fileDir + folderName;
+            String orgName = file.getOriginalFilename(); //원본 이름 저장
+            String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
+            String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
+            String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
+
+            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
+
+            fileDto.setId(fileId);
+            fileDto.setOrgName(orgName);
+            fileDto.setSavedFileName(savedFileName);
+            fileDto.setSavedPathName(savedPathFileName);
+            fileDto.setFolderName(folderName);
+            fileDto.setExt(ext);
+
+            medicineService.setFile(fileDto);
+            System.out.println(fileDto);
+            System.out.println(medicineDto);
+            return Map.of("msg", "success");
+        } else {
+            return Map.of("msg", "failure");
+        }
+
     }
 }
