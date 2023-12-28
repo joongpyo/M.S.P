@@ -68,7 +68,11 @@ public class DiseaseService {
         diseaseMapper.deleteDis(diseaseDto);
     }
 
+    //update
     public DiseaseDto viewDis(int disId){
        return diseaseMapper.viewDis(disId);
+    }
+    public void updateDis(DiseaseDto diseaseDto){
+        diseaseMapper.updateDis(diseaseDto);
     }
 }

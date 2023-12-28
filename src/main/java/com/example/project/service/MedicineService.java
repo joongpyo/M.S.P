@@ -86,8 +86,11 @@ public class MedicineService {
     public MedicineDto getMedView(int medId){
         return medicineMapper.getMedView(medId);
     }
+
+    //Update
     public FileDto getFileView(int medId){
         return medicineMapper.getFileView(medId);
     }
+
 
 }

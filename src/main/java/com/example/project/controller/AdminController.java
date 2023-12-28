@@ -85,11 +85,11 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> getCheckDisName(@RequestParam String disName){
         int checkDisName = diseaseService.getCheckDisName(disName);
-        return Map.of("checkName",disName);
+        return Map.of("checkName",checkDisName);
     }
     @PostMapping("/admin/disInsert")  // admin Disease insert
     @ResponseBody
-    public Map<String, Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
+    public Map<String, Object> setDisInsert(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
         if(diseaseService.getCheckDisName(disName) < 1 ){
             diseaseService.setDisease(diseaseDto);
             return Map.of("msg","success");
@@ -101,6 +101,20 @@ public class AdminController {
     public String getDisUpdate(@RequestParam int disId, Model model){
         model.addAttribute("dis",diseaseService.viewDis(disId));
         return "admin/diseasePage/disUpdate";
+    }
+    @GetMapping("/admin/checkId")
+    @ResponseBody
+    public Map<String, Object> setCheckId(@RequestParam int disId){
+        System.out.println(disId);
+        return null;
+    }
+    @PostMapping("/admin/disUpdate")
+    @ResponseBody
+    public Map<String,Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto){
+        System.out.println(diseaseDto);
+        System.out.println(diseaseDto.getDisId());
+        diseaseService.updateDis(diseaseDto);
+        return Map.of("msg","success");
     }
     @GetMapping("/admin/disDelete")
     public String disDelete(@ModelAttribute DiseaseDto diseaseDto){

@@ -22,8 +22,8 @@ public interface DiseaseMapper {
     //Update Query
     @Select("SELECT * FROM disease WHERE dis_id = #{disId}")
     public DiseaseDto viewDis(int disId);
-    @Update("UPDATE disease SET dis_name = #{disName}, dis_sym = #{disName}, dis_reg = now() WHERE dis_id = #{disId}")
-    public DiseaseDto updateDis();
+    @Update("UPDATE disease SET dis_sym = #{disSym} WHERE dis_id = #{disId}")
+    public void updateDis(DiseaseDto diseaseDto);
 
     // DELETE QUERY
     @Delete("DELETE FROM disease WHERE dis_id = #{disId}")

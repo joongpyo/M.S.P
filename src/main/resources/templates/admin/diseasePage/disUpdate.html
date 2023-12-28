@@ -37,23 +37,26 @@
                     <form action="">
                         <div class="dis first">
                             <p>병 명</p>
-                            <input type="text" name="disName" class="disName" placeholder="병명을 입력하세요 ex: > 감기  " maxlength="20" th:value="${dis.disName}">
+                            <input type="text" name="disName" class="disName" th:value="${dis.disName}" readonly >
                         </div>
-                        <div class="dis" th:each="">
+                        <div class="dis">
                             <p>증 상 1</p>
-                            <input type="text" name="disSym" id="disSym1" class="disSym" placeholder="증상을 입력하세요 ex: > 고열">
+                            <input type="text" name="disSym" id="disSym1" class="disSym" placeholder="증상을 입력하세요 ex: > 고열" th:value="${#strings.arraySplit(dis.disSym, '/')[0]}">
                         </div>
                         <div class="dis">
                             <p>증 상 2</p>
-                            <input type="text" name="disSym" id="disSym2" class="disSym" placeholder="증상을 입력하세요 ex: > 오한">
+                            <input type="text" name="disSym" id="disSym2" class="disSym" placeholder="증상을 입력하세요 ex: > 오한" th:value="${#strings.arraySplit(dis.disSym, '/')[1]}">
                         </div>
                         <div class="dis last">
                             <p>증 상 3</p>
-                            <input type="text" name="disSym" id="disSym3" class="disSym" placeholder="증상을 입력하세요 ex: > 통증">
+                            <input type="text" name="disSym" id="disSym3" class="disSym" placeholder="증상을 입력하세요 ex: > 통증" th:value="${#strings.arraySplit(dis.disSym, '/')[2]}">
                         </div>
                         <div class="dis-btn-box">
-                            <button type="button" class="dis-btn"> 질병등록 </button>
+                            <a th:href="@{/admin/disList}"><button type="button" class="dis-btn"> 목록으로 </button></a>
+                            <button type="button" class="dis-btn" id="dis-btn"> 수정 등록 </button>
                         </div>
+                    </form>   
+                    <input type="hidden" name="disId" th:value="${dis.disId}"> 
                 </div>
             </div>
     </div>
@@ -62,6 +65,6 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" th:src="@{/js/disInsert.js}"></script>
+<script type="text/javascript" th:src="@{/js/disUpdate.js}"></script>
 
 </html>
