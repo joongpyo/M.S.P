@@ -48,6 +48,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra,HttpSession session, HttpServletRequest hsr){
+
         UserDto d = userService.setLogin(userDto);
         String prevPage = (String) session.getAttribute("prevPage");
         if(d != null){

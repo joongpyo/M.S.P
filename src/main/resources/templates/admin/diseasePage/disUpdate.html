@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Insert</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/disInsert.css}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div id="sidebar">
+        <th:block th:replace="~{admin/side_header::sidebar_header_frag}"></th:block>
+        <th:block th:replace="~{admin/side_header::sidebar_components_frag}"></th:block>
+    </div>
+    <div id="content">
+        <th:block th:replace="~{admin/top_navbar::top_navbar_frag}"></th:block>
+            <div class="main-content">
+                <div class="sub-title-box">
+                    <p><i class="fa-solid fa-house"></i><a th:href="@{/admin}"> <span>홈</span> </a>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <a th:href="@{/admin/disList}">병명 정보 관리</a>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <a th:href="@{/admin/disInsert/}"><strong>병명 수정 등록</strong></a>
+                    </p>
+                </div>
+                <div class="content-title">
+                    <h1>병명 수정 등록하기</h1>
+                </div>
+                <div class="content_contanier">
+
+                    <form action="">
+                        <div class="dis first">
+                            <p>병 명</p>
+                            <input type="text" name="disName" class="disName" th:value="${dis.disName}" readonly >
+                        </div>
+                        <div class="dis">
+                            <p>증 상 1</p>
+                            <input type="text" name="disSym" id="disSym1" class="disSym" placeholder="증상을 입력하세요 ex: > 고열" th:value="${#strings.arraySplit(dis.disSym, '/')[0]}">
+                        </div>
+                        <div class="dis">
+                            <p>증 상 2</p>
+                            <input type="text" name="disSym" id="disSym2" class="disSym" placeholder="증상을 입력하세요 ex: > 오한" th:value="${#strings.arraySplit(dis.disSym, '/')[1]}">
+                        </div>
+                        <div class="dis last">
+                            <p>증 상 3</p>
+                            <input type="text" name="disSym" id="disSym3" class="disSym" placeholder="증상을 입력하세요 ex: > 통증" th:value="${#strings.arraySplit(dis.disSym, '/')[2]}">
+                        </div>
+                        <div class="dis-btn-box">
+                            <a th:href="@{/admin/disList}"><button type="button" class="dis-btn"> 목록으로 </button></a>
+                            <button type="button" class="dis-btn" id="dis-btn"> 수정 등록 </button>
+                        </div>
+                    </form>   
+                    <input type="hidden" name="disId" th:value="${dis.disId}"> 
+                </div>
+            </div>
+    </div>
+    <div class="footer">
+        <span>&copy; COPYRIGHT BY M.S.P</span>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/disUpdate.js}"></script>
+
+</html>

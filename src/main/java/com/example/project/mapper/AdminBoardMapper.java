@@ -1,8 +1,8 @@
 package com.example.project.mapper;
 
-
 import com.example.project.dto.AdminBoardDto;
 import com.example.project.dto.FileDto;
+import com.example.project.dto.MedicineDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;

@@ -1,6 +1,6 @@
 package com.example.project.mapper;
 
-
+import com.example.project.dto.DiseaseDto;
 import com.example.project.dto.FileDto;
 import com.example.project.dto.MedicineDto;
 import org.apache.ibatis.annotations.*;
@@ -24,7 +24,7 @@ public interface MedicineMapper {
     @Select("SELECT * FROM medicine WHERE med_id=#{medId}")
     public MedicineDto getMedView(int medId);
     @Select("SELECT * FROM files_admin WHERE id = #{medId}")
-    public MedicineDto getFileView(int medId);
+    public FileDto getFileView(int medId);
 
     //medicine delete
     @Delete("DELETE FROM medicine WHERE med_id = #{medId}")

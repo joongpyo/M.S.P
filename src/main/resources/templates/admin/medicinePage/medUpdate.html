@@ -28,16 +28,16 @@
                                 <i class="fa-solid fa-angle-right"></i>
                                 <a th:href="@{/admin/medList}">약 정보 관리</a>
                                 <i class="fa-solid fa-angle-right"></i>
-                                <a th:href="@{/admin/medList}"><strong>약품 등록</strong></a>
+                                <a th:href="@{/admin/medList}"><strong>약품 수정 등록</strong></a>
                             </p>
                         </div>
                         <div class="content-title">
-                            <h1>약품 등록</h1>
+                            <h1>약품 수정 등록</h1>
                         </div>
                         <form action="" method="post" enctype="multipart/form-data" class="insert-container">
                             <div class="med name">
-                                <p>[[${med.medId}]]</p>
-                                <input type="text" name="medName" class="medName" id="medName" placeholder="약품 명을 입력하세요.">
+                                <p>약품 명</p>
+                                <input type="text" name="medName" class="medName" id="medName" th:value="${med.medName}">
                             </div>
                             <div class="med disease">
                                 <p>유효 질병</p>
@@ -54,18 +54,17 @@
                                     <input type="checkbox" name="medDis" class="medDis" value="몸살">몸살
                                 </div>
                             </div>
-
                             <div class="med">
                                 <p>약효</p>
-                                    <input type="text" name="medEff" class="medEff" placeholder="약의 효능을 입력하세요.">
+                                    <input type="text" name="medEff" class="medEff" th:value="${med.medEff}" placeholder="약의 효능을 입력하세요.">
                             </div>
                             <div class="med">
                                 <p>제형</p>
-                                <input type="text" name="medType" class="medType" placeholder="약의 제형을 입력하세요.">
+                                <input type="text" name="medType" class="medType" th:value="${med.medType}" placeholder="약의 제형을 입력하세요.">
                             </div>
                             <div class="med">
                                 <p>제조사</p>
-                                <input type="text" name="medCom" class="medCom" placeholder="제약 회사를 입력하세요.">
+                                <input type="text" name="medCom" class="medCom" th:value="${med.medCom}" placeholder="제약 회사를 입력하세요.">
                             </div>
                             <div class="med">
                                 <p>복용 가능 연령</p>

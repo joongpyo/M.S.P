@@ -140,7 +140,7 @@ public class AdminController {
     }
     @PostMapping("/admin/noticeInsert")
     @ResponseBody
-    public Map<String,Object> setNoticeInsert(@ModelAttribute com.example.project.dto.AdminBoardDto adminBoardDto, @RequestParam("file") MultipartFile file) throws IOException {
+    public Map<String,Object> setNoticeInsert(@ModelAttribute AdminBoardDto adminBoardDto, @RequestParam("file") MultipartFile file) throws IOException {
         System.out.println(adminBoardDto);
         if(adminBoardDto.getConfigCode().equals("review") && !file.isEmpty()){
             return Map.of("msg","choice1");
@@ -157,7 +157,7 @@ public class AdminController {
                     makeFolder.mkdir();
                 }
                 // 데이터 베이스 저장전에 잠시 저장
-                com.example.project.dto.FileDto fileDto = new com.example.project.dto.FileDto();
+                FileDto fileDto = new FileDto();
 
                 // 경로명  + UUID
                 String savedPathFileName = fileDir + folderName;
@@ -184,7 +184,9 @@ public class AdminController {
             }else {
                 return Map.of("msg","failure");
             }
+
         }
+
     }
     @GetMapping("/admin/medList")
     public String getMedList(Model model, @RequestParam(value = "page", defaultValue = "1")int page,@RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
@@ -200,7 +202,7 @@ public class AdminController {
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
-    public Map<String, Object> setMedUpdate(@ModelAttribute com.example.project.dto.MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+    public Map<String, Object> setMedUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
         System.out.println(medicineDto);
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
@@ -213,7 +215,7 @@ public class AdminController {
                 makeFolder.mkdir();
             }
             // 데이터 베이스 저장전에 잠시 저장
-            com.example.project.dto.FileDto fileDto = new com.example.project.dto.FileDto();
+            FileDto fileDto = new FileDto();
 
             // 경로명  + UUID
             String savedPathFileName = fileDir + folderName;
@@ -240,12 +242,12 @@ public class AdminController {
         }
     }
     @GetMapping("/admin/medDelete")
-    public String medDelete(@ModelAttribute com.example.project.dto.MedicineDto medicineDto){
+    public String medDelete(@ModelAttribute MedicineDto medicineDto){
         if( medicineDto.getMedId() > 0 && !medicineDto.getMedName().isEmpty() ){
             medicineService.deleteMed(medicineDto);
         }
-        List<com.example.project.dto.FileDto> files = medicineService.getFiles(medicineDto.getMedId());
-        for(com.example.project.dto.FileDto fd : files){
+        List<FileDto> files = medicineService.getFiles(medicineDto.getMedId());
+        for(FileDto fd : files){
             File file = new File(fd.getSavedPathName()+"/"+fd.getSavedFileName());
             file.delete();
         }
@@ -255,12 +257,11 @@ public class AdminController {
         return "redirect:/admin/medList?medId="+ medicineDto.getMedId();
     }
     @GetMapping("/admin/medUpdate")
-    public String boardView(@ModelAttribute com.example.project.dto.MedicineDto medicineDto , @RequestParam int medId, Model model){
-        model.addAttribute("med",medicineService.getMedView(medId));
-        model.addAttribute("file",medicineService.getFileView(medId));
-        return "admin/medicinePage/medUpdate";
+    public String medicineView(@RequestParam int medId, Model model){
 
+       model.addAttribute("med",medicineService.getMedView(medId));
+       model.addAttribute("file",medicineService.getFileView(medId));
+
+       return "admin/medicinePage/medUpdate";
     }
-
-
 }

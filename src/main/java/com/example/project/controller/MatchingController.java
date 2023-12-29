@@ -3,14 +3,20 @@ package com.example.project.controller;
 
 import com.example.project.dto.MedicineDto;
 import com.example.project.service.MatchingService;
+import com.example.project.dto.MedicineDto;
+import com.example.project.dto.UserDto;
+import com.example.project.service.MatchingService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/matching")

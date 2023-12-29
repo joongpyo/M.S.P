@@ -1,3 +1,4 @@
+/*---------------------------boardReview content -----------------------*/
 
 .board-bg {
     background-image: url("/images/texture1.jpg");
@@ -164,7 +165,6 @@ tr {
     border: 1px solid #eaeaea;
     border-left: 0;
     border-right: 0;
-
 }
 
 th {

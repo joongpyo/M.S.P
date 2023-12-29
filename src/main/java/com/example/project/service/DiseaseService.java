@@ -1,8 +1,8 @@
 package com.example.project.service;
 
-
 import com.example.project.dto.DiseaseDto;
 import com.example.project.dto.PageDto;
+import com.example.project.dto.UserDto;
 import com.example.project.mapper.DiseaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +66,13 @@ public class DiseaseService {
     }
     public void deleteDis(DiseaseDto diseaseDto){
         diseaseMapper.deleteDis(diseaseDto);
+    }
+
+    //update
+    public DiseaseDto viewDis(int disId){
+       return diseaseMapper.viewDis(disId);
+    }
+    public void updateDis(DiseaseDto diseaseDto){
+        diseaseMapper.updateDis(diseaseDto);
     }
 }

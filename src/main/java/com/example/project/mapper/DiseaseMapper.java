@@ -1,11 +1,8 @@
 package com.example.project.mapper;
 
-
 import com.example.project.dto.DiseaseDto;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.example.project.dto.UserDto;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +18,12 @@ public interface DiseaseMapper {
     public List<DiseaseDto> getDisList(Map<String, Object> map);
     @Select("SELECT COUNT(*) FROM disease ${searchQuery}")
     public int getDisCount(String searchQuery);
+
+    //Update Query
+    @Select("SELECT * FROM disease WHERE dis_id = #{disId}")
+    public DiseaseDto viewDis(int disId);
+    @Update("UPDATE disease SET dis_sym = #{disSym} WHERE dis_id = #{disId}")
+    public void updateDis(DiseaseDto diseaseDto);
 
     // DELETE QUERY
     @Delete("DELETE FROM disease WHERE dis_id = #{disId}")

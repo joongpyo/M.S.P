@@ -51,7 +51,6 @@ public class UserService {
         map.put("searchQuery",searchQuery);
         return userMapper.getUserList(map);
     }
-
     public String getSearch(String searchType, String words){
         String searchQuery = "";
         if(searchType.equals("userId") ){
@@ -65,4 +64,6 @@ public class UserService {
         }
         return searchQuery;
     }
+
+
 }

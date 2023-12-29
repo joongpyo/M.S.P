@@ -1,6 +1,7 @@
 package com.example.project.service;
 
 
+import com.example.project.dto.DiseaseDto;
 import com.example.project.dto.FileDto;
 import com.example.project.dto.MedicineDto;
 import com.example.project.dto.PageDto;
@@ -8,6 +9,7 @@ import com.example.project.mapper.MedicineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,7 +86,9 @@ public class MedicineService {
     public MedicineDto getMedView(int medId){
         return medicineMapper.getMedView(medId);
     }
-    public MedicineDto getFileView(int medId){
+
+    //Update
+    public FileDto getFileView(int medId){
         return medicineMapper.getFileView(medId);
     }
 
