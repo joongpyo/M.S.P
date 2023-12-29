@@ -62,6 +62,7 @@
                         <th>작성자</th>
                         <th>조회수</th>
                         <th>작성날짜</th>
+                        <th>첨부</br>파일</th>
                     </tr>
                     </thead>
                     <tbody class="qnaList">
@@ -77,6 +78,9 @@
                         <td>[[${board.writer}]]</td>
                         <td>[[${board.visit}]]</td>
                         <td>[[${board.reg}]]</td>
+                        <td th:if="${board.isFiles eq 'Y'}">
+                            <span>YES</span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
