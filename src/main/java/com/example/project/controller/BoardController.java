@@ -172,7 +172,6 @@ public class BoardController {
         BoardDto bd = boardService.getView(configCode,id);
         model.addAttribute("modify",bd);
         model.addAttribute("configCode",configCode);
-        System.out.println(bd);
         return "board/boardUpdate";
     }
 

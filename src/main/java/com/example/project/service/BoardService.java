@@ -115,6 +115,7 @@ public class BoardService {
 
     public void setDelete(String configCode,BoardDto boardDto) {
 
+        /*
         //하위게시물(답글 게시판 얻기)
         Map<String,Object> delmap = new HashMap<>();
         boardDto.setConfigCode(configCode);
@@ -155,6 +156,8 @@ public class BoardService {
             boardMapper.setFilesDelete(configCode,boardDto.getId());
         }
         boardMapper.setReplyDelete(boardDto);
+
+         */
         boardMapper.setDelete(configCode,boardDto.getId());
     }
 

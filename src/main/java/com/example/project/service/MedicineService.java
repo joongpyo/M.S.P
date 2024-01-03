@@ -55,7 +55,7 @@ public class MedicineService {
     public String getMedSearch(String searchType, String words){
         String searchQuery = "";
         if(searchType.equals("medName") ){
-            searchQuery = " WHERE med_name = '"+words+"'";
+            searchQuery = " WHERE med_name LIKE '%"+words+"%'";
         }else if(searchType.equals("medDis")){
             searchQuery = " WHERE med_dis LIKE '%"+words+"%'";
         }else if(searchType.equals("medEff")){
@@ -65,13 +65,16 @@ public class MedicineService {
         }else if(searchType.equals("medStore")){
             searchQuery = " WHERE med_store = '"+words+"'";
         }else if(searchType.equals("medCom")){
-            searchQuery = " WHERE med_com = '"+words+"'";
+            searchQuery = " WHERE med_com LIKE '%"+words+"%'";
         }else if(searchType.equals("medPregnant")){
             searchQuery = " WHERE med_pregnant = '"+words+"'";
         }else {
             searchQuery = "";
         }
+        System.out.println(searchQuery);
+
         return searchQuery;
+
     }
     public void deleteMed(MedicineDto medicineDto){
         medicineMapper.deleteMed(medicineDto);

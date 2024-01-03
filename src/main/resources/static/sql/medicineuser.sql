@@ -7,11 +7,6 @@ user_email varchar(50) not null unique,
 primary key(u_id)
 );
 
-
-
-
-
-
 --수정
 create table board_QnA(
 id int not null auto_increment,
@@ -27,7 +22,7 @@ isFiles char(1) not null,
 comment_count int not null,
 board_type int not null,
 u_id_fk int not null,
-foreign key(u_id_fk) REFERENCES user(u_id),
+foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
 
@@ -38,7 +33,8 @@ savedFileName varchar(255),
 savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
-ext varchar(20)
+ext varchar(20),
+foreign key(id) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table comment_QnA(
@@ -47,7 +43,7 @@ c_writer varchar(20),
 c_comment varchar(100),
 c_regdate date,
 b_id_fk int not null,
-foreign key(b_id_fk) references board_QnA(id),
+foreign key(b_id_fk) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(c_id)
 );
 
@@ -65,7 +61,7 @@ isFiles char(1) not null,
 comment_count int not null,
 board_type int not null,
 u_id_fk int not null,
-foreign key(u_id_fk) REFERENCES user(u_id),
+foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
 
@@ -76,18 +72,10 @@ savedFileName varchar(255),
 savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
-ext varchar(20)
+ext varchar(20),
+foreign key(id) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table comment_Notice(
-c_id int not null auto_increment,
-c_writer varchar(20),
-c_comment varchar(100),
-c_regdate date,
-b_id_fk int not null,
-foreign key(b_id_fk) references board_Notice(id),
-primary key(c_id)
-);
 
 create table board_Review(
 id int not null auto_increment,
@@ -103,7 +91,7 @@ isFiles char(1) not null,
 comment_count int not null,
 board_type int not null,
 u_id_fk int not null,
-foreign key(u_id_fk) REFERENCES user(u_id),
+foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
 
@@ -114,7 +102,8 @@ savedFileName varchar(255),
 savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
-ext varchar(20)
+ext varchar(20),
+foreign key(id) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table comment_Review(
@@ -123,7 +112,7 @@ c_writer varchar(20),
 c_comment varchar(100),
 c_regdate date,
 b_id_fk int not null,
-foreign key(b_id_fk) references board_Review(id),
+foreign key(b_id_fk) references board_Review(id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(c_id)
 );
 
@@ -141,28 +130,8 @@ isFiles char(1) not null,
 comment_count int not null,
 board_type int not null,
 u_id_fk int not null,
-foreign key(u_id_fk) REFERENCES user(u_id),
+foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
-);
-
-create table files_List(
-id int not null,
-orgName varchar(255),
-savedFileName varchar(255),
-savedPathName varchar(255),
-savedFileSize bigint,
-folderName varchar(10),
-ext varchar(20)
-);
-
-create table comment_List(
-c_id int not null auto_increment,
-c_writer varchar(20),
-c_comment varchar(100),
-c_regdate date,
-b_id_fk int not null,
-foreign key(b_id_fk) references board_List(id),
-primary key(c_id)
 );
 
 create table medicine(

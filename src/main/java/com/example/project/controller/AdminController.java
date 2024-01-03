@@ -89,7 +89,7 @@ public class AdminController {
     }
     @PostMapping("/admin/disInsert")  // admin Disease insert
     @ResponseBody
-    public Map<String, Object> setDisUpdate(@ModelAttribute com.example.project.dto.DiseaseDto diseaseDto, @RequestParam String disName ){
+    public Map<String, Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
         if(diseaseService.getCheckDisName(disName) < 1 ){
             diseaseService.setDisease(diseaseDto);
             return Map.of("msg","success");
@@ -98,7 +98,7 @@ public class AdminController {
         }
     }
     @GetMapping("/admin/disDelete")
-    public String disDelete(@ModelAttribute com.example.project.dto.DiseaseDto diseaseDto){
+    public String disDelete(@ModelAttribute DiseaseDto diseaseDto){
         diseaseService.deleteDis(diseaseDto);
         return "redirect:/admin/disList?disId="+ diseaseDto.getDisId();
     }

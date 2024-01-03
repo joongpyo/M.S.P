@@ -16,7 +16,6 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE user_id = #{userId} AND user_passwd = #{userPasswd}")
     public UserDto setLogin(UserDto userDto);
 
-
     @Select("SELECT * FROM user ${searchQuery} ORDER BY u_id DESC LIMIT #{startNum}, #{offset}")
     public List<UserDto> getUserList(Map<String, Object> map);
 
