@@ -13,7 +13,9 @@ import java.util.Map;
 
 @Mapper
 public interface AdminBoardMapper {
-    @Insert("INSERT INTO board_${configCode} VALUES(NULL, #{subject}, #{writer}, #{content}, 0, now(),1,1,1,#{isFiles},0,1,1)")
+    @Select("SELECT IFNULL( (MAX(grp) + 1), 1) FROM board_${configCode}")
+    public int getGrpMaxCnt(String configCode);
+    @Insert("INSERT INTO board_${configCode} VALUES(NULL, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, 1, 1,#{isFiles},0,1,1)")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     public void setAdminBoard(AdminBoardDto adminBoardDto);
     @Insert("INSERT INTO files_${configCode} VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")

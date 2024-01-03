@@ -65,5 +65,7 @@ public class UserService {
         return searchQuery;
     }
 
-
+    public void userDelete(UserDto userDto){
+        userMapper.userDelete(userDto);
+    }
 }

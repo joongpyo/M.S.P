@@ -16,6 +16,9 @@ import java.util.Map;
 public class AdminBoardService {
     @Autowired
     AdminBoardMapper adminBoardMapper;
+    public int getGrpMaxCnt(String configCode){
+        return adminBoardMapper.getGrpMaxCnt(configCode);
+    }
     public void setAdminBoard(AdminBoardDto adminBoardDto){
         adminBoardMapper.setAdminBoard(adminBoardDto);
     }

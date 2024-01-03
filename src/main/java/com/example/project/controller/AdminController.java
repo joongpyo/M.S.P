@@ -65,7 +65,9 @@ public class AdminController {
 
     @GetMapping("/admin/userDelete")
     public String getUserDelete(@ModelAttribute UserDto userDto){
+        userService.userDelete(userDto);
         return null;
+        //return "redirect:/admin/userList?uId="+ userDto.getuId();
     }
 
     @GetMapping("/admin/disList") // 질병 리스트  -> 리스트 안에서 삭제 버튼 만들어서 사용 메인페이지 안에 작성페이지로 이동하는 버튼 만들기
@@ -161,7 +163,9 @@ public class AdminController {
     @PostMapping("/admin/noticeInsert")
     @ResponseBody
     public Map<String,Object> setNoticeInsert(@ModelAttribute AdminBoardDto adminBoardDto, @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(adminBoardDto);
+        int grp = adminBoardService.getGrpMaxCnt(adminBoardDto.getConfigCode());
+        adminBoardDto.setGrp(grp);
+
         if(adminBoardDto.getConfigCode().equals("review") && !file.isEmpty()){
             return Map.of("msg","choice1");
         }else {

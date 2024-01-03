@@ -41,10 +41,8 @@ input[type="text"] {
 input[type="text"]:focus {
     outline: none; /* 테두리 색 및 두께 조절 가능 */
 }
-select {
-    border: 1px solid #ccc; /* 테두리 색 및 두께 조절 가능 */
-    padding: 2px;
-}
+
+
 
 select:focus {
     outline: none; /* 포커스 효과 제거 */

@@ -75,7 +75,7 @@
                             <td>[[${dis.disReg}]]</td>
                             <td>
                                 <a th:href="@{/admin/disUpdate?(disId=${dis.disId})}"><button type="button" class="btn">수정</button></a>
-                                <button type="button" class="btn" th:onclick="deleteDis([[${dis.disId}]],[[${dis.disName}]])">삭제</button>
+                                <button type="button" class="btn red" th:onclick="deleteDis([[${dis.disId}]],[[${dis.disName}]])">삭제</button>
                             </td>
                         </tr>
                         </tbody>

@@ -188,21 +188,14 @@
     color: #fff;
 }
 
+.red{
+    background-color: #FB4F9C;
+    color: #fff;
+}
 
 
 /*관리자 게시물 갯수, 검색창*/
 
-.search-form {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    margin-bottom: 25px;
-}
-
-.search-right {
-    display: flex;
-    justify-content: space-between;
-}
 /*
 select {
     height: 30px;
@@ -212,26 +205,37 @@ select {
     border-bottom-left-radius: 3px;
 }
 */
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 85%;
+    margin-bottom: 25px;
+}
+
 .search-box {
     border: 0;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding-left: 12px;
-    padding-right: 12px;
     display: flex;
     overflow: hidden;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
 
-.sel-box select{
+.sel-box{
     border: 0;
-    outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-right: none;
     padding-left: 12px;
+    width: 100px;
 }
-
+.sel-box select{
+    border: none;
+    outline: none;
+    width: 100%;
+}
 .search2 {
     border: 0;
     /* border: 1px solid rgba(0, 0, 0, 0.2); */
@@ -253,22 +257,12 @@ select {
     text-decoration: underline;
 }
 
-.search-form {
-    display: flex;
-    justify-content: space-between;
-
-    width: 83%;
-    margin: 0 auto;
-    margin-bottom: 25px;
-
-}
-
 .search-right {
     display: flex;
     justify-self: center;
 }
 
-.select-style {
+.tyle {
     height: 30px;
     border: 1px solid #504d4d;
     border-right: 0;
@@ -287,14 +281,6 @@ select {
     overflow: hidden;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-}
-
-.sel-box select{
-    border: 0;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-right: none;
-    padding-left: 5px;
 }
 
 .search2 {

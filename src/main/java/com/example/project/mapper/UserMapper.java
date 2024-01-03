@@ -1,6 +1,7 @@
 package com.example.project.mapper;
 
 import com.example.project.dto.UserDto;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -21,5 +22,9 @@ public interface UserMapper {
 
     @Select("SELECT COUNT(*) FROM user ${searchQuery}")
     public int getUserCount(String searchQuery);
+
+    //userDelete
+    @Delete("DELETE FROM user WHERE u_id = ${uId}")
+    public void userDelete(UserDto userDto);
 }
 

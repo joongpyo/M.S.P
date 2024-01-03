@@ -35,19 +35,23 @@
                     <h1>회원 정보 관리</h1>
                 </div>
                 <form action="/admin/userList" method="get" enctype="multipart/form-data" name="search-form">
-                    <span>회원수 수 : <strong>[[${total}]]</strong></span>
-                    <div class="search-right">
-                        <div class="sel-box">
-                            <select name="searchType" id="">
-                                <option value="">선택</option>
-                                <option value="userId">아이디</option>
-                                <option value="userName">이름</option>
-                                <option value="userEmail">이메일</option>
-                            </select>
+                    <div class="search-form">
+                        <div class="search-left">
+                            <span>회원수 수 : <strong>[[${total}]]</strong></span>
                         </div>
-                        <div class="search-box">
-                            <input type="text" name="words" class="search2">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <div class="search-right">
+                            <div class="sel-box">
+                                <select name="searchType" id="">
+                                    <option value="">선택</option>
+                                    <option value="userId">아이디</option>
+                                    <option value="userName">이름</option>
+                                    <option value="userEmail">이메일</option>
+                                </select>
+                            </div>
+                            <div class="search-box">
+                                <input type="text" name="words" class="search2">
+                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -74,7 +78,7 @@
                                  <td>[[${user.userEmail}]]</td>
                                  <td>[[${user.userName}]]</td>
                                  <td>
-                                     <button type="button" class="btn" th:onclick="deleteCheck(uId)">삭제</button>
+                                     <button type="button" class="btn red" th:onclick="deleteCheck([[${user.uId}]],[[${user.userId}]])">삭제</button>
                                  </td>
                              </tr>
                         </tbody>
@@ -114,6 +118,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" th:src="@{/js/user.js}"></script>
+    <script type="text/javascript" th:src="@{/js/userList.js}"></script>
 </body>
 </html>
