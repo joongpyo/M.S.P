@@ -129,31 +129,32 @@ public class AdminController {
         return "admin/noticePage/noticeMain";
     }
     @GetMapping("/admin/noticeBoard")
-    public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode){
-        System.out.println(configCode);
+    public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
         model.addAttribute("configCode",configCode);
-        model.addAttribute("notice",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("notice",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
         return "admin/noticePage/noticeBoard";
 
     }
     @GetMapping("/admin/qnaBoard")
-    public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
-        System.out.println(configCode);
+    public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
         model.addAttribute("configCode",configCode);
-        model.addAttribute("qna",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("qna",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
         return "admin/noticePage/qnaBoard";
     }
     @GetMapping("/admin/reviewBoard")
-    public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
-        System.out.println(configCode);
+    public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "")String words){
         model.addAttribute("configCode",configCode);
-        model.addAttribute("review",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("review",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
+
         return "admin/noticePage/reviewBoard";
     }
     @GetMapping("admin/noticeInsert")

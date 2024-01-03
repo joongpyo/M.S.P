@@ -22,10 +22,10 @@ public interface AdminBoardMapper {
     public void setFile(FileDto fileDto);
 
     //Notice view
-    @Select("SELECT * FROM board_${configCode} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    @Select("SELECT * FROM board_${configCode} ${searchQuery} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
     public List<AdminBoardDto> getBoardList(Map<String, Object> map);
-    @Select("SELECT COUNT(*) FROM board_${configCode}")
-    public int getBoardCount(String configCode);
+    @Select("SELECT COUNT(*) FROM board_${configCode} ${searchQuery}")
+    public int getBoardCount(String configCode, String searchQuery);
 
 }
 
