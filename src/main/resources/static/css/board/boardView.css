@@ -213,6 +213,10 @@ p .writer {
     font-size: 14px;
 }
 
+.comment-p{
+    padding-bottom: 10px;
+}
+
 .comment-write {
     display:flex;
 }

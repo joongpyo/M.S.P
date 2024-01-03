@@ -65,11 +65,6 @@
                             <th:block th:if="${file.ext eq '.jpg' OR file.ext eq '.png'}">
                                 <div class="img-box">
                                     <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
-                                    <p class="img-btn">
-                                        <a th:href="@{/board/download?(configCode=${configCode}, savedFileName=${file.savedFileName})}">
-                                            <p>[[${file.savedFileSize/1000}]]byte<button class="btn">다운로드</button></p>
-                                        </a>
-                                    </p>
                                 </div>
                             </th:block>
                             <th:block th:unless="${file.ext eq '.jpg' OR file.ext eq '.png'}">
@@ -104,7 +99,7 @@
                         </div>
                     </div>
                     <div class="comment" th:if="${configCode eq 'QnA' or configCode eq 'Review'}">
-                        <p class=""><strong>댓글</strong></p>
+                        <p class="comment-p"><strong>댓글</strong></p>
                         <div class="comment-write">
                             <div class="comment-msg">
                                 <textarea class="cComment" name="cComment" rows="4" cols="80"></textarea>

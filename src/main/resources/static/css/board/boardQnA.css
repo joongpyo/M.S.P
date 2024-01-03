@@ -162,14 +162,14 @@ table {
 }
 
 tr {
-    border: 1px solid #eaeaea;
+    border: 2px solid #eaeaea;
     border-left: 0;
     border-right: 0;
 }
 
 th {
     background-color: #f8f8f8;
-    border-top: 2px solid #50bcdf;
+    border-top: 2px solid #eaeaea;
 }
 
 td,
@@ -218,6 +218,13 @@ th:nth-child(6) {
 
 tbody .b-subject:hover {
     text-decoration:underline;
+}
+
+.comment-count {
+    color: red;
+    font-size: 12px;
+    margin-left:2px;
+
 }
 
 /* ------------------------bottom------------------------- */
