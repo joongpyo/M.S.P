@@ -9,9 +9,8 @@
 }
 .content-wrap{
     width: 100%;
-    margin: 2px 3px;
-    text-align: center;
-    margin: 5px 8px;
+    display: flex;
+    justify-content: center;
 }
 
 /*----------------------dashboard-left---------------------------*/
@@ -20,38 +19,45 @@
 }
 .dashboard-left-top{
     display: flex;
-    width: 250px;
+    width: 240px;
     height: 350px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
     justify-content: center;
 }
 .dashboard-left-mid{
-    width: 250px;
+    width: 240px;
     height: 70px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     display: flex;
     align-items: center;
 }
 
 .dashboard-left-bottom{
-    width: 250px;
+    width: 240px;
     height: 70px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     display: flex;
     align-items: center;
+}
+.top-content-wrap,
+.mid-content-wrap,
+.btm-content-wrap {
+    display: flex;
+    flex-direction: column; /* 자식 요소들을 세로로 나열하기 위해 컬럼 방향으로 설정 */
+    align-items: center; /* 수직 가운데 정렬 */
 }
 
 .top-content-wrap-img{
@@ -61,10 +67,12 @@
     border: none;
     border: 1px solid #000;
 }
-
+.mid-content-wrap-button,
+.btm-content-wrap-button {
+  margin: 12px;
+}
 .btn-left{
-    width: 80%;
-    padding: 7px 0;
+    padding: 10px 20px;
     border: 0;
     border-radius: 5px;
     background-color: #41A7E3;
@@ -78,50 +86,77 @@
     margin: 15px 10px;
 }
 .dashboard-center-top{
-    width: 570px;
+    width: 580px;
     height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
 }
 .dashboard-center-mid{
-    width: 570px;
+    width: 580px;
     height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
-    justify-content: center;
 }
 .dashboard-center-bottom{
-    width: 570px;
+    width: 580px;
     height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
-}
+}   
 .center-content-wrap{
     width: 95%;
     border: none;
     border: 1px solid #ccc;
     border-radius: 3px;
     align-items: center;
+    margin-top: 5px; 
 }
 .center-content-wrap-top{
     background-color: #41A7E3;
     color: #fff;
+    padding: 10px;
+}
+.center-content-wrap h4 {
+    text-align: left; 
+    margin: 0; 
+}
+.center-content-wrap-btm {
+    background-color: #fff; 
+    padding: 10px; 
+}
+.center-content-wrap-btm table {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+.center-content-wrap-btm td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.center-content-wrap-btm td:nth-child(1) {
+    width: 60%;
+    text-align: left;
+}
+.center-content-wrap-btm td:nth-child(2) {
+    width: 15%;
+}
+.center-content-wrap-btm td:nth-child(3) {
+    width: 25%;
 }
 
-
-/*--------------------dashboard-center---------------------*/
+/*--------------------dashboard-right---------------------*/
 
 .dashboard-right{
     margin: 15px 10px;
@@ -134,7 +169,7 @@
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
 }
 .dashboard-right-mid{
@@ -144,7 +179,7 @@
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
 }
 .dashboard-right-bottom{
@@ -154,7 +189,7 @@
     border: .8px solid #ccc;
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 5px 8px;
+    margin: 10px 8px;
     align-items: center;
 }
 
