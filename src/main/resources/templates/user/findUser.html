@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>M.S.P | 로그인</title>
+	<link rel="stylesheet" th:href="@{/css/user/findUser.css}">
+	<link rel="stylesheet" th:href="@{/css/common.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<div class="container">
+		<div class="login_box">
+			<div class="find-type">
+				<div class="find-id type-active" onclick="toggleForm('id')">
+					아이디 찾기
+				</div>
+				<div class="find-pwd" onclick="toggleForm('pwd')">
+					비밀번호 찾기
+				</div>
+			</div>
+
+			<div class="find-content">
+				<div>
+					<h1>
+						<a th:href="@{/index}"><img th:src="@{/images/nocolorlogo.png}" alt=""></a>
+					</h1>
+				</div>
+				<div class="box-id">
+					<div><p class="find-info"><i class="fa-solid fa-pen"></i> 아이디는 가입시 입력하신 아이디로 찾을 수 있습니다.</p></div>
+					<div class="form_box">
+						<form>
+							<ul>
+								<li>
+									<input type="text" name="userId" class="userid" placeholder="아이디">
+								</li>
+								<li>
+									<input type="password" name="userPasswd" class="passwd" placeholder="이메일">
+								</li>
+
+								<li class="form-bottom">
+									<input type="submit" name="btn1" class="btn1 btn-left" value="취소">
+									<input type="button" name="btn1" class="btn1 btn-right" value="찾기">
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				<div class="box-pwd" style="display: none;">
+					<div><p class="find-info"><i class="fa-solid fa-pen"></i> 비밀번호는 가입시 입력하신 아이디로 찾을 수 있습니다.</p></div>
+					<div class="form_box">
+						<form>
+							<ul>
+								<li>
+									<input type="text" name="userId" class="userid" placeholder="아이디">
+								</li>
+								<li>
+									<input type="password" name="userPasswd" class="passwd" placeholder="이메일">
+								</li>
+
+								<li class="form-bottom">
+									<input type="submit" name="btn1" class="btn1 btn-left" value="취소">
+									<input type="button" name="btn1" class="btn1 btn-right" value="찾기">
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+
+				<div class="find_wrap">
+					<ul>
+						<li>
+							<a href="#" class="ko">로그인 페이지로 가기</a>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<a href="#" class="ko">회원가입 페이지로 가기</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		function frmCheck(){
+			let userid = document.querySelector("input[name=userId]");
+			let passwd = document.querySelector("input[name=userPasswd]");
+
+			if(userid.value == ""){
+				alert("아이디를 입력하세요.");
+				userid.focus();
+				return false;
+			}
+
+			if(passwd.value == ""){
+				alert("비밀번호를 입력하세요.");
+				passwd.focus();
+				return false;
+			}
+		}
+
+	    function toggleForm(type) {
+	        let elements = document.querySelectorAll('.find-type > div');
+	        elements.forEach(function(el) {
+	            el.classList.remove('type-active');
+	        });
+
+	        let clickedElement = document.querySelector('.find-' + type);
+	        clickedElement.classList.add('type-active');
+
+	        let targetForm = document.querySelector('.box-' + type);
+	        targetForm.style.display = 'block';
+
+	        // 다른 박스는 숨김
+	        let otherType = (type === 'id') ? 'pwd' : 'id';
+	        let otherForm = document.querySelector('.box-' + otherType);
+	        otherForm.style.display = 'none';
+
+	        console.log('.' + otherType + '-box');
+	    }
+
+	</script>
+</body>
+</html>

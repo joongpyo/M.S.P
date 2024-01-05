@@ -86,4 +86,9 @@ public class UserController {
         return Map.of("isLogin",isLogin);
     }
 
+    @GetMapping("/findUser")
+    public String getFindUser(){
+        return "/user/findUser";
+    }
+
 }
