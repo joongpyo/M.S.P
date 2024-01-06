@@ -149,6 +149,13 @@ is_files char(1) not null,
 primary key(med_id)
 );
 
+create table myMedicine(
+my_id int not null auto_increment,
+med_id int not null,
+u_id int not null,
+primary key(my_id)
+);
+
 create table files_admin(
 id int not null auto_increment,
 orgName varchar(255),
