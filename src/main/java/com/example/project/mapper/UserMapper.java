@@ -21,5 +21,8 @@ public interface UserMapper {
 
     @Select("SELECT COUNT(*) FROM user ${searchQuery}")
     public int getUserCount(String searchQuery);
+
+    @Select("SELECT * FROM user ${searchQuery}")
+    public UserDto getFindUser(String searchQuery);
 }
 

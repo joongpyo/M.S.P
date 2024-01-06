@@ -38,11 +38,7 @@
 			<div class="find_wrap">
 				<ul>
 					<li>
-						<a href="" class="ko">아이디 찾기 </a>
-					</li>
-					<span> / </span>
-					<li>
-						<a href="" class="ko"> 비밀번호 찾기</a>
+						<a th:href="@{/findUser}">아이디 / 비밀번호 찾기 </a>
 					</li>
 				</ul>
 				<ul>
@@ -53,66 +49,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- 모달 영역 -->
-	<div id="combinedModal" class="modal">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">아이디 및 비밀번호 찾기</h5>
-				<span class="close" onclick="closeModal()">&times;</span>
-			</div>
-			<div class="modal-body">
-				<!-- 아이디 찾기 페이지 -->
-				<div id="page1" class="page current-page">
-					<!-- 아이디 찾기 폼 -->
-					<form>
-						<div class="form-group">
-							<label for="username">아이디:</label>
-							<input type="text" class="form-control" id="username" placeholder="아이디를 입력하세요">
-						</div>
-						<button type="button" class="btn btn-primary" onclick="showPage('page2')">비밀번호찾기</button>
-					</form>
-				</div>
-
-				<!-- 비밀번호 찾기 페이지 -->
-				<div id="page2" class="page">
-					<!-- 비밀번호 찾기 폼 -->
-					<form>
-						<div class="form-group">
-							<label for="password">비밀번호:</label>
-							<input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요">
-						</div>
-						<button type="button" class="btn btn-secondary" onclick="showPage('page1')">아이디찾기</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 모달 열기 버튼 -->
-	<button class="btn" onclick="openModal()">모달 열기</button>
-
-	<script>
-		// 모달 열기
-		function openModal() {
-			document.getElementById("combinedModal").style.display = "block";
-		}
-
-		// 모달 닫기
-		function closeModal() {
-			document.getElementById("combinedModal").style.display = "none";
-		}
-
-		// 페이지 전환
-		function showPage(pageId) {
-			// 모든 페이지 숨기기
-			document.querySelectorAll('.page').forEach(page => {
-				page.classList.remove('current-page');
-			});
-			// 선택된 페이지 보이기
-			document.getElementById(pageId).classList.add('current-page');
-		}
-	</script>
 
 	<script>
 		function frmCheck(){
