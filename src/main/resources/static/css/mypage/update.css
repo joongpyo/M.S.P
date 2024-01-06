@@ -1,0 +1,72 @@
+
+.content-wrap{
+    width:100%;
+    margin-left: 140px;
+    margin-top: 70px;
+}
+
+.update-box{
+        display: flex;
+}
+
+.first{
+    border-top: 1px solid #ccc;
+}
+
+.last{
+    border-bottom: 1px solid #ccc;
+}
+
+.update-box p {
+    color: #000;
+    border-right: 1px solid #ccc;
+    margin-right: 30px;
+    width: 190px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+.update-box span{
+    padding: 20px 0;
+
+}
+
+.update-box input[type="password"] {
+    border: .8px solid #ccc;
+    text-align: left;
+    height: 100%;
+    padding: 4px;
+
+
+}
+
+.update-box input[type="password"]:focus {
+    outline: none; /* 테두리 색 및 두께 조절 가능 */
+}
+
+.update-btn-box{
+    width:100%;
+    margin-top: 30px;
+    text-align: right;
+
+}
+
+.update-btn{
+    width: 110px;
+    height: 45px;
+    border: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #5EB5A6;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+
+
+}
+
+.update-btn:active{
+    background-color: #47999A;
+}

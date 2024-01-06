@@ -12,7 +12,7 @@ import java.util.Map;
 public interface MedicineMapper {
     @Insert("INSERT INTO medicine VALUES(NULL, #{medName}, #{medDis}, #{medEff}, #{medType}, #{medStore}, #{medCom}, #{medAge}, #{medPregnant}, now(), #{isFiles})")
     @Options(useGeneratedKeys = true, keyProperty = "medId")
-    public void setMedUpdate(MedicineDto medicineDto);
+    public void setMedInsert(MedicineDto medicineDto);
     @Insert("INSERT INTO files_admin VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(FileDto fileDto);
     @Select("SELECT * FROM medicine ${searchQuery} ORDER BY med_id DESC LIMIT #{startNum}, #{offset}")
@@ -35,4 +35,10 @@ public interface MedicineMapper {
     //1226 jang
     @Select("SELECT * FROM files_admin")
     public List<FileDto> getFilesAll();
+    //medicine update
+
+    @Update("UPDATE medicine SET med_dis = #{medDis}, med_eff = #{medEff},med_type = #{medType}, med_store = #{medStore}, med_com = #{medCom}, med_age = #{medAge}, med_pregnant = #{medPregnant}, med_reg = now(), is_files = #{isFiles} WHERE med_id = #{medId}")
+    @Options(useGeneratedKeys = true, keyProperty = "medId")
+    public void medUpdate(MedicineDto medicineDto);
+
 }

@@ -1,0 +1,132 @@
+main{
+    padding-top: 130px;
+    width: 100%;
+    height: 1060px;
+}
+
+.main-header{
+    width: 100%;
+    height: 210px;
+    background-color: #1980be;
+    
+}
+.main-content{
+    max-width: 1280px;
+    width: 100%;
+    height: 850px;
+    background-color: #fff;
+    z-index: 1;
+    border-top-left-radius: 8px;
+       border-top-right-radius: 8px;
+    margin: 0 auto;
+    position: relative;
+    top: 80px;
+    box-shadow: 0 -10px 30px -12px rgb(0 0 0 / 42%),
+                    0 -4px 25px 0px rgb(0 0 0 / 12%),
+                    0 -8px 10px -5px rgb(0 0 0 / 20%);
+    display: flex;
+}
+
+.aside-title{
+    
+    width: 100%;
+    height: 140px;
+    text-align: center;
+    
+}
+
+.title-letter{    
+    padding-top: 60px;
+    
+}
+
+.title-letter strong{
+   font-size: 20px;
+}
+
+.title-letter p{    
+    font-size: 12px;
+    
+}
+
+
+.mypage-hr{
+    width:165px;
+    margin: 0 auto;
+    
+}
+
+
+
+.mypage-aside{
+    width:230px;
+    height: 100%;
+    
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+    
+    
+    
+}
+
+.mypage-aside ul li{    
+    margin: 32px;
+}
+
+.mypage-aside ul li a:hover{    
+    color: #3CB4FF;
+}
+
+.logout-box{
+    margin-left: 44px;
+    margin-top: 32px;
+}
+
+.logout-btn{
+    width: 140px;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    border: 1px solid #ccc;
+    height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sub-title-box{
+    /*
+    margin-left: 10px;
+    margin-bottom: 30px; */
+    margin: 0 0 30px 30px;
+    margin-top: 20px;
+    letter-s                       pacing: 2px;
+    font-size: 16px;
+}
+
+.title-box h2{
+    margin-left: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+}
+
+
+
+.sub-title-box span {
+ color: rgba(0,0,0,0.7);
+}
+
+.sub-title-box a:hover {
+    color: #3A6190;
+}
+
+.sub-title-box strong{
+    text-decoration: underline;
+    color: rgba(0,0,0,0.8);
+
+
+}
+
+.sub-title-box i{
+     color: rgba(0,0,0,0.6);
+}
+

@@ -1,6 +1,5 @@
 package com.example.project.service;
 
-
 import com.example.project.dto.DiseaseDto;
 import com.example.project.dto.FileDto;
 import com.example.project.dto.MedicineDto;
@@ -18,15 +17,18 @@ import java.util.Map;
 public class MedicineService {
     @Autowired
     MedicineMapper medicineMapper;
-    public void setMedUpdate(MedicineDto medicineDto){
-        medicineMapper.setMedUpdate(medicineDto);
+
+    public void setMedInsert(MedicineDto medicineDto) {
+        medicineMapper.setMedInsert(medicineDto);
     }
-    public void setFile(FileDto fileDto){
+
+    public void setFile(FileDto fileDto) {
         medicineMapper.setFile(fileDto);
     }
+
     public PageDto PageInfo(int page, String searchType, String words) {
         PageDto pageDto = new PageDto();
-        String searchQuery = getMedSearch(searchType,words);
+        String searchQuery = getMedSearch(searchType, words);
         //전체 사용자 수
         int totalCount = medicineMapper.getMedCount(searchQuery);
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
@@ -43,59 +45,67 @@ public class MedicineService {
 
         return pageDto;
     }
-    public List<MedicineDto> getMedList(int page,String searchType,String words){
-        PageDto pd = PageInfo(page,searchType,words);
+
+    public List<MedicineDto> getMedList(int page, String searchType, String words) {
+        PageDto pd = PageInfo(page, searchType, words);
         Map<String, Object> map = new HashMap<>();
-        String searchQuery = getMedSearch(searchType,words);
-        map.put("startNum",pd.getStartNum());
-        map.put("offset",pd.getPageCount());
-        map.put("searchQuery",searchQuery);
+        String searchQuery = getMedSearch(searchType, words);
+        map.put("startNum", pd.getStartNum());
+        map.put("offset", pd.getPageCount());
+        map.put("searchQuery", searchQuery);
         return medicineMapper.getMedList(map);
     }
-    public String getMedSearch(String searchType, String words){
+
+    public String getMedSearch(String searchType, String words) {
         String searchQuery = "";
-        if(searchType.equals("medName") ){
-            searchQuery = " WHERE med_name LIKE '%"+words+"%'";
-        }else if(searchType.equals("medDis")){
-            searchQuery = " WHERE med_dis LIKE '%"+words+"%'";
-        }else if(searchType.equals("medEff")){
-            searchQuery = " WHERE med_eff LIKE '%"+words+"%'";
-        }else if(searchType.equals("medType")){
-            searchQuery = " WHERE med_type = '"+words+"'";
-        }else if(searchType.equals("medStore")){
-            searchQuery = " WHERE med_store = '"+words+"'";
-        }else if(searchType.equals("medCom")){
-            searchQuery = " WHERE med_com LIKE '%"+words+"%'";
-        }else if(searchType.equals("medPregnant")){
-            searchQuery = " WHERE med_pregnant = '"+words+"'";
-        }else {
+        if (searchType.equals("medName")) {
+            searchQuery = " WHERE med_name LIKE '%" + words + "%'";
+        } else if (searchType.equals("medDis")) {
+            searchQuery = " WHERE med_dis LIKE '%" + words + "%'";
+        } else if (searchType.equals("medEff")) {
+            searchQuery = " WHERE med_eff LIKE '%" + words + "%'";
+        } else if (searchType.equals("medType")) {
+            searchQuery = " WHERE med_type = '" + words + "'";
+        } else if (searchType.equals("medStore")) {
+            searchQuery = " WHERE med_store = '" + words + "'";
+        } else if (searchType.equals("medCom")) {
+            searchQuery = " WHERE med_com LIKE '%" + words + "%'";
+        } else if (searchType.equals("medPregnant")) {
+            searchQuery = " WHERE med_pregnant = '" + words + "'";
+        } else {
             searchQuery = "";
         }
-
         return searchQuery;
-
     }
-    public void deleteMed(MedicineDto medicineDto){
+
+    public void deleteMed(MedicineDto medicineDto) {
         medicineMapper.deleteMed(medicineDto);
     }
-    public List<FileDto> getFiles(int id){
+
+    public List<FileDto> getFiles(int id) {
         return medicineMapper.getFiles(id);
     }
-    public void setFileDelete(int id){
+
+    public void setFileDelete(int id) {
         medicineMapper.setFileDelete(id);
     }
-    public MedicineDto getMedView(int medId){
+
+    public MedicineDto getMedView(int medId) {
         return medicineMapper.getMedView(medId);
     }
 
     //Update
-    public FileDto getFileView(int medId){
+    public FileDto getFileView(int medId) {
         return medicineMapper.getFileView(medId);
     }
 
 
     //1226 jang
-    public List<FileDto> getFilesAll(){
+    public List<FileDto> getFilesAll() {
         return medicineMapper.getFilesAll();
+    }
+
+    public void medUpdate(MedicineDto medicineDto) {
+        medicineMapper.medUpdate(medicineDto);
     }
 }

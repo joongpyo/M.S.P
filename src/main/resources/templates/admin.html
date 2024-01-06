@@ -7,8 +7,11 @@
     <title>M.S.P | 관리자 페이지</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminHome.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/calendar.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <div class="wrap">
@@ -19,15 +22,227 @@
         </div>
         <div id="content">
             <th:block th:replace="~{admin/top_navbar::top_navbar_frag}"></th:block>
-            
             <div class="main_content">   
-                <div id="content">
-                </div>
-                <div class="footer">
-                    <span>&copy; COPYRIGHT BY M.S.P</span>
-                </div>
+                    <div class="dashboard">
+                        <div class="dashboard-left">
+                            <div class="dashboard-left-top">
+                                <div class="content-wrap">
+                                    <div class="top-content-wrap">
+                                        <div class="top-content-wrap-img">
+                                            <a href=""><img id="adminImage" th:src="@{images/admin.png}" alt=""></a>
+                                        </div>
+                                        <div class="top-content-wrap-button">
+                                            <label for="imageInput" class="adminbtn">이미지변경</label>
+                                            <input type="file" id="imageInput" accept="image/*" style="display: none;">                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-left-mid">
+                                <div class="content-wrap">
+                                    <div class="mid-content-wrap">
+                                        <div class="mid-content-wrap-button">
+                                            <a th:href="@{/admin/medInsert}"><button class="btn-left">약품등록 바로가기</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-left-bottom">
+                                <div class="content-wrap">
+                                    <div class="btm-content-wrap">
+                                        <div class="btm-content-wrap-button">
+                                            <a th:href="@{/admin/disInsert}"><button class="btn-left">질병등록 바로가기</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-center">
+                            <div class="dashboard-center-top">
+                                <div class="content-wrap">
+                                    <div class="center-content-wrap">
+                                        <div class="center-content-wrap-top">
+                                            <h4>공지사항</h4>
+                                        </div>
+                                            <div class="center-content-wrap-btm">
+                                                <table>
+                                                    <tbody>
+                                                        <th:block th:if="${Notice != null and Notice.size() > 0}">
+                                                            <tr th:each="notice, k: ${Notice}">
+                                                                <td>
+                                                                    <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${notice.id}+',\'Notice\', event)'">
+                                                                        <strong>· [[${notice.subject}]]</strong>
+                                                                    </a>
+                                                                </td>
+                                                                <td>[[${notice.writer}]]</td>
+                                                                <td>[[${notice.reg}]]</td>
+                                                            </tr>
+                                                        </th:block>
+                                                        <th:block th:unless="${Notice != null and Notice.size() > 0}">
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>· 게시글이 없습니다. </strong>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </th:block>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-center-mid">
+                                <div class="content-wrap">
+                                    <div class="center-content-wrap">
+                                        <div class="center-content-wrap-top">
+                                            <h4>QNA 게시판</h4>
+                                        </div>
+                                        <div class="center-content-wrap-btm">
+                                            <table>
+                                                <tbody>
+                                                    <th:block th:if="${Qna != null and Qna.size() > 0}">
+                                                        <tr th:each="qna :${Qna}">
+                                                            <td>
+                                                                <a href="#">
+                                                                    <strong>· [[${qna.subject}]]</strong>
+                                                                </a>
+                                                            </td>
+                                                            <td>[[${qna.writer}]]</td>
+                                                            <td>[[${qna.reg}]]</td>
+                                                        </tr>
+                                                    </th:block>
+                                                    <th:block th:unless="${Qna != null and Qna.size() > 0}">
+                                                        <tr>
+                                                            <td>
+                                                                <strong>· 게시글이 없습니다. </strong>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </th:block>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-center-bottom">
+                                <div class="content-wrap">
+                                    <div class="center-content-wrap">
+                                        <div class="center-content-wrap-top">
+                                            <h4>Review 게시판</h4>
+                                        </div>
+                                        <div class="center-content-wrap-btm">
+                                            <table>
+                                                <tbody>
+                                                    <th:block th:if="${Review != null and Review.size() > 0}">
+                                                        <tr th:each="review : ${Review}">
+                                                            <td>
+                                                                <a href="#">
+                                                                    <strong>· [[${review.subject}]]</strong>
+                                                                </a>
+                                                            </td>
+                                                            <td>[[${review.writer}]]</td>
+                                                            <td>[[${review.reg}]]</td>
+                                                        </tr>
+                                                    </th:block>
+                                                    <th:block th:unless="${Review != null and Review.size() > 0}">
+                                                        <tr>
+                                                            <td>
+                                                                <strong>· 게시글이 없습니다. </strong>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </th:block>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-right">
+                            <div class="dashboard-right-top">
+                                <div class="content-wrap">
+                                    <div class="right-content-wrap">
+                                        <div class="right-content-wrap-top">
+                                            <h4>Calender</h4>
+                                        </div>
+                                        <div class="right-content-wrap-btm" id="calendar">
+                                            <div class="calendar-header">
+                                                <button id="prevMonthBtn">이전 달</button>
+                                                <h4 id="currentMonth"></h4>
+                                                <button id="nextMonthBtn">다음 달</button>
+                                            </div>
+                                            <div class="calendar-days" id="days"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-right-mid">
+                                <div class="content-wrap">
+                                    <div class="right-content-wrap">
+                                        <div class="right-content-wrap-top">
+                                            <h4>Member</h4>
+                                        </div>
+                                        <div class="right-content-wrap-btm">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>회원 수</th>
+                                                        <th>오늘 가입한 수</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-right-bottom">
+                                <div class="content-wrap">
+                                    <div class="right-content-wrap">
+                                        <div class="right-content-wrap-top">
+                                            <h4>게시판별 게시글</h4>
+                                        </div>
+                                        <div class="right-content-wrap-btm">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>board</th>
+                                                        <th><a href="">notice</a></th>
+                                                        <th><a href="">QNA</a></th>
+                                                        <th><a href="">review</a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>num</td>
+                                                        <td>1</td>
+                                                        <td>2</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="footer">
+                <span>&copy; COPYRIGHT BY M.S.P</span>
             </div>
         </div>
     </div>
+    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+    <script src="/js/calendarScript.js"></script>
+
+
 </body>
 </html>

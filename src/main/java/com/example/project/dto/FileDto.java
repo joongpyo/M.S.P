@@ -8,8 +8,7 @@ public class FileDto {
     private Long savedFileSize;
     private String folderName;
     private String ext;
-    private String board;
-    private String ConfigCode;
+    private String configCode;
 
     public int getId() {
         return id;
@@ -67,20 +66,12 @@ public class FileDto {
         this.ext = ext;
     }
 
-    public String getBoard() {
-        return board;
-    }
-
-    public void setBoard(String board) {
-        this.board = board;
-    }
-
     public String getConfigCode() {
-        return ConfigCode;
+        return configCode;
     }
 
     public void setConfigCode(String configCode) {
-        ConfigCode = configCode;
+        this.configCode = configCode;
     }
 
     @Override
@@ -93,8 +84,7 @@ public class FileDto {
                 ", savedFileSize=" + savedFileSize +
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +
-                ", board='" + board + '\'' +
-                ", ConfigCode='" + ConfigCode + '\'' +
+                ", configCode='" + configCode + '\'' +
                 '}';
     }
 }

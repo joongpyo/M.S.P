@@ -1,9 +1,7 @@
 package com.example.project.mapper;
 
 import com.example.project.dto.UserDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -24,5 +22,14 @@ public interface UserMapper {
 
     @Select("SELECT * FROM user ${searchQuery}")
     public UserDto getFindUser(String searchQuery);
+
+    @Delete("delete from user where u_id = #{uId}")
+    public void deleteUser(UserDto userDto);
+
+    @Update("update user set user_passwd = #{userPasswd} where u_id = #{uId}")
+    public void updateUser(UserDto userDto);
+    //userDelete
+    @Delete("DELETE FROM user WHERE u_id = ${uId}")
+    public void userDelete(UserDto userDto);
 }
 

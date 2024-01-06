@@ -13,17 +13,20 @@ import java.util.Map;
 
 @Mapper
 public interface AdminBoardMapper {
-    @Insert("INSERT INTO board_${configCode} VALUES(NULL, #{subject}, #{writer}, #{content}, 0, now(),1,1,1,#{isFiles},0,1,1)")
+    @Select("SELECT IFNULL( (MAX(grp) + 1), 1) FROM board_${configCode}")
+    public int getGrpMaxCnt(String configCode);
+    @Insert("INSERT INTO board_${configCode} VALUES(NULL, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, 1, 1,#{isFiles},0,1,1)")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     public void setAdminBoard(AdminBoardDto adminBoardDto);
     @Insert("INSERT INTO files_${configCode} VALUES(#{id}, #{orgName}, #{savedFileName}, #{savedPathName}, #{savedFileSize}, #{folderName}, #{ext})")
     public void setFile(FileDto fileDto);
 
     //Notice view
-    @Select("SELECT * FROM board_${configCode} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
+    @Select("SELECT * FROM board_${configCode} ${searchQuery} ORDER BY id DESC LIMIT #{startNum}, #{offset}")
     public List<AdminBoardDto> getBoardList(Map<String, Object> map);
-    @Select("SELECT COUNT(*) FROM board_${configCode}")
-    public int getBoardCount(String configCode);
+    @Select("SELECT COUNT(*) FROM board_${configCode} ${searchQuery}")
+    public int getBoardCount(String configCode, String searchQuery);
+
 
 }
 

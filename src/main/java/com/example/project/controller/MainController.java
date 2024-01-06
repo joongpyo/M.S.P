@@ -13,7 +13,7 @@ import java.util.List;
 public class MainController {
     @Autowired
     BoardService boardService;
-    @GetMapping("/index")
+    @GetMapping({"/", "/index"})
     public String getIndex(Model model){
         List<BoardDto> noticeList = boardService.getBoard("Notice",1,"","");
         List<BoardDto> qnaList = boardService.getBoard("QnA",1,"","");

@@ -14,7 +14,6 @@
 .insert-btn{
     width: 110px;
     height: 50px;
-
     border: 0;
     border-radius: 10px;
     background-color: #FB4F9C;
@@ -22,14 +21,13 @@
     color: #fff;
     font-size: 19px;
     font-weight: bold;
-
 }
-
+.btn-top{
+  margin-bottom: 3px;
+}
 .insert-btn:active{
     background-color: #BE0069;
 }
-
-
 
 .bottom{
     width: 100%;
@@ -141,22 +139,25 @@ tr:last-child td:last-child {
 }
 
 th:nth-child(1),
-th:nth-child(2),
-th:nth-child(6),
 th:nth-child(7),
 th:nth-child(9),
-th:nth-child(10){
+th:nth-child(10)
+{
+  width: 1%;
+}
+th:nth-child(2),
+th:nth-child(6){
     width: 2%;
-
 }
-
 th:nth-child(3){
-    width: 8%;
-}
-th:nth-child(4){
     width: 12%;
 }
-
+th:nth-child(4){
+    width: 14%;
+}
+th:nth-child(5){
+  width: 35%;
+}
 th:nth-child(8){
     width: 10%;
 }

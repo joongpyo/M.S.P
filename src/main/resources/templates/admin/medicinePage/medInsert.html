@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Insert</title>
+    <title>M.S.P | 약 정보 관리 > 약품 등록</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
     <link rel="stylesheet" th:href="@{/css/admin/medInsert.css}">
@@ -34,71 +34,102 @@
                         <div class="content-title">
                             <h1>약품 등록</h1>
                         </div>
-                        <form action="" method="post" enctype="multipart/form-data" class="insert-container">
-                            <div class="med name">
-                                <p>약품 명</p>
-                                <input type="text" name="medName" class="medName" id="medName" placeholder="약품 명을 입력하세요.">
-                            </div>
-                            <div class="med disease">
-                                <p>유효 질병</p>
-                                <div class="dis">
-                                    <input type="checkbox" name="medDis" class="medDis" value="감기">감기
-                                    <input type="checkbox" name="medDis" class="medDis" value="설사">설사
-                                    <input type="checkbox" name="medDis" class="medDis" value="소화불량">소화불량
-                                    <input type="checkbox" name="medDis" class="medDis" value="생리통">생리통
-                                    <input type="checkbox" name="medDis" class="medDis" value="알레르기">알레르기
-                                    <input type="checkbox" name="medDis" class="medDis" value="편두통">편두통
-                                    <input type="checkbox" name="medDis" class="medDis" value="인후통">인후통
-                                    <input type="checkbox" name="medDis" class="medDis" value="멀미">멀미
-                                    <input type="checkbox" name="medDis" class="medDis" value="근육통">근육통
-                                    <input type="checkbox" name="medDis" class="medDis" value="몸살">몸살
+                        <div class="insert-container">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="med name">
+                                    <div class="board-left">
+                                        <p>약품 명</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <input type="text" name="medName" class="medName" id="medName" placeholder="약품 명을 입력하세요.">
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="med">
-                                <p>약효</p>
-                                    <input type="text" name="medEff" class="medEff" placeholder="약의 효능을 입력하세요.">
-                            </div>
-                            <div class="med">
-                                <p>제형</p>
-                                <input type="text" name="medType" class="medType" placeholder="약의 제형을 입력하세요.">
-                            </div>
-                            <div class="med">
-                                <p>제조사</p>
-                                <input type="text" name="medCom" class="medCom" placeholder="제약 회사를 입력하세요.">
-                            </div>
-                            <div class="med">
-                                <p>복용 가능 연령</p>
-                                <select id="medAge" onchange="changeFn()">
-                                    <option selected>연령을 선택하세요</option>
-                                    <option name = "medAge" value="1">전 연령</option>
-                                    <option name = "medAge" value="2">7세 미만</option>
-                                    <option name = "medAge" value="3">7세 ~ 65세미만</option>
-                                    <option name = "medAge" value="4">65세 이상</option>
-                                </select>
-                            </div>
-                            <div class="med">
-                                <p>임산부 복용가능 여부</p>
-                                <div class="radio-group">
-                                    <input type="radio" name="medPregnant" value="Y">Yes
-                                    <input type="radio" name="medPregnant" value="N">No
+                                <div class="med disease">
+                                    <div class="board-left">
+                                        <p>유효 질병</p>
+                                    </div>
+                                    <div class="dis board-right">
+                                        <input type="checkbox" name="medDis" class="medDis" value="감기">감기
+                                        <input type="checkbox" name="medDis" class="medDis" value="설사">설사
+                                        <input type="checkbox" name="medDis" class="medDis" value="소화불량">소화불량
+                                        <input type="checkbox" name="medDis" class="medDis" value="생리통">생리통
+                                        <input type="checkbox" name="medDis" class="medDis" value="알레르기">알레르기
+                                        <input type="checkbox" name="medDis" class="medDis" value="편두통">편두통
+                                        <input type="checkbox" name="medDis" class="medDis" value="인후통">인후통
+                                        <input type="checkbox" name="medDis" class="medDis" value="멀미">멀미
+                                        <input type="checkbox" name="medDis" class="medDis" value="근육통">근육통
+                                        <input type="checkbox" name="medDis" class="medDis" value="몸살">몸살
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="med">
-                                <p>편의점 유무</p>
-                                <div class="radio-group">
-                                    <input type="radio" name="medStore" value="Y">Yes
-                                    <input type="radio" name="medStore" value="N">No
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>약효</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <input type="text" name="medEff" class="medEff" placeholder="약의 효능을 입력하세요.">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="med imgs">
-                                <p>약품 이미지</p>
-                                <input type="file" name="file" id="uploadFile">
-                            </div>
-                            <div class="insert">
-                                <button class="insert-btn" type="button">약품등록하기</button>
-                            </div>
-                        </form>
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>제형</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <input type="text" name="medType" class="medType" placeholder="약의 제형을 입력하세요.">
+                                    </div>
+                                </div>
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>제조사</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <input type="text" name="medCom" class="medCom" placeholder="제약 회사를 입력하세요.">
+                                    </div>
+                                </div>
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>복용 가능 연령</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <select id="medAge" onchange="changeFn()">
+                                            <option selected>연령을 선택하세요</option>
+                                            <option name = "medAge" value="1">전 연령</option>
+                                            <option name = "medAge" value="2">7세 미만</option>
+                                            <option name = "medAge" value="3">7세 ~ 65세미만</option>
+                                            <option name = "medAge" value="4">65세 이상</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>임산부 복용가능 여부</p>
+                                    </div>
+                                    <div class="radio-group board-right">
+                                        <input type="radio" name="medPregnant" value="Y">Yes
+                                        <input type="radio" name="medPregnant" value="N">No
+                                    </div>
+                                </div>
+                                <div class="med">
+                                    <div class="board-left">
+                                        <p>편의점 유무</p>
+                                    </div>
+                                    <div class="radio-group board-right">
+                                        <input type="radio" name="medStore" value="Y">Yes
+                                        <input type="radio" name="medStore" value="N">No
+                                    </div>
+                                </div>
+                                <div class="med imgs">
+                                    <div class="board-left">
+                                        <p>약품 이미지</p>
+                                    </div>
+                                    <div class="board-right">
+                                        <input type="file" name="file" id="uploadFile">
+                                    </div>
+                                </div>
+                                <div class="insert">
+                                    <button class="insert-btn" type="button">약품등록하기</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
         </div>

@@ -1,6 +1,5 @@
 package com.example.project.mapper;
 
-
 import com.example.project.dto.MedicineDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

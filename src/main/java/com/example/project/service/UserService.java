@@ -15,16 +15,17 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
-    public UserDto setLogin(UserDto userDto){
+    public UserDto setLogin(UserDto userDto) {
         return userMapper.setLogin(userDto);
     }
-    public void setRegister(UserDto userDto){
+
+    public void setRegister(UserDto userDto) {
         userMapper.setRegister(userDto);
     }
 
     public PageDto PageInfo(int page,String searchType, String words) {
         PageDto pageDto = new PageDto();
-        String searchQuery = getSearch(searchType, words);
+        String searchQuery = getSearch(searchType,words);
         //전체 사용자 수
         int totalCount = userMapper.getUserCount(searchQuery);
         int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
@@ -64,19 +65,30 @@ public class UserService {
         return searchQuery;
     }
 
-    public UserDto getFindUser(UserDto userDto,String type){
-        String searchQuery="";
-        if(type.equals("id")){
-            searchQuery = " WHERE user_name = '"+userDto.getUserName()+"'"
-                    +" AND user_email = '"+userDto.getUserEmail()+"'";
-        }else {
-            searchQuery = " WHERE user_id = '"+userDto.getUserId()+"'"
-                    +" AND user_name = '"+userDto.getUserName()+"'"
-                    +" AND user_email = '"+userDto.getUserEmail()+"'";
+    public UserDto getFindUser(UserDto userDto, String type) {
+        String searchQuery = "";
+        if (type.equals("id")) {
+            searchQuery = " WHERE user_name = '" + userDto.getUserName() + "'"
+                    + " AND user_email = '" + userDto.getUserEmail() + "'";
+        } else {
+            searchQuery = " WHERE user_id = '" + userDto.getUserId() + "'"
+                    + " AND user_name = '" + userDto.getUserName() + "'"
+                    + " AND user_email = '" + userDto.getUserEmail() + "'";
         }
-
         return userMapper.getFindUser(searchQuery);
+
     }
 
+    public void userDelete(UserDto userDto){
+        userMapper.userDelete(userDto);
+    }
+
+    public void deleteUser(UserDto userDto) {
+        userMapper.deleteUser(userDto);
+    }
+
+    public void updateUser(UserDto userDto) {
+        userMapper.updateUser(userDto);
+    }
 
 }

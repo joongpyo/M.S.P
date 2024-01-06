@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="fragment-aside">
+    <aside class="mypage-aside">
+        <div class="aside-title">
+            <div class="title-letter">
+                <strong>[[${session.user.userName}]]</strong>님
+                <p><i class="fa-regular fa-envelope"></i> [[${session.user.userEmail}]]</p>
+            </div>
+        </div>
+
+        <hr class="mypage-hr">
+
+        <ul>
+            <li><a th:href="@{/mypage/update}"><i class="fa-solid fa-user-pen"></i>회원 정보 수정</a></li>
+            <li><a th:href="@{/mypage/myMedList}"><i class="fa-solid fa-capsules"></i> 저장한 약 정보</a></li>
+            <li><a th:href="@{/mypage/myBoard}"><i class="fa-solid fa-clipboard"></i> 내가 쓴 게시글</a></li>
+            <li><a th:href="@{/mypage/myQuit}"><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> 회원 탈퇴</a></li>
+        </ul>
+
+        <hr class="mypage-hr">
+
+        <div class="logout-box">
+            <button class="logout-btn"><a th:href="@{/logout}">로그아웃</a></button>
+        </div>
+    </aside>
+</div>
+
+</body>
+</html>

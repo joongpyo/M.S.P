@@ -55,6 +55,7 @@ public class UserController {
         userService.setRegister(userDto);
 
         ra.addFlashAttribute("msg" , "success");
+
         return "redirect:/user/login";
     }
 

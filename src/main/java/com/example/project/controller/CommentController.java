@@ -40,6 +40,4 @@ public class CommentController {
         return Map.of("cList",clist);
     }
 
-
-
 }

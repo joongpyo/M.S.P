@@ -42,8 +42,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
-                        <th:block th:if="${searchResults != null}">
                             <th:block th:each="med, k : ${searchResults}" >
                                 <tr>
                                     <td>
@@ -57,38 +55,20 @@
                                     <td>[[${med.medCom}]]</td>
                                     <td>[[${med.medStore}]]</td>
                                     <td>
-                                        <button type="button" class="res-btn">약 정보 저장</button>
+                                        <button type="button" class="res-btn" th:onclick="savedMyMed([[${med.medId}]],[[${med.medName}]])">약 정보 저장</button>
                                     </td>
                                 </tr>
-                                <input type="hidden" name="medId" th:value="${medId}">
+                                <input type="hidden" name="medId" th:value="${med.medId}">
+                                <input type="hidden" name="medName" th:value="${med.medName}">
+                             </th:block>
+
+                            <th:block th:if="${session.user != null}">
+                                <input type="hidden" class="uId" name="uId" th:value="${session.user.uId}">
                             </th:block>
 
-                        </th:block>
-
-
-
-
-                        <th:block th:unless="${searchResults != null}">
-                            <th:block th:each="med, k : ${searchResults}" >
-                                <tr>
-                                    <td>
-                                        <strong>
-                                            <a href="">X</a>
-                                        </strong>
-                                    </td>
-                                    <td>[[${med.medDis}]]</td>
-                                    <td style="text-align:left; margin-left:15px;">[[${med.medEff}]]</td>
-                                    <td>[[${med.medType}]]</td>
-                                    <td>[[${med.medCom}]]</td>
-                                    <td>[[${med.medStore}]]</td>
-                                    <td>
-                                        <button type="button" class="res-btn">약 정보 저장</button>
-                                    </td>
-                                </tr>
-                                <input type="hidden" name="medId" th:value="${medId}">
+                            <th:block th:unless="${session.user != null}">
+                                <input type="hidden" class="uId" name="uId" th:value="''">
                             </th:block>
-                        </th:block>
-
                         </tbody>
                     </table>
                 </div>
@@ -96,13 +76,8 @@
         </div>
     </div>
 </div>
-</div>
-
-
-
 
 <main>
-
     <div class="one-hr">
         <hr>
     </div>
@@ -188,59 +163,35 @@
 
 
 <script>
-    let btn = document.querySelector(".btn").addEventListener('click',(e)=>{
-        e.preventDefault();
-       var pregnant = document.getElementsByName("pregnant");
-       var pregnantValue;
-       var drugtype = document.getElementsByName("drugtype");
-       var drugtypeValue;
+     let uId = document.querySelector(".uId");
 
+     function savedMyMed(medId, medName){
+          if(uId.value === ''){
+            alert("로그인 후 이용하시기 바랍니다.");
+            location.href = "/user/login"
 
-
-
-       //라디오 버튼 값
-       for(var i=0; i < pregnant.length; i++) {
-        if(pregnant[i].checked == true) {
-            pregnantValue = pregnant[i].value
-      }
-    }
-       for(var i=0; i < drugtype.length; i++) {
-        if(drugtype[i].checked == true) {
-            drugtypeValue = drugtype[i].value
-      }
-    }
-
-    //셀렉트박스 값
-       var disease = document.getElementById("disease").value;
-       var age = document.getElementById("age").value;
-
-<!--       alert("임신 여부: " + pregnantValue + "\n연령대: " + age + "\n병명: " + disease + "\n약의 제형: " + drugtypeValue);-->
-
-         let obj = {
-                    medPregnant: pregnantValue,
-                    medAge: age,
-                    medDis: disease,
-                    medType: drugtypeValue
+          }else{
+            if(confirm(medName +"을(를) 저장하시겠습니까?")){
+                let obj = {
+                    uId: uId.value,
+                    medId: medId
                 }
 
+                $.ajax({
+                        type: "POST",
+                        url: "/mypage/save",
+                        data: obj,
+                        success: function(result) {
+                           if(result.msg == "success"){
+                                alert(medName +"을(를) 저장하였습니다.");
+                                location.href = "/mypage/myMedList";
+                           }
+                        }
+                    });
+            }
+        }
+    }
 
-        $.ajax({
-                type: "post",
-                url: "/matching/matching",
-                dataType: "json",
-                data: obj,
-                success: function(res) {
-                    if(res.msg == "success"){
-                        location.href = "/matching/match_result?";
-                    }
-
-                }
-         });
-
-
-
-
-});
 </script>
 </body>
 

@@ -1,30 +1,29 @@
 .insert-container{
-    width: 65%;
+    width: 70%;
     margin: 0 auto;
-    height: 500px;
     display: flex;
     flex-direction: column;
+    padding-left: 5px;
 }
 
 .med{
+    width: 100%;
     display: flex;
     align-items: center;
     border-bottom: .5px solid #ccc;
     border-right: .5px solid #ccc;
 }
-
-.med p {
-    margin-right: 10px;
+.board-left{
+    width: 25%;
     background-color:#67B4EF;
     color: #fff;
     font-weight: bold;
-
-    width: 190px;
-    padding: 10px 20px;
+    padding: 5px 8px;
 }
-
-
-
+.board-right{
+    width: 75%;
+    padding: 5px 8px;
+}
 .name{
     border-top: .5px solid #ccc;
     border-top-left-radius: 3px;
@@ -46,7 +45,6 @@
     height: 100%;
     font-size: 16px;
 }
-
 .med input[type="text"]:focus {
     outline: none; /* 테두리 색 및 두께 조절 가능 */
 }

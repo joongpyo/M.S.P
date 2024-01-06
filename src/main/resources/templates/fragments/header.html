@@ -3,10 +3,10 @@
 <header th:fragment="fragment-header">
     <nav class="header-top">
         <div class="login-wrap" th:if="${session.user != null}">
-            <p><strong>[[${session.user.userName}]]</strong>님 환영합니다.</p>
+            <p><i class="fa-solid fa-user"></i> <strong>[[${session.user.userName}]]</strong>님 환영합니다.</p>
 
             <div class="login-bar">
-                <a th:href="@{/Mypage/update}">마이페이지</a>
+                <a th:href="@{/mypage/update}">마이페이지</a>
                 <a href="">/</a>
                 <a th:href="@{/logout}">로그아웃</a>
             </div>
@@ -44,7 +44,6 @@
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </li>
                 </form>
-
             </ul>
         </nav>
     </nav>

@@ -1,6 +1,5 @@
 package com.example.project.controller;
 
-
 import com.example.project.dto.*;
 import com.example.project.mapper.AdminBoardMapper;
 import com.example.project.mapper.DiseaseMapper;
@@ -47,9 +46,15 @@ public class AdminController {
 
     @Value("${fileDir}")
     String fileDir;
-
     @GetMapping("/admin") //
     public String getAdmin(@RequestParam(value="current", defaultValue="1") String current, Model model) {
+        List<AdminBoardDto> noticeList = adminBoardService.getBoardList(1,"notice","","");
+        List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"qna","","");
+        List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"review","","");
+
+        model.addAttribute("Notice", noticeList.subList(0, Math.min(noticeList.size(), 2)));
+        model.addAttribute("Qna", qnaList.subList(0, Math.min(qnaList.size(), 2)));
+        model.addAttribute("Review",reviewList.subList(0, Math.min(reviewList.size(), 2)));
         model.addAttribute("current", current);
         return "admin";
     }
@@ -64,6 +69,7 @@ public class AdminController {
 
     @GetMapping("/admin/userDelete")
     public String getUserDelete(@ModelAttribute UserDto userDto){
+        userService.userDelete(userDto);
         return null;
     }
 
@@ -85,17 +91,36 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> getCheckDisName(@RequestParam String disName){
         int checkDisName = diseaseService.getCheckDisName(disName);
-        return Map.of("checkName",disName);
+        return Map.of("checkName",checkDisName);
     }
     @PostMapping("/admin/disInsert")  // admin Disease insert
     @ResponseBody
-    public Map<String, Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
+    public Map<String, Object> setDisInsert(@ModelAttribute DiseaseDto diseaseDto, @RequestParam String disName ){
         if(diseaseService.getCheckDisName(disName) < 1 ){
             diseaseService.setDisease(diseaseDto);
             return Map.of("msg","success");
         }else{
             return Map.of("msg","failure");
         }
+    }
+    @GetMapping("/admin/disUpdate")
+    public String getDisUpdate(@RequestParam int disId, Model model){
+        model.addAttribute("dis",diseaseService.viewDis(disId));
+        return "admin/diseasePage/disUpdate";
+    }
+    @GetMapping("/admin/checkId")
+    @ResponseBody
+    public Map<String, Object> setCheckId(@RequestParam int disId){
+        System.out.println(disId);
+        return null;
+    }
+    @PostMapping("/admin/disUpdate")
+    @ResponseBody
+    public Map<String,Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto){
+        System.out.println(diseaseDto);
+        System.out.println(diseaseDto.getDisId());
+        diseaseService.updateDis(diseaseDto);
+        return Map.of("msg","success");
     }
     @GetMapping("/admin/disDelete")
     public String disDelete(@ModelAttribute DiseaseDto diseaseDto){
@@ -107,28 +132,31 @@ public class AdminController {
         return "admin/noticePage/noticeMain";
     }
     @GetMapping("/admin/noticeBoard")
-    public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode){
+    public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
         model.addAttribute("configCode",configCode);
-        model.addAttribute("notice",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("notice",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
         return "admin/noticePage/noticeBoard";
-
     }
     @GetMapping("/admin/qnaBoard")
-    public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
+    public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
         model.addAttribute("configCode",configCode);
-        model.addAttribute("qna",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("qna",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
         return "admin/noticePage/qnaBoard";
     }
     @GetMapping("/admin/reviewBoard")
-    public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
+    public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "")String words){
         model.addAttribute("configCode",configCode);
-        model.addAttribute("review",adminBoardService.getBoardList(page,configCode));
-        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
-        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode));
+        model.addAttribute("review",adminBoardService.getBoardList(page,configCode,searchType,words));
+        model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
+        String searchQuery = adminBoardService.getBoardSearch(searchType,words);
+        model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
+
         return "admin/noticePage/reviewBoard";
     }
     @GetMapping("admin/noticeInsert")
@@ -138,6 +166,9 @@ public class AdminController {
     @PostMapping("/admin/noticeInsert")
     @ResponseBody
     public Map<String,Object> setNoticeInsert(@ModelAttribute AdminBoardDto adminBoardDto, @RequestParam("file") MultipartFile file) throws IOException {
+        int grp = adminBoardService.getGrpMaxCnt(adminBoardDto.getConfigCode());
+        adminBoardDto.setGrp(grp);
+
         if(adminBoardDto.getConfigCode().equals("review") && !file.isEmpty()){
             return Map.of("msg","choice1");
         }else {
@@ -198,10 +229,11 @@ public class AdminController {
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
-    public Map<String, Object> setMedUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+    public Map<String, Object> setMedInsert(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(medicineDto);
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
-            medicineService.setMedUpdate(medicineDto);
+            medicineService.setMedInsert(medicineDto);
             int fileId = medicineDto.getMedId();
             //20231218
             String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
@@ -229,7 +261,8 @@ public class AdminController {
             fileDto.setExt(ext);
 
             medicineService.setFile(fileDto);
-
+            System.out.println(fileDto);
+            System.out.println(medicineDto);
             return Map.of("msg", "success");
         } else {
             return Map.of("msg", "failure");
@@ -252,10 +285,65 @@ public class AdminController {
     }
     @GetMapping("/admin/medUpdate")
     public String medicineView(@RequestParam int medId, Model model){
-
        model.addAttribute("med",medicineService.getMedView(medId));
        model.addAttribute("file",medicineService.getFileView(medId));
 
        return "admin/medicinePage/medUpdate";
+    }
+
+    @PostMapping("/admin/medUpdate")
+    @ResponseBody
+    public Map<String, Object> medUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(medicineDto);
+        System.out.println(file);
+
+        if (!file.isEmpty()) {
+            medicineDto.setIsFiles("Y");
+            medicineService.medUpdate(medicineDto);
+            if( medicineDto.getMedId() > 0 && !medicineDto.getMedName().isEmpty() ){
+                List<FileDto> files = medicineService.getFiles(medicineDto.getMedId());
+                for(FileDto fd : files) {
+                    File fe = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+                    fe.delete();
+                }
+            }
+            // 파일 DB 삭제
+            int id = medicineDto.getMedId();
+            medicineService.setFileDelete(id);
+
+            int fileId = medicineDto.getMedId();
+            //20231218
+            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+            File makeFolder = new File(fileDir + folderName);
+            if (!makeFolder.exists()) {
+                makeFolder.mkdir();
+            }
+            // 데이터 베이스 저장전에 잠시 저장
+            FileDto fileDto = new FileDto();
+
+            // 경로명  + UUID
+            String savedPathFileName = fileDir + folderName;
+            String orgName = file.getOriginalFilename(); //원본 이름 저장
+            String ext = orgName.substring(orgName.lastIndexOf(".")); // 확장자명 가져오기
+            String uuid = UUID.randomUUID().toString(); // 랜덤으로 만드는 임의의 난수 이름
+            String savedFileName = uuid + ext; // 랜덤 이름  + 확장자로 저장하는 이름
+
+            file.transferTo(new File(savedPathFileName + "/" + savedFileName));
+
+            fileDto.setId(fileId);
+            fileDto.setOrgName(orgName);
+            fileDto.setSavedFileName(savedFileName);
+            fileDto.setSavedPathName(savedPathFileName);
+            fileDto.setFolderName(folderName);
+            fileDto.setExt(ext);
+
+            medicineService.setFile(fileDto);
+            System.out.println(fileDto);
+            System.out.println(medicineDto);
+            return Map.of("msg", "success");
+        } else {
+            return Map.of("msg", "failure");
+        }
+
     }
 }
