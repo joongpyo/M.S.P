@@ -63,15 +63,15 @@
 
                 </div>
                 <div class="form-container">
-                    <form action="" class="search-form">
+                    <form action="/board/boardSearchMed" method="get" class="search-form">
                         <input type="hidden" name="configCode" th:value="${configCode}">
                         <span>총 게시물 : [[${total}]]건</span>
                         <div class="search-right">
                             <div class="sel-box">
-                                <select name="" id="">
-                                    <option value="">약 이름</option>
-                                    <option value="">증상</option>
-                                    <option value="">회사명</option>
+                                <select name="searchType" id="">
+                                    <option value="medName">약 이름</option>
+                                    <option value="medDis">증상</option>
+                                    <option value="medCom">회사명</option>
                                 </select>
                             </div>
                             <div class="search-box">
@@ -117,8 +117,13 @@
                         <td>[[${medicine.medType}]]</td>
                         <td>[[${medicine.medStore}]]</td>
 
+                        <td th:switch="${medicine.medAge}">
+                            <span th:case="'1'">전 연령</span>
+                            <span th:case="'2'">7세 미만</span>
+                            <span th:case="'3'">7세 ~ 65세 미만</span>
+                            <span th:case="*" >65세 이상</span>
+                        </td>
 
-                        <td>[[${medicine.medAge}]]</td>
                         <td>[[${medicine.medPregnant}]]</td>
                     </tr>
                     </tbody>

@@ -14,15 +14,46 @@
 }
 
 .login_box {
-    width: 450px;
+    width: 650px;
     background-color: #fff; 
     position:  absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    padding: 40px 30px;
+
     border-radius: 10px;
-    box-shadow: 0px 0px 10px #aaa;
+    box-shadow: 0px 0px 5px #aaa;
+}
+
+.find-type {
+    width:100%;
+    display:flex;
+    border-bottom: 1px solid #aaa;
+    margin-bottom:10px;
+}
+
+.find-id {
+    border-top-left-radius:10px;
+}
+
+.find-id, .find-pwd {
+    width:30%;
+    padding:15px 10px;
+    text-align:center;
+}
+
+.type-active{
+    background-color: #6aafe6;
+    color:#fff;
+}
+
+.find-content {
+    padding: 30px 30px;
+}
+
+.find-info{
+    margin:20px 10px;
+    margin-bottom:80px;
 }
 
 .login_box h1 {
@@ -48,11 +79,11 @@
 
 .form_box ul li {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form_box ul li:nth-child(1) {
-    margin: 0;
+    margin: 10px 0;
 }
 
 .form_box ul li input {
@@ -74,10 +105,15 @@
     opacity: .9;
 }
 
+.form-bottom {
+    display:flex;
+    justify-content:space-between;
+}
+
 .form_box .btn1 {
     margin-top: 45px;
     display: block;
-    width: 100%;
+    width: 48%;
     height: 50px;
     font-size: 18px;
     background-color: #6aafe6;
@@ -86,13 +122,9 @@
     border-radius: 20px;
 }
 
-
-
 .form_box ul li a {
     font-family: 'Noto Sans KR', sans-serif;
 }
-
-
 
 .find_wrap {
     display: flex;
@@ -110,7 +142,7 @@
 
 .find_wrap ul li a {
     color: #6aafe6;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .login_text {
@@ -120,5 +152,51 @@
 
 .login_text a {
     color: #6aafe6;
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-body{
+    background-color: #fff;
+    width: 400px;
+    padding: 20px 30px;
+    border-radius: 3px;
+}
+
+.modal-img {
+    width:80px;
+    margin:10px auto;
+}
+
+.modal-img img{
+    width:100%;
+}
+
+.modal-content h4{
+    margin-bottom:8px;
+}
+
+.modal-content span{
+    color: red;
+}
+
+.modal-close {
+    margin: 20px 0;
+    display:flex;
+    justify-content: end;
+}
+.modal-close span {
+    cursor: pointer;
 }
 

@@ -79,7 +79,7 @@
                                     <span>[답글완료]</span>
                                 </th:block>
                                 <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
-                                    [[${board.subject}]] <span th:if="${board.commentCount > 0}">([[${board.commentCount}]])</span>
+                                    [[${board.subject}]] <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
                                 </a>
                             </td>
                             <td>[[${board.writer}]]</td>
@@ -87,7 +87,10 @@
                             <td>[[${board.reg}]]</td>
                             <!-- 12-22 jang -->
                             <td th:if="${board.isFiles eq 'Y'}">
-                                <span>YES</span>
+                                <span>Yes</span>
+                            </td>
+                            <td th:unless="${board.isFiles eq 'Y'}">
+                                <span>No</span>
                             </td>
                         </tr>
                     </tbody>

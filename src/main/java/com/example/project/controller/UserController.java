@@ -24,12 +24,24 @@ public class UserController {
     public String getLogin(HttpServletRequest hsr){
         String referer = "";
 
-        if (hsr.getHeader("Referer").equals("http://localhost:7777/user/login") ||
-                hsr.getHeader("Referer").equals("http://localhost:7777/user/register")){
-            referer = "http://localhost:7777/index";
-        }else {
-            referer = hsr.getHeader("Referer");
+        String refererHeader = hsr.getHeader("Referer");
+        final String LOGIN_REFERER = "http://localhost:7777/user/login";
+        final String REGISTER_REFERER = "http://localhost:7777/user/register";
+        final String FIND_USER_REFERER = "http://localhost:7777/findUser";
+        final String INDEX_PAGE = "http://localhost:7777/index";
+
+        if (refererHeader != null) {
+            refererHeader = refererHeader.toLowerCase();
+            if (refererHeader.startsWith(LOGIN_REFERER.toLowerCase()) ||
+                    refererHeader.startsWith(REGISTER_REFERER.toLowerCase()) ||
+                    refererHeader.startsWith(FIND_USER_REFERER.toLowerCase())) {
+
+                referer = INDEX_PAGE;
+            } else {
+                referer = hsr.getHeader("Referer");
+            }
         }
+
         hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
@@ -73,7 +85,7 @@ public class UserController {
     }
     @GetMapping("/logout")
     public String getLogout(HttpSession hs) {
-        System.out.println("logout");
+
         hs.invalidate();
         return "redirect:/index";
     }
@@ -82,8 +94,29 @@ public class UserController {
     @ResponseBody
     public Map<String,Object> checkLogin(HttpSession hs){
         boolean isLogin = hs.getAttribute("user") != null;
-        System.out.println(isLogin);
+
         return Map.of("isLogin",isLogin);
+    }
+
+    @GetMapping("/findUser")
+    public String getFindUser(){
+        return "/user/findUser";
+    }
+
+    @PostMapping("/findUser")
+    @ResponseBody
+    public Map<String,Object> getUser(@ModelAttribute UserDto userDto,@RequestParam String type) {
+        Map<String,Object> map = new HashMap<>();
+
+        if ( userService.getFindUser(userDto,type) == null){
+            map.put("type","");
+        }
+        else{
+            map.put("type", type);
+            map.put("msg", "success");
+            map.put("user", userService.getFindUser(userDto, type));
+        }
+        return map;
     }
 
 }

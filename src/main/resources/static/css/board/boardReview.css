@@ -221,6 +221,11 @@ th:nth-child(6) {
     width: 5%;
 }
 
+.comment-count {
+    color: red;
+    font-size: 12px;
+    margin-left:2px;
+}
 /* ------------------------bottom------------------------- */
 
 .bottom {

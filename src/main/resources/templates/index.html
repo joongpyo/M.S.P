@@ -111,7 +111,7 @@
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기(비염)')}"><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}"><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
                             </div>
                             <span>알레르기(비염)</span>
                         </div>
@@ -161,6 +161,8 @@
             <section class="two">
                 <div class="two-container">
                     <div class="two-board">
+
+
                         <div class="two-title-wrap">
                             <div class="two-title">
                                 <h2><span><i class="fa-solid fa-map-pin"></i></span> 공지사항</h2>
@@ -170,14 +172,24 @@
                         <div class="table-wrap">
                             <table class="table-box">
                                 <tbody>
-                                    <tr th:each="Notice, k: ${Notice}" th:limit="5">
+                                <th:block th:if="${Notice != null and Notice.size() > 0}">
+                                    <tr th:each="notice, k: ${Notice}" th:limit="5">
                                         <td>
-                                            <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${Notice.id}+',\'Notice\', event)'">
-                                                <strong>· [[${Notice.subject}]]</strong>
+                                            <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${notice.id}+',\'Notice\', event)'">
+                                                <strong>· [[${notice.subject}]]</strong>
                                             </a>
                                         </td>
-                                        <td>[[${Notice.reg}]]</td>
+                                        <td>[[${notice.reg}]]</td>
                                     </tr>
+                                </th:block>
+                                <th:block th:unless="${Notice != null and Notice.size() > 0}">
+                                     <tr>
+                                        <td>
+                                            <strong>· 공지사항이 없습니다. </strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </th:block>
                                 </tbody>
                             </table>
                         </div>
@@ -194,6 +206,7 @@
                         <div class="table-wrap">
                             <table class="table-box">                        
                                 <tbody>
+                                <th:block th:if="${QnA != null and QnA.size() > 0}">
                                 <tr th:each="QnA, k: ${QnA}">
                                     <td>
                                         <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${QnA.id}+', \'QnA\', event)'">
@@ -204,6 +217,15 @@
                                         [[${QnA.reg}]]
                                     </td>
                                 </tr>
+                                </th:block>
+                                <th:block th:unless="${QnA != null and QnA.size() > 0}">
+                                   <tr>
+                                    <td>
+                                        <strong>· 게시물이 없습니다. </strong>
+                                    </td>
+                                    <td></td>
+                                    </tr>
+                                </th:block>
                                 </tbody>
                             </table>
                         </div> 

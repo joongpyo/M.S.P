@@ -17,7 +17,6 @@ public class UserService {
 
     public UserDto setLogin(UserDto userDto){
         return userMapper.setLogin(userDto);
-
     }
     public void setRegister(UserDto userDto){
         userMapper.setRegister(userDto);
@@ -63,6 +62,20 @@ public class UserService {
             searchQuery = "";
         }
         return searchQuery;
+    }
+
+    public UserDto getFindUser(UserDto userDto,String type){
+        String searchQuery="";
+        if(type.equals("id")){
+            searchQuery = " WHERE user_name = '"+userDto.getUserName()+"'"
+                    +" AND user_email = '"+userDto.getUserEmail()+"'";
+        }else {
+            searchQuery = " WHERE user_id = '"+userDto.getUserId()+"'"
+                    +" AND user_name = '"+userDto.getUserName()+"'"
+                    +" AND user_email = '"+userDto.getUserEmail()+"'";
+        }
+
+        return userMapper.getFindUser(searchQuery);
     }
 
 
