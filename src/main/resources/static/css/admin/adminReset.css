@@ -1,6 +1,5 @@
 @charset 'utf-8';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;400&display=swap');
-
         .wrap {
             width: 100%;
             overflow: auto;
@@ -105,6 +104,9 @@
             height: 65px;
             color: #fff;
         }
+        .navbar a{
+            color: #fff;
+        }
 
         .title-box{
             font-weight: bold;
@@ -131,7 +133,6 @@
         }
 
         .main-content {
-            height: calc(100vh - 65px - 50px);
             padding: 20px;
         }
         .sub-title-box{
@@ -173,11 +174,6 @@
             border-top: 1px solid #e7e7e7;
         }
 
-
-
-
-
-
 .btn{
     width: 50px;
     padding: 7px 0;
@@ -188,21 +184,14 @@
     color: #fff;
 }
 
+.red{
+    background-color: #FB4F9C;
+    color: #fff;
+}
 
 
 /*관리자 게시물 갯수, 검색창*/
 
-.search-form {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    margin-bottom: 25px;
-}
-
-.search-right {
-    display: flex;
-    justify-content: space-between;
-}
 /*
 select {
     height: 30px;
@@ -212,26 +201,37 @@ select {
     border-bottom-left-radius: 3px;
 }
 */
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 85%;
+    margin-bottom: 25px;
+}
+
 .search-box {
     border: 0;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding-left: 12px;
-    padding-right: 12px;
     display: flex;
     overflow: hidden;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
 
-.sel-box select{
+.sel-box{
     border: 0;
-    outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-right: none;
     padding-left: 12px;
+    width: 100px;
 }
-
+.sel-box select{
+    border: none;
+    outline: none;
+    width: 100%;
+}
 .search2 {
     border: 0;
     /* border: 1px solid rgba(0, 0, 0, 0.2); */
@@ -251,16 +251,6 @@ select {
 .board-active{
     color: #2196f3;
     text-decoration: underline;
-}
-
-.search-form {
-    display: flex;
-    justify-content: space-between;
-
-    width: 83%;
-    margin: 0 auto;
-    margin-bottom: 25px;
-
 }
 
 .search-right {
@@ -287,14 +277,6 @@ select {
     overflow: hidden;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-}
-
-.sel-box select{
-    border: 0;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-right: none;
-    padding-left: 5px;
 }
 
 .search2 {
