@@ -108,7 +108,6 @@ public class AdminController {
     }
     @GetMapping("/admin/noticeBoard")
     public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode){
-        System.out.println(configCode);
         model.addAttribute("configCode",configCode);
         model.addAttribute("notice",adminBoardService.getBoardList(page,configCode));
         model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
@@ -118,7 +117,6 @@ public class AdminController {
     }
     @GetMapping("/admin/qnaBoard")
     public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
-        System.out.println(configCode);
         model.addAttribute("configCode",configCode);
         model.addAttribute("qna",adminBoardService.getBoardList(page,configCode));
         model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
@@ -127,7 +125,6 @@ public class AdminController {
     }
     @GetMapping("/admin/reviewBoard")
     public String getReviewBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode){
-        System.out.println(configCode);
         model.addAttribute("configCode",configCode);
         model.addAttribute("review",adminBoardService.getBoardList(page,configCode));
         model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode));
@@ -141,7 +138,6 @@ public class AdminController {
     @PostMapping("/admin/noticeInsert")
     @ResponseBody
     public Map<String,Object> setNoticeInsert(@ModelAttribute AdminBoardDto adminBoardDto, @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(adminBoardDto);
         if(adminBoardDto.getConfigCode().equals("review") && !file.isEmpty()){
             return Map.of("msg","choice1");
         }else {
@@ -203,7 +199,6 @@ public class AdminController {
     @PostMapping("/admin/medInsert")
     @ResponseBody
     public Map<String, Object> setMedUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(medicineDto);
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
             medicineService.setMedUpdate(medicineDto);
@@ -234,8 +229,7 @@ public class AdminController {
             fileDto.setExt(ext);
 
             medicineService.setFile(fileDto);
-            System.out.println(fileDto);
-            System.out.println(medicineDto);
+
             return Map.of("msg", "success");
         } else {
             return Map.of("msg", "failure");

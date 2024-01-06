@@ -71,7 +71,6 @@ public class MedicineService {
         }else {
             searchQuery = "";
         }
-        System.out.println(searchQuery);
 
         return searchQuery;
 
@@ -83,7 +82,6 @@ public class MedicineService {
         return medicineMapper.getFiles(id);
     }
     public void setFileDelete(int id){
-        System.out.println(id);
         medicineMapper.setFileDelete(id);
     }
     public MedicineDto getMedView(int medId){

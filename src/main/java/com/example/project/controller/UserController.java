@@ -85,7 +85,7 @@ public class UserController {
     }
     @GetMapping("/logout")
     public String getLogout(HttpSession hs) {
-        System.out.println("logout");
+
         hs.invalidate();
         return "redirect:/index";
     }
@@ -94,7 +94,7 @@ public class UserController {
     @ResponseBody
     public Map<String,Object> checkLogin(HttpSession hs){
         boolean isLogin = hs.getAttribute("user") != null;
-        System.out.println(isLogin);
+
         return Map.of("isLogin",isLogin);
     }
 
