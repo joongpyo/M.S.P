@@ -9,10 +9,8 @@
     <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
     <link rel="stylesheet" th:href="@{/css/admin/adminHome.css}">
     <link rel="stylesheet" th:href="@{/css/admin/calendar.css}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/calendarScript.js}"></script>
+
 
 </head>
 <body>
@@ -31,11 +29,11 @@
                                 <div class="content-wrap">
                                     <div class="top-content-wrap">
                                         <div class="top-content-wrap-img">
-                                            <a href=""><img th:src="@{images/admin.png}" alt=""></a>
+                                            <a href=""><img id="adminImage" th:src="@{images/admin.png}" alt=""></a>
                                         </div>
                                         <div class="top-content-wrap-button">
-                                            <a href=""><button class="adminbtn">이미지변경</button></a>
-                                        </div>
+                                            <label for="imageInput" class="adminbtn">이미지변경</label>
+                                            <input type="file" id="imageInput" accept="image/*" style="display: none;">                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -170,6 +168,12 @@
                                             <h4>Calender</h4>
                                         </div>
                                         <div class="right-content-wrap-btm" id="calendar">
+                                            <div class="calendar-header">
+                                                <button id="prevMonthBtn">이전 달</button>
+                                                <h4 id="currentMonth"></h4>
+                                                <button id="nextMonthBtn">다음 달</button>
+                                            </div>
+                                            <div class="calendar-days" id="days"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -178,10 +182,23 @@
                                 <div class="content-wrap">
                                     <div class="right-content-wrap">
                                         <div class="right-content-wrap-top">
-                                            <h4>Today's Subscribers</h4>    
+                                            <h4>Member</h4>    
                                         </div>
                                         <div class="right-content-wrap-btm">
-
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>회원 수</th>
+                                                        <th>오늘 가입한 수</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +207,28 @@
                                 <div class="content-wrap">
                                     <div class="right-content-wrap">
                                         <div class="right-content-wrap-top">
-                                            <h4>Today's Visitors</h4>
+                                            <h4>게시판별 게시글</h4>
                                         </div>
-                                        <div class="right-content-wrap-btm"></div>
+                                        <div class="right-content-wrap-btm">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>board</th>
+                                                        <th><a href="">notice</a></th>
+                                                        <th><a href="">QNA</a></th>
+                                                        <th><a href="">review</a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>num</td>
+                                                        <td>1</td>
+                                                        <td>2</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +241,8 @@
         </div>
     </div>
     <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+    <script src="/js/calendarScript.js"></script>
+
 
 </body>
 </html>
