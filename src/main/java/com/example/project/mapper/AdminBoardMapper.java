@@ -27,5 +27,6 @@ public interface AdminBoardMapper {
     @Select("SELECT COUNT(*) FROM board_${configCode} ${searchQuery}")
     public int getBoardCount(String configCode, String searchQuery);
 
+
 }
 

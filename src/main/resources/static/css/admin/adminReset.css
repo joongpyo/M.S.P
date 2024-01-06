@@ -104,6 +104,9 @@
             height: 65px;
             color: #fff;
         }
+        .navbar a{
+            color: #fff;
+        }
 
         .title-box{
             font-weight: bold;

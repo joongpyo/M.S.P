@@ -70,6 +70,7 @@ public class AdminBoardService {
         return adminBoardMapper.getBoardList(map);
     }
 
+
     // search
 
     

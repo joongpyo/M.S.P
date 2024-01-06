@@ -87,7 +87,6 @@
 }
 .dashboard-center-top{
     width: 580px;
-    height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
@@ -97,7 +96,6 @@
 }
 .dashboard-center-mid{
     width: 580px;
-    height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
@@ -107,7 +105,6 @@
 }
 .dashboard-center-bottom{
     width: 580px;
-    height: 250px;
     border: none;
     border: .8px solid #ccc;
     border-radius: 3px;
@@ -121,14 +118,15 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     align-items: center;
-    margin-top: 5px; 
+    margin-top: 5px;
+    margin-bottom: 5px; 
 }
 .center-content-wrap-top{
     background-color: #41A7E3;
     color: #fff;
     padding: 10px;
 }
-.center-content-wrap h4 {
+.center-content-wrap h4{
     text-align: left; 
     margin: 0; 
 }
@@ -193,7 +191,23 @@
     align-items: center;
 }
 
+.right-content-wrap{
+    width: 95%;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    align-items: center;
+    margin-top: 5px; 
+}
+.right-content-wrap-top{
+    background-color: #41A7E3;
+    color: #fff;
+    padding: 10px;
+}
+.right-content-wrap h4{
+    text-align: center; 
+    margin: 0; 
+}
 
-
-
+/*------------------calender------------------*/
 

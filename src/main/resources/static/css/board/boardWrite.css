@@ -222,7 +222,7 @@ textarea{
 /* ---------------------- ck editor -------------------------- */
 .ck-editor__editable {
     height: 400px;
-    weight 100%;
+    width: 100%;
     padding-left: 30px;
 }
 .ck-content {
