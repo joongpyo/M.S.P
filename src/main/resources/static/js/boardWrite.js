@@ -14,9 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let subject = document.querySelector("input[name=subject]");
             let writer = document.querySelector("input[name=writer]");
             let uIdFk = document.querySelector("input[name=uIdFk]");
+            let configCode = document.querySelector("input[name=configCode]");
+
 
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+
                 if(subject.value == ""){
                     alert("게시물 제목을 입력하세요");
                     subject.focus();
@@ -28,23 +31,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     return false;
                 }
 
-
                 let formData = new FormData();
-                let uploadData = document.querySelector("#upload-form input[name='files']").files;
+                if (document.querySelector("#upload-form input[name='files']") != null){
+                    let uploadData = document.querySelector("#upload-form input[name='files']").files;
 
-                if(uploadData != null && uploadData.length > 0){
-                    for (let i = 0; i < uploadData.length; i++) {
-                        formData.append("files", uploadData[i]);
+                    if(uploadData != null && uploadData.length > 0){
+                        for (let i = 0; i < uploadData.length; i++) {
+                            formData.append("files", uploadData[i]);
+                        }
+                    }else{
+                        formData.append("files", "");
+                        console.log("첨부파일 X")
                     }
-                }else{
-                    formData.append("files", "");
-                    console.log("첨부파일 X")
                 }
 
                 formData.append('subject', subject.value);
                 formData.append('content', editor.getData());
                 formData.append('writer', writer.value);
                 formData.append('uIdFk', uIdFk.value);
+                formData.append('configCode',configCode.value);
+
+
 
                 $.ajax({
                     type: "POST",
@@ -55,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     success: function (result) {
                         if (result.msg=="success"){
                             alert("등록되었습니다.");
-                            location.href = "/board/boardQnA";
+                            location.href = "/board/board?configCode="+result.configCode;
                         }
                     }
                 });
@@ -67,7 +74,4 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('에디터 매칭 실패');
     }
-
-
-
 });

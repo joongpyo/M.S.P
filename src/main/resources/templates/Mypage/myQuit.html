@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.S.P | 마이페이지 > 회원 탈퇴</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/mypage/mypageReset.css}">
+    <link rel="stylesheet" th:href="@{/css/mypage/myQuit.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+
+<main>
+    <div class="main-header">
+        <div class="main-content">
+
+            <div th:replace="~{/mypage/aside.html :: fragment-aside}"></div>
+
+            <div class="content-container">
+                <div class="title-box">
+                    <h2>마이페이지</h2>
+                </div>
+                <div class="sub-title-box">
+                    <p>
+                        <i class="fa-solid fa-house"></i><a th:href="@{/mypage}"> <span>홈</span> </a>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <a th:href="@{/mypage/myQuit}"><strong>회원 탈퇴</strong></a>
+                    </p>
+                </div>
+                <div class="content-wrap">
+                    <form action="">
+                        <div class="text-box">
+                            <p><i class="fa-solid fa-triangle-exclamation"></i> 회원탈퇴를 진행하시면 더 이상 사이트 내 서비스를 이용하실 수 없습니다.</p>
+                            <h3>그래도 탈퇴하시겠습니까?</h3>
+                        </div>
+                        <div class="quit-box first last">
+                            <p>현재 비밀번호 입력</p>
+                            <span><input type="password" name="pwdCheck" class="pwdCheck" placeholder="현재 비밀번호를 입력하세요."></span>
+                        </div>
+                        <div class="quit-btn-box">
+                            <button type="button" class="quit-btn"> 회원 탈퇴 </button>
+                        </div>
+                        <input type="hidden" class="userPasswd" name="userPasswd" th:value="${session.user.userPasswd}">
+                        <input type="hidden" class="uId" name="uId" th:value="${session.user.uId}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+
+<script type="text/javascript" th:src="@{/js/myQuit.js}"></script>
+
+</body>
+</html>

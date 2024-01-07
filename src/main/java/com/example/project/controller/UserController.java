@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -24,43 +24,64 @@ public class UserController {
     public String getLogin(HttpServletRequest hsr){
         String referer = "";
 
-        if (hsr.getHeader("Referer").equals("http://localhost:7777/user/login") ||
-                hsr.getHeader("Referer").equals("http://localhost:7777/user/register")){
-            referer = "http://localhost:7777/index";
-        }else {
-            referer = hsr.getHeader("Referer");
+        String refererHeader = hsr.getHeader("Referer");
+        final String LOGIN_REFERER = "http://localhost:7777/user/login";
+        final String REGISTER_REFERER = "http://localhost:7777/user/register";
+        final String FIND_USER_REFERER = "http://localhost:7777/findUser";
+        final String INDEX_PAGE = "http://localhost:7777/index";
+
+        if (refererHeader != null) {
+            refererHeader = refererHeader.toLowerCase();
+            if (refererHeader.startsWith(LOGIN_REFERER.toLowerCase()) ||
+                    refererHeader.startsWith(REGISTER_REFERER.toLowerCase()) ||
+                    refererHeader.startsWith(FIND_USER_REFERER.toLowerCase())) {
+
+                referer = INDEX_PAGE;
+            } else {
+                referer = hsr.getHeader("Referer");
+            }
         }
 
         hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
-
+    @GetMapping("/admin/checkUserIdAndEmail")
+    @ResponseBody
+    public Map<String, Object> checkUserIdAndEmail(@RequestParam String userId,@RequestParam String userEmail) {
+        int checkUserId = userService.getCheckUserId(userId);
+        int checkUserEmail = userService.getCheckUserEmail(userEmail);
+        return Map.of("checkUserId",checkUserId,"checkUserEmail",checkUserEmail);
+    }
     @GetMapping("/user/register")
     public String getRegister(){
         return "user/register";
     }
     @PostMapping("/user/register")
-    public String setRegister(@ModelAttribute UserDto userDto, RedirectAttributes ra){
-        userService.setRegister(userDto);
-
-        ra.addFlashAttribute("msg" , "success");
-        return "redirect:/user/login";
+    public String setRegister(@ModelAttribute UserDto userDto,@RequestParam String userId,@RequestParam String userEmail,RedirectAttributes ra){
+        if(userService.getCheckUserId(userId) < 1 || userService.getCheckUserEmail(userEmail) == 1){
+            ra.addFlashAttribute("msg","checkEmail");
+            return "redirect:/user/register";
+        }else if(userService.getCheckUserId(userId) == 1 || userService.getCheckUserEmail(userEmail) < 1){
+            ra.addFlashAttribute("msg","checkId");
+            return "redirect:/user/register";
+        }else if(userService.getCheckUserId(userId)<1 || userService.getCheckUserEmail(userEmail) < 1){
+            userService.setRegister(userDto);
+            ra.addFlashAttribute("msg", "success");
+            return "redirect:/user/login";
+        }else {
+            ra.addFlashAttribute("msg", "failure");
+            return "redirect:/user/register";
+        }
     }
 
     @PostMapping("/login")
     public String setLogin(@ModelAttribute UserDto userDto, RedirectAttributes ra,HttpSession session, HttpServletRequest hsr){
 
         UserDto d = userService.setLogin(userDto);
-
-
-
         String prevPage = (String) session.getAttribute("prevPage");
-
-
         if(d != null){
             //세션 생성 - 로그아웃하기전까지 계속 로그인유지
             //getSession() -> 데이터 -> 시간
-
             HttpSession hs = hsr.getSession(); //세션 준비
             hs.setAttribute("user",d);
             hs.setMaxInactiveInterval(15*60);   //10분
@@ -73,7 +94,6 @@ public class UserController {
             }else {
                 return "redirect:/index";
             }
-
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");
             return "redirect:/user/login";
@@ -81,9 +101,38 @@ public class UserController {
     }
     @GetMapping("/logout")
     public String getLogout(HttpSession hs) {
-        System.out.println("logout");
+
         hs.invalidate();
         return "redirect:/index";
+    }
+
+    @GetMapping("/checkLogin")
+    @ResponseBody
+    public Map<String,Object> checkLogin(HttpSession hs){
+        boolean isLogin = hs.getAttribute("user") != null;
+
+        return Map.of("isLogin",isLogin);
+    }
+
+    @GetMapping("/findUser")
+    public String getFindUser(){
+        return "/user/findUser";
+    }
+
+    @PostMapping("/findUser")
+    @ResponseBody
+    public Map<String,Object> getUser(@ModelAttribute UserDto userDto,@RequestParam String type) {
+        Map<String,Object> map = new HashMap<>();
+
+        if ( userService.getFindUser(userDto,type) == null){
+            map.put("type","");
+        }
+        else{
+            map.put("type", type);
+            map.put("msg", "success");
+            map.put("user", userService.getFindUser(userDto, type));
+        }
+        return map;
     }
 
 }

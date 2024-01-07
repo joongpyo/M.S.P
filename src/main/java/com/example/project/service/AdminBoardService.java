@@ -70,8 +70,6 @@ public class AdminBoardService {
         return adminBoardMapper.getBoardList(map);
     }
 
+    // Review List
 
-    // search
-
-    
 }

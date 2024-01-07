@@ -1,20 +1,23 @@
 package com.example.project.mapper;
 
 import com.example.project.dto.CommentDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
 @Mapper
 public interface CommentMapper {
-
-    @Insert("INSERT INTO qna_comment VALUES(NULL, #{bId}, #{cWriter}, #{cComment}, now())")
+    @Insert("INSERT INTO comment_${configCode} VALUES(NULL, #{cWriter}, #{cComment}, now(), #{bIdFk})")
     void setComment(CommentDto commentDto);
 
-    @Select("SELECT * FROM qna_comment WHERE b_id = ${bId}")
-    List<CommentDto> getCommentList(@ModelAttribute CommentDto commentDto);
+    @Select("SELECT * FROM comment_${configCode} WHERE b_id_fk = ${bIdFk}")
+    List<CommentDto> getCommentList(CommentDto commentDto);
+
+    @Update("UPDATE board_${configCode} SET comment_count= comment_count+1 WHERE id = #{bIdFk}")
+    void updateCommentCnt(String configCode,int bIdFk);
+
+    @Delete("DELETE FROM comment_${configCode} WHERE b_id_fk = #{bIdFk}")
+    void setCommentDelete(String configCode,int bIdFk);
 
 }

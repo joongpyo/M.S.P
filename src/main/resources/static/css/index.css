@@ -276,66 +276,75 @@ main {
     display: flex;
     justify-content: space-between;
     height: 250px;
-   
     margin: 0 auto;
-
-
 }
 
+.two-board {
+    width:48%;
+}
 
+.two-title-wrap{
+    width: 100%;
+}
 
 .two-title{
-    /* background-color: aqua; */
-    width: 555px;
-    padding: 12px 0;
-    text-align: center;    
-    /* margin-left: 20px;  */
-    margin-bottom: 20px;    
+    width: 100%;
+    padding: 12px 20px;
+    text-align: center;
+    margin-bottom: 20px;
     background-color: #1e50a4;
     color: #fff;
     border: 0;    
     border-radius: 3px;
-    
+    display:flex;
+    justify-content: space-between;
+}
+
+.two-title span {
+    font-size:16px;
+    margin:0 5px;
+}
+
+.two-title a {
+    font-size: 14px;
+    color: rgba(255,255,255,.8);
 }
 
 .two-title h2{
     font-weight: lighter;
     font-size: 1.375rem;
-    text-align: center;
 }
 
-.two-title i{
-    text-align: end;
+.table-wrap {
+    height:150px;
 }
 
 .table-box {
-    width: 100%;       
-    height: 150px;
+    width: 100%;
     /* margin-left: 20px; */
 }
 
+.table-box tr {
+    padding-bottom:15px;
+}
+
+.table-box td:nth-child(2){
+    width:18%;
+}
+
 .table-box td{
+    height:30px;
     text-align: left;
     padding-left: 10px;  
     color: rgba(0, 0, 0, 0.7);
     font-size: 0.875rem;
-    
-}
-
-.table-box span{
-    color: tomato;
-    font-weight: bold;
 }
 
 .two-notice{
     margin-left: 35px;
 }
 
-.two-QnA{
-    margin-right: 35px;    
-}
-
-.two-QnA .two-title{
+.QnA{
     background-color: #DF013A;
     
 }

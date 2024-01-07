@@ -32,7 +32,11 @@ public interface MedicineMapper {
     @Delete("DELETE FROM files_admin WHERE id = #{id}")
     public void setFileDelete(int id);
 
+    //1226 jang
+    @Select("SELECT * FROM files_admin")
+    public List<FileDto> getFilesAll();
     //medicine update
+
     @Update("UPDATE medicine SET med_dis = #{medDis}, med_eff = #{medEff},med_type = #{medType}, med_store = #{medStore}, med_com = #{medCom}, med_age = #{medAge}, med_pregnant = #{medPregnant}, med_reg = now(), is_files = #{isFiles} WHERE med_id = #{medId}")
     @Options(useGeneratedKeys = true, keyProperty = "medId")
     public void medUpdate(MedicineDto medicineDto);

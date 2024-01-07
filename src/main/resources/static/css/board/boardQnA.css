@@ -1,3 +1,4 @@
+/*---------------------------boardReview content -----------------------*/
 
 .board-bg {
     background-image: url("/images/texture1.jpg");
@@ -190,17 +191,9 @@ td:nth-child(2) {
     font-weight: 500;
 }
 
-td:nth-child(2):hover {
-    text-decoration: underline;
-
-    transition: .3s;
-}
-
 td:nth-child(3) {
     font-weight: 500;
 }
-
-
 
 th:nth-child(1) {
     width: 5%;
@@ -216,6 +209,20 @@ th:nth-child(4) {
 
 th:nth-child(5) {
     width: 10%;
+}
+ /*12-22 jang*/
+th:nth-child(6) {
+    width: 5%;
+}
+
+tbody .b-subject:hover {
+    text-decoration:underline;
+}
+
+.comment-count {
+    color: red;
+    font-size: 12px;
+    margin-left:2px;
 }
 
 /* ------------------------bottom------------------------- */
@@ -264,4 +271,3 @@ th:nth-child(5) {
     box-shadow: 0 1px 1px 0 #eee;
     border-radius: 20px;
 }
-

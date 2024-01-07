@@ -120,8 +120,7 @@ p .writer {
 }
 
 .text-box p {
-    line-height: 400%;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .content-wrap hr {
@@ -214,6 +213,10 @@ p .writer {
     font-size: 14px;
 }
 
+.comment-p{
+    padding-bottom: 10px;
+}
+
 .comment-write {
     display:flex;
 }
@@ -231,7 +234,6 @@ p .writer {
     width:150px;
     height:80px;
     margin-left: 10px;
-    background-color:#000;
 }
 
 .comment-btn .cBtn {

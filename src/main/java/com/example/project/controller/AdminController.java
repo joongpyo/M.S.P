@@ -9,7 +9,6 @@ import com.example.project.service.AdminBoardService;
 import com.example.project.service.DiseaseService;
 import com.example.project.service.MedicineService;
 import com.example.project.service.UserService;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -50,17 +48,14 @@ public class AdminController {
     String fileDir;
     @GetMapping("/admin") //
     public String getAdmin(@RequestParam(value="current", defaultValue="1") String current, Model model) {
-        List<AdminBoardDto> noticeList = adminBoardService.getBoardList(1,"notice","","");
-        List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"qna","","");
-        List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"review","","");
+        List<AdminBoardDto> noticeList = adminBoardService.getBoardList(1,"Notice","","");
+        List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"Qna","","");
+        List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"Review","","");
 
         model.addAttribute("Notice", noticeList.subList(0, Math.min(noticeList.size(), 2)));
         model.addAttribute("Qna", qnaList.subList(0, Math.min(qnaList.size(), 2)));
         model.addAttribute("Review",reviewList.subList(0, Math.min(reviewList.size(), 2)));
         model.addAttribute("current", current);
-
-
-
         return "admin";
     }
     @GetMapping("/admin/userList")
@@ -76,7 +71,6 @@ public class AdminController {
     public String getUserDelete(@ModelAttribute UserDto userDto){
         userService.userDelete(userDto);
         return null;
-        //return "redirect:/admin/userList?uId="+ userDto.getuId();
     }
 
     @GetMapping("/admin/disList") // 질병 리스트  -> 리스트 안에서 삭제 버튼 만들어서 사용 메인페이지 안에 작성페이지로 이동하는 버튼 만들기
@@ -145,7 +139,6 @@ public class AdminController {
         model.addAttribute("page",adminBoardService.PageBoardInfo(page,configCode,searchType,words));
         model.addAttribute("total",adminBoardMapper.getBoardCount(configCode,searchQuery));
         return "admin/noticePage/noticeBoard";
-
     }
     @GetMapping("/admin/qnaBoard")
     public String getQnaBoard(Model model, @RequestParam(value = "page", defaultValue = "1")int page, @RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){

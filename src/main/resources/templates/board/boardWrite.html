@@ -22,7 +22,17 @@
     <div class="board-bg-wrap">
         <div class="board-bg-content">
             <div class="bg-letter">
-                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> 공지사항  <span><i class="fa-solid fa-angle-right"></i></span> 게시글 작성</p>
+                <p>
+                    <i class="fa-solid fa-house"></i> 홈
+                    <span><i class="fa-solid fa-angle-right"></i></span> 게시판
+                    <th:span th:switch="${configCode}">
+                        <span th:case="'Notice'"><i class="fa-solid fa-angle-right"></i> 공지사항</span>
+                        <span th:case="'QnA'"><i class="fa-solid fa-angle-right"></i> Q n A</span>
+                        <span th:case="'Review'"><i class="fa-solid fa-angle-right"></i> 약 복용 후기</span>
+                        <span th:case="'List'"><i class="fa-solid fa-angle-right"></i> 약 목록</span>
+                    </th:span>
+                    <span><i class="fa-solid fa-angle-right"></i></span> 게시글 작성
+                </p>
             </div>
         </div>
     </div>
@@ -31,44 +41,45 @@
         <div class="main-container">
             <div class="section-container">
                 <div class="sub-title">
-                    <h1>공지사항</h1>
+                    <h1>게시글 작성</h1>
                 </div>
                 <div class="content-wrap">
                     <div class="subject-title">
-                        <h2>게시글 작성</h2>
-                    </div>
 
-                    <form action="">
+                    </div>
+                    <form id="upload-form">
                         <table>
                             <tbody>
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input class="w-input" type="text" name="subject">
+                                        <input class="w-input" type="text" name="subject" autocomplete="off">
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="w-input" name="editor" id="editor"></textarea>
+                                        <textarea name="editor" id="editor"></textarea>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr th:if="${configCode eq 'QnA' or configCode eq 'Review'}">
                                     <th>첨부파일</th>
                                     <td>
-                                        <input class="w-input" type="file" name="files" multiple>
+                                        <input type="file" name="files" multiple>
                                     </td>
                                 </tr>
+
                             </tbody>
                         </table>
 
 					<div class="bottom">
 						<div class="bottom-right">
-							<a th:href="@{/board/boardQnA}">
+							<a th:href="@{/board/board?(configCode=${configCode})}">
 								<button type="button" class="btn">목록</button>
 							</a>
 
-							<a href="">
+							<a href="#">
 								<button class="submit">글작성</button>
 							</a>
 						</div>
@@ -76,7 +87,7 @@
 
 					<input type="hidden" name="writer" th:value="${session.user.userName}">
 					<input type="hidden" name="uIdFk" th:value="${session.user.uId}">
-
+                    <input type="hidden" name="configCode" th:value="${configCode}">
 				</form>
 			</div>
 		</div>
