@@ -168,9 +168,9 @@ primary key(id)
 );
 
 create table disease(
-  dis_id int not null auto_increment,
-  dis_name varchar(20) not null,
-  dis_sym varchar(255) not null,
-  dis_reg date,
-  primary key(dis_id)
-  );
+dis_id int not null auto_increment,
+dis_name varchar(20) not null,
+dis_sym varchar(255) not null,
+dis_reg date,
+primary key(dis_id)
+);

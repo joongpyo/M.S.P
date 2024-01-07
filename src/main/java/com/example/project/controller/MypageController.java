@@ -21,8 +21,6 @@ public class MypageController {
     @Autowired
     MypageService mypageService;
 
-
-
     @GetMapping("")
     public String getMypage(){
         return "mypage";
@@ -52,8 +50,6 @@ public class MypageController {
         return "mypage/myMedList";
     }
 
-
-
     @PostMapping("/save")
     @ResponseBody
     public Map<String, Object> setMyMedList(@ModelAttribute MyMedicineDto myMedicineDto){
@@ -62,7 +58,11 @@ public class MypageController {
     }
 
     @GetMapping("/myBoard")
-    public String getMyBoard(){
+    public String getMyBoard(HttpSession session){
+        UserDto siteUser = (UserDto) session.getAttribute("user");
+        mypageService.getPost(siteUser);
+
+
         return "mypage/myBoard";
     }
 

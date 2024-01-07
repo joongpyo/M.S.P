@@ -10,7 +10,6 @@ public class CommentDto {
     private String cSubject;
     private String cWriter;
     private String cComment;
-
     private LocalDateTime cRegdate;
 
     //231223 jang

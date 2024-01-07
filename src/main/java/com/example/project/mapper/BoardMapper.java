@@ -16,6 +16,9 @@ public interface BoardMapper {
     @Select("SELECT * FROM board_${configCode} ${searchQuery} ORDER BY board_type ASC, grp DESC, seq ASC LIMIT #{startNum}, #{offset} ")
     List<BoardDto> getBoard(Map<String,Object> map);
 
+    @Select("SELECT * FROM board_${configCode} WHERE u_id_fk = #{uIdFk}")
+    List<BoardDto> getBoardAll(String configCode, int uIdFk);
+
     @Select("SELECT * FROM board_${configCode} WHERE id = #{id}")
     BoardDto getView(String configCode, int id);
 

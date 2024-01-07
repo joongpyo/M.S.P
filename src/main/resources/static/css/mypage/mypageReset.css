@@ -28,11 +28,9 @@ main{
 }
 
 .aside-title{
-    
     width: 100%;
     height: 140px;
     text-align: center;
-    
 }
 
 .title-letter{    
@@ -46,26 +44,17 @@ main{
 
 .title-letter p{    
     font-size: 12px;
-    
 }
-
 
 .mypage-hr{
     width:165px;
     margin: 0 auto;
-    
 }
-
-
 
 .mypage-aside{
     width:230px;
     height: 100%;
-    
     box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
-    
-    
-    
 }
 
 .mypage-aside ul li{    
@@ -98,7 +87,7 @@ main{
     margin-bottom: 30px; */
     margin: 0 0 30px 30px;
     margin-top: 20px;
-    letter-s                       pacing: 2px;
+    letter-spacing: 2px;
     font-size: 16px;
 }
 
@@ -106,10 +95,7 @@ main{
     margin-left: 50px;
     margin-bottom: 30px;
     margin-top: 30px;
-
 }
-
-
 
 .sub-title-box span {
  color: rgba(0,0,0,0.7);
@@ -122,8 +108,6 @@ main{
 .sub-title-box strong{
     text-decoration: underline;
     color: rgba(0,0,0,0.8);
-
-
 }
 
 .sub-title-box i{

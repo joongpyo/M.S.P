@@ -11,8 +11,11 @@ public interface CommentMapper {
     @Insert("INSERT INTO comment_${configCode} VALUES(NULL, #{cWriter}, #{cComment}, now(), #{bIdFk})")
     void setComment(CommentDto commentDto);
 
-    @Select("SELECT * FROM comment_${configCode} WHERE b_id_fk = ${bIdFk}")
+    @Select("SELECT * FROM comment_${configCode} WHERE b_id_fk = #{bIdFk}")
     List<CommentDto> getCommentList(CommentDto commentDto);
+
+    @Select("SELECT * FROM comment_${configCode} WHERE c_writer = #{cWriter}")
+    List<CommentDto> getMyCommentList(String configCode,String cWriter);
 
     @Update("UPDATE board_${configCode} SET comment_count= comment_count+1 WHERE id = #{bIdFk}")
     void updateCommentCnt(String configCode,int bIdFk);
