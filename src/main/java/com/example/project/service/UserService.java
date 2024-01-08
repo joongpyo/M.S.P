@@ -22,7 +22,13 @@ public class UserService {
     public void setRegister(UserDto userDto) {
         userMapper.setRegister(userDto);
     }
+    public int getCheckUserId(String userId){
+        return userMapper.getCheckUserId(userId);
+    }
 
+    public int getCheckUserEmail(String userEmail){
+        return userMapper.getCheckUserEmail(userEmail);
+    }
     public PageDto PageInfo(int page,String searchType, String words) {
         PageDto pageDto = new PageDto();
         String searchQuery = getSearch(searchType,words);

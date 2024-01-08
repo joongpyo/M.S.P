@@ -8,6 +8,10 @@ import java.util.Map;
 
 @Mapper
 public interface UserMapper {
+    @Select("SELECT COUNT(*) FROM user WHERE user_id = #{userId} ")
+    public int getCheckUserId(String userId);
+    @Select("SELECT COUNT(*) FROM user WHERE user_email = #{userEmail}")
+    public int getCheckUserEmail(String userEmail);
     @Insert("INSERT INTO user VALUES (NULL,#{userId},#{userPasswd},#{userName}, #{userEmail})")
     public void setRegister(UserDto userDto);
 

@@ -45,18 +45,33 @@ public class UserController {
         hsr.getSession().setAttribute("prevPage",referer);
         return "user/login";
     }
-
+    @GetMapping("/admin/checkUserIdAndEmail")
+    @ResponseBody
+    public Map<String, Object> checkUserIdAndEmail(@RequestParam String userId,@RequestParam String userEmail) {
+        int checkUserId = userService.getCheckUserId(userId);
+        int checkUserEmail = userService.getCheckUserEmail(userEmail);
+        return Map.of("checkUserId",checkUserId,"checkUserEmail",checkUserEmail);
+    }
     @GetMapping("/user/register")
     public String getRegister(){
         return "user/register";
     }
     @PostMapping("/user/register")
-    public String setRegister(@ModelAttribute UserDto userDto, RedirectAttributes ra){
-        userService.setRegister(userDto);
-
-        ra.addFlashAttribute("msg" , "success");
-
-        return "redirect:/user/login";
+    public String setRegister(@ModelAttribute UserDto userDto,@RequestParam String userId,@RequestParam String userEmail,RedirectAttributes ra){
+        if(userService.getCheckUserId(userId) < 1 || userService.getCheckUserEmail(userEmail) == 1){
+            ra.addFlashAttribute("msg","checkEmail");
+            return "redirect:/user/register";
+        }else if(userService.getCheckUserId(userId) == 1 || userService.getCheckUserEmail(userEmail) < 1){
+            ra.addFlashAttribute("msg","checkId");
+            return "redirect:/user/register";
+        }else if(userService.getCheckUserId(userId)<1 || userService.getCheckUserEmail(userEmail) < 1){
+            userService.setRegister(userDto);
+            ra.addFlashAttribute("msg", "success");
+            return "redirect:/user/login";
+        }else {
+            ra.addFlashAttribute("msg", "failure");
+            return "redirect:/user/register";
+        }
     }
 
     @PostMapping("/login")

@@ -47,9 +47,6 @@ public class MypageService {
                 .sorted(Comparator.comparing(BoardDto::getReg))
                 .collect(Collectors.toList());
 
-        System.out.println(combineList);
-
-
         int totalCount = combineList.size();
         pageDto.setPageCount(pageSize);
 
