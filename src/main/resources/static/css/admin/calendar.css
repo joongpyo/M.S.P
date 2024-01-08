@@ -1,8 +1,4 @@
 @charset 'utf-8';
-#calendar{
-    width: 100%;
-    max-width: 250px;
 
-}
 .fc-day-number.fc-sat.fc-past { color:#0000FF;}/* 토요일 */
 .fc-day-number.fc-sun.fc-past { color:#FF0000; } /* 일요일 */

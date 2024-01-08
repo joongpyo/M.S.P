@@ -228,7 +228,7 @@
 
 /*------------------calender------------------*/
 #calendar {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     transform: scale(0.9);
 }
@@ -247,9 +247,9 @@
 }
 
 .calendar-day {
-    padding: 10px;
-    border: 1px solid #ccc;
+    width: 70%;
     cursor: pointer;
+    text-align:center;
 }
 
 .red {
