@@ -133,6 +133,8 @@ public class AdminController {
     }
     @GetMapping("/admin/noticeBoard")
     public String getNoticeBoard(Model model,@RequestParam(value = "page", defaultValue = "1")int page,@RequestParam String configCode, @RequestParam(value = "searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words){
+
+        System.out.println(configCode);
         String searchQuery = adminBoardService.getBoardSearch(searchType,words);
         model.addAttribute("configCode",configCode);
         model.addAttribute("notice",adminBoardService.getBoardList(page,configCode,searchType,words));
