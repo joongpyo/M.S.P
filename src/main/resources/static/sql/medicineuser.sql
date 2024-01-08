@@ -7,7 +7,7 @@ user_email varchar(50) not null unique,
 primary key(u_id)
 );
 
---수정
+
 create table board_QnA(
 id int not null auto_increment,
 subject varchar(100) not null,
@@ -73,7 +73,7 @@ savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
 ext varchar(20),
-foreign key(id) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE
+foreign key(id) references board_Notice(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -103,7 +103,7 @@ savedPathName varchar(255),
 savedFileSize bigint,
 folderName varchar(10),
 ext varchar(20),
-foreign key(id) references board_QnA(id) ON DELETE CASCADE ON UPDATE CASCADE
+foreign key(id) references board_Review(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table comment_Review(

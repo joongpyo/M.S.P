@@ -1,14 +1,18 @@
 package com.example.project.controller;
 
+import com.example.project.dto.BoardDto;
 import com.example.project.dto.MyMedicineDto;
+import com.example.project.dto.PageDto;
 import com.example.project.dto.UserDto;
 import com.example.project.service.MypageService;
 import com.example.project.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -58,10 +62,16 @@ public class MypageController {
     }
 
     @GetMapping("/myBoard")
-    public String getMyBoard(HttpSession session){
-        UserDto siteUser = (UserDto) session.getAttribute("user");
-        mypageService.getPost(siteUser);
+    public String getMyBoard(HttpSession session, Model model,
+                             @RequestParam(value="page", defaultValue = "1") int page){
 
+        System.out.println(page);
+        UserDto siteUser = (UserDto) session.getAttribute("user");
+        Map<String,Object> map = mypageService.getPost(siteUser,page);
+
+        model.addAttribute("page",map.get("page"));
+        model.addAttribute("myBoardPage",map.get("myBoardPage"));
+        model.addAttribute("total",map.get("total"));
 
         return "mypage/myBoard";
     }

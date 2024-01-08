@@ -71,9 +71,16 @@
                                     [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
                                 </td>
                                 <td>
-                                    <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
-                                        [[${board.subject}]]
-                                    </a>
+                                    <th:block th:if="${board.boardType == 1}">
+                                        <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
+                                            <span><i class="fa-solid fa-bullhorn" style="color:red;"></i> <strong>[[${board.subject}]]</strong></span> <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
+                                        </a>
+                                    </th:block>
+                                    <th:block th:unless="${board.boardType == 1}">
+                                        <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
+                                            <span>[[${board.subject}]] </span> <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
+                                        </a>
+                                    </th:block>
                                 </td>
                                 <td>[[${board.writer}]]</td>
                                 <td>[[${board.visit}]]</td>
@@ -112,7 +119,7 @@
                                 <i class="fa-solid fa-caret-right"></i>
                             </a>
                             <a th:href="@{/board/board?(configCode=${configCode},page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
-                                <i class="fa-solid fa-angle-right"></i>
+                                <i class="fa-solid fa-caret-right"></i>
                             </a>
                         </div>
                         <div class="bottom-right">

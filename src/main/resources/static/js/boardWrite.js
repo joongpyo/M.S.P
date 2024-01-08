@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
             let uIdFk = document.querySelector("input[name=uIdFk]");
             let configCode = document.querySelector("input[name=configCode]");
 
-
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
 
@@ -50,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.append('writer', writer.value);
                 formData.append('uIdFk', uIdFk.value);
                 formData.append('configCode',configCode.value);
-
-
 
                 $.ajax({
                     type: "POST",

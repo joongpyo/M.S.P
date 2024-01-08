@@ -16,27 +16,26 @@
 </head>
 
 <body>
-
-<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
-<div class="board-bg">
-    <div class="board-bg-wrap">
-        <div class="board-bg-content">
-            <div class="bg-letter">
-                <p>
-                    <i class="fa-solid fa-house"></i> 홈
-                    <span><i class="fa-solid fa-angle-right"></i></span> 게시판
-                    <th:span th:switch="${configCode}">
-                        <span th:case="'Notice'"><i class="fa-solid fa-angle-right"></i> 공지사항</span>
-                        <span th:case="'QnA'"><i class="fa-solid fa-angle-right"></i> Q n A</span>
-                        <span th:case="'Review'"><i class="fa-solid fa-angle-right"></i> 약 복용 후기</span>
-                        <span th:case="'List'"><i class="fa-solid fa-angle-right"></i> 약 목록</span>
-                    </th:span>
-                    <span><i class="fa-solid fa-angle-right"></i></span> 게시글 작성
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+	<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+	<div class="board-bg">
+	    <div class="board-bg-wrap">
+	        <div class="board-bg-content">
+	            <div class="bg-letter">
+	                <p>
+	                    <i class="fa-solid fa-house"></i> 홈
+	                    <span><i class="fa-solid fa-angle-right"></i></span> 게시판
+	                    <th:span th:switch="${configCode}">
+	                        <span th:case="'Notice'"><i class="fa-solid fa-angle-right"></i> 공지사항</span>
+	                        <span th:case="'QnA'"><i class="fa-solid fa-angle-right"></i> Q n A</span>
+	                        <span th:case="'Review'"><i class="fa-solid fa-angle-right"></i> 약 복용 후기</span>
+	                        <span th:case="'List'"><i class="fa-solid fa-angle-right"></i> 약 목록</span>
+	                    </th:span>
+	                    <span><i class="fa-solid fa-angle-right"></i></span> 게시글 작성
+	                </p>
+	            </div>
+	        </div>
+	    </div>
+	</div>
     <main>
         <div class="main-container">
             <div class="section-container">
@@ -69,7 +68,6 @@
                                         <input type="file" name="files" multiple>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
 
