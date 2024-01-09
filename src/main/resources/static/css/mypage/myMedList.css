@@ -1,6 +1,7 @@
 .content-wrap{
-    width:100%;
-    margin-left: 35px;
+   width: 100%;
+    margin: 0 auto;
+
     margin-top: 70px;
 
 }
@@ -112,6 +113,12 @@
 }
 
 /*테이블*/
+
+.table-wrap{
+    width: 90%;
+    margin: 0 auto;
+
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -134,9 +141,7 @@ th {
 td{
     text-align: center;
     border: .5px solid #ccc;
-
 }
-
 
 
 

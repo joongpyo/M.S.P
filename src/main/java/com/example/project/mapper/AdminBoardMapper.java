@@ -27,6 +27,17 @@ public interface AdminBoardMapper {
     @Select("SELECT COUNT(*) FROM board_${configCode} ${searchQuery}")
     public int getBoardCount(String configCode, String searchQuery);
 
-
+    @Select("SELECT COUNT(*) FROM board_notice WHERE DATE(reg) = CURDATE()")
+    public int getNoticeCount();
+    @Select("SELECT COUNT(*) FROM board_Qna WHERE DATE(reg) = CURDATE()")
+    public int getQnaCount();
+    @Select("SELECT COUNT(*) FROM board_review WHERE DATE(reg) = CURDATE()")
+    public int getReviewCount();
+    @Select("SELECT COUNT(*) FROM board_notice")
+    public int getTotalNotice();
+    @Select("SELECT COUNT(*) FROM board_qna")
+    public int getTotalQna();
+    @Select("SELECT COUNT(*) FROM board_review")
+    public int getTotalReview();
 }
 

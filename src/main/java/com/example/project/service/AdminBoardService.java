@@ -70,6 +70,15 @@ public class AdminBoardService {
         return adminBoardMapper.getBoardList(map);
     }
 
+    public int getNoticeCount(){
+        return adminBoardMapper.getNoticeCount();
+    }
+    public int getQnaCount(){
+        return adminBoardMapper.getQnaCount();
+    }
+    public int getReviewCount(){
+        return adminBoardMapper.getReviewCount();
+    }
     // Review List
 
 }

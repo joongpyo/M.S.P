@@ -4,6 +4,7 @@ user_id varchar(20) not null unique,
 user_passwd varchar(20) not null,
 user_name varchar(20) not null,
 user_email varchar(50) not null unique,
+user_reg date not null,
 primary key(u_id)
 );
 

@@ -22,13 +22,7 @@ public class UserService {
     public void setRegister(UserDto userDto) {
         userMapper.setRegister(userDto);
     }
-    public int getCheckUserId(String userId){
-        return userMapper.getCheckUserId(userId);
-    }
 
-    public int getCheckUserEmail(String userEmail){
-        return userMapper.getCheckUserEmail(userEmail);
-    }
     public PageDto PageInfo(int page,String searchType, String words) {
         PageDto pageDto = new PageDto();
         String searchQuery = getSearch(searchType,words);
@@ -84,7 +78,19 @@ public class UserService {
         return userMapper.getFindUser(searchQuery);
 
     }
+    public int getCheckUserId(String userId){
+        return userMapper.getCheckUserId(userId);
+    }
 
+    public int getCheckUserEmail(String userEmail){
+        return userMapper.getCheckUserEmail(userEmail);
+    }
+    public int getTotalCount(){
+        return userMapper.getTotalCount();
+    }
+    public int getTodayCount(){
+        return userMapper.getTodayCount();
+    }
     public void userDelete(UserDto userDto){
         userMapper.userDelete(userDto);
     }

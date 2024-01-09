@@ -6,6 +6,7 @@ public class UserDto {
     private String userPasswd;
     private String userName;
     private String userEmail;
+    private String userReg;
 
     public int getuId() {
         return uId;

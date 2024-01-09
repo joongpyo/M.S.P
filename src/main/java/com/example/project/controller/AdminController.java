@@ -52,6 +52,14 @@ public class AdminController {
         List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"qna","","");
         List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"review","","");
 
+        model.addAttribute("uId",userService.getTotalCount());
+        model.addAttribute("TotalNotice",adminBoardMapper.getTotalNotice());
+        model.addAttribute("TotalQna",adminBoardMapper.getTotalQna());
+        model.addAttribute("TotalReview",adminBoardMapper.getTotalReview());
+        model.addAttribute("joinMember",userService.getTodayCount());
+        model.addAttribute("TodayNotice",adminBoardService.getNoticeCount());
+        model.addAttribute("TodayQna",adminBoardService.getQnaCount());
+        model.addAttribute("TodayReview",adminBoardService.getReviewCount());
         model.addAttribute("Notice", noticeList.subList(0, Math.min(noticeList.size(), 2)));
         model.addAttribute("Qna", qnaList.subList(0, Math.min(qnaList.size(), 2)));
         model.addAttribute("Review",reviewList.subList(0, Math.min(reviewList.size(), 2)));

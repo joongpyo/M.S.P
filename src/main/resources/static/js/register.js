@@ -1,11 +1,13 @@
-function frmCheck(){
-    const userid = document.querySelector("input[name=userId]");
-    const passwd = document.querySelector("input[name=userPasswd]");
-    const username = document.querySelector("input[name=userName]");
-    const re_passwd = document.querySelector("input[name=re_passwd]");
-    const useremail = document.querySelector("input[name=userEmail]");
 
-    /*--- js 아이디/비밀번호/이름 체크 정규식 */
+    let userid = document.querySelector("input[name=userId]");
+    let passwd = document.querySelector("input[name=userPasswd]");
+    let username = document.querySelector("input[name=userName]");
+    let re_passwd = document.querySelector("input[name=re_passwd]");
+    let useremail = document.querySelector("input[name=userEmail]");
+    let btn = document.querySelector("#btn");
+    btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+//    /*--- js 아이디/비밀번호/이름 체크 정규식 */
 //    const expIdText = /^[a-z]+[a-z0-9]{4,20}$/g;
 //    const expNameText = /^[가-힣]+$/;
 //    const expPwText = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -68,7 +70,7 @@ function frmCheck(){
     // 서버에 중복 확인 요청
     $.ajax({
         type: "get",
-        url: "/admin/checkUserIdAndEmail",
+        url: "/user/checkUserIdAndEmail",
         dataType: "json",
         data: {
             userId: userid.value,
@@ -79,17 +81,31 @@ function frmCheck(){
                 alert("중복된 아이디입니다. 확인 후 다시 입력하세요");
                 userid.value = "";
                 userid.focus();
-            } else if (res.checkUserEmail == 1) {
+            }if (res.checkUserEmail == 1) {
                 alert("중복된 이메일입니다. 확인 후 다시 입력하세요");
                 useremail.value = "";
                 useremail.focus();
-            } else if(res.msg=="failure"){
-                alert("ID와 Email을 확인해주세요")
-                userid.value = "";
-                useremail.value = "";
-            } else if(res.msg == "success"){
-                alert("회원가입이 완료되었습니다.");
             }
         }
     });
-}
+
+    obj = {
+        userId : userid.value,
+        userPasswd : passwd.value,
+        userName : username.value,
+        userEmail : useremail.value
+    }
+
+    $.ajax({
+        type:"post",
+        url:"/user/register",
+        dataType:"json",
+        data: obj,
+        success:function(res){
+            if(res.msg == "success" ){
+                alert("가입성공");
+                location.href = "/user/login";
+            }
+        }
+    })
+});

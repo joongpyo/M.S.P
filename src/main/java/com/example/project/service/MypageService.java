@@ -64,8 +64,10 @@ public class MypageService {
         pageDto.setEndPage(endPage);
         pageDto.setPage(page);
 
+
         int start = (page - 1) * pageSize; // 각 페이지의 시작 인덱스
         int end = Math.min(start + pageSize, combineList.size());
+
 
         List<BoardDto> myBoardPage = combineList.subList(start,end);
         int total = combineList.size();
@@ -76,5 +78,11 @@ public class MypageService {
         map.put("total",total);
 
         return map;
+    }
+    public List<MyMedicineDto> myMedList(int uId){
+        return mypageMapper.myMedList(uId);
+    }
+    public MedicineDto medicineList(int medId){
+        return mypageMapper.medicineList(medId);
     }
 }

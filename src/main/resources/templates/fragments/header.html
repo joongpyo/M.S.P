@@ -4,7 +4,7 @@
     <nav class="header-top">
         <div class="login-wrap" th:if="${session.user != null}">
             <p><i class="fa-solid fa-user"></i> <strong>[[${session.user.userName}]]</strong>님 환영합니다.
-                <span th:if="${session.user.userName} == '관리자'"> <a th:href="@{/admin}" style="cursor: pointer;">[관리자 페이지로 이동]</a></span>
+                <span th:if="${session.user.userId} == 'admin'"> <a th:href="@{/admin}" style="cursor: pointer;">[관리자 페이지로 이동]</a></span>
             </p>
 
 

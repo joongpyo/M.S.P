@@ -7,7 +7,6 @@
 	<title>M.S.P | 회원가입</title>
 	<link rel="stylesheet" th:href="@{/css/user/register.css}">
 	<link rel="stylesheet" th:href="@{/css/common.css}">
-	<script type="text/javascript" th:src="@{/js/register.js}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
@@ -20,7 +19,6 @@
 			</div>
 		</div>
 		<div class="content">
-			<form action="/user/register" method="post" class="form" onsubmit="return frmCheck()" autocomplete="off">
 				<div class="log_info">
 					<ul>
 						<li>
@@ -46,20 +44,16 @@
 					</ul>
 				</div>
 				<ul>
-					<li><input type="submit" class="btn ko" value="회원가입"></li>
+					<li><button type="button" class="btn ko" id="btn">회원가입</button></li>
 					<li><input type="reset" class="btn ko" value="다시작성"></li>
 				</ul>
-			</form>
 		</div>
 		<div class="find_wrap">
 			<a th:href="@{/user/login}" class="ko">로그인 페이지로 이동</a>
 		</div>
 	</div>
 </div>
-
-<script>
-
-</script>
+<script type="text/javascript" th:src="@{/js/register.js}"></script>
 </body>
 
 

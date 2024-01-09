@@ -1,8 +1,8 @@
 package com.example.project.controller;
 
-import com.example.project.dto.BoardDto;
+
+import com.example.project.dto.MedicineDto;
 import com.example.project.dto.MyMedicineDto;
-import com.example.project.dto.PageDto;
 import com.example.project.dto.UserDto;
 import com.example.project.service.MypageService;
 import com.example.project.service.UserService;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,15 @@ public class MypageController {
     }
 
     @GetMapping("/myMedList")
-    public String getMyMedList(){
+    public String getMyMedList(HttpSession session, Model model){
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        List<MyMedicineDto> md = mypageService.myMedList(userDto.getuId());
+        List<MedicineDto> list = new ArrayList<>();
+        for(MyMedicineDto m : md){
+            list.add(mypageService.medicineList(m.getMedId()));
+        }
+
+        model.addAttribute("med",list);
 
         return "mypage/myMedList";
     }
