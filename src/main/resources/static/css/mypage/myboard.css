@@ -1,9 +1,8 @@
 .content-wrap{
     width: 100%;
     margin: 0 auto;
-
+    margin-left: 30px;
     margin-top: 70px;
-
 }
 
 
@@ -119,7 +118,6 @@
 .table-wrap{
     width: 90%;
     margin: 0 auto;
-
 }
 table {
   border-collapse: collapse;
@@ -146,7 +144,10 @@ td{
     height: 30px;
 }
 
-
+.b-subject a{
+    font-weight: bold;
+    text-decoration: underline;
+}
 
 
 

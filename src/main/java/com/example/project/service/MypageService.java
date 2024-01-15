@@ -31,17 +31,17 @@ public class MypageService {
     public Map<String,Object> getPost(UserDto siteUser, int page){
         PageDto pageDto = new PageDto();
 
-        List<BoardDto> qBoardList = boardMapper.getBoardAll("qna", siteUser.getuId());
-        List<BoardDto> rBoardList = boardMapper.getBoardAll("review", siteUser.getuId());
+        List<BoardDto> qBoardList = boardMapper.getBoardAll("QnA", siteUser.getuId());
+        List<BoardDto> rBoardList = boardMapper.getBoardAll("Review", siteUser.getuId());
 
 
         int pageSize = 5; // 한 페이지에 표시할 항목 수
 
         for (BoardDto board : qBoardList) {
-            board.setConfigCode("qna");
+            board.setConfigCode("QnA");
         }
         for (BoardDto board : rBoardList) {
-            board.setConfigCode("review");
+            board.setConfigCode("Review");
         }
         List<BoardDto> combineList = Stream.concat(qBoardList.stream(), rBoardList.stream())
                 .sorted(Comparator.comparing(BoardDto::getReg))

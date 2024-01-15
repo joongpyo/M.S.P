@@ -55,10 +55,10 @@ public interface BoardMapper {
     @Update("UPDATE board_${configCode} SET subject=#{subject}, content=#{content}, isFiles=#{isFiles} WHERE id=#{id}")
     void setUpdate(BoardDto boardDto);
 
-    @Select("SELECT *FROM board_list")
+    @Select("SELECT *FROM board_List")
     List<MedicineDto> getMed();
 
-    @Select("SELECT *FROM files_list")
+    @Select("SELECT *FROM files_List")
     List<FileDto> getMedFiles();
 
 }

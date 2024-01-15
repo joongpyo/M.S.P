@@ -11,20 +11,19 @@
 	<groupId>com.example</groupId>
 	<artifactId>project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>md_exam</name>
+	<name>project</name>
 	<description>Demo project for Spring Boot</description>
+
+	<packaging>jar</packaging>
+
 	<properties>
 		<java.version>17</java.version>
-
-<!--		&lt;!&ndash; jar 배포용 &ndash;&gt;-->
-<!--		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-<!--		<maven.compiler.source>17</maven.compiler.source>-->
-<!--		<maven.compiler.target>17</maven.compiler.target>-->
-
-<!--		&lt;!&ndash; main 함수 &ndash;&gt;-->
-<!--		<start-class>com.example.project.ProjectApplication</start-class>-->
-<!--		<webapp.lib>${basedir}/src/lib</webapp.lib>-->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<start-class>com.example.project.ProjectApplication</start-class>
+		<webapp.lib>${basedir}/src/lib</webapp.lib>
 	</properties>
 
 	<dependencies>

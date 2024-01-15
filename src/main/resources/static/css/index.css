@@ -1,7 +1,7 @@
 /*---------------index content-----------------*/
 
 .bg {
-    background-image: url("/images/medi2.bg.jpg");
+    background-image: url("/static/images/medi2.bg.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

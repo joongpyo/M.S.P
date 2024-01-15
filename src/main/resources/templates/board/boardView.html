@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" th:href="@{/css/board/boardView.css}">
-    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/board/boardView.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
@@ -17,13 +17,13 @@
 
 <body>
 
-<div th:replace="~{/fragments/header.html :: fragment-header}"></div>
+<div th:replace="~{fragments/header.html :: fragment-header}"></div>
 
 <div class="board-bg">
     <div class="board-bg-wrap">
         <div class="board-bg-content">
             <div class="bg-letter">
-                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> 공지사항  <span><i class="fa-solid fa-angle-right"></i></span> 게시글 상세보기</p>
+                <p><i class="fa-solid fa-house"></i> 홈 <span><i class="fa-solid fa-angle-right"></i></span> 게시판 <span><i class="fa-solid fa-angle-right"></i></span> [[${configCode}]] <span><i class="fa-solid fa-angle-right"></i></span> 게시글 상세보기</p>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
                         <div class="board-info">
                             <p>
                                 작성자 : <span class="writer">[[${board.writer}]]</span>
-                                댓글수 : <span class="comment-cnt">1</span>
+<!--                                댓글수 : <span class="comment-cnt"></span>-->
                                 조회수 : <span class="visit">[[${board.visit}]]</span>
                                 작성일 : <span class="reg-date">
                                             <th:block>[[${#temporals.format(board.reg,'yy.MM.dd')}]]</th:block>
@@ -64,14 +64,12 @@
                         <div class = "filebox" th:each="file : ${files}">
                             <th:block th:if="${file.ext eq '.jpg' OR file.ext eq '.png'}">
                                 <div class="img-box">
-                                    <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                                    <img th:src="@{|${file.savedPathName}/${file.savedFileName}|}" alt="">
                                 </div>
                             </th:block>
                             <th:block th:unless="${file.ext eq '.jpg' OR file.ext eq '.png'}">
                                 [[${file.orgName}]]
-                                <a th:href="@{/board/download?(configCode=${configCode}, savedFileName=${file.savedFileName})}">
-                                    <p>[[${file.savedFileSize/1000}]]byte<button class="btn">다운로드</button></p>
-                                </a>
+
                             </th:block>
                         </div>
                     </div>
@@ -84,12 +82,10 @@
                             <a th:href="@{/board/board(configCode=${configCode})}">
                                 <button type="button" class="btn">목록</button>
                             </a>
-                            <a href="#">
-                                <button type="button" class="btn" th:onclick="return authCheck()" >답글</button>
-                            </a>
+                            <button type="button" class="btn" style="margin-left:5px;" th:onclick="return authCheck()" >답글</button>
                         </div>
 
-                        <div class="bottom-right">
+                        <div class="bottom-right" th:if="${board.uIdFk eq session.user.uId} ">
                             <a th:href=@{/board/boardUpdate(configCode=${configCode},id=${board.id})}>
                                 <button type="button" class="btn">수정</button>
                             </a>
@@ -113,29 +109,71 @@
                     </div>
                     <input type="hidden" name="configCode" th:value="${configCode}">
                     <input type="hidden" name="bIdFk" th:value="${board.id}">
-                    <input type="hidden" name="cWriter" th:value="${session.user.userId}">
+                    <input type="hidden" name="cWriter" th:value="${session.user.userName}">
+                    <input type="hidden" name="userId" th:value="${session.user.userId}">
                 </div>
             </div>
         </div>
     </main>
+    <div th:replace="~{fragments/footer.html :: fragment-footer}"></div>
+<script>
+    let content = document.querySelector("#content").value;
+    document.querySelector(".text-box").innerHTML = content;
 
-<div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
+    let bIdFk = document.querySelector("input[name=bIdFk]");
+    let cWriter = document.querySelector("input[name=cWriter]");
+    let cComment = document.querySelector("textarea[name=cComment]");
+    let cBtn = document.querySelector(".cBtn");
+    let configCode = document.querySelector("input[name=configCode]");
+    let userId = document.querySelector("input[name=userId]");
 
-    <script>
-        let content = document.querySelector("#content").value;
-        document.querySelector(".text-box").innerHTML = content;
+    cBtn.addEventListener('click', function(){
+         let obj = {
+            bIdFk: bIdFk.value,
+            cComment: cComment.value,
+            cWriter: cWriter.value,
+            configCode: configCode.value
+        }
 
-        let bIdFk = document.querySelector("input[name=bIdFk]");
-        let cWriter = document.querySelector("input[name=cWriter]");
-        let cComment = document.querySelector("textarea[name=cComment]");
-        let cBtn = document.querySelector(".cBtn");
-        let configCode = document.querySelector("input[name=configCode]");
-        $(function(){
-             let obj = {
-                bIdFk: bIdFk.value,
-                configCode: configCode.value
-             }
+        $.ajax({
+            type: "get",
+            url: "/comment/commentWrite",
+            dataType: "json",
+            data: obj,
+            success: function(res) {
+                if(res.msg == "success") {
+                    alert("댓글이 등록되었습니다.");
+                    location.reload();
+                }
+            }
+        });
+    });
 
+    function authCheck() {
+        if(userId.value != "admin"){
+            alert(userId.value + "권한이 없습니다. 관리자에게 문의하세요");
+            return false;
+        }else{
+            alert(userId.value);
+            location.href="/board/boardReply?configCode="+configCode.value+"&id="+bIdFk.value;
+        }
+    }
+
+    function delCheck() {
+        if(confirm("게시물을 삭제하시겠습니까?\n복구 할 수 없습니다. ")){
+            return true;
+        }
+        return false;
+    }
+
+
+    $(function(){
+
+         let obj = {
+            bIdFk: bIdFk.value,
+            configCode: configCode.value
+         }
+         if(configCode.value == 'QnA' || configCode.value == 'Review') {
              $.ajax({
                 type: "get",
                 url: "/comment/commentList",
@@ -161,49 +199,8 @@
                     document.querySelector(".reg-comment-wrap").innerHTML = output;
                 }
             });
-        })
-
-        cBtn.addEventListener('click', function(){
-             let obj = {
-                bIdFk: bIdFk.value,
-                cComment: cComment.value,
-                cWriter: cWriter.value,
-                configCode: configCode.value
-            }
-
-            $.ajax({
-                type: "get",
-                url: "/comment/commentWrite",
-                dataType: "json",
-                data: obj,
-                success: function(res) {
-                    if(res.msg == "success") {
-                        alert("댓글이 등록되었습니다.");
-                        location.reload();
-                    }
-                }
-            });
-        });
-
-        function authCheck() {
-<!--            if(cWriter.value != "admin"){-->
-<!--                alert(cWriter.value + "권한이 없습니다. 관리자에게 문의하세요");-->
-<!--                return false;-->
-<!--            }else{-->
-<!--                alert(cWriter.value);-->
-<!--                location.href="/board/boardReply?id="+bIdFk.value;-->
-<!--            }-->
-            location.href="/board/boardReply?configCode="+configCode.value+"&id="+bIdFk.value;
         }
-
-        function delCheck() {
-            if(confirm("게시물을 삭제하시겠습니까?\n복구 할 수 없습니다. ")){
-                return true;
-            }
-            return false;
-        }
-    </script>
-
+    });
+</script>
 </body>
-
 </html>

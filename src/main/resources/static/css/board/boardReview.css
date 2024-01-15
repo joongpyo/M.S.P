@@ -1,7 +1,7 @@
 
 
 .board-bg {
-    background-image: url("/images/texture1.jpg");
+    background-image: url("/static/images/texture1.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -61,7 +61,7 @@
 
 .bg-title {
     height: 300px;
-    background-image: url(/images/capsule2.jpg);
+    background-image: url("/static/images/capsule2.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;

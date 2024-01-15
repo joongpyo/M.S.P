@@ -1,6 +1,6 @@
 
 .board-bg {
-    background-image: url("/images/texture1.jpg");
+    background-image: url("/static/images/texture1.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;

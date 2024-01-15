@@ -14,7 +14,7 @@ function changeFn(){
             .then(editor => {
             // CKEditor 인스턴스가 생성되었을 때의 콜백 함수
             console.log('에디터가 초기화');
-        
+
     let btn = document.querySelector(".btn1");
     let subject = document.querySelector("input[name=subject]");
     let writer =  document.querySelector("input[name=writer]");
@@ -23,7 +23,7 @@ function changeFn(){
         e.preventDefault();
         let board = document.querySelector("#board");
         var value = (board.options[board.selectedIndex].value)
-           
+
         if(value.value == "0" ){
             alert("등록할 게시판을 선택하세요");
             return false;
@@ -43,16 +43,16 @@ function changeFn(){
             editor.focus();
             return false;
         }
-        
 
-        let frmData = new FormData();       
-        
+
+        let frmData = new FormData();
+
         frmData.append("configCode",value);
         frmData.append("subject",subject.value);
         frmData.append("writer",writer.value);
         frmData.append("content",editor.getData());
        // frmData.append("file",document.querySelectorAll("#uploadFile")[0].files[0]);
-       
+
        let uploadFileInput = document.querySelectorAll("#uploadFile")[0];
         if (uploadFileInput && uploadFileInput.files.length > 0) {
             frmData.append("file", uploadFileInput.files[0]);
@@ -80,7 +80,7 @@ function changeFn(){
                 }
             }
         })
-    })        
+    })
         })
         .catch(error => {
             console.error('에디터가 초기화실패');

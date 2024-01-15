@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.S.P | 게시판 관리 > 약 복용 후기</title>
-    <link rel="stylesheet" th:href="@{/css/common.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/boardMain.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin/adminReset.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin/boardMain.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
@@ -58,11 +58,11 @@
 
                     <div class="content_left">
                         <div class="content_left_choice">
-                            <a th:href="@{/admin/noticeBoard?(configCode=notice)}">공지사항</a>
+                            <a th:href="@{/admin/noticeBoard?(configCode=Notice)}">공지사항</a>
                             |
-                            <a th:href="@{/admin/qnaBoard?(configCode=qna)}">QnA</a>
+                            <a th:href="@{/admin/qnaBoard?(configCode=QnA)}">QnA</a>
                             |
-                            <a th:href="@{/admin/reviewBoard?(configCode=review)}" class="board-active">약 복용 후기</a>
+                            <a th:href="@{/admin/reviewBoard?(configCode=Review)}" class="board-active">약 복용 후기</a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                                         [[${total - (((page.page - 1) * page.pageCount) + k.index)}]]
                                     </td>
                                     <td>
-                                        <a href="#">[[${review.subject}]]</a>
+                                        <a th:href="@{/board/boardView(configCode=Review,id=${review.id})}">[[${review.subject}]]</a>
                                     </td>
                                     <td>[[${review.writer}]]</td>
                                     <td>[[${review.visit}]]</td>
@@ -95,6 +95,30 @@
                         </table>
                         <div class="content_btn">
                             <a th:href="@{/admin/noticeInsert}"><button class="insert-btn">글쓰기</button></a>
+                        </div>
+                        <div class="bottom">
+                            <div class="bottom_left">
+                                <a href="#" th:if="${page.page <= 1}">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                                <a th:href="@{/admin/reviewBoard?(configCode=${configCode},page=${page.page-1})}" th:unless="${page.page <= 1}">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                                <th:block th:each="i:${#numbers.sequence(page.startPage, page.endPage, 1)}">
+                                    <th:block th:if="${page.page eq i }">
+                                        <a class="active" th:href="@{/admin/reviewBoard?(configCode=${configCode},page=${i})}">[[${i}]]</a>
+                                    </th:block>
+                                    <th:block th:unless="${page.page eq i }">
+                                        <a th:href="@{/admin/reviewBoard?(configCode=${configCode},page=${i})}">[[${i}]]</a>
+                                    </th:block>
+                                </th:block>
+                                <a href="#" th:if="${page.page >= page.totalPage}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                                <a th:href="@{/admin/reviewBoard?(configCode=${configCode},page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

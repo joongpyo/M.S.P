@@ -1,8 +1,6 @@
 
-
-
 .board-bg {
-    background-image: url("/images/texture1.jpg");
+    background-image: url("/static/images/texture1.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -10,9 +8,6 @@
     height: 350px;
         margin: 0 auto;
         padding-top: 210px;
-
-
-
 }
 
 .board-bg-wrap{
@@ -21,14 +16,12 @@
     margin: 0 auto;
     display: flex;
     align-items: center
-
 }
 
 .board-bg-content {
     color: #fff;
     width: 100%;
     max-width: 1280px;
-
 }
 
 .bg-letter{
@@ -39,7 +32,6 @@
 .bg-letter p {
     color: #fff;
     margin: auto;
-
     word-spacing: 3px;
     font-size: 16px;
 }
@@ -58,13 +50,11 @@
     width: 100%;
     margin: 0 auto;
     margin-bottom: 100px;
-
 }
 
 
 
 .section-container {
-
     width: 100%;
     margin: 0 auto;
     padding-right: 50px;

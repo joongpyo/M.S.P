@@ -2,7 +2,7 @@
 .medList-container{
     width: 85%;
     margin: 0 auto;
-    height: 500px;
+    min-height : 400px;
 }
 
 .insert{

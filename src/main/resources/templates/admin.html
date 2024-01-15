@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.S.P | 관리자 페이지</title>
-    <link rel="stylesheet" th:href="@{/css/common.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/adminReset.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/adminHome.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/calendar.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin/adminReset.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin/adminHome.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin/calendar.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
@@ -29,7 +29,7 @@
                                 <div class="content-wrap">
                                     <div class="top-content-wrap">
                                         <div class="top-content-wrap-img">
-                                            <a href=""><img id="adminImage" th:src="@{images/admin.png}" alt=""></a>
+                                            <a href=""><img id="adminImage" th:src="@{/static/images/admin.png}" alt=""></a>
                                         </div>
                                         <div class="top-content-wrap-button">
                                             <label for="imageInput" class="adminbtn">이미지변경</label>
@@ -55,6 +55,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="dashboard-left-bottom">
+                                <div class="content-wrap">
+                                    <div class="btm-content-wrap">
+                                        <div class="btm-content-wrap-button">
+                                            <a th:href="@{/admin/noticeInsert}"><button class="btn-left">게시글등록 바로가기</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="dashboard-center">
                             <div class="dashboard-center-top">
@@ -69,7 +78,7 @@
                                                         <th:block th:if="${Notice != null and Notice.size() > 0}">
                                                             <tr th:each="notice, k: ${Notice}">
                                                                 <td>
-                                                                    <a href="#" th:attr="onclick='return loginCheck(\'view\', '+${notice.id}+',\'Notice\', event)'">
+                                                                    <a th:href="@{/board/boardView(configCode=Notice,id=${notice.id})}">
                                                                         <strong>· [[${notice.subject}]]</strong>
                                                                     </a>
                                                                 </td>
@@ -100,10 +109,10 @@
                                         <div class="center-content-wrap-btm">
                                             <table>
                                                 <tbody>
-                                                    <th:block th:if="${Qna != null and Qna.size() > 0}">
-                                                        <tr th:each="qna :${Qna}">
+                                                    <th:block th:if="${QnA != null and QnA.size() > 0}">
+                                                        <tr th:each="qna :${QnA}">
                                                             <td>
-                                                                <a href="#">
+                                                                <a th:href="@{/board/boardView(configCode=QnA,id=${qna.id})}">
                                                                     <strong>· [[${qna.subject}]]</strong>
                                                                 </a>
                                                             </td>
@@ -111,7 +120,7 @@
                                                             <td>[[${qna.reg}]]</td>
                                                         </tr>
                                                     </th:block>
-                                                    <th:block th:unless="${Qna != null and Qna.size() > 0}">
+                                                    <th:block th:unless="${QnA != null and QnA.size() > 0}">
                                                         <tr>
                                                             <td>
                                                                 <strong>· 게시글이 없습니다. </strong>
@@ -137,7 +146,7 @@
                                                     <th:block th:if="${Review != null and Review.size() > 0}">
                                                         <tr th:each="review : ${Review}">
                                                             <td>
-                                                                <a href="#">
+                                                                <a th:href="@{/board/boardView(configCode=Review,id=${review.id})}">
                                                                     <strong>· [[${review.subject}]]</strong>
                                                                 </a>
                                                             </td>
@@ -246,8 +255,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
-    <script src="/js/calendarScript.js"></script>
+    <script type="text/javascript" th:src="@{/static/js/admin.js}"></script>
+    <script src="/static/js/calendarScript.js"></script>
 
 
 </body>

@@ -184,6 +184,7 @@ public class BoardController {
 
         BoardDto bd = boardService.getView(configCode,boardDto.getId());
         if (files != null){
+            //새로운 파일이 있다면
             boardDto.setIsFiles("Y");
             boardService.setUpdate(configCode,boardDto);
 
@@ -194,6 +195,7 @@ public class BoardController {
             boardDto.setIsFiles("N");
             boardService.setUpdate(configCode,boardDto);
         }else {
+            boardDto.setIsFiles("Y");
             boardService.setUpdate(configCode,boardDto);
         }
 
@@ -230,6 +232,7 @@ public class BoardController {
         boardDto.setSeq(parentBd.getSeq()+1);
         boardDto.setDepth(parentBd.getDepth()+1);
         boardDto.setBoardType(2);
+        boardDto.setWriter("관리자");
 
         if (files != null){
             boardDto.setIsFiles("Y");

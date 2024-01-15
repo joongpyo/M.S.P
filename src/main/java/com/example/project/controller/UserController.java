@@ -25,10 +25,10 @@ public class UserController {
         String referer = "";
 
         String refererHeader = hsr.getHeader("Referer");
-        final String LOGIN_REFERER = "http://localhost:7777/user/login";
-        final String REGISTER_REFERER = "http://localhost:7777/user/register";
-        final String FIND_USER_REFERER = "http://localhost:7777/findUser";
-        final String INDEX_PAGE = "http://localhost:7777/index";
+        final String LOGIN_REFERER = "http://52.79.76.137:7777/user/login";
+        final String REGISTER_REFERER = "http://52.79.76.137:7777/user/register";
+        final String FIND_USER_REFERER = "http://52.79.76.137:7777/findUser";
+        final String INDEX_PAGE = "http://52.79.76.137:7777/index";
 
         if (refererHeader != null) {
             refererHeader = refererHeader.toLowerCase();
@@ -83,22 +83,22 @@ public class UserController {
             ra.addFlashAttribute("userName",d.getUserName());
 
             if(d.getUserId().equals("admin")){
-                return "redirect:/admin";
+                return "redirect:admin";
             }else if(prevPage != null){
                 return "redirect:"+prevPage;
             }else {
-                return "redirect:/index";
+                return "redirect:index";
             }
         }else{
             ra.addFlashAttribute("message","아이디/비밀번호를 확인하세요");
-            return "redirect:/user/login";
+            return "redirect:user/login";
         }
     }
     @GetMapping("/logout")
     public String getLogout(HttpSession hs) {
 
         hs.invalidate();
-        return "redirect:/index";
+        return "redirect:index";
     }
 
     @GetMapping("/checkLogin")
@@ -111,7 +111,7 @@ public class UserController {
 
     @GetMapping("/findUser")
     public String getFindUser(){
-        return "/user/findUser";
+        return "user/findUser";
     }
 
     @PostMapping("/findUser")
@@ -130,4 +130,9 @@ public class UserController {
         return map;
     }
 
+
+    @GetMapping("/test")
+    public String asdf(){
+        return "test";
+    }
 }

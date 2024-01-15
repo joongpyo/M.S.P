@@ -48,9 +48,9 @@ public class AdminController {
     String fileDir;
     @GetMapping("/admin") //
     public String getAdmin(@RequestParam(value="current", defaultValue="1") String current, Model model) {
-        List<AdminBoardDto> noticeList = adminBoardService.getBoardList(1,"notice","","");
-        List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"qna","","");
-        List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"review","","");
+        List<AdminBoardDto> noticeList = adminBoardService.getBoardList(1,"Notice","","");
+        List<AdminBoardDto> qnaList = adminBoardService.getBoardList(1,"QnA","","");
+        List<AdminBoardDto> reviewList = adminBoardService.getBoardList(1,"Review","","");
 
         model.addAttribute("uId",userService.getTotalCount());
         model.addAttribute("TotalNotice",adminBoardMapper.getTotalNotice());
@@ -61,7 +61,7 @@ public class AdminController {
         model.addAttribute("TodayQna",adminBoardService.getQnaCount());
         model.addAttribute("TodayReview",adminBoardService.getReviewCount());
         model.addAttribute("Notice", noticeList.subList(0, Math.min(noticeList.size(), 2)));
-        model.addAttribute("Qna", qnaList.subList(0, Math.min(qnaList.size(), 2)));
+        model.addAttribute("QnA", qnaList.subList(0, Math.min(qnaList.size(), 2)));
         model.addAttribute("Review",reviewList.subList(0, Math.min(reviewList.size(), 2)));
         model.addAttribute("current", current);
         return "admin";
@@ -78,7 +78,7 @@ public class AdminController {
     @GetMapping("/admin/userDelete")
     public String getUserDelete(@ModelAttribute UserDto userDto){
         userService.userDelete(userDto);
-        return null;
+        return "redirect:/admin/userList";
     }
 
     @GetMapping("/admin/disList") // 질병 리스트  -> 리스트 안에서 삭제 버튼 만들어서 사용 메인페이지 안에 작성페이지로 이동하는 버튼 만들기
@@ -177,7 +177,7 @@ public class AdminController {
         int grp = adminBoardService.getGrpMaxCnt(adminBoardDto.getConfigCode());
         adminBoardDto.setGrp(grp);
 
-        if(adminBoardDto.getConfigCode().equals("review") && !file.isEmpty()){
+        if(adminBoardDto.getConfigCode().equals("Review") && !file.isEmpty()){
             return Map.of("msg","choice1");
         }else {
             if (!file.isEmpty()) {
@@ -229,11 +229,11 @@ public class AdminController {
         model.addAttribute("page",medicineService.PageInfo(page,searchType,words));
         String searchQuery = medicineService.getMedSearch(searchType,words);
         model.addAttribute("total",medicineMapper.getMedCount(searchQuery));
-        return "/admin/medicinePage/medList";
+        return "admin/medicinePage/medList";
     }
     @GetMapping("/admin/medInsert")
     public String getMedUpdate(){
-        return "/admin/medicinePage/medInsert";
+        return "admin/medicinePage/medInsert";
     }
     @PostMapping("/admin/medInsert")
     @ResponseBody
@@ -289,7 +289,7 @@ public class AdminController {
         // 파일 DB 삭제
         int id = medicineDto.getMedId();
         medicineService.setFileDelete(id);
-        return "redirect:/admin/medList?medId="+ medicineDto.getMedId();
+        return "redirect:admin/medList?medId="+ medicineDto.getMedId();
     }
     @GetMapping("/admin/medUpdate")
     public String medicineView(@RequestParam int medId, Model model){

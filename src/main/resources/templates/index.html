@@ -8,16 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <div th:replace="~{/fragments/header.html :: fragment-header}"></div>
-
-
+<header th:replace="~{fragments/header.html :: fragment-header}"></header>
     <div class="bg">
         <div class="bg-wrap">
             <div class="bg-content">
@@ -56,21 +54,21 @@
                     </div>
                     <div class="adv-content">
                         <div class="adv-box">
-                            <div class="adv-pic"><img th:src="@{/images/sangdam2.jpg}" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/static/images/sangdam2.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>상황에 맞는 약 추천</h2>
                                 <p>연령대, 성별, 통증별로 구분하여 <br>쉽고 빠르게 약을 추천받을 수 있습니다.</p>
                             </div>
                         </div>
                         <div class="adv-box">
-                            <div class="adv-pic"><img th:src="@{/images/onemedicine.jpg}" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/static/images/onemedicine.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>내가 찾아본 약 열람</h2>
                                 <p>본인이 추천받은 약의 정보를 <br>마이페이지에서 다시 확인할 수 있습니다.</p>
                             </div>
                         </div>
                         <div class="adv-box">
-                            <div class="adv-pic"><img th:src="@{/images/phonedoc.jpg}" alt=""></div>
+                            <div class="adv-pic"><img th:src="@{/static/images/phonedoc.jpg}" alt=""></div>
                             <div class="adv-subtitle">
                                 <h2>일반의약품을 추천</h2>
                                 <p>편의점, 약국에서 구매에 용이하도록<br>처방전이 필요없는 일반의약품을 추천하고 있습니다.</p>
@@ -93,61 +91,61 @@
                    <div class="disease-content">
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='감기')}"><img class="pic" th:src="@{/images/cold.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='감기')}"><img class="pic" th:src="@{/static/images/cold.jpg}" alt=""></a>
                             </div>
                             <span>감기</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='소화불량')}"><img class="pic" th:src="@{/images/stoma.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='소화불량')}"><img class="pic" th:src="@{/static/images/stoma.jpg}" alt=""></a>
                             </div>
                             <span>소화불량</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='생리통')}"><img class="pic" th:src="@{/images/period.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='생리통')}"><img class="pic" th:src="@{/static/images/period.jpg}" alt=""></a>
                             </div>
                             <span>생리통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}"><img class="pic" th:src="@{/images/allergy.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='알레르기')}"><img class="pic" th:src="@{/static/images/allergy.jpg}" alt=""></a>
                             </div>
                             <span>알레르기(비염)</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='편두통')}"><img class="pic" th:src="@{/images/headache.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='편두통')}"><img class="pic" th:src="@{/static/images/headache.jpg}" alt=""></a>
                             </div>
                             <span>편두통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='설사')}"><img class="pic" th:src="@{/images/sulsa.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='설사')}"><img class="pic" th:src="@{/static/images/sulsa.jpg}" alt=""></a>
                             </div>
                             <span>설사</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='인후통')}"><img class="pic" th:src="@{/images/inhu.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='인후통')}"><img class="pic" th:src="@{/static/images/inhu.jpg}" alt=""></a>
                             </div>
                             <span>인후통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='멀미')}"><img class="pic" th:src="@{/images/mulmi.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='멀미')}"><img class="pic" th:src="@{/static/images/mulmi.jpg}" alt=""></a>
                             </div>
                             <span>멀미</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='근육통')}"><img class="pic" th:src="@{/images/muscle.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='근육통')}"><img class="pic" th:src="@{/static/images/muscle.jpg}" alt=""></a>
                             </div>
                             <span>근육통</span>
                         </div>
                         <div class="disease-box">                            
                             <div class="disease-pic">
-                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='몸살')}"><img class="pic" th:src="@{/images/momsal.jpg}" alt=""></a>
+                                <a th:href="@{/board/board(configCode='List', searchType='medDis', search='몸살')}"><img class="pic" th:src="@{/static/images/momsal.jpg}" alt=""></a>
                             </div>
                             <span>몸살</span>
                         </div>
@@ -233,7 +231,7 @@
                 </div>                                                                               
             </section>
     </main>
-    <div th:replace="~{/fragments/footer.html :: fragment-footer}"></div>
-    <script type="text/javascript" th:src="@{/js/loginCheck.js}"></script>
+    <div th:replace="~{fragments/footer.html :: fragment-footer}"></div>
+    <script type="text/javascript" th:src="@{/static/js/loginCheck.js}"></script>
 </body>
 </html>

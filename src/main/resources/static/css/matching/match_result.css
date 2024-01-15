@@ -1,7 +1,7 @@
 /*---------------index content-----------------*/
 
 .bg {
-    background-image: url("/images/disease3.jpg");
+    background-image: url("/static/images/disease3.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

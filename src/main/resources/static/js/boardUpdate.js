@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         processData: false,
                         success: function (result) {
                             if (result.msg=="success"){
-                                location.href = "/board/board?configCode="+result.configCode;;
+                                location.href = "/board/board?configCode="+result.configCode;
                             }
                         }
                     });

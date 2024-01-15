@@ -50,13 +50,17 @@ public class MypageController {
     }
 
     @GetMapping("/myMedList")
-    public String getMyMedList(HttpSession session, Model model){
+    public String getMyMedList(HttpSession session, Model model,
+                               @RequestParam(value="page", defaultValue = "1") int page ){
+
         UserDto userDto = (UserDto)session.getAttribute("user");
         List<MyMedicineDto> md = mypageService.myMedList(userDto.getuId());
         List<MedicineDto> list = new ArrayList<>();
         for(MyMedicineDto m : md){
             list.add(mypageService.medicineList(m.getMedId()));
         }
+
+
 
         model.addAttribute("med",list);
 
