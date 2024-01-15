@@ -7,10 +7,7 @@ import com.example.project.mapper.MypageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +27,6 @@ public class MypageService {
 
     public Map<String,Object> getPost(UserDto siteUser, int page){
         PageDto pageDto = new PageDto();
-
         List<BoardDto> qBoardList = boardMapper.getBoardAll("QnA", siteUser.getuId());
         List<BoardDto> rBoardList = boardMapper.getBoardAll("Review", siteUser.getuId());
 
@@ -82,7 +78,44 @@ public class MypageService {
     public List<MyMedicineDto> myMedList(int uId){
         return mypageMapper.myMedList(uId);
     }
-    public MedicineDto medicineList(int medId){
-        return mypageMapper.medicineList(medId);
+
+    public Map<String, Object> getMyMedList(UserDto userDto ,int page){
+        PageDto pageDto = new PageDto();
+        List<MyMedicineDto> myMedicineDto = mypageMapper.myMedList(userDto.getuId());
+        List<MedicineDto> list = new ArrayList<>();
+        int pageSize = 5;
+        pageDto.setPageCount(pageSize);
+
+        for(MyMedicineDto md : myMedicineDto){
+            list.add(mypageMapper.medicineList(md.getMedId()));
+        }
+
+        int totalCount = list.size();
+        int totalPage = (int) Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage =  ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setStartNum( (page - 1) * pageDto.getPageCount()  );
+        pageDto.setTotalPage(totalPage);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setPage(page);
+
+        int start = (page - 1) * pageSize; // 각 페이지의 시작 인덱스
+        int end = Math.min(start + pageSize, list.size());
+
+        List<MedicineDto> mList = list.subList(start,end);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("myMedList",mList);
+        map.put("page", pageDto);
+        map.put("total",totalCount);
+
+        return map;
     }
+
 }

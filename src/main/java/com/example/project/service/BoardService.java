@@ -158,7 +158,13 @@ public class BoardService {
         boardMapper.setReplyDelete(boardDto);
 
          */
-        boardMapper.setDelete(configCode,boardDto.getId());
+        if(boardDto.getrId() < 1 ){
+            boardMapper.setReDelete(configCode,boardDto.getId());
+        }else{
+            boardMapper.setDelete(configCode,boardDto.getId());
+            boardMapper.setReDelete(configCode,boardDto.getrId());
+        }
+
     }
 
     //////////////////////////////////메서드

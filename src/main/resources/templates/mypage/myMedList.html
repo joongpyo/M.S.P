@@ -32,22 +32,9 @@
                     </p>
                 </div>
                 <div class="content-wrap">
-<!--                    <div class="search-form">-->
-<!--                        <span>총 [[${total}]]개의 게시물</span>-->
-<!--                        <div class="search-right">-->
-<!--                            <div class="sel-box">-->
-<!--                                <select name="" id="" class="select-style">-->
-<!--                                    <option value="">제목</option>-->
-<!--                                    <option value="">내용</option>-->
-<!--                                    <option value="">작성자</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="search-box">-->
-<!--                                <input type="text" name="search" class="search2">-->
-<!--                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                     </div>-->
+                    <div class="search-form">
+                        <span>저장된 [[${total}]]개의 정보</span>
+                     </div>
                     <div class="table-wrap">
                         <table>
                             <thead>
@@ -65,7 +52,7 @@
                             <tbody>
                                 <th:block th:each="med, k : ${med}" >
                                     <tr>
-                                        <td>[[${med.medId}]]</td>
+                                        <td>[[${total - (((page.page - 1) * page.pageCount) + k.index)}]]</td>
                                         <td>[[${med.medName}]]</td>
                                         <td>[[${med.medDis}]]</td>
                                         <td>[[${med.medEff}]]</td>
@@ -78,29 +65,29 @@
                             </tbody>
                         </table>
                      </div>
-<!--                    <div class="bottom">-->
-<!--                        <div class="bottom_left">-->
-<!--                            <a href="#" th:if="${page.page <= 1}">-->
-<!--                                <i class="fa-solid fa-angle-left"></i>-->
-<!--                            </a>-->
-<!--                            <a th:href="@{/mypage/myMedList?(page=${page.page-1})}" th:unless="${page.page <= 1}">-->
-<!--                                <i class="fa-solid fa-angle-left"></i>-->
-<!--                            </a>-->
-<!--                            <th:block th:each="i:${#numbers.sequence(page.startPage, page.endPage, 1)}">-->
-<!--                                <th:block th:if="${page.page eq i }">-->
-<!--                                    <a class="active" th:href="@{/mypage/myMedList?(page=${i})}">[[${i}]]</a>-->
-<!--                                </th:block>-->
-<!--                                <th:block th:unless="${page.page eq i }">-->
-<!--                                    <a th:href="@{/mypage/myMedList?(page=${i})}">[[${i}]]</a>-->
-<!--                                </th:block>-->
-<!--                            </th:block>-->
-<!--                            <a href="#" th:if="${page.page >= page.totalPage}">-->
-<!--                                <i class="fa-solid fa-angle-right"></i>-->
-<!--                            </a>-->
-<!--                            <a th:href="@{/mypage/myMedList?(page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">-->
-<!--                                <i class="fa-solid fa-angle-right"></i>-->
-<!--                            </a>-->
-<!--                        </div>-->
+                    <div class="bottom">
+                        <div class="bottom_left">
+                            <a href="#" th:if="${page.page <= 1}">
+                                <i class="fa-solid fa-caret-left"></i>
+                            </a>
+                            <a th:href="@{/mypage/myMedList?(page=${page.page-1})}" th:unless="${page.page <= 1}">
+                                <i class="fa-solid fa-caret-left"></i>
+                            </a>
+                            <th:block th:each="i:${#numbers.sequence(page.startPage, page.endPage, 1)}">
+                                <th:block th:if="${page.page eq i }">
+                                    <a class="active" th:href="@{/mypage/myMedList?(page=${i})}">[[${i}]]</a>
+                                </th:block>
+                                <th:block th:unless="${page.page eq i }">
+                                    <a th:href="@{/mypage/myMedList?(page=${i})}">[[${i}]]</a>
+                                </th:block>
+                            </th:block>
+                            <a href="#" th:if="${page.page >= page.totalPage}">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </a>
+                            <a th:href="@{/mypage/myMedList?(page=${page.page+1})}" th:unless="${page.page >= page.totalPage}">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

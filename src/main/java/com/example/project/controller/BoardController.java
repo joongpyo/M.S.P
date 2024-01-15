@@ -211,6 +211,7 @@ public class BoardController {
                            @RequestParam int id, Model model){
 
         BoardDto boardDto = boardService.getView(configCode,id);
+        boardDto.setrId(id);
         model.addAttribute("reply", boardDto);
         model.addAttribute("configCode",configCode);
         return "board/boardReply";

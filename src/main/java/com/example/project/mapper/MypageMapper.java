@@ -18,7 +18,6 @@ public interface MypageMapper {
     @Select("select * from myMedicine where u_id = #{uId}")
     public List<MyMedicineDto> myMedList(int uId);
 
-    @Select("select * from medicine where med_id = #{medId}")
+    @Select("SELECT * FROM medicine WHERE med_id = #{medId}")
     public MedicineDto medicineList(int medId);
-
 }

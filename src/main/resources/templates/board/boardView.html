@@ -127,27 +127,29 @@
     let configCode = document.querySelector("input[name=configCode]");
     let userId = document.querySelector("input[name=userId]");
 
-    cBtn.addEventListener('click', function(){
-         let obj = {
-            bIdFk: bIdFk.value,
-            cComment: cComment.value,
-            cWriter: cWriter.value,
-            configCode: configCode.value
-        }
-
-        $.ajax({
-            type: "get",
-            url: "/comment/commentWrite",
-            dataType: "json",
-            data: obj,
-            success: function(res) {
-                if(res.msg == "success") {
-                    alert("댓글이 등록되었습니다.");
-                    location.reload();
-                }
+    if(configCode.value == 'QnA' || configCode.value == 'Review') {
+        cBtn.addEventListener('click', function(){
+             let obj = {
+                bIdFk: bIdFk.value,
+                cComment: cComment.value,
+                cWriter: cWriter.value,
+                configCode: configCode.value
             }
+
+            $.ajax({
+                type: "get",
+                url: "/comment/commentWrite",
+                dataType: "json",
+                data: obj,
+                success: function(res) {
+                    if(res.msg == "success") {
+                        alert("댓글이 등록되었습니다.");
+                        location.reload();
+                    }
+                }
+            });
         });
-    });
+    }
 
     function authCheck() {
         if(userId.value != "admin"){

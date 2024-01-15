@@ -54,16 +54,19 @@ public class MypageController {
                                @RequestParam(value="page", defaultValue = "1") int page ){
 
         UserDto userDto = (UserDto)session.getAttribute("user");
-        List<MyMedicineDto> md = mypageService.myMedList(userDto.getuId());
-        List<MedicineDto> list = new ArrayList<>();
-        for(MyMedicineDto m : md){
-            list.add(mypageService.medicineList(m.getMedId()));
-        }
+        Map<String,Object> map = mypageService.getMyMedList(userDto,page);
 
-
-
-        model.addAttribute("med",list);
-
+        model.addAttribute("page",map.get("page"));
+        model.addAttribute("med",map.get("myMedList"));
+        model.addAttribute("total",map.get("total"));
+//        List<MyMedicineDto> md = mypageService.myMedList(userDto.getuId());
+//        List<MedicineDto> list = new ArrayList<>();
+//        for(MyMedicineDto m : md){
+//            list.add(mypageService.medicineList(m.getMedId()));
+//        }
+//        model.addAttribute("med",list);
+//
+//        return "mypage/myMedList";
         return "mypage/myMedList";
     }
 
@@ -78,7 +81,6 @@ public class MypageController {
     public String getMyBoard(HttpSession session, Model model,
                              @RequestParam(value="page", defaultValue = "1") int page){
 
-        System.out.println(page);
         UserDto siteUser = (UserDto) session.getAttribute("user");
         Map<String,Object> map = mypageService.getPost(siteUser,page);
 

@@ -31,7 +31,7 @@ public interface BoardMapper {
     @Select("SELECT IFNULL( MAX(grp) + 1,  1) FROM board_${configCode}")
     int getGrpMaxCnt(String configCode);
 
-    @Insert("INSERT INTO board_${configCode} VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, #{depth}, #{isFiles}, 0, #{boardType}, #{uIdFk})")
+    @Insert("INSERT INTO board_${configCode} VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, #{depth}, #{isFiles}, 0, 0, #{boardType}, #{uIdFk})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(BoardDto boardDto);
 
@@ -46,15 +46,12 @@ public interface BoardMapper {
 
     @Delete("DELETE FROM board_${configCode} WHERE id = #{id}")
     void setDelete(String configCode,int id);
+    @Delete("DELETE FROM board_${configCode} WHERE r_id=#(rId)")
+    void setReDelete(String configCode, int rId);
     @Update("UPDATE board_${configCode} SET seq=seq+1 WHERE grp = #{grp} AND seq > #{seq}")
     void setReplyUpdate(BoardDto boardDto);
-
-    @Delete("DELETE FROM board_${configCode} WHERE grp = #{grp} AND depth > #{depth}")
-    void setReplyDelete(BoardDto boardDto);
-
     @Update("UPDATE board_${configCode} SET subject=#{subject}, content=#{content}, isFiles=#{isFiles} WHERE id=#{id}")
     void setUpdate(BoardDto boardDto);
-
     @Select("SELECT *FROM board_List")
     List<MedicineDto> getMed();
 

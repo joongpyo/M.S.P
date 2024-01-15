@@ -15,6 +15,7 @@ public class BoardDto {
     private int uIdFk;
     private String isFiles;
     private int commentCount;
+    private int rId;
     private String configCode;
     private int boardType;
 
@@ -114,6 +115,14 @@ public class BoardDto {
         this.commentCount = commentCount;
     }
 
+    public int getrId() {
+        return rId;
+    }
+
+    public void setrId(int rId) {
+        this.rId = rId;
+    }
+
     public String getConfigCode() {
         return configCode;
     }
@@ -128,25 +137,5 @@ public class BoardDto {
 
     public void setBoardType(int boardType) {
         this.boardType = boardType;
-    }
-
-    @Override
-    public String toString() {
-        return "BoardDto{" +
-                "id=" + id +
-                ", subject='" + subject + '\'' +
-                ", writer='" + writer + '\'' +
-                ", content='" + content + '\'' +
-                ", visit=" + visit +
-                ", reg=" + reg +
-                ", grp=" + grp +
-                ", seq=" + seq +
-                ", depth=" + depth +
-                ", uIdFk=" + uIdFk +
-                ", isFiles='" + isFiles + '\'' +
-                ", commentCount=" + commentCount +
-                ", configCode='" + configCode + '\'' +
-                ", boardType=" + boardType +
-                '}';
     }
 }

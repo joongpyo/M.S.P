@@ -57,7 +57,6 @@
 .dis-btn{
     width: 110px;
     height: 50px;
-
     border: 0;
     border-radius: 10px;
     background-color: #FB4F9C;
@@ -70,4 +69,8 @@
 
 .dis-btn:active{
     background-color: #BE0069;
+}
+.blue{
+    background-color: #41A7E3;
+    color: #fff;
 }

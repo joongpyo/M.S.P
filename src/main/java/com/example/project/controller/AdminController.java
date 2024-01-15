@@ -5,10 +5,7 @@ import com.example.project.mapper.AdminBoardMapper;
 import com.example.project.mapper.DiseaseMapper;
 import com.example.project.mapper.MedicineMapper;
 import com.example.project.mapper.UserMapper;
-import com.example.project.service.AdminBoardService;
-import com.example.project.service.DiseaseService;
-import com.example.project.service.MedicineService;
-import com.example.project.service.UserService;
+import com.example.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -42,7 +39,8 @@ public class AdminController {
     AdminBoardMapper adminBoardMapper;
     @Autowired
     DiseaseMapper diseaseMapper;
-
+    @Autowired
+    BoardService boardService;
 
     @Value("${fileDir}")
     String fileDir;
@@ -77,7 +75,20 @@ public class AdminController {
 
     @GetMapping("/admin/userDelete")
     public String getUserDelete(@ModelAttribute UserDto userDto){
+
+        //todo
+
+
+
+
+
+
+
+
+
+
         userService.userDelete(userDto);
+
         return "redirect:/admin/userList";
     }
 
@@ -93,7 +104,7 @@ public class AdminController {
     }
     @GetMapping("/admin/disInsert") // admin Disease insert window load
     public String getDisUpdate(){
-        return "/admin/diseasePage/disInsert";
+        return "admin/diseasePage/disInsert";
     }
     @GetMapping("/admin/checkDisName") // admin Disease insert check disease Name <> DB
     @ResponseBody
@@ -289,7 +300,7 @@ public class AdminController {
         // 파일 DB 삭제
         int id = medicineDto.getMedId();
         medicineService.setFileDelete(id);
-        return "redirect:admin/medList?medId="+ medicineDto.getMedId();
+        return "redirect:/admin/medList?medId="+ medicineDto.getMedId();
     }
     @GetMapping("/admin/medUpdate")
     public String medicineView(@RequestParam int medId, Model model){
