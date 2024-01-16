@@ -114,57 +114,7 @@ public class BoardService {
     }
 
     public void setDelete(String configCode,BoardDto boardDto) {
-
-        /*
-        //하위게시물(답글 게시판 얻기)
-        Map<String,Object> delmap = new HashMap<>();
-        boardDto.setConfigCode(configCode);
-
-
-        List<BoardDto> qList = boardMapper.getDeleteList(boardDto);
-        if(qList != null){
-           for( BoardDto list : qList){
-               //하위게시물 파일삭제
-               if(list.getIsFiles().equals("Y")){
-                   List<FileDto> files = boardMapper.getFile(configCode, boardDto.getId());
-
-                   for (FileDto fd : files){
-                       File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
-                       file.delete();
-                   }
-                   boardMapper.setFilesDelete(configCode,list.getId());
-               }
-               //하위게시물 댓글삭제
-               if(list.getCommentCount()>0){
-                   commentMapper.setCommentDelete(configCode,list.getId());
-               }
-               //하위게시물 삭제
-               boardMapper.setDelete(configCode,list.getId());
-           }
-        }
-
-        //선택게시판
-        commentMapper.setCommentDelete(configCode,boardDto.getId());
-        //파일 db삭제
-        if(boardDto.getIsFiles().equals("Y")){
-            List<FileDto> files = boardMapper.getFile(configCode,boardDto.getId());
-
-            for (FileDto fd : files){
-                File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
-                file.delete();
-            }
-            boardMapper.setFilesDelete(configCode,boardDto.getId());
-        }
-        boardMapper.setReplyDelete(boardDto);
-
-         */
-        if(boardDto.getrId() < 1 ){
-            boardMapper.setReDelete(configCode,boardDto.getId());
-        }else{
-            boardMapper.setDelete(configCode,boardDto.getId());
-            boardMapper.setReDelete(configCode,boardDto.getrId());
-        }
-
+        boardMapper.setDelete(configCode,boardDto.getId());
     }
 
     //////////////////////////////////메서드
@@ -194,6 +144,12 @@ public class BoardService {
     public List<FileDto> getMedFiles(){
         return boardMapper.getMedFiles();
     }
+    public void setReply(String configCode,BoardDto boardDto) {
+
+        boardDto.setConfigCode(configCode);
+        boardMapper.setReply(boardDto);
+    }
+
 
 
 }

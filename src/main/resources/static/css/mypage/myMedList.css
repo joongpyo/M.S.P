@@ -1,12 +1,12 @@
+.content-container{
+    width: 100%;
+}
 .content-wrap{
-   width: 100%;
+    width: 100%;
     margin: 0 auto;
-
     margin-top: 70px;
 
 }
-
-
 /*관리자 게시물 갯수, 검색창*/
 .search-form {
     display: flex;
@@ -115,7 +115,7 @@
 /*테이블*/
 
 .table-wrap{
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
 
 }
@@ -123,7 +123,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-
 
 }
 th,
@@ -143,7 +142,30 @@ td{
     border: .5px solid #ccc;
 }
 
-
+th:nth-child(1) {
+    width: 10%;
+}
+th:nth-child(2) {
+    width: 10%;
+}
+th:nth-child(3) {
+    width: 10%;
+}
+th:nth-child(4) {
+    width: 15%;
+}
+th:nth-child(5) {
+    width: 10%;
+}
+th:nth-child(6) {
+    width: 15%;
+}
+th:nth-child(7) {
+    width: 10%;
+}
+th:nth-child(8) {
+    width: 15%;
+}
 
 
 

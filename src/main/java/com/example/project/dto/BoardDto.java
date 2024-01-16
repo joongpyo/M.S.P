@@ -12,10 +12,10 @@ public class BoardDto {
     private int grp;
     private int seq;
     private int depth;
+    private int parentPost;
     private int uIdFk;
     private String isFiles;
     private int commentCount;
-    private int rId;
     private String configCode;
     private int boardType;
 
@@ -91,6 +91,14 @@ public class BoardDto {
         this.depth = depth;
     }
 
+    public int getParentPost() {
+        return parentPost;
+    }
+
+    public void setParentPost(int parentPost) {
+        this.parentPost = parentPost;
+    }
+
     public int getuIdFk() {
         return uIdFk;
     }
@@ -113,14 +121,6 @@ public class BoardDto {
 
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
-    }
-
-    public int getrId() {
-        return rId;
-    }
-
-    public void setrId(int rId) {
-        this.rId = rId;
     }
 
     public String getConfigCode() {

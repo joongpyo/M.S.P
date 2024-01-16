@@ -31,9 +31,12 @@ public interface BoardMapper {
     @Select("SELECT IFNULL( MAX(grp) + 1,  1) FROM board_${configCode}")
     int getGrpMaxCnt(String configCode);
 
-    @Insert("INSERT INTO board_${configCode} VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, #{depth}, #{isFiles}, 0, 0, #{boardType}, #{uIdFk})")
+    @Insert("INSERT INTO board_${configCode} VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, #{depth}, #{isFiles}, 0, #{boardType}, #{uIdFk}, null)")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void setBoard(BoardDto boardDto);
+    @Insert("INSERT INTO board_${configCode} VALUES(null, #{subject}, #{writer}, #{content}, 0, now(), #{grp}, #{seq}, #{depth}, #{isFiles}, 0, #{boardType}, #{uIdFk}, #{parentPost})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void setReply(BoardDto boardDto);
 
     @Insert("INSERT INTO files_${configCode} VALUES(#{id},#{orgName},#{savedFileName},#{savedPathName},#{savedFileSize},#{folderName},#{ext})")
     void setFiles(FileDto fileDto);
@@ -46,8 +49,7 @@ public interface BoardMapper {
 
     @Delete("DELETE FROM board_${configCode} WHERE id = #{id}")
     void setDelete(String configCode,int id);
-    @Delete("DELETE FROM board_${configCode} WHERE r_id=#(rId)")
-    void setReDelete(String configCode, int rId);
+
     @Update("UPDATE board_${configCode} SET seq=seq+1 WHERE grp = #{grp} AND seq > #{seq}")
     void setReplyUpdate(BoardDto boardDto);
     @Update("UPDATE board_${configCode} SET subject=#{subject}, content=#{content}, isFiles=#{isFiles} WHERE id=#{id}")

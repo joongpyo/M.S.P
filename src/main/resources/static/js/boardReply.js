@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    alert("ok");
+                    alert("답변이 등록되었습니다.");
                     console.log(configCode.value);
                     let formData = new FormData();
                     let uploadData = document.querySelector("#upload-form input[name='files']").files;

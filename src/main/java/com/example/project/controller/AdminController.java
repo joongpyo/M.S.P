@@ -75,20 +75,7 @@ public class AdminController {
 
     @GetMapping("/admin/userDelete")
     public String getUserDelete(@ModelAttribute UserDto userDto){
-
-        //todo
-
-
-
-
-
-
-
-
-
-
         userService.userDelete(userDto);
-
         return "redirect:/admin/userList";
     }
 
@@ -130,14 +117,12 @@ public class AdminController {
     @GetMapping("/admin/checkId")
     @ResponseBody
     public Map<String, Object> setCheckId(@RequestParam int disId){
-        System.out.println(disId);
+
         return null;
     }
     @PostMapping("/admin/disUpdate")
     @ResponseBody
     public Map<String,Object> setDisUpdate(@ModelAttribute DiseaseDto diseaseDto){
-        System.out.println(diseaseDto);
-        System.out.println(diseaseDto.getDisId());
         diseaseService.updateDis(diseaseDto);
         return Map.of("msg","success");
     }
@@ -249,7 +234,6 @@ public class AdminController {
     @PostMapping("/admin/medInsert")
     @ResponseBody
     public Map<String, Object> setMedInsert(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(medicineDto);
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
             medicineService.setMedInsert(medicineDto);
@@ -280,8 +264,6 @@ public class AdminController {
             fileDto.setExt(ext);
 
             medicineService.setFile(fileDto);
-            System.out.println(fileDto);
-            System.out.println(medicineDto);
             return Map.of("msg", "success");
         } else {
             return Map.of("msg", "failure");
@@ -313,8 +295,7 @@ public class AdminController {
     @PostMapping("/admin/medUpdate")
     @ResponseBody
     public Map<String, Object> medUpdate(@ModelAttribute MedicineDto medicineDto, @RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println(medicineDto);
-        System.out.println(file);
+
 
         if (!file.isEmpty()) {
             medicineDto.setIsFiles("Y");
@@ -357,8 +338,7 @@ public class AdminController {
             fileDto.setExt(ext);
 
             medicineService.setFile(fileDto);
-            System.out.println(fileDto);
-            System.out.println(medicineDto);
+
             return Map.of("msg", "success");
         } else {
             return Map.of("msg", "failure");

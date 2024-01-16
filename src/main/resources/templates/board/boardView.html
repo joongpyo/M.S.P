@@ -153,10 +153,9 @@
 
     function authCheck() {
         if(userId.value != "admin"){
-            alert(userId.value + "권한이 없습니다. 관리자에게 문의하세요");
+            alert("권한이 없습니다. 관리자에게 문의하세요");
             return false;
         }else{
-            alert(userId.value);
             location.href="/board/boardReply?configCode="+configCode.value+"&id="+bIdFk.value;
         }
     }

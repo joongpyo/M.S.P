@@ -211,7 +211,7 @@ public class BoardController {
                            @RequestParam int id, Model model){
 
         BoardDto boardDto = boardService.getView(configCode,id);
-        boardDto.setrId(id);
+        //boardDto.setrId(id);
         model.addAttribute("reply", boardDto);
         model.addAttribute("configCode",configCode);
         return "board/boardReply";
@@ -234,17 +234,19 @@ public class BoardController {
         boardDto.setDepth(parentBd.getDepth()+1);
         boardDto.setBoardType(2);
         boardDto.setWriter("관리자");
+        boardDto.setParentPost(parentBd.getuIdFk());
 
         if (files != null){
             boardDto.setIsFiles("Y");
-            boardService.setBoard(configCode,boardDto);
+            boardService.setReply(configCode,boardDto);
             int fileID = boardDto.getId();
             boardService.setFiles(configCode,files,fileID);
             //자동으로 증가되는 id값을 얻기 위해 mapper에서 @Options(useGeneratedKeys = true, keyProperty = "id") 사용
         }else {
             boardDto.setIsFiles("N");
-            boardService.setBoard(configCode,boardDto);
+            boardService.setReply(configCode,boardDto);
         }
+
         Map<String,Object> map = new HashMap<>();
         map.put("msg","success");
         map.put("configCode",configCode);

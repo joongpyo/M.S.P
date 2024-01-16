@@ -8,7 +8,6 @@ user_reg date not null,
 primary key(u_id)
 );
 
-
 create table board_QnA(
 id int not null auto_increment,
 subject varchar(100) not null,
@@ -21,9 +20,10 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
-r_id int,
 board_type int not null,
 u_id_fk int not null,
+parent_post int,
+foreign key(parent_post) REFERENCES user(u_id) ON DELETE CASCADE.
 foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
@@ -61,9 +61,10 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
-r_id int,
 board_type int not null,
 u_id_fk int not null,
+parent_post int,
+foreign key(parent_post) REFERENCES user(u_id) ON DELETE CASCADE.
 foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
@@ -79,7 +80,6 @@ ext varchar(20),
 foreign key(id) references board_Notice(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 create table board_Review(
 id int not null auto_increment,
 subject varchar(100) not null,
@@ -92,9 +92,10 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
-r_id int,
 board_type int not null,
 u_id_fk int not null,
+parent_post int,
+foreign key(parent_post) REFERENCES user(u_id) ON DELETE CASCADE,
 foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
@@ -132,9 +133,10 @@ seq int,
 depth int,
 isFiles char(1) not null,
 comment_count int not null,
-r_id int,
 board_type int not null,
 u_id_fk int not null,
+parent_post int,
+foreign key(parent_post) REFERENCES user(u_id) ON DELETE CASCADE.
 foreign key(u_id_fk) REFERENCES user(u_id) ON DELETE CASCADE ON UPDATE CASCADE,
 primary key(id)
 );
