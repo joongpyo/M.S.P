@@ -85,7 +85,7 @@
                             <button type="button" class="btn" style="margin-left:5px;" th:onclick="return authCheck()" >답글</button>
                         </div>
 
-                        <div class="bottom-right" th:if="${board.uIdFk eq session.user.uId} ">
+                        <div class="bottom-right" th:if="${board.uIdFk eq session.user.uId || session.user.uId eq 1}">
                             <a th:href=@{/board/boardUpdate(configCode=${configCode},id=${board.id})}>
                                 <button type="button" class="btn">수정</button>
                             </a>

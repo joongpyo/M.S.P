@@ -190,20 +190,20 @@
                 if(res.type == ""){
                     output =    `<h4>요청하신 회원정보가 없습니다.</h4>
                                 <div class="modal-img">
-								<img src="/images/not-found.png">
+								<img src="/static/images/not-found.png">
 								</div>
 								<p>입력한 정보를 다시 확인해 주세요.</p>`;
 
                 }else if(res.type == "id"){
                     output =    `<h4>요청하신 아이디 찾기 결과입니다.</h4>
                                 <div class="modal-img">
-								<img src="/images/find-id.png">
+								<img src="/static/images/find-id.png">
 								</div>
 								<p>입력한 정보로 조회된 아이디는 <span>${res.user.userId}</span> 입니다.</p>`
                 }else{
                     output =    `<h4>요청하신 비밀번호 찾기 결과입니다.</h4>
 								<div class="modal-img">
-								<img src="/images/find-pwd.png">
+								<img src="/static/images/find-pwd.png">
 								</div>
 								<p>입력한 정보로 조회된 비밀번호는 <span>${res.user.userPasswd}</span> 입니다.</p>`
 

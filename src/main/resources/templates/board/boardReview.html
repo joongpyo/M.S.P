@@ -77,9 +77,16 @@
                                 </th:block>
                                 <span>[답글완료]</span>
                             </th:block>
-                            <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
-                                [[${board.subject}]] <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
-                            </a>
+                            <th:block th:if="${board.boardType == 1}">
+                                <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
+                                    <span><i class="fa-solid fa-bullhorn" style="color:red;"></i> <strong>[[${board.subject}]]</strong></span> <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
+                                </a>
+                            </th:block>
+                            <th:block th:unless="${board.boardType == 1}">
+                                <a href="#" class="b-subject" th:attr="onclick='return loginCheck(\'view\', ' + ${board.id} + ',\'\', event)'">
+                                    <span>[[${board.subject}]] </span> <span class="comment-count" th:if="${board.commentCount > 0}">[[${board.commentCount}]]</span>
+                                </a>
+                            </th:block>
                         </td>
 
                         <td>[[${board.writer}]]</td>
