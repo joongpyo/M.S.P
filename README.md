@@ -1,6 +1,6 @@
 <br/>
 
-# 약 데이터 정보 검색 사이트 - Medicine Search Project(M.S.P)
+# 💊 약 데이터 정보 검색 사이트 - Medicine Search Project(M.S.P) 💊 
 
 > 프로젝트 수행 기간 :  2023.12.11 ~ 2024.1.16
 
@@ -65,7 +65,7 @@
    <br/>
    <br/>
 
-# 📋 프로젝트 소개
+## 📋 프로젝트 소개
 
 <br/>
 
@@ -110,13 +110,13 @@
 <br/>
 <br/>
 
-# 🌳 Er Diagram
+## 🌳 Er Diagram
 ![image19](https://github.com/joongpyo/M.S.P/assets/143946770/47099803-4219-48ea-8016-abee74f085b3)
 
 <br/>
 <br/>
 
-# 🖥️ 화면 UI
+## 🖥️ 화면 UI
 
 - main<br/>
 ![image22](https://github.com/joongpyo/M.S.P/assets/143946770/14a66f51-7f7c-48af-b5db-220400e665da)
