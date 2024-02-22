@@ -1,6 +1,6 @@
 <br/>
 
-# 💊 약 데이터 정보 검색 사이트 - Medicine Search Project(M.S.P) 💊 
+# 💊 약 데이터 정보 검색 사이트 - Medicine Search Project(M.S.P)
 
 > 프로젝트 수행 기간 :  2023.12.11 ~ 2024.1.16
 
